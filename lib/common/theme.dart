@@ -10,6 +10,7 @@ class GlobalTheme {
   static ThemeData getGlobalTheme() {
     return ThemeData(
         brightness: Brightness.light,
+        backgroundColor: Colors.white,
         colorScheme: getColorScheme(),
         textTheme: getTextTheme(),
         elevatedButtonTheme: getElevatedButtonTheme(),

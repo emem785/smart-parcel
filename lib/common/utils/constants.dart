@@ -34,6 +34,19 @@ class LayoutConstants {
     );
   }
 
+  static AppBar appBarNoBack({
+    required String title,
+    required BuildContext context,
+  }) {
+    return AppBar(
+      title: Text(title),
+      titleTextStyle: GlobalTheme.textTheme(context).headline6,
+      centerTitle: false,
+      elevation: 0.0,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
   static Padding padButton(ElevatedButton elevatedButton) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
