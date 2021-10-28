@@ -48,9 +48,9 @@ Widget buildWelcomeScreen({required BuildContext context}) {
             },
           ),
         ),
-        LayoutConstants.sizeBox(context, 0.0743),
+        LayoutConstants.sizeBox(context, 68),
         buildContentAnimation(pageController: pageController, context: context),
-        LayoutConstants.sizeBox(context, 0.0518),
+        LayoutConstants.sizeBox(context, 48),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,7 +62,7 @@ Widget buildWelcomeScreen({required BuildContext context}) {
               ),
           ],
         ),
-        LayoutConstants.sizeBox(context, 0.05399),
+        LayoutConstants.sizeBox(context, 50),
         LayoutConstants.padButton(ElevatedButton(
           onPressed: () => context.router.pushNamed("/login"),
           child: const Text("Get Started"),

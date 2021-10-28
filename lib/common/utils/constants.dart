@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_parcel/common/theme.dart';
 
+const canvsHeight = 926;
+const canvasWidth = 428;
+
 class Constants {
   static double height(BuildContext context) {
     return MediaQuery.of(context).size.height;
@@ -38,11 +41,15 @@ class LayoutConstants {
     );
   }
 
-  static SizedBox sizeBox(BuildContext context, double percent) {
-    return SizedBox(height: Constants.height(context) * percent);
+  static SizedBox sizeBox(BuildContext context, double size) {
+    return SizedBox(
+      height: Constants.height(context) * (size / canvsHeight),
+    );
   }
 
-  static SizedBox sizeBoxH(BuildContext context, double percent) {
-    return SizedBox(width: Constants.width(context) * percent);
+  static SizedBox sizeBoxH(BuildContext context, double size) {
+    return SizedBox(
+      width: Constants.width(context) * (size / canvasWidth),
+    );
   }
 }

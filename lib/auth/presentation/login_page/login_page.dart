@@ -31,17 +31,21 @@ Widget buildLoginPage({required BuildContext context}) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              LayoutConstants.sizeBox(context, 48),
               const Text(
                   "Please enter the details below to log into your account."),
+              LayoutConstants.sizeBox(context, 24),
               buildSignInForm(
                 context: context,
                 emailController: emailController,
                 passwordController: passwordController,
               ),
+              LayoutConstants.sizeBox(context, 8),
               const Text(
                 "Forgot your password?",
                 style: TextStyle(color: GlobalTheme.primary400),
               ),
+              LayoutConstants.sizeBox(context, 72),
               LayoutConstants.padButton(ElevatedButton(
                 onPressed: () {},
                 child: const Text("Sign In"),
@@ -50,7 +54,7 @@ Widget buildLoginPage({required BuildContext context}) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Don’t have an existing account?"),
-                  LayoutConstants.sizeBoxH(context, 0.0093),
+                  LayoutConstants.sizeBoxH(context, 4),
                   GestureDetector(
                     child: const Text(
                       "Sign up",
