@@ -14,6 +14,14 @@ class Constants {
   static double width(BuildContext context) {
     return MediaQuery.of(context).size.height;
   }
+
+  static double responsiveHeight(BuildContext context, double size) {
+    return height(context) * (size / canvsHeight);
+  }
+
+  static double responsiveWidth(BuildContext context, double size) {
+    return width(context) * (size / canvsHeight);
+  }
 }
 
 class LayoutConstants {
@@ -31,6 +39,20 @@ class LayoutConstants {
         ),
         onPressed: () => context.router.pop(),
       ),
+    );
+  }
+
+  static AppBar autoAppBar({
+    required String title,
+    required BuildContext context,
+  }) {
+    return AppBar(
+      title: Text(title),
+      titleTextStyle: GlobalTheme.textTheme(context).headline6,
+      elevation: 0.0,
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      leading: const AutoBackButton(color: GlobalTheme.primaryColor),
     );
   }
 

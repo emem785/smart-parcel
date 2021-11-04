@@ -9,12 +9,15 @@ class GlobalTheme {
 
   static ThemeData getGlobalTheme() {
     return ThemeData(
-        brightness: Brightness.light,
-        backgroundColor: Colors.white,
-        colorScheme: getColorScheme(),
-        textTheme: getTextTheme(),
-        elevatedButtonTheme: getElevatedButtonTheme(),
-        inputDecorationTheme: getInputDecorationTheme());
+      brightness: Brightness.light,
+      backgroundColor: Colors.white,
+      toggleableActiveColor: primaryColor,
+      colorScheme: getColorScheme(),
+      textTheme: getTextTheme(),
+      elevatedButtonTheme: getElevatedButtonTheme(),
+      inputDecorationTheme: getInputDecorationTheme(),
+      tabBarTheme: getTabBarTheme(),
+    );
   }
 
   static InputDecorationTheme getInputDecorationTheme() {
@@ -86,6 +89,16 @@ class GlobalTheme {
         color: lightGrey,
       ),
     ));
+  }
+
+  static TabBarTheme getTabBarTheme() {
+    return const TabBarTheme(
+      labelColor: primaryColor,
+      labelStyle: TextStyle(color: Colors.black),
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(color: primaryColor),
+      ),
+    );
   }
 
   static TextTheme textTheme(BuildContext context) {
