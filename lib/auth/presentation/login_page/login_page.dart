@@ -2,8 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
+import 'package:smart_parcel/common/utils/validator_util.dart';
+
+const loginButtonKey = Key("login_button");
+const emailKey = Key("email_text_Field");
+const passwordKey = Key("password_text_Field");
 
 class LoginPage extends HookWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,6 +29,7 @@ class LoginPage extends HookWidget {
 Widget buildLoginPage({required BuildContext context}) {
   final emailController = useTextEditingController();
   final passwordController = useTextEditingController();
+  final formKey = useState(GlobalKey<FormState>());
 
   return SingleChildScrollView(
     child: Column(
@@ -40,6 +47,7 @@ Widget buildLoginPage({required BuildContext context}) {
                 context: context,
                 emailController: emailController,
                 passwordController: passwordController,
+                formKey: formKey.value,
               ),
               LayoutConstants.sizeBox(context, 8),
               GestureDetector(
@@ -51,7 +59,12 @@ Widget buildLoginPage({required BuildContext context}) {
               ),
               LayoutConstants.sizeBox(context, 72),
               LayoutConstants.padButton(ElevatedButton(
-                onPressed: () => context.router.pushNamed("/"),
+                key: loginButtonKey,
+                onPressed: () {
+                  if (formKey.value.currentState!.validate()) {
+                    print("d");
+                  }
+                },
                 child: const Text("Sign In"),
               )),
               Row(
@@ -80,17 +93,22 @@ Widget buildSignInForm({
   required BuildContext context,
   required TextEditingController emailController,
   required TextEditingController passwordController,
+  required GlobalKey<FormState> formKey,
 }) {
-  return Column(
-    children: [
-      TextFormField(
-        decoration: const InputDecoration(labelText: "Email Address"),
-      ),
-      TextFormField(
-        decoration: const InputDecoration(
-          labelText: "Password",
+  return Form(
+    key: formKey,
+    child: Column(
+      children: [
+        TextFormField(
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(labelText: "Email Address"),
+          key: emailKey,
         ),
-      )
-    ],
+        CommonWidgets.buildPasswordTextField(
+          controller: passwordController,
+          labelText: "Password",
+        )
+      ],
+    ),
   );
 }

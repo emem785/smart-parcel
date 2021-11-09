@@ -17,6 +17,7 @@ class GlobalTheme {
       elevatedButtonTheme: getElevatedButtonTheme(),
       inputDecorationTheme: getInputDecorationTheme(),
       tabBarTheme: getTabBarTheme(),
+      checkboxTheme: getCheckboxTheme(),
     );
   }
 
@@ -64,7 +65,7 @@ class GlobalTheme {
       background: primaryColor,
       error: Colors.red,
       onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onSecondary: primaryColor,
       onSurface: lightGrey2,
       onBackground: Colors.white,
       onError: Colors.white,
@@ -98,6 +99,12 @@ class GlobalTheme {
       indicator: UnderlineTabIndicator(
         borderSide: BorderSide(color: primaryColor),
       ),
+    );
+  }
+
+  static CheckboxThemeData getCheckboxTheme() {
+    return const CheckboxThemeData(
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
   }
 

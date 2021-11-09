@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/images/home.svg",
                 color: getColorForIndex(0, tabsRouter.activeIndex),
+                height: 18,
               ),
             ),
             label: 'Home',
@@ -43,6 +44,7 @@ class HomePage extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/images/parcel.svg",
                 color: getColorForIndex(1, tabsRouter.activeIndex),
+                height: 18,
               ),
             ),
             label: 'Parcels',
@@ -53,6 +55,7 @@ class HomePage extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/images/profile.svg",
                 color: getColorForIndex(2, tabsRouter.activeIndex),
+                height: 18,
               ),
             ),
             label: 'Profile',
@@ -63,13 +66,14 @@ class HomePage extends StatelessWidget {
               child: SvgPicture.asset(
                 "assets/images/settings.svg",
                 color: getColorForIndex(3, tabsRouter.activeIndex),
+                height: 18,
               ),
             ),
             label: 'Settings',
           ),
         ],
-        unselectedFontSize: 11,
-        selectedFontSize: 11,
+        unselectedFontSize: 10,
+        selectedFontSize: 10,
         type: BottomNavigationBarType.fixed,
         currentIndex: tabsRouter.activeIndex,
         unselectedItemColor: GlobalTheme.lightGrey,

@@ -1,7 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_parcel/auth/presentation/sign_up_page/widgets/sign_up_form.dart';
+import 'package:smart_parcel/common/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
+
+const signUpButtonKey = Key("sign_up_button");
 
 class SignUpPage extends HookWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -26,6 +30,7 @@ Widget buildSignUpPage({required BuildContext context}) {
   final emailController = useTextEditingController();
   final passwordController = useTextEditingController();
   final confirmPasswordController = useTextEditingController();
+  final formKey = useState(GlobalKey<FormState>());
 
   return SingleChildScrollView(
     child: Column(
@@ -47,10 +52,16 @@ Widget buildSignUpPage({required BuildContext context}) {
                 emailController: emailController,
                 passwordController: passwordController,
                 confirmPasswordController: confirmPasswordController,
+                formKey: formKey.value,
               ),
               LayoutConstants.sizeBox(context, 72),
               LayoutConstants.padButton(ElevatedButton(
-                onPressed: () {},
+                key: signUpButtonKey,
+                onPressed: () {
+                  if (formKey.value.currentState!.validate()) {
+                    context.router.push(const ConfirmEmailRoute());
+                  }
+                },
                 child: const Text("Next"),
               ))
             ],

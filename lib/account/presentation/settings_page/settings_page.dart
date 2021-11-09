@@ -12,12 +12,6 @@ class SettingsPage extends StatelessWidget {
         children: [
           buildSettingTile(
             context: context,
-            icon: "notifications",
-            title: "Notifications",
-            onTap: () {},
-          ),
-          buildSettingTile(
-            context: context,
             icon: "faqs",
             title: "FAQs",
             onTap: () {},

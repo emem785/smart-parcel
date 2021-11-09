@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/theme.dart';
 
 const canvsHeight = 926;
@@ -22,6 +23,8 @@ class Constants {
   static double responsiveWidth(BuildContext context, double size) {
     return width(context) * (size / canvsHeight);
   }
+
+  static final dateFormat = DateFormat("dd-MM-yyyy HH:mm");
 }
 
 class LayoutConstants {

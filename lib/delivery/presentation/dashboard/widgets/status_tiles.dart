@@ -7,9 +7,9 @@ Widget buildStatusTiles({required BuildContext context}) {
   return Row(
     children: [
       buildStatusTile(context: context, count: "0", title: "Pending Pickup"),
-      LayoutConstants.sizeBoxH(context, 8),
+      const Spacer(),
       buildStatusTile(context: context, count: "0", title: "Item In Locker"),
-      LayoutConstants.sizeBoxH(context, 8),
+      const Spacer(),
       buildStatusTile(context: context, count: "0", title: "Delivered Parcel"),
     ],
   );
@@ -31,8 +31,8 @@ Widget buildStatusTile({
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         )),
-    height: Constants.responsiveHeight(context, 124),
-    width: Constants.responsiveWidth(context, 124),
+    height: Constants.responsiveHeight(context, 118),
+    width: Constants.responsiveWidth(context, 118),
     child: Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
+import 'package:smart_parcel/common/utils/validator_util.dart';
 
 Widget buildSignUpForm({
   required BuildContext context,
@@ -9,51 +11,57 @@ Widget buildSignUpForm({
   required TextEditingController emailController,
   required TextEditingController passwordController,
   required TextEditingController confirmPasswordController,
+  required GlobalKey<FormState> formKey,
 }) {
-  return Column(
-    children: [
-      TextFormField(
-        controller: usernameController,
-        decoration: const InputDecoration(
-          labelText: "Username",
+  return Form(
+    key: formKey,
+    child: Column(
+      children: [
+        TextFormField(
+          validator: ValidatorUtil.normalValidator,
+          controller: usernameController,
+          decoration: const InputDecoration(
+            labelText: "Username",
+          ),
         ),
-      ),
-      TextFormField(
-        controller: firstnameController,
-        decoration: const InputDecoration(
-          labelText: "Firstname",
+        TextFormField(
+          controller: firstnameController,
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(
+            labelText: "Firstname",
+          ),
         ),
-      ),
-      TextFormField(
-        controller: lastnameController,
-        decoration: const InputDecoration(
-          labelText: "Lastname",
+        TextFormField(
+          controller: lastnameController,
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(
+            labelText: "Lastname",
+          ),
         ),
-      ),
-      TextFormField(
-        controller: phoneController,
-        decoration: const InputDecoration(
-          labelText: "Phone",
+        TextFormField(
+          controller: phoneController,
+          keyboardType: TextInputType.number,
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(
+            labelText: "Phone",
+          ),
         ),
-      ),
-      TextFormField(
-        controller: emailController,
-        decoration: const InputDecoration(
-          labelText: "Email Address",
+        TextFormField(
+          controller: emailController,
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(
+            labelText: "Email Address",
+          ),
         ),
-      ),
-      TextFormField(
-        controller: passwordController,
-        decoration: const InputDecoration(
+        CommonWidgets.buildPasswordTextField(
+          controller: passwordController,
           labelText: "Password",
         ),
-      ),
-      TextFormField(
-        controller: confirmPasswordController,
-        decoration: const InputDecoration(
+        CommonWidgets.buildPasswordTextField(
+          controller: confirmPasswordController,
           labelText: "Confirm Password",
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }

@@ -38,10 +38,6 @@ class ProfilePage extends StatelessWidget {
               minRadius: 32,
             ),
           ),
-          const Text(
-            "Change Profile Picture",
-            style: TextStyle(color: GlobalTheme.primaryColor),
-          ),
           LayoutConstants.sizeBox(context, 45),
           buildProfileForm(context: context),
         ],
@@ -54,19 +50,19 @@ Widget buildProfileForm({required BuildContext context}) {
   return Column(
     children: [
       TextFormField(
-        decoration: InputDecoration(labelText: "FirsName"),
+        decoration: const InputDecoration(labelText: "FirsName"),
       ),
       LayoutConstants.sizeBox(context, 24),
       TextFormField(
-        decoration: InputDecoration(labelText: "LastName"),
+        decoration: const InputDecoration(labelText: "LastName"),
       ),
       LayoutConstants.sizeBox(context, 24),
       TextFormField(
-        decoration: InputDecoration(labelText: "Email Address"),
+        decoration: const InputDecoration(labelText: "Email Address"),
       ),
       LayoutConstants.sizeBox(context, 24),
       TextFormField(
-        decoration: InputDecoration(labelText: "Phone Number"),
+        decoration: const InputDecoration(labelText: "Phone Number"),
       ),
     ],
   );

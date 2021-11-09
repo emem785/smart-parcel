@@ -9,7 +9,7 @@ class ParcelsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: AutoTabsScaffold(
         appBarBuilder: (_, tabsRouter) {
           return PreferredSize(
@@ -19,6 +19,7 @@ class ParcelsPage extends StatelessWidget {
               backgroundColor: const Color(0xFFFAFAFA),
               bottom: TabBar(
                 tabs: const [
+                  Tab(child: Text("Available")),
                   Tab(child: Text("My Deposits")),
                   Tab(child: Text("History")),
                 ],
@@ -28,6 +29,7 @@ class ParcelsPage extends StatelessWidget {
           );
         },
         routes: const [
+          AvailableRoute(),
           DepositRoute(),
           HistoryRoute(),
         ],

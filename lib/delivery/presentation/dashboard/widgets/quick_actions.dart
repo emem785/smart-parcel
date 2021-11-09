@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,7 +13,7 @@ Widget buildQuickActions({required BuildContext context}) {
         title: "Self Storage",
         subtitle:
             "Keep an item at SmartParcel locker for\nyou to pickup at a later time.",
-        onTap: () {},
+        onTap: () => context.router.pushNamed("/home/chooseDuration"),
       ),
       LayoutConstants.sizeBox(context, 32),
       buildQuickAction(
