@@ -5,8 +5,8 @@ import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/widgets/quick_actions.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/widgets/status_tiles.dart';
 
-class Dashboard extends HookWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class DashboardPage extends HookWidget {
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

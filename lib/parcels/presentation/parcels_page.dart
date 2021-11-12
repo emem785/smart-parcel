@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:smart_parcel/common/routing/router.gr.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 
 class ParcelsPage extends StatelessWidget {
   const ParcelsPage({Key? key}) : super(key: key);

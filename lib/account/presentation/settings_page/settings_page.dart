@@ -1,5 +1,7 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -23,11 +25,10 @@ class SettingsPage extends StatelessWidget {
             onTap: () {},
           ),
           buildSettingTile(
-            context: context,
-            icon: "change_password",
-            title: "Change Password",
-            onTap: () {},
-          ),
+              context: context,
+              icon: "change_password",
+              title: "Change Password",
+              onTap: () => context.router.push(const ChangePasswordRoute())),
           buildSettingTile(
             context: context,
             icon: "logout",
@@ -49,6 +50,7 @@ Widget buildSettingTile({
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8),
     child: ListTile(
+      onTap: () => onTap(),
       leading: SvgPicture.asset("assets/images/$icon.svg"),
       title: Text(
         title,

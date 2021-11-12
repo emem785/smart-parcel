@@ -5,7 +5,9 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
+import 'package:smart_parcel/account/presentation/change_password_page/change_password_page.dart'
+    as _i17;
 import 'package:smart_parcel/account/presentation/profile_page/profiles_page.dart'
     as _i15;
 import 'package:smart_parcel/account/presentation/settings_page/settings_page.dart'
@@ -36,7 +38,7 @@ import 'package:smart_parcel/parcels/presentation/history_page/history_page.dart
 import 'package:smart_parcel/parcels/presentation/parcels_page.dart' as _i11;
 
 class AppRouter extends _i7.RootStackRouter {
-  AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])
+  AppRouter([_i18.GlobalKey<_i18.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -54,8 +56,15 @@ class AppRouter extends _i7.RootStackRouter {
           routeData: routeData, child: const _i3.SignUpPage());
     },
     ConfirmEmailRoute.name: (routeData) {
+      final pathParams = routeData.pathParams;
+      final args = routeData.argsAs<ConfirmEmailRouteArgs>(
+          orElse: () => ConfirmEmailRouteArgs(
+              email: pathParams.getString('email'),
+              password: pathParams.getString('password')));
       return _i7.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i4.ConfirmEmailPage());
+          routeData: routeData,
+          child: _i4.ConfirmEmailPage(
+              key: args.key, email: args.email, password: args.password));
     },
     ForgotPasswordRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
@@ -81,17 +90,20 @@ class AppRouter extends _i7.RootStackRouter {
       return _i7.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i7.EmptyRouterPage());
     },
-    Dashboard.name: (routeData) {
+    DashboardRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i8.Dashboard());
+          routeData: routeData, child: const _i8.DashboardPage());
     },
     ChooseDurationRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i9.ChooseDurationPage());
     },
-    SelectLocation.name: (routeData) {
+    SelectLocationRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectLocationRouteArgs>();
       return _i7.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i10.SelectLocation());
+          routeData: routeData,
+          child: _i10.SelectLocationPage(
+              key: args.key, onSelected: args.onSelected));
     },
     ParcelsRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
@@ -116,21 +128,27 @@ class AppRouter extends _i7.RootStackRouter {
     SettingsRoute.name: (routeData) {
       return _i7.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i16.SettingsPage());
+    },
+    ChangePasswordRoute.name: (routeData) {
+      return _i7.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i17.ChangePasswordPage());
     }
   };
 
   @override
   List<_i7.RouteConfig> get routes => [
+        _i7.RouteConfig('/#redirect',
+            path: '/', redirectTo: '/welcomePage', fullMatch: true),
         _i7.RouteConfig(WelcomeRoute.name, path: '/welcomePage'),
         _i7.RouteConfig(LoginRoute.name, path: '/login'),
         _i7.RouteConfig(SignUpRoute.name, path: '/signUp'),
         _i7.RouteConfig(ConfirmEmailRoute.name, path: '/confirmEmail'),
         _i7.RouteConfig(ForgotPasswordRoute.name, path: '/forgotPassword'),
-        _i7.RouteConfig(HomeRoute.name, path: '/', children: [
+        _i7.RouteConfig(HomeRoute.name, path: '/ss', children: [
           _i7.RouteConfig(HomeRouter.name, path: 'home', children: [
-            _i7.RouteConfig(Dashboard.name, path: ''),
+            _i7.RouteConfig(DashboardRoute.name, path: ''),
             _i7.RouteConfig(ChooseDurationRoute.name, path: 'chooseDuration'),
-            _i7.RouteConfig(SelectLocation.name, path: 'selectLocation')
+            _i7.RouteConfig(SelectLocationRoute.name, path: 'selectLocation')
           ]),
           _i7.RouteConfig(ParcelRouter.name, path: 'parcels', children: [
             _i7.RouteConfig(ParcelsRoute.name, path: '', children: [
@@ -142,9 +160,10 @@ class AppRouter extends _i7.RootStackRouter {
           _i7.RouteConfig(ProfileRouter.name,
               path: 'profile',
               children: [_i7.RouteConfig(ProfileRoute.name, path: '')]),
-          _i7.RouteConfig(SettingsRouter.name,
-              path: 'settings',
-              children: [_i7.RouteConfig(SettingsRoute.name, path: '')])
+          _i7.RouteConfig(SettingsRouter.name, path: 'settings', children: [
+            _i7.RouteConfig(SettingsRoute.name, path: ''),
+            _i7.RouteConfig(ChangePasswordRoute.name, path: 'changePassword')
+          ])
         ])
       ];
 }
@@ -171,10 +190,26 @@ class SignUpRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for [_i4.ConfirmEmailPage]
-class ConfirmEmailRoute extends _i7.PageRouteInfo<void> {
-  const ConfirmEmailRoute() : super(name, path: '/confirmEmail');
+class ConfirmEmailRoute extends _i7.PageRouteInfo<ConfirmEmailRouteArgs> {
+  ConfirmEmailRoute(
+      {_i18.Key? key, required String email, required String password})
+      : super(name,
+            path: '/confirmEmail',
+            args: ConfirmEmailRouteArgs(
+                key: key, email: email, password: password));
 
   static const String name = 'ConfirmEmailRoute';
+}
+
+class ConfirmEmailRouteArgs {
+  const ConfirmEmailRouteArgs(
+      {this.key, required this.email, required this.password});
+
+  final _i18.Key? key;
+
+  final String email;
+
+  final String password;
 }
 
 /// generated route for [_i5.ForgotPasswordPage]
@@ -187,7 +222,7 @@ class ForgotPasswordRoute extends _i7.PageRouteInfo<void> {
 /// generated route for [_i6.HomePage]
 class HomeRoute extends _i7.PageRouteInfo<void> {
   const HomeRoute({List<_i7.PageRouteInfo>? children})
-      : super(name, path: '/', initialChildren: children);
+      : super(name, path: '/ss', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }
@@ -224,11 +259,11 @@ class SettingsRouter extends _i7.PageRouteInfo<void> {
   static const String name = 'SettingsRouter';
 }
 
-/// generated route for [_i8.Dashboard]
-class Dashboard extends _i7.PageRouteInfo<void> {
-  const Dashboard() : super(name, path: '');
+/// generated route for [_i8.DashboardPage]
+class DashboardRoute extends _i7.PageRouteInfo<void> {
+  const DashboardRoute() : super(name, path: '');
 
-  static const String name = 'Dashboard';
+  static const String name = 'DashboardRoute';
 }
 
 /// generated route for [_i9.ChooseDurationPage]
@@ -238,11 +273,23 @@ class ChooseDurationRoute extends _i7.PageRouteInfo<void> {
   static const String name = 'ChooseDurationRoute';
 }
 
-/// generated route for [_i10.SelectLocation]
-class SelectLocation extends _i7.PageRouteInfo<void> {
-  const SelectLocation() : super(name, path: 'selectLocation');
+/// generated route for [_i10.SelectLocationPage]
+class SelectLocationRoute extends _i7.PageRouteInfo<SelectLocationRouteArgs> {
+  SelectLocationRoute(
+      {_i18.Key? key, required dynamic Function(int) onSelected})
+      : super(name,
+            path: 'selectLocation',
+            args: SelectLocationRouteArgs(key: key, onSelected: onSelected));
 
-  static const String name = 'SelectLocation';
+  static const String name = 'SelectLocationRoute';
+}
+
+class SelectLocationRouteArgs {
+  const SelectLocationRouteArgs({this.key, required this.onSelected});
+
+  final _i18.Key? key;
+
+  final dynamic Function(int) onSelected;
 }
 
 /// generated route for [_i11.ParcelsPage]
@@ -286,4 +333,11 @@ class SettingsRoute extends _i7.PageRouteInfo<void> {
   const SettingsRoute() : super(name, path: '');
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for [_i17.ChangePasswordPage]
+class ChangePasswordRoute extends _i7.PageRouteInfo<void> {
+  const ChangePasswordRoute() : super(name, path: 'changePassword');
+
+  static const String name = 'ChangePasswordRoute';
 }

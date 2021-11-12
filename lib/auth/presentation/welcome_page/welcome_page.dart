@@ -16,10 +16,8 @@ class WelcomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: buildWelcomeScreen(context: context),
-      ),
+    return Scaffold(
+      body: buildWelcomeScreen(context: context),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:smart_parcel/common/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 
+import 'common/presentation/routing/router.gr.dart';
 import 'inject_conf.dart';
 
 void main() {

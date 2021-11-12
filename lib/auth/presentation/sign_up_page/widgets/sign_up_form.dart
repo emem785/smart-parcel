@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_parcel/auth/presentation/sign_up_page/widgets/sign_up_page_body.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/utils/validator_util.dart';
 
@@ -23,6 +24,7 @@ Widget buildSignUpForm({
           decoration: const InputDecoration(
             labelText: "Username",
           ),
+          key: SignUpPageBody.username,
         ),
         TextFormField(
           controller: firstnameController,
@@ -30,6 +32,7 @@ Widget buildSignUpForm({
           decoration: const InputDecoration(
             labelText: "Firstname",
           ),
+          key: SignUpPageBody.firstName,
         ),
         TextFormField(
           controller: lastnameController,
@@ -37,6 +40,7 @@ Widget buildSignUpForm({
           decoration: const InputDecoration(
             labelText: "Lastname",
           ),
+          key: SignUpPageBody.lastname,
         ),
         TextFormField(
           controller: phoneController,
@@ -45,21 +49,25 @@ Widget buildSignUpForm({
           decoration: const InputDecoration(
             labelText: "Phone",
           ),
+          key: SignUpPageBody.phone,
         ),
         TextFormField(
           controller: emailController,
-          validator: ValidatorUtil.normalValidator,
+          validator: ValidatorUtil.emailValidator,
           decoration: const InputDecoration(
             labelText: "Email Address",
           ),
+          key: SignUpPageBody.email,
         ),
         CommonWidgets.buildPasswordTextField(
           controller: passwordController,
           labelText: "Password",
+          key: SignUpPageBody.password,
         ),
         CommonWidgets.buildPasswordTextField(
           controller: confirmPasswordController,
           labelText: "Confirm Password",
+          key: SignUpPageBody.confirmPassword,
         ),
       ],
     ),

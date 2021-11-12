@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:smart_parcel/common/hooks/page_tween_hooks.dart';
+import 'package:smart_parcel/common/presentation/hooks/page_tween_hooks.dart';
 import 'package:smart_parcel/common/theme.dart';
 
 Widget buildDotContainer({

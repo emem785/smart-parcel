@@ -2,6 +2,12 @@ class ValidatorUtil {
   static String? Function(String?)? get normalValidator => (value) {
         return value!.isEmpty ? "This field cannot be left blank" : null;
       };
+  static String? Function(String?)? get emailValidator => (value) {
+        if (value!.contains("@") && value.isNotEmpty) {
+          return null;
+        }
+        return "Please Enter a valid Email";
+      };
   static String? Function(String?)? get otpValidator => (value) {
         if (value!.isEmpty) {
           return "This field cannot be left blank";

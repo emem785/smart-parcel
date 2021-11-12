@@ -1,15 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/validator_util.dart';
 import 'package:smart_parcel/delivery/domain/usecases/delivery_usecases.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 const termsAndConditions =
-    "By clicking on this box, you have agreed to the Terms\nand Conditions that guides the booking of a box\non Smart Parcel App";
+    "By clicking on this box, you have agreed to the Terms and Conditions that guides the booking of a box on Smart Parcel App";
 const demurrage =
-    "Note: You will need to pay demurrage after 72hours if\npickup does not occur and your item will be archived after 1 week.";
+    "Note: You will need to pay demurrage after 72hours if pickup does not occur and your item will be archived after 1 week.";
 
 class ChooseDurationPage extends StatelessWidget {
   const ChooseDurationPage({Key? key}) : super(key: key);
@@ -35,6 +37,7 @@ class ChooseDuration extends HookWidget {
     final formKey = useState(GlobalKey<FormState>());
     final chooseDuration =
         context.read<DeliveryUseCases>().chooseDurationUseCase;
+    final showError = context.read<DeliveryUseCases>().showErrorUseCase;
 
     return Column(
       children: [
@@ -75,10 +78,14 @@ class ChooseDuration extends HookWidget {
             )),
         LayoutConstants.sizeBox(context, 21),
         LayoutConstants.padButton(ElevatedButton(
-          onPressed: () {
-            if (formKey.value.currentState!.validate()) {
-              print("e");
+          onPressed: () async {
+            if (formKey.value.currentState!.validate() && hasAgreed.value) {
+              context.router.push(SelectLocationRoute(onSelected: (index) {
+                print(index);
+              }));
+              return;
             }
+            showError(context: context, message: "Agree to terms & Conditions");
           },
           child: const Text("Done"),
           key: doneButtonKey,
@@ -102,9 +109,12 @@ buildTermsAndConditions({
           hasAgreed.value = value!;
         },
       ),
-      Text(
-        agreement,
-        style: const TextStyle(fontSize: 11),
+      Flexible(
+        child: Text(
+          agreement,
+          maxLines: 3,
+          style: const TextStyle(fontSize: 11),
+        ),
       ),
     ],
   );
