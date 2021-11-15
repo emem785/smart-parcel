@@ -1,0 +1,74 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:chopper/chopper.dart';
+import 'package:injectable/injectable.dart';
+import 'package:smart_parcel/auth/domain/models/auth_error.dart';
+import 'package:smart_parcel/auth/domain/models/forgot_password_error.dart';
+import 'package:smart_parcel/auth/domain/models/login_error.dart';
+import 'package:smart_parcel/common/domain/models/exceptions.dart';
+import 'package:smart_parcel/common/domain/models/token_error.dart';
+
+@injectable
+class ErrorInterceptor implements ResponseInterceptor {
+  @override
+  FutureOr<Response> onResponse(Response response) {
+    print(response.error);
+    if (!response.isSuccessful) {
+      throw ApiException(getError(response.error));
+    }
+    return response;
+  }
+
+  String getError(dynamic body) {
+    final bodyDecoded = jsonDecode(body);
+    if (bodyDecoded is Iterable) {
+      return handleIterableError(bodyDecoded);
+    } else if (bodyDecoded is Map) {
+      return handleMapError(body);
+    }
+    return "None";
+  }
+
+  String handleIterableError(Iterable body) {
+    return body.first;
+  }
+
+  String handleMapError(String body) {
+    final bodyMap = jsonDecode(body) as Map;
+    if (bodyMap.containsKey("error") && bodyMap.containsKey("message")) {
+      return getAuthError(body);
+    } else if (bodyMap.containsKey("error")) {
+      return getLoginError(body);
+    } else if (bodyMap.containsKey("email")) {
+      return getForgotPasswordError(body);
+    } else if (bodyMap.containsKey("messages")) {
+      return getTokenError(body);
+    }
+    return '';
+  }
+
+  String getAuthError(String body) {
+    final authError = AuthError.fromJson(body);
+    final emailErr = authError.error.email ?? [];
+    final userNameErr = authError.error.username ?? [];
+    final errMsg = userNameErr.isNotEmpty ? userNameErr : emailErr;
+
+    return errMsg[0];
+  }
+
+  String getLoginError(String body) {
+    final loginError = LoginError.fromJson(body);
+    return loginError.error;
+  }
+
+  String getForgotPasswordError(String body) {
+    final forgotPasswordError = ForgotPasswordError.fromJson(body);
+    return forgotPasswordError.email.first;
+  }
+
+  String getTokenError(String body) {
+    final tokenError = TokenError.fromJson(body);
+    return tokenError.messages.first.message;
+  }
+}

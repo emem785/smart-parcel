@@ -7,12 +7,12 @@ import 'inject_conf.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Color(0xFFFAFAFA),
     systemNavigationBarDividerColor: Color(0xFFFAFAFA),
     systemNavigationBarIconBrightness: Brightness.dark,
   ));
-  configureDependencies();
   runApp(MyApp(appRouter: AppRouter()));
 }
 

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smart_parcel">
+   <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="smart_parcel"
         android:icon="@mipmap/ic_launcher">

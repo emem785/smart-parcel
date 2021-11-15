@@ -5,7 +5,7 @@ import 'package:smart_parcel/auth/presentation/sign_up_page/sign_up_page.dart';
 import 'package:smart_parcel/auth/presentation/sign_up_page/widgets/sign_up_page_body.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../common/infrastructure/setup_auth_tests.dart';
+import '../../common/infrastructure/setup_tests.dart';
 import '../../common/presentation/widget_test_setup.dart';
 import '../infrastructure/auth_mock_data.dart';
 

@@ -7,6 +7,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/converter.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/interceptors.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
@@ -58,17 +59,41 @@ class TestSetup {
     return mockClient;
   }
 
-  static void setup(String response, int statusCode) {
+  static void setup(
+    String? response,
+    int? statusCode, [
+    String? cacheResponse,
+  ]) {
+    final prefs = _registerSharedPreference();
     when(() => _registerConnectivity().checkConnectivity())
         .thenAnswer((_) async => ConnectivityResult.wifi);
-    when(() => _registerSharedPreference().setString(any(), any()))
-        .thenAnswer((_) async => true);
+
     _setupClient(response, statusCode);
+    setupStorageNested(cacheResponse, prefs);
   }
 
-  static Future<void> _setupClient(String response, int statusCode) async {
-    when(() => _registerMockClient().send(any())).thenAnswer(
+  static void setupStorageNested(
+    String? cacheResponse,
+    SharedPreferences sharedPreferences,
+  ) {
+    when(() => sharedPreferences.setString(any(), any()))
+        .thenAnswer((_) async => true);
+
+    if (cacheResponse == null) {
+      when(() => sharedPreferences.getString(any()))
+          .thenThrow(Exception("Nothing Stored"));
+      return;
+    }
+    when(() => sharedPreferences.getString(any())).thenReturn(cacheResponse);
+  }
+
+  static Future<void> _setupClient(String? response, int? statusCode) async {
+    final client = _registerMockClient();
+    if (response != null && statusCode != null) {
+      when(() => client.send(any())).thenAnswer(
         (invocation) async => http.StreamedResponse(
-            Stream.value(utf8.encode(response)), statusCode));
+            Stream.value(utf8.encode(response)), statusCode),
+      );
+    }
   }
 }

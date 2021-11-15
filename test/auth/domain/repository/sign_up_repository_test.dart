@@ -3,7 +3,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart
 import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../../common/infrastructure/setup_auth_tests.dart';
+import '../../../common/infrastructure/setup_tests.dart';
 import '../../infrastructure/auth_mock_data.dart';
 
 Future<void> main() async {

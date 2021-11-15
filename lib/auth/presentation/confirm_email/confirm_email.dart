@@ -55,6 +55,33 @@ class ConfirmEmailPageBody extends HookWidget {
     final otpController = useTextEditingController();
     final formKey = useState(GlobalKey<FormState>());
     final signUpBloc = context.read<SignUpBloc>();
+    final conuntDown = useState(0);
+    final countDownText = useState("Resend Code");
+
+    final resendCodeFunction = useState(() {
+      signUpBloc.add(SignUpEvent.requestOtp(email: email));
+      signUpBloc.authUseCases.startCountDownUseCase(conuntDown, 30);
+    });
+
+    useEffect(() {
+      if (conuntDown.value > 0) {
+        countDownText.value =
+            "You can retry in ${conuntDown.value.toString()} seconds";
+      } else {
+        countDownText.value = "Resend Code";
+      }
+    }, [conuntDown.value]);
+
+    useEffect(() {
+      if (conuntDown.value > 0) {
+        resendCodeFunction.value = () {};
+      } else {
+        resendCodeFunction.value = () {
+          signUpBloc.add(SignUpEvent.requestOtp(email: email));
+          signUpBloc.authUseCases.startCountDownUseCase(conuntDown, 30);
+        };
+      }
+    }, [conuntDown.value]);
 
     return SingleChildScrollView(
       child: Column(
@@ -82,16 +109,18 @@ class ConfirmEmailPageBody extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 0,
-                      otpSubmitted: (v) => context.router.pushAndPopUntil(
-                        const HomeRoute(),
-                        predicate: (route) => false,
-                      ),
+                      otpSubmitted: (v) {
+                        FocusScope.of(context).unfocus();
+                        context.router.pushAndPopUntil(
+                          const HomeRoute(),
+                          predicate: (route) => false,
+                        );
+                      },
                       error: (v) => signUpBloc.authUseCases.showErrorUseCase(
                           message: v.failure.message, context: context),
-                      requestSent: (v) {
-                        signUpBloc.authUseCases.showPromptUseCase(
-                            context: context, message: v.response.message);
-                      },
+                      requestSent: (v) => signUpBloc.authUseCases
+                          .showPromptUseCase(
+                              context: context, message: v.response.message),
                     );
                   },
                   builder: (context, state) {
@@ -116,12 +145,11 @@ class ConfirmEmailPageBody extends HookWidget {
                 Align(
                   alignment: Alignment.center,
                   child: GestureDetector(
-                    child: const Text(
-                      "Resend Code",
-                      style: TextStyle(color: GlobalTheme.primary400),
+                    child: Text(
+                      countDownText.value,
+                      style: const TextStyle(color: GlobalTheme.primary400),
                     ),
-                    onTap: () =>
-                        signUpBloc.add(SignUpEvent.requestOtp(email: email)),
+                    onTap: () => resendCodeFunction.value(),
                   ),
                 ),
               ],

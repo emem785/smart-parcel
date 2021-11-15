@@ -1,3 +1,5 @@
+import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
+import 'package:smart_parcel/auth/domain/models/forgot_password_response.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/models/register_response.dart';
 import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
@@ -13,6 +15,8 @@ class JsonParser {
     SimpleAuthResponse: SimpleAuthResponse.jsonFactory,
     VerifyOtpResponse: VerifyOtpResponse.jsonFactory,
     LoginResponse: LoginResponse.jsonFactory,
+    ForgotPasswordResponse: ForgotPasswordResponse.jsonFactory,
+    AuthToken: AuthToken.jsonFactory,
   };
 
   static dynamic decode<T>(entity) {

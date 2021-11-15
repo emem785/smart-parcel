@@ -35,13 +35,7 @@ class LayoutConstants {
       centerTitle: false,
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: GlobalTheme.primaryColor,
-        ),
-        onPressed: () => context.router.pop(),
-      ),
+      leading: const BackButton(color: GlobalTheme.primaryColor),
     );
   }
 

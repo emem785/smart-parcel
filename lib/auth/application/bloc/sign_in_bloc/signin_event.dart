@@ -7,4 +7,7 @@ class SignInEvent with _$SignInEvent {
     required String email,
     required String password,
   }) = Login;
+  const factory SignInEvent.forgotPassword({
+    required String email,
+  }) = ForgotPassword;
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
@@ -48,18 +49,33 @@ class LoginPageBody extends HookWidget {
                   ),
                 ),
                 LayoutConstants.sizeBox(context, 72),
-                LayoutConstants.padButton(ElevatedButton(
-                  key: loginButtonKey,
-                  onPressed: () {
-                    if (formKey.value.currentState!.validate()) {
-                      signInBloc.add(Login(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      ));
-                    }
+                BlocConsumer<SignInBloc, SignInState>(
+                  listener: (context, state) {
+                    state.maybeMap(
+                      orElse: () => 1,
+                      loggedIn: (v) => context.router.pushAndPopUntil(
+                          const HomeRoute(),
+                          predicate: (route) => false),
+                      error: (v) => signInBloc.authUseCases.showErrorUseCase(
+                          message: v.failure.message, context: context),
+                    );
                   },
-                  child: const Text("Sign In"),
-                )),
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      orElse: () => LayoutConstants.padButton(ElevatedButton(
+                        onPressed: () {
+                          if (formKey.value.currentState!.validate()) {
+                            signInBloc.add(SignInEvent.login(
+                                email: emailController.text,
+                                password: passwordController.text));
+                          }
+                        },
+                        child: const Text("Sign In"),
+                      )),
+                      loading: (v) => CommonWidgets.loading(),
+                    );
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -94,7 +110,8 @@ Widget buildSignInForm({
     child: Column(
       children: [
         TextFormField(
-          validator: ValidatorUtil.normalValidator,
+          controller: emailController,
+          validator: ValidatorUtil.emailValidator,
           decoration: const InputDecoration(labelText: "Email Address"),
           key: LoginPageBody.emailKey,
         ),

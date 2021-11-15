@@ -8,6 +8,7 @@ import 'package:smart_parcel/auth/presentation/login_page/login_page.dart';
 import 'package:smart_parcel/auth/presentation/sign_up_page/sign_up_page.dart';
 import 'package:smart_parcel/auth/presentation/welcome_page/welcome_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/home_page.dart';
+import 'package:smart_parcel/common/presentation/widgets/splash_page.dart';
 import 'package:smart_parcel/delivery/presentation/choose_duration_page.dart/choose_duration_page.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
 import 'package:smart_parcel/delivery/presentation/select_location/select_location_page.dart';
@@ -57,12 +58,14 @@ const homePageChildren = [
 ];
 
 const routes = [
-  AutoRoute(page: WelcomePage, path: '/welcomePage', initial: true),
+  AutoRoute(page: InitApp, path: '/'),
+  AutoRoute(page: SplashPage, path: '/splash'),
+  AutoRoute(page: WelcomePage, path: '/welcomePage'),
   AutoRoute(page: LoginPage, path: '/login'),
   AutoRoute(page: SignUpPage, path: '/signUp'),
   AutoRoute(page: ConfirmEmailPage, path: '/confirmEmail'),
   AutoRoute(page: ForgotPasswordPage, path: '/forgotPassword'),
-  AutoRoute(page: HomePage, path: '/ss', children: homePageChildren),
+  AutoRoute(page: HomePage, path: '/home', children: homePageChildren),
 ];
 
 @AdaptiveAutoRouter(

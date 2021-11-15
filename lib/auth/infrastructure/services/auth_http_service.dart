@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:smart_parcel/auth/domain/models/forgot_password_response.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/models/register_response.dart';
 import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
@@ -21,6 +22,11 @@ abstract class AuthHttpService extends ChopperService {
 
   @Post(path: '/otp/')
   Future<Response<VerifyOtpResponse>> submitOtp(
+    @Body() Map<String, dynamic> body,
+  );
+
+  @Post(path: '/user/forget_password/')
+  Future<Response<ForgotPasswordResponse>> forgotPassword(
     @Body() Map<String, dynamic> body,
   );
 

@@ -3,7 +3,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../../common/infrastructure/setup_auth_tests.dart';
+import '../../../common/infrastructure/setup_tests.dart';
 import '../../infrastructure/auth_mock_data.dart';
 
 Future<void> main() async {
@@ -16,7 +16,7 @@ Future<void> main() async {
   });
   group('Test SignUp Repository', () {
     test(
-      'Test sign up repository sign up function returns login response',
+      'Test sign in repository sign up function returns login response',
       () async {
         // arrange
         TestSetup.setup(mockLoginResponse, 200);
@@ -29,6 +29,55 @@ Future<void> main() async {
         return response.fold(
           (l) => expect(l, null),
           (r) => expect(r, isA<LoginResponse>()),
+        );
+      },
+    );
+    test(
+      'Test sign in repository returns correct failure when given 400 status code',
+      () async {
+        // arrange
+        TestSetup.setup(mockLoginFailureRespone, 400);
+        final repo =
+            getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
+        // act
+        final response =
+            await repo.login(email: mockEmail, password: mockPassword);
+        // assert
+        return response.fold(
+          (l) => expect(l.message, mockLoginFailure.message),
+          (r) => expect(r, null),
+        );
+      },
+    );
+    test(
+      'Test sign in repository forgot password function returns success response',
+      () async {
+        // arrange
+        TestSetup.setup(forgotPasswordResponse, 200);
+        final repo =
+            getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
+        // act
+        final response = await repo.forgotPassword(email: mockEmail);
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, mockForgotPasswordSuccess),
+        );
+      },
+    );
+    test(
+      'Test sign in repository returns correct failure when given 400 status code',
+      () async {
+        // arrange
+        TestSetup.setup(forgotPasswordFailureResponse, 400);
+        final repo =
+            getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
+        // act
+        final response = await repo.forgotPassword(email: mockEmail);
+        // assert
+        return response.fold(
+          (l) => expect(l, forgotPasswordFailure),
+          (r) => expect(r, null),
         );
       },
     );

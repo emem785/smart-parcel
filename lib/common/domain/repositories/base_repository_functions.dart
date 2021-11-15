@@ -46,6 +46,37 @@ Future<Either<Failure, T>> postData<T>(
   try {
     final response = await postData(body);
     return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Server error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}
+
+Future<Either<Failure, T>> getData<T>(
+  Future<Response<T>> Function() postData,
+) async {
+  try {
+    final response = await postData();
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Server error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}
+
+Future<Either<Failure, T>> getDataWithToken<T>(
+  Future<Response<T>> Function(String) postData,
+  String token,
+) async {
+  try {
+    final response = await postData(token);
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Server error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));

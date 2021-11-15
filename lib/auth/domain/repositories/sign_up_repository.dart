@@ -9,7 +9,7 @@ import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
-import 'package:smart_parcel/common/domain/repository/base_repository_functions.dart';
+import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
 
 typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
 typedef SingleResponse<T> = Future<Either<Failure, T>>;

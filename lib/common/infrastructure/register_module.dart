@@ -5,7 +5,9 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/converter.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/interceptors.dart';
+import 'package:smart_parcel/common/infrastructure/services/common_http_service.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 @module
@@ -23,12 +25,14 @@ abstract class RegisterModule {
   @Named("baseUrl")
   String get baseUrl => "https://smartparcel.herokuapp.com/v1";
 
+  @injectable
   ChopperClient get client {
     return ChopperClient(
       client: httpClient,
       baseUrl: baseUrl,
       services: [
         AuthHttpService.create(),
+        CommonHttpService.create(),
       ],
       converter: JsonSerializableConverter(),
       interceptors: [

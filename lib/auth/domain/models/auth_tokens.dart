@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
+
 class AuthToken {
   final String access;
   final String refresh;
@@ -51,4 +53,6 @@ class AuthToken {
 
   @override
   int get hashCode => access.hashCode ^ refresh.hashCode;
+
+  static JsonFactory get jsonFactory => (json) => AuthToken.fromMap(json);
 }

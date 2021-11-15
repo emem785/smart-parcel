@@ -1,4 +1,5 @@
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
+import 'package:smart_parcel/auth/domain/models/forgot_password_response.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
 import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
@@ -80,11 +81,12 @@ const mockLoginResponse = '''{
     "status": true,
     "message": "Successful",
     "data": {
-        "id": 1,
+        "id": 2,
+        "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
-        "username": "emem",
-        "email": "emmanuelisong1@gmail.com",
+        "email": "emembest10@yahoo.com",
+        "phone": "08033333333",
         "phone": "08033333333",
         "is_admin": false,
         "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjY5NTkxLCJqdGkiOiIzODVjNzM4ZGY2NzM0NmFlOWI0OThkODllYTNlZDFlNCIsInVzZXJfaWQiOjF9.EsG0uUr6eqmMx_ilchQdwfknZYGMVsw1aso7t0nf4Fw",
@@ -99,5 +101,27 @@ const mockAuthToken = AuthToken(
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNzA5OTc5MSwianRpIjoiODZlY2RmNGU1YzgyNDFkNjliNjRlYjExYjQ3MTJiMjciLCJ1c2VyX2lkIjoxfQ.9rNoSvRG2Z3nID6qIGuXNy1543NIOqBu_mrwcJe7wvI",
 );
 
-const mockLoginR =
-    LoginResponse(status: true, message: "Successful", data: mockAuthToken);
+const mockLoginR = LoginResponse(
+    status: true,
+    message: "Successful",
+    authToken: mockAuthToken,
+    user: mockUser);
+
+const mockLoginFailureRespone = '''{
+    "status": false,
+    "error": "This account has not been activated"
+}''';
+
+const mockLoginFailure = Failure("This account has not been activated");
+
+const forgotPasswordResponse = '''{"status": "OK"}''';
+
+const forgotPasswordFailureResponse = '''{
+    "email": [
+        "There is no active user associated with this e-mail address or the password can not be changed"
+    ]
+}''';
+
+const mockForgotPasswordSuccess = ForgotPasswordResponse(status: "OK");
+const forgotPasswordFailure = Failure(
+    "There is no active user associated with this e-mail address or the password can not be changed");

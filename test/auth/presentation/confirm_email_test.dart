@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/auth/presentation/confirm_email/confirm_email.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../common/infrastructure/setup_auth_tests.dart';
+import '../../common/infrastructure/setup_tests.dart';
 import '../../common/presentation/widget_test_setup.dart';
 import '../infrastructure/auth_mock_data.dart';
 

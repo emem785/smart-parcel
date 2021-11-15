@@ -24,7 +24,7 @@ class SimpleAuthResponse {
 
   factory SimpleAuthResponse.fromMap(Map<String, dynamic> map) {
     return SimpleAuthResponse(
-      message: map['message'],
+      message: map['message'] ?? '',
     );
   }
 

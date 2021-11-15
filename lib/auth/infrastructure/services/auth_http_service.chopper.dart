@@ -47,4 +47,14 @@ class _$AuthHttpService extends AuthHttpService {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<VerifyOtpResponse, VerifyOtpResponse>($request);
   }
+
+  @override
+  Future<Response<ForgotPasswordResponse>> forgotPassword(
+      Map<String, dynamic> body) {
+    final $url = '/user/forget_password/';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client
+        .send<ForgotPasswordResponse, ForgotPasswordResponse>($request);
+  }
 }
