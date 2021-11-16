@@ -35,12 +35,12 @@ class AuthRepository {
     }
   }
 
-  SingleResponse<LoginResponse> getUserResponse(String token) {
+  SingleResponse<LoginResponse> getUserResponse(String token, bool isAuth) {
     final header = "Bearer $token";
-    return getDataWithToken(commonHttpService.getUser, header);
+    return getData(commonHttpService.getUser, header, false);
   }
 
-  SingleResponse<AuthToken> refreshToken(String refreshToken) {
+  SingleResponse<AuthToken> refreshToken(String refreshToken, bool isAuth) {
     final body = {"refresh": refreshToken};
     return postData(commonHttpService.refreshToken, body);
   }

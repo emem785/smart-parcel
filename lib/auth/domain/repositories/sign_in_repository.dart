@@ -29,7 +29,7 @@ class SignInRepository {
     body.addAll({'email': email});
     body.addAll({'password': password});
 
-    return postData(_authHttpService.signIn, body);
+    return postData(_authHttpService.signIn, body, false);
   }
 
   SingleResponse<ForgotPasswordResponse> forgotPassword({
@@ -38,7 +38,7 @@ class SignInRepository {
     final Map<String, dynamic> body = {};
     body.addAll({'email': email});
 
-    return postData(_authHttpService.forgotPassword, body);
+    return postData(_authHttpService.forgotPassword, body, false);
   }
 
   Future<void> storeUser(User user) => authStorage.storeUser(user);

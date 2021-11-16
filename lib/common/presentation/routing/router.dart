@@ -58,14 +58,24 @@ const homePageChildren = [
 ];
 
 const routes = [
-  AutoRoute(page: InitApp, path: '/'),
-  AutoRoute(page: SplashPage, path: '/splash'),
-  AutoRoute(page: WelcomePage, path: '/welcomePage'),
+  AutoRoute(page: SplashPage, path: '/'),
+  CustomRoute(
+    page: WelcomePage,
+    path: '/welcomePage',
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+    durationInMilliseconds: 800,
+  ),
   AutoRoute(page: LoginPage, path: '/login'),
   AutoRoute(page: SignUpPage, path: '/signUp'),
   AutoRoute(page: ConfirmEmailPage, path: '/confirmEmail'),
   AutoRoute(page: ForgotPasswordPage, path: '/forgotPassword'),
-  AutoRoute(page: HomePage, path: '/home', children: homePageChildren),
+  CustomRoute(
+    page: HomePage,
+    path: '/home',
+    children: homePageChildren,
+    transitionsBuilder: TransitionsBuilders.fadeIn,
+    durationInMilliseconds: 800,
+  ),
 ];
 
 @AdaptiveAutoRouter(

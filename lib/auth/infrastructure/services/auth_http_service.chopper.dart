@@ -17,43 +17,72 @@ class _$AuthHttpService extends AuthHttpService {
   final definitionType = AuthHttpService;
 
   @override
-  Future<Response<RegisterResponse>> signUp(Map<String, dynamic> body) {
+  Future<Response<RegisterResponse>> signUp(
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/user/add_user/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<RegisterResponse, RegisterResponse>($request);
   }
 
   @override
-  Future<Response<LoginResponse>> signIn(Map<String, dynamic> body) {
+  Future<Response<LoginResponse>> signIn(
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/auth/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<LoginResponse, LoginResponse>($request);
   }
 
   @override
-  Future<Response<SimpleAuthResponse>> requestOtp(Map<String, dynamic> body) {
+  Future<Response<SimpleAuthResponse>> requestOtp(
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/otp/new/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
   }
 
   @override
-  Future<Response<VerifyOtpResponse>> submitOtp(Map<String, dynamic> body) {
+  Future<Response<VerifyOtpResponse>> submitOtp(
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/otp/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<VerifyOtpResponse, VerifyOtpResponse>($request);
   }
 
   @override
   Future<Response<ForgotPasswordResponse>> forgotPassword(
-      Map<String, dynamic> body) {
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/user/forget_password/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client
         .send<ForgotPasswordResponse, ForgotPasswordResponse>($request);
   }

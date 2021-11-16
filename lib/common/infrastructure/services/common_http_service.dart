@@ -9,11 +9,13 @@ abstract class CommonHttpService extends ChopperService {
   @Get(path: '/user/profile/')
   Future<Response<LoginResponse>> getUser(
     @Header('Authorization') String token,
+    @Header('isAuth') bool isAuth,
   );
 
   @Post(path: '/auth/token/refresh/')
   Future<Response<AuthToken>> refreshToken(
     @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
   );
 
   static CommonHttpService create([ChopperClient? client]) =>

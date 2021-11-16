@@ -17,10 +17,11 @@ class _$CommonHttpService extends CommonHttpService {
   final definitionType = CommonHttpService;
 
   @override
-  Future<Response<LoginResponse>> getUser(String token) {
+  Future<Response<LoginResponse>> getUser(String token, bool isAuth) {
     final $url = '/user/profile/';
     final $headers = {
       'Authorization': token,
+      'isAuth': isAuth,
     };
 
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
@@ -28,10 +29,16 @@ class _$CommonHttpService extends CommonHttpService {
   }
 
   @override
-  Future<Response<AuthToken>> refreshToken(Map<String, dynamic> body) {
+  Future<Response<AuthToken>> refreshToken(
+      Map<String, dynamic> body, bool isAuth) {
     final $url = '/auth/token/refresh/';
+    final $headers = {
+      'isAuth': isAuth,
+    };
+
     final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<AuthToken, AuthToken>($request);
   }
 }

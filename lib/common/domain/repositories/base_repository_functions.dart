@@ -40,11 +40,12 @@ Future<Either<Failure, T>> getResponseWithParam<T>(
 }
 
 Future<Either<Failure, T>> postData<T>(
-  Future<Response<T>> Function(Map<String, dynamic>) postData,
-  Map<String, dynamic> body,
-) async {
+  Future<Response<T>> Function(Map<String, dynamic>, bool isAuth) postData,
+  Map<String, dynamic> body, [
+  bool isAuth = true,
+]) async {
   try {
-    final response = await postData(body);
+    final response = await postData(body, isAuth);
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Server error"));
@@ -55,10 +56,11 @@ Future<Either<Failure, T>> postData<T>(
 }
 
 Future<Either<Failure, T>> getData<T>(
-  Future<Response<T>> Function() postData,
-) async {
+  Future<Response<T>> Function(bool) postData, [
+  bool isAuth = true,
+]) async {
   try {
-    final response = await postData();
+    final response = await postData(isAuth);
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Server error"));

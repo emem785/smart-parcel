@@ -8,18 +8,6 @@ import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-class InitApp extends HookWidget {
-  const InitApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    useEffect(() {
-      context.router.push(const SplashRoute());
-    });
-    return const SizedBox();
-  }
-}
-
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 

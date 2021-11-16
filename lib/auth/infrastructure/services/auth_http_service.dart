@@ -10,24 +10,33 @@ part 'auth_http_service.chopper.dart';
 @ChopperApi()
 abstract class AuthHttpService extends ChopperService {
   @Post(path: '/user/add_user/')
-  Future<Response<RegisterResponse>> signUp(@Body() Map<String, dynamic> body);
+  Future<Response<RegisterResponse>> signUp(
+    @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
+  );
 
   @Post(path: '/auth/')
-  Future<Response<LoginResponse>> signIn(@Body() Map<String, dynamic> body);
+  Future<Response<LoginResponse>> signIn(
+    @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
+  );
 
   @Post(path: '/otp/new/')
   Future<Response<SimpleAuthResponse>> requestOtp(
     @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
   );
 
   @Post(path: '/otp/')
   Future<Response<VerifyOtpResponse>> submitOtp(
     @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
   );
 
   @Post(path: '/user/forget_password/')
   Future<Response<ForgotPasswordResponse>> forgotPassword(
     @Body() Map<String, dynamic> body,
+    @Header('isAuth') bool isAuth,
   );
 
   static AuthHttpService create([ChopperClient? client]) =>

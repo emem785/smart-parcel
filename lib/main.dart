@@ -5,9 +5,9 @@ import 'package:smart_parcel/common/theme.dart';
 import 'common/presentation/routing/router.gr.dart';
 import 'inject_conf.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Color(0xFFFAFAFA),
     systemNavigationBarDividerColor: Color(0xFFFAFAFA),
