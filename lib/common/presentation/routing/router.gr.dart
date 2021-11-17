@@ -6,7 +6,6 @@
 
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i19;
-import 'package:flutter/widgets.dart' as _i20;
 import 'package:smart_parcel/account/presentation/change_password_page/change_password_page.dart'
     as _i18;
 import 'package:smart_parcel/account/presentation/profile_page/profiles_page.dart'
@@ -55,7 +54,7 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData,
           child: const _i2.WelcomePage(),
           transitionsBuilder: _i8.TransitionsBuilders.fadeIn,
-          durationInMilliseconds: 800,
+          durationInMilliseconds: 500,
           opaque: true,
           barrierDismissible: false);
     },
@@ -87,7 +86,7 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData,
           child: const _i7.HomePage(),
           transitionsBuilder: _i8.TransitionsBuilders.fadeIn,
-          durationInMilliseconds: 800,
+          durationInMilliseconds: 500,
           opaque: true,
           barrierDismissible: false);
     },
@@ -215,7 +214,7 @@ class SignUpRoute extends _i8.PageRouteInfo<void> {
 /// generated route for [_i5.ConfirmEmailPage]
 class ConfirmEmailRoute extends _i8.PageRouteInfo<ConfirmEmailRouteArgs> {
   ConfirmEmailRoute(
-      {_i20.Key? key, required String email, required String password})
+      {_i19.Key? key, required String email, required String password})
       : super(name,
             path: '/confirmEmail',
             args: ConfirmEmailRouteArgs(
@@ -228,7 +227,7 @@ class ConfirmEmailRouteArgs {
   const ConfirmEmailRouteArgs(
       {this.key, required this.email, required this.password});
 
-  final _i20.Key? key;
+  final _i19.Key? key;
 
   final String email;
 
@@ -299,7 +298,7 @@ class ChooseDurationRoute extends _i8.PageRouteInfo<void> {
 /// generated route for [_i11.SelectLocationPage]
 class SelectLocationRoute extends _i8.PageRouteInfo<SelectLocationRouteArgs> {
   SelectLocationRoute(
-      {_i20.Key? key, required dynamic Function(int) onSelected})
+      {_i19.Key? key, required dynamic Function(int) onSelected})
       : super(name,
             path: 'selectLocation',
             args: SelectLocationRouteArgs(key: key, onSelected: onSelected));
@@ -310,7 +309,7 @@ class SelectLocationRoute extends _i8.PageRouteInfo<SelectLocationRouteArgs> {
 class SelectLocationRouteArgs {
   const SelectLocationRouteArgs({this.key, required this.onSelected});
 
-  final _i20.Key? key;
+  final _i19.Key? key;
 
   final dynamic Function(int) onSelected;
 }

@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:chopper/chopper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,7 +31,7 @@ void main() {
       setUp: () => TestSetup.setup(null, null),
       build: () => getIt<AuthBloc>(),
       act: (bloc) => bloc.add(const AuthEvent.authenticate()),
-      wait: const Duration(milliseconds: 300),
+      wait: const Duration(milliseconds: 1200),
       expect: () => const [
         AuthState.loading(),
         AuthState.error(mockAuthStorageFailure),
@@ -48,15 +47,27 @@ void main() {
         () => getIt<SharedPreferences>().setString(any(), mockUser.toJson()),
       ),
     );
+  });
+  group('Auth Bloc logout event', () {
     blocTest<AuthBloc, AuthState>(
-      'refreshes token  if get user request fails ',
-      setUp: () => TestSetup.setup(tokenErrorResponse, 400, mockAuthTokenJson),
+      'shared preferences remove string on user key is called',
+      setUp: () => TestSetup.setup(null, null),
       build: () => getIt<AuthBloc>(),
-      act: (bloc) => bloc.add(const AuthEvent.authenticate()),
+      act: (bloc) => bloc.add(const AuthEvent.logout()),
       wait: const Duration(milliseconds: 300),
       verify: (_) => verify(
-        () => getIt<ChopperClient>().httpClient.send(any()),
-      ).called(2),
+        () => getIt<SharedPreferences>().remove('user'),
+      ),
+    );
+    blocTest<AuthBloc, AuthState>(
+      'shared preferences remove string is called on token key',
+      setUp: () => TestSetup.setup(null, null, mockAuthTokenJson),
+      build: () => getIt<AuthBloc>(),
+      act: (bloc) => bloc.add(const AuthEvent.logout()),
+      wait: const Duration(milliseconds: 300),
+      verify: (_) => verify(
+        () => getIt<SharedPreferences>().remove('token'),
+      ),
     );
   });
 }

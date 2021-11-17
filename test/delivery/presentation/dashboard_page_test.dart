@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
@@ -38,7 +39,7 @@ void main() {
         WidgetHelper.testableWidgetScaffold(child: const DashboardPage()),
       );
       await tester.pumpAndSettle();
-      expect(find.text(mockUser.username), findsOneWidget);
+      expect(find.text(mockUser.username.capitalize()), findsOneWidget);
     },
   );
 }

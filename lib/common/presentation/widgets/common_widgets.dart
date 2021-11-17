@@ -36,6 +36,8 @@ class CommonWidgets {
   static Flushbar showFlushbar({
     required String message,
     required Duration duration,
+    Function()? onTap,
+    String? buttonText,
   }) {
     return Flushbar(
       key: const Key('flushbar'),
@@ -44,6 +46,18 @@ class CommonWidgets {
       borderRadius: BorderRadius.circular(8),
       backgroundColor: GlobalTheme.lightGrey,
       margin: const EdgeInsets.all(8),
+      mainButton: onTap != null
+          ? TextButton(
+              onPressed: () => onTap(),
+              child: Text(
+                buttonText ?? "",
+                style: TextStyle(
+                  color: Colors.greenAccent[200],
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : null,
     );
   }
 

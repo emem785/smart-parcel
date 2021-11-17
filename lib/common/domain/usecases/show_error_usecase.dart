@@ -6,10 +6,14 @@ class ShowErrorUseCase {
   void call({
     required String message,
     required BuildContext context,
+    Function()? onTap,
+    String? buttonText,
   }) {
     CommonWidgets.showFlushbar(
-      message: message,
-      duration: const Duration(milliseconds: 950),
-    ).show(context);
+            message: message,
+            duration: const Duration(milliseconds: 950),
+            onTap: onTap,
+            buttonText: buttonText)
+        .show(context);
   }
 }

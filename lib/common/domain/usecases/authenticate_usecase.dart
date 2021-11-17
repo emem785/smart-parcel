@@ -9,7 +9,6 @@ import 'package:smart_parcel/common/domain/repositories/auth_repository.dart';
 
 class AuthenticateUseCase {
   final AuthRepository authRepository;
-  int noOfCalls = 0;
 
   AuthenticateUseCase(this.authRepository);
   FutureOr<void> call(Authenticate event, Emitter<AuthState> emit) async {
@@ -25,25 +24,10 @@ class AuthenticateUseCase {
   }
 
   _checkToken(AuthToken r, Emitter<AuthState> emit) async {
-    final response = await authRepository.getUserResponse(r.access);
-    noOfCalls++;
-    return response.fold(
-      (l) => _refreshToken(r, emit),
-      (r) => _storeUser(r, emit),
-    );
-  }
-
-  _refreshToken(AuthToken r, Emitter<AuthState> emit) async {
-    final response = await authRepository.refreshToken(r.refresh);
-
+    final response = await authRepository.getUserResponse(r);
     return response.fold(
       (l) => emit(AuthState.error(l)),
-      (r) {
-        while (noOfCalls < 2) {
-          _checkToken(r, emit);
-        }
-        emit(const AuthState.error(Failure("Unexpected Server Error")));
-      },
+      (r) => _storeUser(r, emit),
     );
   }
 

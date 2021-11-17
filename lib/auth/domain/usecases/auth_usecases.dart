@@ -4,6 +4,7 @@ import 'package:smart_parcel/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:smart_parcel/auth/domain/usecases/start_countdown_usecase.dart';
 import 'package:smart_parcel/auth/domain/usecases/submit_otp_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/base_usecases.dart';
+import 'package:smart_parcel/common/domain/usecases/show_alert_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/show_error_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/show_prompt_usecase.dart';
 
@@ -27,5 +28,6 @@ class AuthUseCases extends BaseUseCases {
   }) : super(
           showErrorUseCase: ShowErrorUseCase(),
           showPromptUseCase: ShowPromptUseCase(),
+          showAlertUseCase: ShowAlertUseCase(),
         );
 }

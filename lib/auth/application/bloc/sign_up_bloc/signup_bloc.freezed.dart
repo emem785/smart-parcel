@@ -623,6 +623,12 @@ class _$SignUpStateTearOff {
       failure,
     );
   }
+
+  SignUpUserExistsError userExistsError(Failure failure) {
+    return SignUpUserExistsError(
+      failure,
+    );
+  }
 }
 
 /// @nodoc
@@ -638,6 +644,7 @@ mixin _$SignUpState {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -648,6 +655,7 @@ mixin _$SignUpState {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -658,6 +666,7 @@ mixin _$SignUpState {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -669,6 +678,7 @@ mixin _$SignUpState {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -679,6 +689,7 @@ mixin _$SignUpState {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -689,6 +700,7 @@ mixin _$SignUpState {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -756,6 +768,7 @@ class _$SignUpInitial implements SignUpInitial {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return initial();
   }
@@ -769,6 +782,7 @@ class _$SignUpInitial implements SignUpInitial {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return initial?.call();
   }
@@ -782,6 +796,7 @@ class _$SignUpInitial implements SignUpInitial {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -799,6 +814,7 @@ class _$SignUpInitial implements SignUpInitial {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return initial(this);
   }
@@ -812,6 +828,7 @@ class _$SignUpInitial implements SignUpInitial {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return initial?.call(this);
   }
@@ -825,6 +842,7 @@ class _$SignUpInitial implements SignUpInitial {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -884,6 +902,7 @@ class _$SignUpLoading implements SignUpLoading {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return loading();
   }
@@ -897,6 +916,7 @@ class _$SignUpLoading implements SignUpLoading {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return loading?.call();
   }
@@ -910,6 +930,7 @@ class _$SignUpLoading implements SignUpLoading {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -927,6 +948,7 @@ class _$SignUpLoading implements SignUpLoading {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return loading(this);
   }
@@ -940,6 +962,7 @@ class _$SignUpLoading implements SignUpLoading {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return loading?.call(this);
   }
@@ -953,6 +976,7 @@ class _$SignUpLoading implements SignUpLoading {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1036,6 +1060,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return registered(user);
   }
@@ -1049,6 +1074,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return registered?.call(user);
   }
@@ -1062,6 +1088,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -1079,6 +1106,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return registered(this);
   }
@@ -1092,6 +1120,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return registered?.call(this);
   }
@@ -1105,6 +1134,7 @@ class _$SignUpRegistered implements SignUpRegistered {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (registered != null) {
@@ -1193,6 +1223,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return otpSubmitted(loginResponse);
   }
@@ -1206,6 +1237,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return otpSubmitted?.call(loginResponse);
   }
@@ -1219,6 +1251,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (otpSubmitted != null) {
@@ -1236,6 +1269,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return otpSubmitted(this);
   }
@@ -1249,6 +1283,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return otpSubmitted?.call(this);
   }
@@ -1262,6 +1297,7 @@ class _$OtpSubmitted implements OtpSubmitted {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (otpSubmitted != null) {
@@ -1350,6 +1386,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return requestSent(response);
   }
@@ -1363,6 +1400,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return requestSent?.call(response);
   }
@@ -1376,6 +1414,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (requestSent != null) {
@@ -1393,6 +1432,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return requestSent(this);
   }
@@ -1406,6 +1446,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return requestSent?.call(this);
   }
@@ -1419,6 +1460,7 @@ class _$OtpRequestSent implements OtpRequestSent {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (requestSent != null) {
@@ -1506,6 +1548,7 @@ class _$SignUpError implements SignUpError {
     required TResult Function(LoginResponse loginResponse) otpSubmitted,
     required TResult Function(SimpleAuthResponse response) requestSent,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
   }) {
     return error(failure);
   }
@@ -1519,6 +1562,7 @@ class _$SignUpError implements SignUpError {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
   }) {
     return error?.call(failure);
   }
@@ -1532,6 +1576,7 @@ class _$SignUpError implements SignUpError {
     TResult Function(LoginResponse loginResponse)? otpSubmitted,
     TResult Function(SimpleAuthResponse response)? requestSent,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1549,6 +1594,7 @@ class _$SignUpError implements SignUpError {
     required TResult Function(OtpSubmitted value) otpSubmitted,
     required TResult Function(OtpRequestSent value) requestSent,
     required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
   }) {
     return error(this);
   }
@@ -1562,6 +1608,7 @@ class _$SignUpError implements SignUpError {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
   }) {
     return error?.call(this);
   }
@@ -1575,6 +1622,7 @@ class _$SignUpError implements SignUpError {
     TResult Function(OtpSubmitted value)? otpSubmitted,
     TResult Function(OtpRequestSent value)? requestSent,
     TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1590,5 +1638,170 @@ abstract class SignUpError implements SignUpState {
   Failure get failure;
   @JsonKey(ignore: true)
   $SignUpErrorCopyWith<SignUpError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SignUpUserExistsErrorCopyWith<$Res> {
+  factory $SignUpUserExistsErrorCopyWith(SignUpUserExistsError value,
+          $Res Function(SignUpUserExistsError) then) =
+      _$SignUpUserExistsErrorCopyWithImpl<$Res>;
+  $Res call({Failure failure});
+}
+
+/// @nodoc
+class _$SignUpUserExistsErrorCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res>
+    implements $SignUpUserExistsErrorCopyWith<$Res> {
+  _$SignUpUserExistsErrorCopyWithImpl(
+      SignUpUserExistsError _value, $Res Function(SignUpUserExistsError) _then)
+      : super(_value, (v) => _then(v as SignUpUserExistsError));
+
+  @override
+  SignUpUserExistsError get _value => super._value as SignUpUserExistsError;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(SignUpUserExistsError(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SignUpUserExistsError implements SignUpUserExistsError {
+  const _$SignUpUserExistsError(this.failure);
+
+  @override
+  final Failure failure;
+
+  @override
+  String toString() {
+    return 'SignUpState.userExistsError(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SignUpUserExistsError &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  $SignUpUserExistsErrorCopyWith<SignUpUserExistsError> get copyWith =>
+      _$SignUpUserExistsErrorCopyWithImpl<SignUpUserExistsError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) registered,
+    required TResult Function(LoginResponse loginResponse) otpSubmitted,
+    required TResult Function(SimpleAuthResponse response) requestSent,
+    required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userExistsError,
+  }) {
+    return userExistsError(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? registered,
+    TResult Function(LoginResponse loginResponse)? otpSubmitted,
+    TResult Function(SimpleAuthResponse response)? requestSent,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
+  }) {
+    return userExistsError?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? registered,
+    TResult Function(LoginResponse loginResponse)? otpSubmitted,
+    TResult Function(SimpleAuthResponse response)? requestSent,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userExistsError,
+    required TResult orElse(),
+  }) {
+    if (userExistsError != null) {
+      return userExistsError(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SignUpInitial value) initial,
+    required TResult Function(SignUpLoading value) loading,
+    required TResult Function(SignUpRegistered value) registered,
+    required TResult Function(OtpSubmitted value) otpSubmitted,
+    required TResult Function(OtpRequestSent value) requestSent,
+    required TResult Function(SignUpError value) error,
+    required TResult Function(SignUpUserExistsError value) userExistsError,
+  }) {
+    return userExistsError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignUpInitial value)? initial,
+    TResult Function(SignUpLoading value)? loading,
+    TResult Function(SignUpRegistered value)? registered,
+    TResult Function(OtpSubmitted value)? otpSubmitted,
+    TResult Function(OtpRequestSent value)? requestSent,
+    TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
+  }) {
+    return userExistsError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SignUpInitial value)? initial,
+    TResult Function(SignUpLoading value)? loading,
+    TResult Function(SignUpRegistered value)? registered,
+    TResult Function(OtpSubmitted value)? otpSubmitted,
+    TResult Function(OtpRequestSent value)? requestSent,
+    TResult Function(SignUpError value)? error,
+    TResult Function(SignUpUserExistsError value)? userExistsError,
+    required TResult orElse(),
+  }) {
+    if (userExistsError != null) {
+      return userExistsError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUpUserExistsError implements SignUpState {
+  const factory SignUpUserExistsError(Failure failure) =
+      _$SignUpUserExistsError;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  $SignUpUserExistsErrorCopyWith<SignUpUserExistsError> get copyWith =>
       throw _privateConstructorUsedError;
 }

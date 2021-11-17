@@ -55,4 +55,28 @@ void main() {
       await tester.pumpAndSettle();
     },
   );
+  testWidgets(
+    "Page Shows Error SnackBar with action",
+    (WidgetTester tester) async {
+      TestSetup.setup(mockFailureResponse, 400);
+      await tester.pumpWidget(
+        WidgetHelper.testableWidget(child: const SignUpPage()),
+      );
+
+      await tester.enterText(find.byKey(SignUpPageBody.username), "emem");
+      await tester.enterText(find.byKey(SignUpPageBody.firstName), "emem");
+      await tester.enterText(find.byKey(SignUpPageBody.lastname), "emem");
+      await tester.enterText(find.byKey(SignUpPageBody.email), "emem@emem");
+      await tester.enterText(find.byKey(SignUpPageBody.phone), "00000");
+      await tester.enterText(find.byKey(SignUpPageBody.password), "emem");
+      await tester.enterText(
+          find.byKey(SignUpPageBody.confirmPassword), "emem");
+
+      await tester.tap(find.byType(ElevatedButton));
+      await tester.pump(const Duration(milliseconds: 450));
+      expect(find.text("Sign In"), findsOneWidget);
+
+      await tester.pumpAndSettle();
+    },
+  );
 }

@@ -12,7 +12,10 @@ class ConnectivityInterceptor extends RequestInterceptor {
   ConnectivityInterceptor({required this.connectivity});
   @override
   FutureOr<Request> onRequest(Request request) async {
-    print(request.headers);
+    final status = await connectivity.checkConnectivity();
+    if (status == ConnectivityResult.none) {
+      throw ConnectivityException("No internet connection");
+    }
     return request;
   }
 }

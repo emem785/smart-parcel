@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chopper/chopper.dart';
 import 'package:smart_parcel/auth/domain/models/forgot_password_response.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
@@ -12,31 +14,36 @@ abstract class AuthHttpService extends ChopperService {
   @Post(path: '/user/add_user/')
   Future<Response<RegisterResponse>> signUp(
     @Body() Map<String, dynamic> body,
-    @Header('isAuth') bool isAuth,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/auth/')
   Future<Response<LoginResponse>> signIn(
     @Body() Map<String, dynamic> body,
-    @Header('isAuth') bool isAuth,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/otp/new/')
   Future<Response<SimpleAuthResponse>> requestOtp(
     @Body() Map<String, dynamic> body,
-    @Header('isAuth') bool isAuth,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/otp/')
   Future<Response<VerifyOtpResponse>> submitOtp(
     @Body() Map<String, dynamic> body,
-    @Header('isAuth') bool isAuth,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/user/forget_password/')
   Future<Response<ForgotPasswordResponse>> forgotPassword(
     @Body() Map<String, dynamic> body,
-    @Header('isAuth') bool isAuth,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   static AuthHttpService create([ChopperClient? client]) =>

@@ -22,7 +22,7 @@ class SignUpUsecase {
     );
 
     return response.fold(
-      (l) => emit(SignUpState.error(l)),
+      (l) => _checkError(l, emit),
       (r) => signUp(r, emit),
     );
   }
@@ -33,5 +33,13 @@ class SignUpUsecase {
   ) async {
     await signUpRepository.storeUser(response.user);
     emit(SignUpState.registered(response.user));
+  }
+
+  _checkError(Failure l, Emitter<SignUpState> emit) {
+    if (l.message.contains("exists")) {
+      emit(SignUpState.userExistsError(l));
+      return;
+    }
+    emit(SignUpState.error(l));
   }
 }

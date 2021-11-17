@@ -32,7 +32,7 @@ class SplashPageBody extends HookWidget {
     }, []);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFFAFAFA),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           state.maybeMap(

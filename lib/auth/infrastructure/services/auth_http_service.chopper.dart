@@ -18,10 +18,11 @@ class _$AuthHttpService extends AuthHttpService {
 
   @override
   Future<Response<RegisterResponse>> signUp(
-      Map<String, dynamic> body, bool isAuth) {
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/user/add_user/';
     final $headers = {
-      'isAuth': isAuth,
+      'refresh': refreshToken,
+      'authorization': accessToken,
     };
 
     final $body = body;
@@ -32,10 +33,11 @@ class _$AuthHttpService extends AuthHttpService {
 
   @override
   Future<Response<LoginResponse>> signIn(
-      Map<String, dynamic> body, bool isAuth) {
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/auth/';
     final $headers = {
-      'isAuth': isAuth,
+      'refresh': refreshToken,
+      'authorization': accessToken,
     };
 
     final $body = body;
@@ -46,10 +48,11 @@ class _$AuthHttpService extends AuthHttpService {
 
   @override
   Future<Response<SimpleAuthResponse>> requestOtp(
-      Map<String, dynamic> body, bool isAuth) {
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/otp/new/';
     final $headers = {
-      'isAuth': isAuth,
+      'refresh': refreshToken,
+      'authorization': accessToken,
     };
 
     final $body = body;
@@ -60,10 +63,11 @@ class _$AuthHttpService extends AuthHttpService {
 
   @override
   Future<Response<VerifyOtpResponse>> submitOtp(
-      Map<String, dynamic> body, bool isAuth) {
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/otp/';
     final $headers = {
-      'isAuth': isAuth,
+      'refresh': refreshToken,
+      'authorization': accessToken,
     };
 
     final $body = body;
@@ -74,10 +78,11 @@ class _$AuthHttpService extends AuthHttpService {
 
   @override
   Future<Response<ForgotPasswordResponse>> forgotPassword(
-      Map<String, dynamic> body, bool isAuth) {
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/user/forget_password/';
     final $headers = {
-      'isAuth': isAuth,
+      'refresh': refreshToken,
+      'authorization': accessToken,
     };
 
     final $body = body;

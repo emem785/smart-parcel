@@ -12,5 +12,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CommonUseCases commonUseCases;
   AuthBloc(this.commonUseCases) : super(const AuthInitial()) {
     on<Authenticate>(commonUseCases.authenticateUseCase);
+    on<Logout>(commonUseCases.logoutUseCase);
   }
 }

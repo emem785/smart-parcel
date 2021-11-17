@@ -63,7 +63,7 @@ const routes = [
     page: WelcomePage,
     path: '/welcomePage',
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    durationInMilliseconds: 800,
+    durationInMilliseconds: 500,
   ),
   AutoRoute(page: LoginPage, path: '/login'),
   AutoRoute(page: SignUpPage, path: '/signUp'),
@@ -74,7 +74,7 @@ const routes = [
     path: '/home',
     children: homePageChildren,
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    durationInMilliseconds: 800,
+    durationInMilliseconds: 500,
   ),
 ];
 

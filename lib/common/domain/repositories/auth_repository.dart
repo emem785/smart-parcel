@@ -35,15 +35,32 @@ class AuthRepository {
     }
   }
 
-  SingleResponse<LoginResponse> getUserResponse(String token, bool isAuth) {
-    final header = "Bearer $token";
-    return getData(commonHttpService.getUser, header, false);
+  SingleResponse<LoginResponse> getUserResponse(AuthToken authToken) {
+    return getData(commonHttpService.getUser, authToken);
   }
 
-  SingleResponse<AuthToken> refreshToken(String refreshToken, bool isAuth) {
+  SingleResponse<AuthToken> refreshToken(String refreshToken) {
     final body = {"refresh": refreshToken};
     return postData(commonHttpService.refreshToken, body);
   }
 
   Future<void> storeUser(User user) => authStorageInterface.storeUser(user);
+
+  Future<Either<Failure, Unit>> removeUser() async {
+    try {
+      await commonStorageInterface.removeUser();
+      return const Right(unit);
+    } catch (_) {
+      return const Left(Failure("No User in storage"));
+    }
+  }
+
+  Future<Either<Failure, Unit>> removeToken() async {
+    try {
+      await commonStorageInterface.removeToken();
+      return const Right(unit);
+    } catch (_) {
+      return const Left(Failure("No Auth in storage"));
+    }
+  }
 }

@@ -8,6 +8,7 @@ import 'package:smart_parcel/auth/domain/models/forgot_password_error.dart';
 import 'package:smart_parcel/auth/domain/models/login_error.dart';
 import 'package:smart_parcel/common/domain/models/exceptions.dart';
 import 'package:smart_parcel/common/domain/models/token_error.dart';
+import 'package:smart_parcel/delivery/domain/models/delivery_Error.dart';
 
 @injectable
 class ErrorInterceptor implements ResponseInterceptor {
@@ -21,13 +22,18 @@ class ErrorInterceptor implements ResponseInterceptor {
   }
 
   String getError(dynamic body) {
-    final bodyDecoded = jsonDecode(body);
-    if (bodyDecoded is Iterable) {
-      return handleIterableError(bodyDecoded);
-    } else if (bodyDecoded is Map) {
-      return handleMapError(body);
+    try {
+      final bodyDecoded = jsonDecode(body);
+      if (bodyDecoded is Iterable) {
+        return handleIterableError(bodyDecoded);
+      } else if (bodyDecoded is Map) {
+        return handleMapError(body);
+      }
+      return "None";
+    } catch (e) {
+      print("interceptor:${e.toString()}");
+      return "Unexpected Server Error";
     }
-    return "None";
   }
 
   String handleIterableError(Iterable body) {
@@ -44,6 +50,8 @@ class ErrorInterceptor implements ResponseInterceptor {
       return getForgotPasswordError(body);
     } else if (bodyMap.containsKey("messages")) {
       return getTokenError(body);
+    } else if (bodyMap.containsKey("errors")) {
+      return getDeliveryError(body);
     }
     return '';
   }
@@ -70,5 +78,10 @@ class ErrorInterceptor implements ResponseInterceptor {
   String getTokenError(String body) {
     final tokenError = TokenError.fromJson(body);
     return tokenError.messages.first.message;
+  }
+
+  String getDeliveryError(String body) {
+    final deliveryError = DeliveryError.fromJson(body);
+    return deliveryError.errors.user!.first;
   }
 }

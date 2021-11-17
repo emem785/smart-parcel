@@ -45,7 +45,8 @@ void main() {
     );
     blocTest<SignInBloc, SignInState>(
       'check login event bloc stores auth token',
-      setUp: () => TestSetup.setup(mockLoginResponse, 200),
+      setUp: () =>
+          TestSetup.setup(mockLoginResponse, 200, mockAuthToken.toJson()),
       build: () => getIt<SignInBloc>(),
       act: (bloc) => bloc.add(
           const SignInEvent.login(email: mockEmail, password: mockPassword)),

@@ -20,6 +20,8 @@ class AuthToken {
     );
   }
 
+  const AuthToken.empty() : this(access: '', refresh: '');
+
   Map<String, dynamic> toMap() {
     return {
       'access': access,

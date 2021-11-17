@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
 
 class User {
+  final String? id;
   final String username;
   final String firstName;
   final String lastName;
@@ -10,6 +11,7 @@ class User {
   final String phone;
 
   const User({
+    required this.id,
     required this.username,
     required this.firstName,
     required this.lastName,
@@ -18,6 +20,7 @@ class User {
   });
 
   User copyWith({
+    String? id,
     String? username,
     String? firstName,
     String? lastName,
@@ -25,6 +28,7 @@ class User {
     String? phone,
   }) {
     return User(
+      id: id ?? this.id,
       username: username ?? this.username,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
@@ -40,11 +44,13 @@ class User {
       'last_name': lastName,
       'email': email,
       'phone': phone,
+      'id': phone,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
+      id: map['id'],
       username: map['username'],
       firstName: map['first_name'],
       lastName: map['last_name'],
@@ -59,7 +65,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(username: $username, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone)';
+    return 'User(id:$id , username: $username, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone)';
   }
 
   @override
@@ -67,6 +73,7 @@ class User {
     if (identical(this, other)) return true;
 
     return other is User &&
+        other.id == id &&
         other.username == username &&
         other.firstName == firstName &&
         other.lastName == lastName &&
@@ -77,6 +84,7 @@ class User {
   @override
   int get hashCode {
     return username.hashCode ^
+        id.hashCode ^
         firstName.hashCode ^
         lastName.hashCode ^
         email.hashCode ^

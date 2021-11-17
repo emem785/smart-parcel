@@ -11,4 +11,6 @@ class SignUpState with _$SignUpState {
   const factory SignUpState.requestSent(SimpleAuthResponse response) =
       OtpRequestSent;
   const factory SignUpState.error(Failure failure) = SignUpError;
+  const factory SignUpState.userExistsError(Failure failure) =
+      SignUpUserExistsError;
 }

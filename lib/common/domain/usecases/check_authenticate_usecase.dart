@@ -17,7 +17,8 @@ class CheckAuthenticateUseCase {
   }
 
   _checkToken(AuthToken r) async {
-    final response = await authRepository.getUserResponse(r.access);
+    final response =
+        await authRepository.getUserResponse(const AuthToken.empty());
     return response.fold(
       (l) => _refreshToken(r),
       (r) => _storeUser(r),

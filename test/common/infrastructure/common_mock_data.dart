@@ -6,7 +6,7 @@ const registerResponse = '''{
     "status": true,
     "message": "Successful",
     "data": {
-        "id": 2,
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
@@ -21,6 +21,7 @@ const registerResponse = '''{
 }''';
 
 const userStringResponse = '''{
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
@@ -39,7 +40,7 @@ const getUserResponse = '''{
     "status": true,
     "message": "Successful",
     "data": {
-        "id": 29,
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
@@ -58,6 +59,7 @@ const userLoginResponse = LoginResponse(
   message: "Successful",
   authToken: null,
   user: User(
+      id: "ff10a581-4a9e-4589-937b-df4ccb1bded4",
       username: "emmz",
       firstName: "emem",
       lastName: "emem",

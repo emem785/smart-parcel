@@ -25,8 +25,29 @@ class CommonStorageService implements CommonStorageInterface {
   @override
   AuthToken getAuthToken() {
     final authTokenJson = preferences.getString(tokenKey);
+
     if (authTokenJson != null) {
       return AuthToken.fromJson(authTokenJson);
+    }
+    throw Exception("Nothing Stored");
+  }
+
+  @override
+  Future<void> removeUser() async {
+    final isValid = await preferences.remove(userKey);
+
+    if (isValid) {
+      return;
+    }
+    throw Exception("Nothing Stored");
+  }
+
+  @override
+  Future<void> removeToken() async {
+    final isValid = await preferences.remove(tokenKey);
+
+    if (isValid) {
+      return;
     }
     throw Exception("Nothing Stored");
   }

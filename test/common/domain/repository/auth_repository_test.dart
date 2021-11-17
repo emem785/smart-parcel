@@ -55,7 +55,7 @@ Future<void> main() async {
         TestSetup.setup(getUserResponse, 200);
         final repo = getIt<AuthRepository>();
         // act
-        final response = await repo.getUserResponse("");
+        final response = await repo.getUserResponse(mockAuthToken);
         // assere
         return response.fold(
           (l) => expect(l, null),
@@ -75,21 +75,6 @@ Future<void> main() async {
         return response.fold(
           (l) => expect(l, null),
           (r) => expect(r, mockAuthToken),
-        );
-      },
-    );
-    test(
-      'returns token failure on 4xx status code',
-      () async {
-        // arrange
-        TestSetup.setup(tokenErrorResponse, 400);
-        final repo = getIt<AuthRepository>();
-        // act
-        final response = await repo.getUserResponse("");
-        // assere
-        return response.fold(
-          (l) => expect(l, tokenFailure),
-          (r) => expect(r, null),
         );
       },
     );

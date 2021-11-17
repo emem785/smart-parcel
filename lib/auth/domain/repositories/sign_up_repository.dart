@@ -31,7 +31,7 @@ class SignUpRepository {
     body.addAll(user.toMap());
     body.addAll({'password': password});
 
-    return postData(authHttpService.signUp, body, false);
+    return postData(authHttpService.signUp, body);
   }
 
   SingleResponse<SimpleAuthResponse> requestOtp({
@@ -40,7 +40,7 @@ class SignUpRepository {
     final Map<String, dynamic> body = {};
     body.addAll({"email": email});
 
-    return postData(authHttpService.requestOtp, body, false);
+    return postData(authHttpService.requestOtp, body);
   }
 
   SingleResponse<VerifyOtpResponse> submitOtp({
@@ -49,7 +49,7 @@ class SignUpRepository {
     final Map<String, dynamic> body = {};
     body.addAll({"otp": otp});
 
-    return postData(authHttpService.submitOtp, body, false);
+    return postData(authHttpService.submitOtp, body);
   }
 
   SingleResponse<LoginResponse> login({
@@ -60,7 +60,7 @@ class SignUpRepository {
     body.addAll({'email': email});
     body.addAll({'password': password});
 
-    return postData(authHttpService.signIn, body, false);
+    return postData(authHttpService.signIn, body);
   }
 
   Future<void> storeUser(User user) => authStorage.storeUser(user);

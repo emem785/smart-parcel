@@ -4,4 +4,6 @@ import 'package:smart_parcel/common/domain/models/user.dart';
 abstract class CommonStorageInterface {
   User getUser();
   AuthToken getAuthToken();
+  Future<void> removeUser();
+  Future<void> removeToken();
 }

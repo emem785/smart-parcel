@@ -1,14 +1,10 @@
 import 'dart:convert';
 
-import 'package:chopper/chopper.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/converter.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/interceptors.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 enum Method { post, get }
@@ -26,7 +22,12 @@ class TestSetup {
     await configureDependencies();
     getIt.unregister<Connectivity>();
     getIt.unregister<SharedPreferences>();
-    getIt.unregister<ChopperClient>();
+    getIt.unregister<String>(instanceName: "baseUrl");
+    getIt.unregister<http.Client>();
+    getIt.registerFactory<String>(
+      () => "localhost",
+      instanceName: "baseUrl",
+    );
     registerFallbackValue(BaseRequestFake());
   }
 
@@ -44,18 +45,7 @@ class TestSetup {
 
   static MockClient _registerMockClient() {
     final mockClient = MockClient();
-    getIt.registerFactory(() => ChopperClient(
-          client: mockClient,
-          baseUrl: "localhost",
-          services: [
-            AuthHttpService.create(),
-          ],
-          converter: JsonSerializableConverter(),
-          interceptors: [
-            getIt<ConnectivityInterceptor>(),
-            ErrorInterceptor(),
-          ],
-        ));
+    getIt.registerFactory<http.Client>(() => mockClient);
     return mockClient;
   }
 
@@ -85,14 +75,19 @@ class TestSetup {
       return;
     }
     when(() => sharedPreferences.getString(any())).thenReturn(cacheResponse);
+    when(() => sharedPreferences.remove(any()))
+        .thenAnswer((invocation) async => true);
   }
 
   static Future<void> _setupClient(String? response, int? statusCode) async {
     final client = _registerMockClient();
+
     if (response != null && statusCode != null) {
       when(() => client.send(any())).thenAnswer(
-        (invocation) async => http.StreamedResponse(
-            Stream.value(utf8.encode(response)), statusCode),
+        (invocation) async {
+          return http.StreamedResponse(
+              Stream.value(utf8.encode(response)), statusCode);
+        },
       );
     }
   }

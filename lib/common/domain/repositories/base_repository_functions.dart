@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:dartz/dartz.dart';
+import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 
 typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
@@ -40,12 +41,13 @@ Future<Either<Failure, T>> getResponseWithParam<T>(
 }
 
 Future<Either<Failure, T>> postData<T>(
-  Future<Response<T>> Function(Map<String, dynamic>, bool isAuth) postData,
+  Future<Response<T>> Function(Map<String, dynamic>, String, String) postData,
   Map<String, dynamic> body, [
-  bool isAuth = true,
+  AuthToken authToken = const AuthToken.empty(),
 ]) async {
   try {
-    final response = await postData(body, isAuth);
+    final response =
+        await postData(body, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Server error"));
@@ -56,26 +58,12 @@ Future<Either<Failure, T>> postData<T>(
 }
 
 Future<Either<Failure, T>> getData<T>(
-  Future<Response<T>> Function(bool) postData, [
-  bool isAuth = true,
+  Future<Response<T>> Function(String, String) getData, [
+  AuthToken authToken = const AuthToken.empty(),
 ]) async {
   try {
-    final response = await postData(isAuth);
-    return right(response.body!);
-  } on FormatException {
-    return left(const Failure("Unexpected Server error"));
-  } catch (e) {
-    print("err: ${e.toString()}");
-    return left(Failure(e.toString()));
-  }
-}
-
-Future<Either<Failure, T>> getDataWithToken<T>(
-  Future<Response<T>> Function(String) postData,
-  String token,
-) async {
-  try {
-    final response = await postData(token);
+    final response =
+        await getData(authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Server error"));

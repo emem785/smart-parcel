@@ -10,7 +10,7 @@ const registerResponse = '''{
     "status": true,
     "message": "Successful",
     "data": {
-        "id": 2,
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
@@ -25,6 +25,7 @@ const registerResponse = '''{
 }''';
 
 const mockUser = User(
+    id: "ff10a581-4a9e-4589-937b-df4ccb1bded4",
     username: "emmz",
     firstName: "emem",
     lastName: "emem",
@@ -61,7 +62,7 @@ const mockOtpFailure = Failure("Please enter a valid email address");
 const mockOtpVerifyResponse = '''{
     "message": "Verification Complete",
     "data": {
-        "id": 4,
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "",
         "first_name": "",
         "last_name": "",
@@ -81,7 +82,7 @@ const mockLoginResponse = '''{
     "status": true,
     "message": "Successful",
     "data": {
-        "id": 2,
+        "id": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         "username": "emmz",
         "first_name": "emem",
         "last_name": "emem",
