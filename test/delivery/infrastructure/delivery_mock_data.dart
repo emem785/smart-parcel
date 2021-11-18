@@ -1,6 +1,8 @@
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_data.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_response.dart';
+import 'package:smart_parcel/delivery/domain/models/center.dart';
+import 'package:smart_parcel/delivery/domain/models/center_district.dart';
 
 const selfStorageError = '''{
   "message": "failed",
@@ -24,56 +26,65 @@ const selfStorageJson = '''{
   }
 }''';
 
-const getParcelCentersJson = '''{
-    "Yaba": [
-        {
-            "id": 3,
-            "location": "Yaba",
-            "address": "Spar, Tejuoso Market, Yaba",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540708Z"
-        },
-        {
-            "id": 5,
-            "location": "Yaba",
-            "address": "Mini so, Tejuoso Market, Yaba",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540747Z"
-        }
-    ],
-    "Surulere": [
-        {
-            "id": 6,
-            "location": "Surulere",
-            "address": "Leisure Mall",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540767Z"
-        }
-    ],
-    "Lekki": [
-        {
-            "id": 1,
-            "location": "Lekki",
-            "address": "The Palms Shopping Mall",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540638Z"
-        },
-        {
-            "id": 2,
-            "location": "Lekki",
-            "address": "Lennox Mall, Admiralty Way",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540686Z"
-        },
-        {
-            "id": 4,
-            "location": "Lekki",
-            "address": "The Palms Shopping Mall",
-            "is_active": true,
-            "created_at": "2021-11-16T17:06:59.540729Z"
-        }
-    ]
-}''';
+const getParcelCentersJson = '''[
+    {
+        "name": "Yaba",
+        "centers": [
+            {
+                "id": 3,
+                "location": "Yaba",
+                "address": "Spar, Tejuoso Market, Yaba",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540708Z"
+            },
+            {
+                "id": 5,
+                "location": "Yaba",
+                "address": "Mini so, Tejuoso Market, Yaba",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540747Z"
+            }
+        ]
+    },
+    {
+        "name": "Surulere",
+        "centers": [
+            {
+                "id": 6,
+                "location": "Surulere",
+                "address": "Leisure Mall",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540767Z"
+            }
+        ]
+    },
+    {
+        "name": "Lekki",
+        "centers": [
+            {
+                "id": 1,
+                "location": "Lekki",
+                "address": "The Palms Shopping Mall",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540638Z"
+            },
+            {
+                "id": 2,
+                "location": "Lekki",
+                "address": "Lennox Mall, Admiralty Way",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540686Z"
+            },
+            {
+                "id": 4,
+                "location": "Lekki",
+                "address": "The Palms Shopping Mall",
+                "is_active": true,
+                "created_at": "2021-11-16T17:06:59.540729Z"
+            }
+        ]
+    }
+]''';
 
 const bookCustomerToCustomerResponse = '''{
   "message": "success",
@@ -104,3 +115,48 @@ const mockSelfStorageBookingResponse = BookingResponse(
         location: 4));
 
 const selfStorageFailure = Failure("Unexpected Server Error");
+
+const mockCenterDistricts = [
+  CenterDistrict(name: "Yaba", centers: [
+    ParcelCenter(
+        id: 3,
+        location: "Yaba",
+        address: "Spar, Tejuoso Market, Yaba",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540708Z"),
+    ParcelCenter(
+        id: 5,
+        location: "Yaba",
+        address: "Mini so, Tejuoso Market, Yaba",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540747Z")
+  ]),
+  CenterDistrict(name: "Surulere", centers: [
+    ParcelCenter(
+        id: 6,
+        location: "Surulere",
+        address: "Leisure Mall",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540767Z")
+  ]),
+  CenterDistrict(name: "Lekki", centers: [
+    ParcelCenter(
+        id: 1,
+        location: "Lekki",
+        address: "The Palms Shopping Mall",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540638Z"),
+    ParcelCenter(
+        id: 2,
+        location: "Lekki",
+        address: "Lennox Mall, Admiralty Way",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540686Z"),
+    ParcelCenter(
+        id: 4,
+        location: "Lekki",
+        address: "The Palms Shopping Mall",
+        is_active: true,
+        created_at: "2021-11-16T17:06:59.540729Z")
+  ])
+];

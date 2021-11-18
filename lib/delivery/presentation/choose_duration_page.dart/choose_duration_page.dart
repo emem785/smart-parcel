@@ -1,11 +1,12 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/validator_util.dart';
-import 'package:smart_parcel/delivery/domain/usecases/delivery_usecases.dart';
+import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 const termsAndConditions =
@@ -19,7 +20,7 @@ class ChooseDurationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      create: (context) => getIt<DeliveryUseCases>(),
+      create: (context) => getIt<DeliveryBloc>(),
       child: const ChooseDuration(),
     );
   }
@@ -35,9 +36,7 @@ class ChooseDuration extends HookWidget {
     final controller = useTextEditingController();
     final hasAgreed = useState(false);
     final formKey = useState(GlobalKey<FormState>());
-    final chooseDuration =
-        context.read<DeliveryUseCases>().chooseDurationUseCase;
-    final showError = context.read<DeliveryUseCases>().showErrorUseCase;
+    final deliveryBloc = context.read<DeliveryBloc>();
 
     return Column(
       children: [
@@ -57,7 +56,10 @@ class ChooseDuration extends HookWidget {
                   decoration:
                       const InputDecoration(labelText: "Duration of Item"),
                   onTap: () {
-                    chooseDuration(context: context, controller: controller);
+                    deliveryBloc.deliveryUseCases.chooseDurationUseCase(
+                      context: context,
+                      controller: controller,
+                    );
                   },
                 ),
               ),
@@ -80,12 +82,15 @@ class ChooseDuration extends HookWidget {
         LayoutConstants.padButton(ElevatedButton(
           onPressed: () async {
             if (formKey.value.currentState!.validate() && hasAgreed.value) {
-              context.router.push(SelectLocationRoute(onSelected: (index) {
-                print(index);
-              }));
+              deliveryBloc.add(DeliveryEvent.selectLocation(
+                context,
+                (center) =>
+                    context.router.push(const SelfStoragePaymentRoute()),
+              ));
               return;
             }
-            showError(context: context, message: "Agree to terms & Conditions");
+            deliveryBloc.deliveryUseCases.showErrorUseCase(
+                context: context, message: "Agree to terms & Conditions");
           },
           child: const Text("Done"),
           key: doneButtonKey,

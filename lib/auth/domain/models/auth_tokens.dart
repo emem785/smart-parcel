@@ -21,6 +21,7 @@ class AuthToken {
   }
 
   const AuthToken.empty() : this(access: '', refresh: '');
+  const AuthToken.placeHolder() : this(access: 'access', refresh: 'refresh');
 
   Map<String, dynamic> toMap() {
     return {

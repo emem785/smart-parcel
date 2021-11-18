@@ -30,6 +30,7 @@ Future<void> main() async {
         );
       },
     );
+
     test(
       'returns failure on 400 response',
       () async {
@@ -43,6 +44,21 @@ Future<void> main() async {
         return response.fold(
           (l) => expect(l, selfStorageFailure),
           (r) => expect(r, null),
+        );
+      },
+    );
+    test(
+      'returns get parcel centers response',
+      () async {
+        // arrange
+        TestSetup.setup(getParcelCentersJson, 200);
+        final repo = getIt<DeliveryRepository>();
+        // act
+        final response = await repo.getParcelCenters();
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, mockCenterDistricts),
         );
       },
     );

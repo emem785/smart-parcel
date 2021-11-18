@@ -6,48 +6,52 @@
 
 import 'package:chopper/chopper.dart' as _i21;
 import 'package:connectivity/connectivity.dart' as _i5;
+import 'package:flutter_paystack/flutter_paystack.dart' as _i8;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:http/http.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i9;
 
-import 'auth/application/bloc/sign_in_bloc/signin_bloc.dart' as _i38;
-import 'auth/application/bloc/sign_up_bloc/signup_bloc.dart' as _i39;
+import 'auth/application/bloc/sign_in_bloc/signin_bloc.dart' as _i42;
+import 'auth/application/bloc/sign_up_bloc/signup_bloc.dart' as _i43;
 import 'auth/domain/interface/auth_storage_interface.dart' as _i14;
-import 'auth/domain/repositories/sign_in_repository.dart' as _i24;
-import 'auth/domain/repositories/sign_up_repository.dart' as _i26;
-import 'auth/domain/usecases/auth_usecases.dart' as _i36;
-import 'auth/domain/usecases/forgot_password_usecase.dart' as _i32;
-import 'auth/domain/usecases/login_usecase.dart' as _i33;
-import 'auth/domain/usecases/request_otp_usecase.dart' as _i35;
-import 'auth/domain/usecases/sign_in_usecase.dart' as _i25;
-import 'auth/domain/usecases/sign_up_usecase.dart' as _i27;
+import 'auth/domain/repositories/sign_in_repository.dart' as _i26;
+import 'auth/domain/repositories/sign_up_repository.dart' as _i28;
+import 'auth/domain/usecases/auth_usecases.dart' as _i39;
+import 'auth/domain/usecases/forgot_password_usecase.dart' as _i35;
+import 'auth/domain/usecases/login_usecase.dart' as _i36;
+import 'auth/domain/usecases/request_otp_usecase.dart' as _i38;
+import 'auth/domain/usecases/sign_in_usecase.dart' as _i27;
+import 'auth/domain/usecases/sign_up_usecase.dart' as _i29;
 import 'auth/domain/usecases/start_countdown_usecase.dart' as _i13;
-import 'auth/domain/usecases/submit_otp_usecase.dart' as _i28;
+import 'auth/domain/usecases/submit_otp_usecase.dart' as _i30;
 import 'auth/infrastructure/services/auth_storage_service.dart' as _i15;
-import 'common/application/auth_bloc/auth_bloc.dart' as _i41;
-import 'common/application/user_bloc/user_bloc.dart' as _i40;
+import 'common/application/auth_bloc/auth_bloc.dart' as _i45;
+import 'common/application/user_bloc/user_bloc.dart' as _i44;
 import 'common/domain/interface/common_storage_interface.dart' as _i17;
-import 'common/domain/repositories/auth_repository.dart' as _i29;
+import 'common/domain/repositories/auth_repository.dart' as _i31;
 import 'common/domain/repositories/user_repository.dart' as _i20;
-import 'common/domain/usecases/authenticate_usecase.dart' as _i30;
+import 'common/domain/usecases/authenticate_usecase.dart' as _i32;
 import 'common/domain/usecases/base_usecases.dart' as _i16;
-import 'common/domain/usecases/check_authenticate_usecase.dart' as _i31;
-import 'common/domain/usecases/common_usecases.dart' as _i37;
-import 'common/domain/usecases/get_stored_user_usecase.dart' as _i23;
-import 'common/domain/usecases/logout_usecase.dart' as _i34;
+import 'common/domain/usecases/check_authenticate_usecase.dart' as _i33;
+import 'common/domain/usecases/common_usecases.dart' as _i40;
+import 'common/domain/usecases/get_stored_user_usecase.dart' as _i25;
+import 'common/domain/usecases/logout_usecase.dart' as _i37;
 import 'common/domain/usecases/show_alert_usecase.dart' as _i10;
 import 'common/domain/usecases/show_error_usecase.dart' as _i11;
 import 'common/domain/usecases/show_prompt_usecase.dart' as _i12;
 import 'common/infrastructure/chopper/connectivity_interceptor.dart' as _i6;
-import 'common/infrastructure/chopper/error_interceptor.dart' as _i8;
+import 'common/infrastructure/chopper/error_interceptor.dart' as _i7;
 import 'common/infrastructure/chopper/jwt_authenticator.dart' as _i19;
-import 'common/infrastructure/register_module.dart' as _i42;
+import 'common/infrastructure/register_module.dart' as _i46;
 import 'common/infrastructure/services/common_storage_service.dart' as _i18;
+import 'delivery/application/delivery_bloc/delivery_bloc.dart' as _i41;
 import 'delivery/domain/repositories/delivery_repository.dart' as _i22;
 import 'delivery/domain/usecases/choose_duration_usecase.dart' as _i3;
-import 'delivery/domain/usecases/delivery_usecases.dart'
-    as _i7; // ignore_for_file: unnecessary_lambdas
+import 'delivery/domain/usecases/delivery_usecases.dart' as _i34;
+import 'delivery/domain/usecases/get_location_districts_usecase.dart' as _i23;
+import 'delivery/domain/usecases/get_parcel_locations_usecase.dart'
+    as _i24; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -61,9 +65,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i5.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i6.ConnectivityInterceptor>(
       () => _i6.ConnectivityInterceptor(connectivity: get<_i5.Connectivity>()));
-  gh.factory<_i7.DeliveryUseCases>(() => _i7.DeliveryUseCases(
-      chooseDurationUseCase: get<_i3.ChooseDurationUseCase>()));
-  gh.factory<_i8.ErrorInterceptor>(() => _i8.ErrorInterceptor());
+  gh.factory<_i7.ErrorInterceptor>(() => _i7.ErrorInterceptor());
+  gh.lazySingleton<_i8.PaystackPlugin>(() => registerModule.payStackPlugin);
   await gh.factoryAsync<_i9.SharedPreferences>(
       () => registerModule.sharedPreferences,
       preResolve: true);
@@ -72,6 +75,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i12.ShowPromptUseCase>(() => _i12.ShowPromptUseCase());
   gh.factory<_i13.StartCountDownUseCase>(() => _i13.StartCountDownUseCase());
   gh.factory<String>(() => registerModule.baseUrl, instanceName: 'baseUrl');
+  gh.factory<String>(() => registerModule.publicKey,
+      instanceName: 'paystackPublicKey');
   gh.factory<_i14.AuthStorageInterface>(
       () => _i15.AuthStorageService(get<_i9.SharedPreferences>()));
   gh.factory<_i16.BaseUseCases>(() => _i16.BaseUseCases(
@@ -91,50 +96,60 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<String>(instanceName: 'baseUrl'), get<_i19.JwtAuthenticator>()));
   gh.factory<_i22.DeliveryRepository>(
       () => _i22.DeliveryRepository(get<_i21.ChopperClient>()));
-  gh.factory<_i23.GetStoredUserUseCase>(
-      () => _i23.GetStoredUserUseCase(get<_i20.UserRepository>()));
-  gh.factory<_i24.SignInRepository>(() => _i24.SignInRepository(
+  gh.factory<_i23.GetLocationDistrictUseCase>(
+      () => _i23.GetLocationDistrictUseCase(get<_i22.DeliveryRepository>()));
+  gh.factory<_i24.GetParcelLocationUseCase>(
+      () => _i24.GetParcelLocationUseCase(get<_i22.DeliveryRepository>()));
+  gh.factory<_i25.GetStoredUserUseCase>(
+      () => _i25.GetStoredUserUseCase(get<_i20.UserRepository>()));
+  gh.factory<_i26.SignInRepository>(() => _i26.SignInRepository(
       get<_i21.ChopperClient>(), get<_i14.AuthStorageInterface>()));
-  gh.factory<_i25.SignInUsecase>(
-      () => _i25.SignInUsecase(get<_i24.SignInRepository>()));
-  gh.factory<_i26.SignUpRepository>(() => _i26.SignUpRepository(
+  gh.factory<_i27.SignInUsecase>(
+      () => _i27.SignInUsecase(get<_i26.SignInRepository>()));
+  gh.factory<_i28.SignUpRepository>(() => _i28.SignUpRepository(
       get<_i21.ChopperClient>(), get<_i14.AuthStorageInterface>()));
-  gh.factory<_i27.SignUpUsecase>(
-      () => _i27.SignUpUsecase(get<_i26.SignUpRepository>()));
-  gh.factory<_i28.SubmitOtpUseCase>(
-      () => _i28.SubmitOtpUseCase(get<_i26.SignUpRepository>()));
-  gh.factory<_i29.AuthRepository>(() => _i29.AuthRepository(
+  gh.factory<_i29.SignUpUsecase>(
+      () => _i29.SignUpUsecase(get<_i28.SignUpRepository>()));
+  gh.factory<_i30.SubmitOtpUseCase>(
+      () => _i30.SubmitOtpUseCase(get<_i28.SignUpRepository>()));
+  gh.factory<_i31.AuthRepository>(() => _i31.AuthRepository(
       get<_i17.CommonStorageInterface>(),
       get<_i21.ChopperClient>(),
       get<_i14.AuthStorageInterface>()));
-  gh.factory<_i30.AuthenticateUseCase>(
-      () => _i30.AuthenticateUseCase(get<_i29.AuthRepository>()));
-  gh.factory<_i31.CheckAuthenticateUseCase>(
-      () => _i31.CheckAuthenticateUseCase(get<_i29.AuthRepository>()));
-  gh.factory<_i32.ForgotPasswordUseCase>(
-      () => _i32.ForgotPasswordUseCase(get<_i24.SignInRepository>()));
-  gh.factory<_i33.LoginUseCase>(
-      () => _i33.LoginUseCase(get<_i24.SignInRepository>()));
-  gh.factory<_i34.LogoutUseCase>(
-      () => _i34.LogoutUseCase(get<_i29.AuthRepository>()));
-  gh.factory<_i35.RequestOtpUseCase>(
-      () => _i35.RequestOtpUseCase(get<_i26.SignUpRepository>()));
-  gh.factory<_i36.AuthUseCases>(() => _i36.AuthUseCases(
-      signInUsecase: get<_i25.SignInUsecase>(),
-      signUpUsecase: get<_i27.SignUpUsecase>(),
-      requestOtpUseCase: get<_i35.RequestOtpUseCase>(),
-      submitOtpUseCase: get<_i28.SubmitOtpUseCase>(),
+  gh.factory<_i32.AuthenticateUseCase>(
+      () => _i32.AuthenticateUseCase(get<_i31.AuthRepository>()));
+  gh.factory<_i33.CheckAuthenticateUseCase>(
+      () => _i33.CheckAuthenticateUseCase(get<_i31.AuthRepository>()));
+  gh.factory<_i34.DeliveryUseCases>(() => _i34.DeliveryUseCases(
+      chooseDurationUseCase: get<_i3.ChooseDurationUseCase>(),
+      getLocationDistrictUseCase: get<_i23.GetLocationDistrictUseCase>(),
+      getParcelLocationUseCase: get<_i24.GetParcelLocationUseCase>()));
+  gh.factory<_i35.ForgotPasswordUseCase>(
+      () => _i35.ForgotPasswordUseCase(get<_i26.SignInRepository>()));
+  gh.factory<_i36.LoginUseCase>(
+      () => _i36.LoginUseCase(get<_i26.SignInRepository>()));
+  gh.factory<_i37.LogoutUseCase>(
+      () => _i37.LogoutUseCase(get<_i31.AuthRepository>()));
+  gh.factory<_i38.RequestOtpUseCase>(
+      () => _i38.RequestOtpUseCase(get<_i28.SignUpRepository>()));
+  gh.factory<_i39.AuthUseCases>(() => _i39.AuthUseCases(
+      signInUsecase: get<_i27.SignInUsecase>(),
+      signUpUsecase: get<_i29.SignUpUsecase>(),
+      requestOtpUseCase: get<_i38.RequestOtpUseCase>(),
+      submitOtpUseCase: get<_i30.SubmitOtpUseCase>(),
       startCountDownUseCase: get<_i13.StartCountDownUseCase>(),
-      forgotPasswordUseCase: get<_i32.ForgotPasswordUseCase>()));
-  gh.factory<_i37.CommonUseCases>(() => _i37.CommonUseCases(
-      getStoredUserUseCase: get<_i23.GetStoredUserUseCase>(),
-      authenticateUseCase: get<_i30.AuthenticateUseCase>(),
-      logoutUseCase: get<_i34.LogoutUseCase>()));
-  gh.factory<_i38.SignInBloc>(() => _i38.SignInBloc(get<_i36.AuthUseCases>()));
-  gh.factory<_i39.SignUpBloc>(() => _i39.SignUpBloc(get<_i36.AuthUseCases>()));
-  gh.factory<_i40.UserBloc>(() => _i40.UserBloc(get<_i37.CommonUseCases>()));
-  gh.factory<_i41.AuthBloc>(() => _i41.AuthBloc(get<_i37.CommonUseCases>()));
+      forgotPasswordUseCase: get<_i35.ForgotPasswordUseCase>()));
+  gh.factory<_i40.CommonUseCases>(() => _i40.CommonUseCases(
+      getStoredUserUseCase: get<_i25.GetStoredUserUseCase>(),
+      authenticateUseCase: get<_i32.AuthenticateUseCase>(),
+      logoutUseCase: get<_i37.LogoutUseCase>()));
+  gh.factory<_i41.DeliveryBloc>(
+      () => _i41.DeliveryBloc(get<_i34.DeliveryUseCases>()));
+  gh.factory<_i42.SignInBloc>(() => _i42.SignInBloc(get<_i39.AuthUseCases>()));
+  gh.factory<_i43.SignUpBloc>(() => _i43.SignUpBloc(get<_i39.AuthUseCases>()));
+  gh.factory<_i44.UserBloc>(() => _i44.UserBloc(get<_i40.CommonUseCases>()));
+  gh.factory<_i45.AuthBloc>(() => _i45.AuthBloc(get<_i40.CommonUseCases>()));
   return get;
 }
 
-class _$RegisterModule extends _i42.RegisterModule {}
+class _$RegisterModule extends _i46.RegisterModule {}

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 
 // typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
@@ -15,7 +16,7 @@ Widget buildQuickActions({required BuildContext context}) {
         title: "Self Storage",
         subtitle:
             "Keep an item at SmartParcel locker for\nyou to pickup at a later time.",
-        onTap: () => context.router.pushNamed("/home/chooseDuration"),
+        onTap: () => context.router.push(const ChooseDurationRoute()),
       ),
       LayoutConstants.sizeBox(context, 32),
       buildQuickAction(

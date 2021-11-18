@@ -10,12 +10,14 @@ import 'package:smart_parcel/auth/presentation/welcome_page/welcome_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/home_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/splash_page.dart';
 import 'package:smart_parcel/delivery/presentation/choose_duration_page.dart/choose_duration_page.dart';
+import 'package:smart_parcel/delivery/presentation/choose_duration_page.dart/select_location_district_page.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
 import 'package:smart_parcel/delivery/presentation/select_location/select_location_page.dart';
 import 'package:smart_parcel/parcels/presentation/available_page/available_page.dart';
 import 'package:smart_parcel/parcels/presentation/deposits_page/deposits_page.dart';
 import 'package:smart_parcel/parcels/presentation/history_page/history_page.dart';
 import 'package:smart_parcel/parcels/presentation/parcels_page.dart';
+import 'package:smart_parcel/payment/presentation/choose_duration_page.dart/self_storage_payment_page.dart';
 
 const homePageChildren = [
   AutoRoute(
@@ -26,6 +28,11 @@ const homePageChildren = [
       AutoRoute(path: '', page: DashboardPage),
       AutoRoute(path: 'chooseDuration', page: ChooseDurationPage),
       AutoRoute(path: 'selectLocation', page: SelectLocationPage),
+      AutoRoute(
+        path: 'selectLocationDistrict',
+        page: SelectLocationDistrictPage,
+      ),
+      AutoRoute(path: 'selfStoragePayment', page: SelfStoragePaymentPage),
     ],
   ),
   AutoRoute(
@@ -63,7 +70,7 @@ const routes = [
     page: WelcomePage,
     path: '/welcomePage',
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    durationInMilliseconds: 500,
+    durationInMilliseconds: 800,
   ),
   AutoRoute(page: LoginPage, path: '/login'),
   AutoRoute(page: SignUpPage, path: '/signUp'),
@@ -74,7 +81,7 @@ const routes = [
     path: '/home',
     children: homePageChildren,
     transitionsBuilder: TransitionsBuilders.fadeIn,
-    durationInMilliseconds: 500,
+    durationInMilliseconds: 800,
   ),
 ];
 

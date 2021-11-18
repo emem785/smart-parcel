@@ -6,6 +6,7 @@ import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
 import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_response.dart';
+import 'package:smart_parcel/delivery/domain/models/center_district.dart';
 
 typedef JsonFactory<T> = T Function(Map<String, dynamic> json);
 
@@ -19,6 +20,7 @@ class JsonParser {
     ForgotPasswordResponse: ForgotPasswordResponse.jsonFactory,
     AuthToken: AuthToken.jsonFactory,
     BookingResponse: BookingResponse.jsonFactory,
+    CenterDistrict: CenterDistrict.jsonFactory,
   };
 
   static dynamic decode<T>(entity) {
