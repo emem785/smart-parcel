@@ -77,7 +77,7 @@ class _$AuthHttpService extends AuthHttpService {
   }
 
   @override
-  Future<Response<ForgotPasswordResponse>> forgotPassword(
+  Future<Response<SimpleAuthResponse>> forgotPassword(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/user/forget_password/';
     final $headers = {
@@ -88,7 +88,36 @@ class _$AuthHttpService extends AuthHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client
-        .send<ForgotPasswordResponse, ForgotPasswordResponse>($request);
+    return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
+  }
+
+  @override
+  Future<Response<SimpleAuthResponse>> submitPasswordOtp(
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
+    final $url = 'user/forgot_password/confirm_otp/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $body = body;
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
+    return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
+  }
+
+  @override
+  Future<Response<SimpleAuthResponse>> confirmPassword(
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
+    final $url = '/user/forgot_password/confirm_password/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $body = body;
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
+    return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
   }
 }

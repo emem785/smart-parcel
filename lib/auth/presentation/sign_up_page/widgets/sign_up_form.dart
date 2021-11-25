@@ -5,7 +5,6 @@ import 'package:smart_parcel/common/utils/validator_util.dart';
 
 Widget buildSignUpForm({
   required BuildContext context,
-  required TextEditingController usernameController,
   required TextEditingController firstnameController,
   required TextEditingController lastnameController,
   required TextEditingController phoneController,
@@ -18,14 +17,6 @@ Widget buildSignUpForm({
     key: formKey,
     child: Column(
       children: [
-        TextFormField(
-          validator: ValidatorUtil.normalValidator,
-          controller: usernameController,
-          decoration: const InputDecoration(
-            labelText: "Username",
-          ),
-          key: SignUpPageBody.username,
-        ),
         TextFormField(
           controller: firstnameController,
           validator: ValidatorUtil.normalValidator,

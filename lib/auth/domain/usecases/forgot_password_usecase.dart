@@ -14,7 +14,7 @@ class ForgotPasswordUseCase {
     final response = await signInRepository.forgotPassword(email: event.email);
     return response.fold(
       (l) => emit(SignInState.error(l)),
-      (r) => emit(const SignInState.requestSent()),
+      (r) => emit(SignInState.requestSent(event.email)),
     );
   }
 }

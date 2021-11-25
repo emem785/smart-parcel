@@ -15,6 +15,12 @@ abstract class DeliveryHttpService extends ChopperService {
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
+  @Post(path: '/customer_to_customer/')
+  Future<Response<BookingResponse>> bookCustomerToCustomer(
+    @Body() Map<String, dynamic> body,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
+  );
   @Get(path: '/parcel_centers/')
   Future<Response<List<CenterDistrict>>> getParcelCenters(
     @Header('refresh') String refreshToken,

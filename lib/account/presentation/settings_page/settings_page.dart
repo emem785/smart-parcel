@@ -35,7 +35,7 @@ class SettingsBody extends StatelessWidget {
           state.maybeMap(
             orElse: () => 1,
             loggedOut: (v) => context.router.pushAndPopUntil(
-              const LoginRoute(),
+              const WelcomeRoute(),
               predicate: (route) => false,
             ),
           );
@@ -57,11 +57,12 @@ class SettingsBody extends StatelessWidget {
               onTap: () {},
             ),
             buildSettingTile(
-                key: password,
-                context: context,
-                icon: "change_password",
-                title: "Change Password",
-                onTap: () => context.router.push(const ChangePasswordRoute())),
+              key: password,
+              context: context,
+              icon: "change_password",
+              title: "Change Password",
+              onTap: () => context.router.push(const ResetPasswordRoute()),
+            ),
             buildSettingTile(
                 key: logout,
                 context: context,

@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class ForgotPasswordError {
-  final List<String> email;
+  final List<String>? email;
+  final List<String>? otp;
   ForgotPasswordError({
     required this.email,
+    required this.otp,
   });
 
   ForgotPasswordError copyWith({
@@ -13,18 +15,21 @@ class ForgotPasswordError {
   }) {
     return ForgotPasswordError(
       email: email ?? this.email,
+      otp: otp ?? otp,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'email': email,
+      'otp': otp,
     };
   }
 
   factory ForgotPasswordError.fromMap(Map<String, dynamic> map) {
     return ForgotPasswordError(
-      email: List<String>.from(map['email']),
+      email: map["email"] != null ? List<String>.from(map['email']) : [],
+      otp: map["otp"] != null ? List<String>.from(map['otp']) : [],
     );
   }
 
@@ -34,7 +39,7 @@ class ForgotPasswordError {
       ForgotPasswordError.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ForgotPasswordError(email: $email)';
+  String toString() => 'ForgotPasswordError(email: $email, otp: $otp)';
 
   @override
   bool operator ==(Object other) {
@@ -44,5 +49,5 @@ class ForgotPasswordError {
   }
 
   @override
-  int get hashCode => email.hashCode;
+  int get hashCode => email.hashCode ^ otp.hashCode;
 }

@@ -113,6 +113,18 @@ const mockSelfStorageBookingResponse = BookingResponse(
         createdAt: "2021-11-17T14:17:18.819155+01:00",
         user: "ff10a581-4a9e-4589-937b-df4ccb1bded4",
         location: 4));
+const mockCustomerToCustomerResponse = BookingResponse(
+    message: "success",
+    data: BookingData(
+        email: "emmmanuelisong1@gmail.com",
+        name: "emmzz",
+        phone: "0803333333",
+        id: 1,
+        status: "pending",
+        isActive: true,
+        createdAt: "2021-11-17T15:06:22.007376+01:00",
+        user: "ff10a581-4a9e-4589-937b-df4ccb1bded4",
+        location: 4));
 
 const selfStorageFailure = Failure("Unexpected Server Error");
 

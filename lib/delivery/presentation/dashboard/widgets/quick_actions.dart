@@ -24,7 +24,7 @@ Widget buildQuickActions({required BuildContext context}) {
         icon: "send_parcel",
         title: "Send Parcel",
         subtitle: "Post an item using a courier service\nvia SmartParcel",
-        onTap: () {},
+        onTap: () => context.router.push(const CustomerToCourierRoute()),
       ),
       LayoutConstants.sizeBox(context, 32),
       buildQuickAction(
@@ -33,7 +33,7 @@ Widget buildQuickActions({required BuildContext context}) {
         title: "Customer to Customer",
         subtitle:
             "Drop off an item in SmartParcel locker\nfor someone else to pickup",
-        onTap: () {},
+        onTap: () => context.router.push(const CustomerToCustomerRoute()),
       ),
     ],
   );

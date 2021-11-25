@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
@@ -66,12 +67,18 @@ class ForgotPasswordBody extends HookWidget {
                         orElse: () => 1,
                         error: (v) => signInBloc.authUseCases.showErrorUseCase(
                             message: v.failure.message, context: context),
-                        requestSent: (v) =>
-                            signInBloc.authUseCases.showPromptUseCase(
-                          context: context,
-                          message:
-                              "Your reset password request has been sent to your email",
-                        ),
+                        requestSent: (v) async {
+                          signInBloc.authUseCases.showPromptUseCase(
+                            context: context,
+                            message: "An otp has been sent to your email",
+                          );
+
+                          await Future.delayed(
+                            const Duration(microseconds: 500),
+                            () => context.router.push(SubmitPasswordOtpRoute(
+                                email: emailController.text)),
+                          );
+                        },
                       );
                     },
                     builder: (context, state) {

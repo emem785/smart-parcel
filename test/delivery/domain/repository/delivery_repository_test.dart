@@ -2,12 +2,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../../common/infrastructure/setup_tests.dart';
+import '../../../auth/infrastructure/auth_mock_data.dart';
+import '../../../common/infrastructure/setup_auth_tests.dart';
 import '../../infrastructure/delivery_mock_data.dart';
 
 Future<void> main() async {
   setUp(() async {
-    await TestSetup.init();
+    await AuthTestSetup.init();
   });
 
   tearDown(() {
@@ -18,15 +19,36 @@ Future<void> main() async {
       'returns self storage response',
       () async {
         // arrange
-        TestSetup.setup(selfStorageJson, 200);
+        AuthTestSetup.setup(selfStorageJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
         final response =
-            await repo.bookSelfStorage(duration: "2", user: "", location: 3);
+            await repo.bookSelfStorage(duration: "2", userId: "", location: 3);
         // assert
         return response.fold(
           (l) => expect(l, null),
           (r) => expect(r, mockSelfStorageBookingResponse),
+        );
+      },
+    );
+    test(
+      'returns customer to customer response',
+      () async {
+        // arrange
+        AuthTestSetup.setup(bookCustomerToCustomerResponse, 200);
+        final repo = getIt<DeliveryRepository>();
+        // act
+        final response = await repo.bookCustomerToCustomer(
+          name: "emem",
+          email: "emem@emem",
+          location: 4,
+          phone: "0805555",
+          userId: mockUser.id!,
+        );
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, mockCustomerToCustomerResponse),
         );
       },
     );
@@ -35,11 +57,11 @@ Future<void> main() async {
       'returns failure on 400 response',
       () async {
         // arrange
-        TestSetup.setup(selfStorageError, 400);
+        AuthTestSetup.setup(selfStorageError, 400);
         final repo = getIt<DeliveryRepository>();
         // act
         final response =
-            await repo.bookSelfStorage(duration: "2", user: "", location: 3);
+            await repo.bookSelfStorage(duration: "2", userId: "", location: 3);
         // assert
         return response.fold(
           (l) => expect(l, selfStorageFailure),
@@ -51,7 +73,7 @@ Future<void> main() async {
       'returns get parcel centers response',
       () async {
         // arrange
-        TestSetup.setup(getParcelCentersJson, 200);
+        AuthTestSetup.setup(getParcelCentersJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.getParcelCenters();

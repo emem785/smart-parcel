@@ -29,9 +29,8 @@ class ErrorInterceptor implements ResponseInterceptor {
       } else if (bodyDecoded is Map) {
         return handleMapError(body);
       }
-      return "None";
+      return "Unexpected Internal Error";
     } catch (e) {
-      print("interceptor:${e.toString()}");
       return "Unexpected Server Error";
     }
   }
@@ -46,14 +45,14 @@ class ErrorInterceptor implements ResponseInterceptor {
       return getAuthError(body);
     } else if (bodyMap.containsKey("error")) {
       return getLoginError(body);
-    } else if (bodyMap.containsKey("email")) {
+    } else if (bodyMap.containsKey("email") || bodyMap.containsKey("otp")) {
       return getForgotPasswordError(body);
     } else if (bodyMap.containsKey("messages")) {
       return getTokenError(body);
     } else if (bodyMap.containsKey("errors")) {
       return getDeliveryError(body);
     }
-    return '';
+    return 'Unexpected Internal Error';
   }
 
   String getAuthError(String body) {
@@ -72,7 +71,10 @@ class ErrorInterceptor implements ResponseInterceptor {
 
   String getForgotPasswordError(String body) {
     final forgotPasswordError = ForgotPasswordError.fromJson(body);
-    return forgotPasswordError.email.first;
+    final emailErr = forgotPasswordError.email ?? [];
+    final otpError = forgotPasswordError.otp ?? [];
+    final errMsg = emailErr.isNotEmpty ? emailErr : otpError;
+    return errMsg[0];
   }
 
   String getTokenError(String body) {

@@ -118,9 +118,6 @@ class ConfirmEmailPageBody extends HookWidget {
                       },
                       error: (v) => signUpBloc.authUseCases.showErrorUseCase(
                           message: v.failure.message, context: context),
-                      requestSent: (v) => signUpBloc.authUseCases
-                          .showPromptUseCase(
-                              context: context, message: v.response.message),
                     );
                   },
                   builder: (context, state) {

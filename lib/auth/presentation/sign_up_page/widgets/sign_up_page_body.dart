@@ -23,7 +23,6 @@ class SignUpPageBody extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usernameController = useTextEditingController();
     final firstnameController = useTextEditingController();
     final lastnameController = useTextEditingController();
     final phoneController = useTextEditingController();
@@ -46,7 +45,6 @@ class SignUpPageBody extends HookWidget {
                 LayoutConstants.sizeBox(context, 24),
                 buildSignUpForm(
                   context: context,
-                  usernameController: usernameController,
                   firstnameController: firstnameController,
                   lastnameController: lastnameController,
                   phoneController: phoneController,
@@ -60,17 +58,18 @@ class SignUpPageBody extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 0,
-                      registered: (v) => signUpBloc.add(
-                          SignUpEvent.requestOtp(email: emailController.text)),
-                      requestSent: (v) async {
+                      registered: (v) async {
                         await signUpBloc.authUseCases.showPromptUseCase(
                           context: context,
-                          message: v.response.message,
+                          message: "An otp has been sent to your email",
                         );
-                        context.router.push(ConfirmEmailRoute(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        ));
+                        await Future.delayed(const Duration(milliseconds: 500),
+                            () {
+                          context.router.push(ConfirmEmailRoute(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          ));
+                        });
                       },
                       error: (v) => signUpBloc.authUseCases.showErrorUseCase(
                           message: v.failure.message, context: context),
@@ -91,7 +90,7 @@ class SignUpPageBody extends HookWidget {
                           if (formKey.value.currentState!.validate()) {
                             final user = User(
                               id: null,
-                              username: usernameController.text,
+                              username: firstnameController.text,
                               firstName: firstnameController.text,
                               lastName: lastnameController.text,
                               email: emailController.text,

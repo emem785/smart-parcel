@@ -47,7 +47,7 @@ void main() {
   testWidgets(
     "Page Shows prompt after request is sent to email",
     (WidgetTester tester) async {
-      TestSetup.setup(forgotPasswordResponse, 200);
+      TestSetup.setup(forgotPasswordJson, 200);
       await tester.pumpWidget(
         WidgetHelper.testableWidget(child: const ForgotPasswordPage()),
       );
@@ -55,7 +55,7 @@ void main() {
       await tester.tap(find.byType(ElevatedButton));
       await tester.pump(const Duration(milliseconds: 450));
       expect(
-        find.text("Your reset password request has been sent to your email"),
+        find.text("An otp has been sent to your email"),
         findsOneWidget,
       );
 

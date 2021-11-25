@@ -2,8 +2,8 @@ import 'package:chopper/chopper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:smart_parcel/auth/domain/interface/auth_storage_interface.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
-import 'package:smart_parcel/auth/domain/models/forgot_password_response.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
+import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
@@ -32,13 +32,34 @@ class SignInRepository {
     return postData(_authHttpService.signIn, body);
   }
 
-  SingleResponse<ForgotPasswordResponse> forgotPassword({
+  SingleResponse<SimpleAuthResponse> forgotPassword({
     required String email,
   }) {
-    final Map<String, dynamic> body = {};
-    body.addAll({'email': email});
+    final Map<String, dynamic> body = {"email": email};
 
     return postData(_authHttpService.forgotPassword, body);
+  }
+
+  SingleResponse<SimpleAuthResponse> submitPasswordOtp({
+    required String email,
+    required String otp,
+  }) {
+    final Map<String, dynamic> body = {
+      "email": email,
+      "otp": otp,
+    };
+    return postData(_authHttpService.submitPasswordOtp, body);
+  }
+
+  SingleResponse<SimpleAuthResponse> confirmPassword({
+    required String email,
+    required String password,
+  }) {
+    final Map<String, dynamic> body = {
+      "email": email,
+      "password": password,
+    };
+    return postData(_authHttpService.confirmPassword, body);
   }
 
   Future<void> storeUser(User user) => authStorage.storeUser(user);

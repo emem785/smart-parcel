@@ -121,3 +121,20 @@ Future<Either<Failure, T>> postDataAuth<T>(
     return left(Failure(e.toString()));
   }
 }
+
+Future<Either<Failure, T>> postDataPaystack<T>(
+  Future<Response<T>> Function(Map<String, dynamic>, String, String) postData,
+  Map<String, dynamic> body,
+) async {
+  try {
+    const authToken = AuthToken.paystack();
+    final response =
+        await postData(body, authToken.refresh, "Bearer ${authToken.access}");
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Server error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}

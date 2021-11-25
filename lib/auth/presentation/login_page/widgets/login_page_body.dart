@@ -58,6 +58,15 @@ class LoginPageBody extends HookWidget {
                           predicate: (route) => false),
                       error: (v) => signInBloc.authUseCases.showErrorUseCase(
                           message: v.failure.message, context: context),
+                      userNotActivated: (v) =>
+                          signInBloc.authUseCases.showErrorUseCase(
+                        message: v.failure.message,
+                        context: context,
+                        buttonText: "Complete Registration",
+                        onTap: () => context.router.push(ConfirmEmailRoute(
+                            email: emailController.text,
+                            password: passwordController.text)),
+                      ),
                     );
                   },
                   builder: (context, state) {

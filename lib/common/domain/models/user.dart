@@ -39,18 +39,18 @@ class User {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'username': username,
       'first_name': firstName,
       'last_name': lastName,
       'email': email,
       'phone': phone,
-      'id': phone,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      id: map['id'],
+      id: map['id'] ?? '',
       username: map['username'],
       firstName: map['first_name'],
       lastName: map['last_name'],

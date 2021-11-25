@@ -29,6 +29,25 @@ class _$SignInEventTearOff {
       email: email,
     );
   }
+
+  ForgotPasswordConfirmOtp confirmOtp(
+      {required String otp, required String email}) {
+    return ForgotPasswordConfirmOtp(
+      otp: otp,
+      email: email,
+    );
+  }
+
+  ForgotPasswordConfirmPasword confirmPassword(
+      {required String email,
+      required String password,
+      required String confirmPassword}) {
+    return ForgotPasswordConfirmPasword(
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+    );
+  }
 }
 
 /// @nodoc
@@ -42,18 +61,28 @@ mixin _$SignInEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String email) forgotPassword,
+    required TResult Function(String otp, String email) confirmOtp,
+    required TResult Function(
+            String email, String password, String confirmPassword)
+        confirmPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,18 +90,25 @@ mixin _$SignInEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
     required TResult Function(ForgotPassword value) forgotPassword,
+    required TResult Function(ForgotPasswordConfirmOtp value) confirmOtp,
+    required TResult Function(ForgotPasswordConfirmPasword value)
+        confirmPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -184,6 +220,10 @@ class _$Login implements Login {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String email) forgotPassword,
+    required TResult Function(String otp, String email) confirmOtp,
+    required TResult Function(
+            String email, String password, String confirmPassword)
+        confirmPassword,
   }) {
     return login(email, password);
   }
@@ -193,6 +233,9 @@ class _$Login implements Login {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
   }) {
     return login?.call(email, password);
   }
@@ -202,6 +245,9 @@ class _$Login implements Login {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -215,6 +261,9 @@ class _$Login implements Login {
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
     required TResult Function(ForgotPassword value) forgotPassword,
+    required TResult Function(ForgotPasswordConfirmOtp value) confirmOtp,
+    required TResult Function(ForgotPasswordConfirmPasword value)
+        confirmPassword,
   }) {
     return login(this);
   }
@@ -224,6 +273,8 @@ class _$Login implements Login {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
   }) {
     return login?.call(this);
   }
@@ -233,6 +284,8 @@ class _$Login implements Login {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -321,6 +374,10 @@ class _$ForgotPassword implements ForgotPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) login,
     required TResult Function(String email) forgotPassword,
+    required TResult Function(String otp, String email) confirmOtp,
+    required TResult Function(
+            String email, String password, String confirmPassword)
+        confirmPassword,
   }) {
     return forgotPassword(email);
   }
@@ -330,6 +387,9 @@ class _$ForgotPassword implements ForgotPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
   }) {
     return forgotPassword?.call(email);
   }
@@ -339,6 +399,9 @@ class _$ForgotPassword implements ForgotPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? login,
     TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
     required TResult orElse(),
   }) {
     if (forgotPassword != null) {
@@ -352,6 +415,9 @@ class _$ForgotPassword implements ForgotPassword {
   TResult map<TResult extends Object?>({
     required TResult Function(Login value) login,
     required TResult Function(ForgotPassword value) forgotPassword,
+    required TResult Function(ForgotPasswordConfirmOtp value) confirmOtp,
+    required TResult Function(ForgotPasswordConfirmPasword value)
+        confirmPassword,
   }) {
     return forgotPassword(this);
   }
@@ -361,6 +427,8 @@ class _$ForgotPassword implements ForgotPassword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
   }) {
     return forgotPassword?.call(this);
   }
@@ -370,6 +438,8 @@ class _$ForgotPassword implements ForgotPassword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Login value)? login,
     TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
     required TResult orElse(),
   }) {
     if (forgotPassword != null) {
@@ -391,6 +461,358 @@ abstract class ForgotPassword implements SignInEvent {
 }
 
 /// @nodoc
+abstract class $ForgotPasswordConfirmOtpCopyWith<$Res>
+    implements $SignInEventCopyWith<$Res> {
+  factory $ForgotPasswordConfirmOtpCopyWith(ForgotPasswordConfirmOtp value,
+          $Res Function(ForgotPasswordConfirmOtp) then) =
+      _$ForgotPasswordConfirmOtpCopyWithImpl<$Res>;
+  @override
+  $Res call({String otp, String email});
+}
+
+/// @nodoc
+class _$ForgotPasswordConfirmOtpCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements $ForgotPasswordConfirmOtpCopyWith<$Res> {
+  _$ForgotPasswordConfirmOtpCopyWithImpl(ForgotPasswordConfirmOtp _value,
+      $Res Function(ForgotPasswordConfirmOtp) _then)
+      : super(_value, (v) => _then(v as ForgotPasswordConfirmOtp));
+
+  @override
+  ForgotPasswordConfirmOtp get _value =>
+      super._value as ForgotPasswordConfirmOtp;
+
+  @override
+  $Res call({
+    Object? otp = freezed,
+    Object? email = freezed,
+  }) {
+    return _then(ForgotPasswordConfirmOtp(
+      otp: otp == freezed
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ForgotPasswordConfirmOtp implements ForgotPasswordConfirmOtp {
+  const _$ForgotPasswordConfirmOtp({required this.otp, required this.email});
+
+  @override
+  final String otp;
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'SignInEvent.confirmOtp(otp: $otp, email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ForgotPasswordConfirmOtp &&
+            (identical(other.otp, otp) || other.otp == otp) &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, otp, email);
+
+  @JsonKey(ignore: true)
+  @override
+  $ForgotPasswordConfirmOtpCopyWith<ForgotPasswordConfirmOtp> get copyWith =>
+      _$ForgotPasswordConfirmOtpCopyWithImpl<ForgotPasswordConfirmOtp>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) login,
+    required TResult Function(String email) forgotPassword,
+    required TResult Function(String otp, String email) confirmOtp,
+    required TResult Function(
+            String email, String password, String confirmPassword)
+        confirmPassword,
+  }) {
+    return confirmOtp(otp, email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
+  }) {
+    return confirmOtp?.call(otp, email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
+    required TResult orElse(),
+  }) {
+    if (confirmOtp != null) {
+      return confirmOtp(otp, email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Login value) login,
+    required TResult Function(ForgotPassword value) forgotPassword,
+    required TResult Function(ForgotPasswordConfirmOtp value) confirmOtp,
+    required TResult Function(ForgotPasswordConfirmPasword value)
+        confirmPassword,
+  }) {
+    return confirmOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
+  }) {
+    return confirmOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
+    required TResult orElse(),
+  }) {
+    if (confirmOtp != null) {
+      return confirmOtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ForgotPasswordConfirmOtp implements SignInEvent {
+  const factory ForgotPasswordConfirmOtp(
+      {required String otp,
+      required String email}) = _$ForgotPasswordConfirmOtp;
+
+  String get otp;
+  @override
+  String get email;
+  @override
+  @JsonKey(ignore: true)
+  $ForgotPasswordConfirmOtpCopyWith<ForgotPasswordConfirmOtp> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ForgotPasswordConfirmPaswordCopyWith<$Res>
+    implements $SignInEventCopyWith<$Res> {
+  factory $ForgotPasswordConfirmPaswordCopyWith(
+          ForgotPasswordConfirmPasword value,
+          $Res Function(ForgotPasswordConfirmPasword) then) =
+      _$ForgotPasswordConfirmPaswordCopyWithImpl<$Res>;
+  @override
+  $Res call({String email, String password, String confirmPassword});
+}
+
+/// @nodoc
+class _$ForgotPasswordConfirmPaswordCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements $ForgotPasswordConfirmPaswordCopyWith<$Res> {
+  _$ForgotPasswordConfirmPaswordCopyWithImpl(
+      ForgotPasswordConfirmPasword _value,
+      $Res Function(ForgotPasswordConfirmPasword) _then)
+      : super(_value, (v) => _then(v as ForgotPasswordConfirmPasword));
+
+  @override
+  ForgotPasswordConfirmPasword get _value =>
+      super._value as ForgotPasswordConfirmPasword;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? confirmPassword = freezed,
+  }) {
+    return _then(ForgotPasswordConfirmPasword(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ForgotPasswordConfirmPasword implements ForgotPasswordConfirmPasword {
+  const _$ForgotPasswordConfirmPasword(
+      {required this.email,
+      required this.password,
+      required this.confirmPassword});
+
+  @override
+  final String email;
+  @override
+  final String password;
+  @override
+  final String confirmPassword;
+
+  @override
+  String toString() {
+    return 'SignInEvent.confirmPassword(email: $email, password: $password, confirmPassword: $confirmPassword)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ForgotPasswordConfirmPasword &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, confirmPassword);
+
+  @JsonKey(ignore: true)
+  @override
+  $ForgotPasswordConfirmPaswordCopyWith<ForgotPasswordConfirmPasword>
+      get copyWith => _$ForgotPasswordConfirmPaswordCopyWithImpl<
+          ForgotPasswordConfirmPasword>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) login,
+    required TResult Function(String email) forgotPassword,
+    required TResult Function(String otp, String email) confirmOtp,
+    required TResult Function(
+            String email, String password, String confirmPassword)
+        confirmPassword,
+  }) {
+    return confirmPassword(email, password, this.confirmPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
+  }) {
+    return confirmPassword?.call(email, password, this.confirmPassword);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? login,
+    TResult Function(String email)? forgotPassword,
+    TResult Function(String otp, String email)? confirmOtp,
+    TResult Function(String email, String password, String confirmPassword)?
+        confirmPassword,
+    required TResult orElse(),
+  }) {
+    if (confirmPassword != null) {
+      return confirmPassword(email, password, this.confirmPassword);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Login value) login,
+    required TResult Function(ForgotPassword value) forgotPassword,
+    required TResult Function(ForgotPasswordConfirmOtp value) confirmOtp,
+    required TResult Function(ForgotPasswordConfirmPasword value)
+        confirmPassword,
+  }) {
+    return confirmPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
+  }) {
+    return confirmPassword?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Login value)? login,
+    TResult Function(ForgotPassword value)? forgotPassword,
+    TResult Function(ForgotPasswordConfirmOtp value)? confirmOtp,
+    TResult Function(ForgotPasswordConfirmPasword value)? confirmPassword,
+    required TResult orElse(),
+  }) {
+    if (confirmPassword != null) {
+      return confirmPassword(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ForgotPasswordConfirmPasword implements SignInEvent {
+  const factory ForgotPasswordConfirmPasword(
+      {required String email,
+      required String password,
+      required String confirmPassword}) = _$ForgotPasswordConfirmPasword;
+
+  @override
+  String get email;
+  String get password;
+  String get confirmPassword;
+  @override
+  @JsonKey(ignore: true)
+  $ForgotPasswordConfirmPaswordCopyWith<ForgotPasswordConfirmPasword>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$SignInStateTearOff {
   const _$SignInStateTearOff();
 
@@ -408,12 +830,28 @@ class _$SignInStateTearOff {
     );
   }
 
-  RequestSent requestSent() {
-    return const RequestSent();
+  RequestSent requestSent(String email) {
+    return RequestSent(
+      email,
+    );
+  }
+
+  OtpConfirmed otpConfirmed() {
+    return const OtpConfirmed();
+  }
+
+  PasswordConfirmed passwordConfirmed() {
+    return const PasswordConfirmed();
   }
 
   SigInError error(Failure failure) {
     return SigInError(
+      failure,
+    );
+  }
+
+  UserNotActivated userNotActivated(Failure failure) {
+    return UserNotActivated(
       failure,
     );
   }
@@ -429,8 +867,11 @@ mixin _$SignInState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -438,8 +879,11 @@ mixin _$SignInState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -447,8 +891,11 @@ mixin _$SignInState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -458,7 +905,10 @@ mixin _$SignInState {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -467,7 +917,10 @@ mixin _$SignInState {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -476,7 +929,10 @@ mixin _$SignInState {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -541,8 +997,11 @@ class _$SigInInitial implements SigInInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) {
     return initial();
   }
@@ -553,8 +1012,11 @@ class _$SigInInitial implements SigInInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) {
     return initial?.call();
   }
@@ -565,8 +1027,11 @@ class _$SigInInitial implements SigInInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -582,7 +1047,10 @@ class _$SigInInitial implements SigInInitial {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) {
     return initial(this);
   }
@@ -594,7 +1062,10 @@ class _$SigInInitial implements SigInInitial {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) {
     return initial?.call(this);
   }
@@ -606,7 +1077,10 @@ class _$SigInInitial implements SigInInitial {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -663,8 +1137,11 @@ class _$SigInLoading implements SigInLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) {
     return loading();
   }
@@ -675,8 +1152,11 @@ class _$SigInLoading implements SigInLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) {
     return loading?.call();
   }
@@ -687,8 +1167,11 @@ class _$SigInLoading implements SigInLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -704,7 +1187,10 @@ class _$SigInLoading implements SigInLoading {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) {
     return loading(this);
   }
@@ -716,7 +1202,10 @@ class _$SigInLoading implements SigInLoading {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) {
     return loading?.call(this);
   }
@@ -728,7 +1217,10 @@ class _$SigInLoading implements SigInLoading {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -807,8 +1299,11 @@ class _$LoggedIn implements LoggedIn {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) {
     return loggedIn(loginResponse);
   }
@@ -819,8 +1314,11 @@ class _$LoggedIn implements LoggedIn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) {
     return loggedIn?.call(loginResponse);
   }
@@ -831,8 +1329,11 @@ class _$LoggedIn implements LoggedIn {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -848,7 +1349,10 @@ class _$LoggedIn implements LoggedIn {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) {
     return loggedIn(this);
   }
@@ -860,7 +1364,10 @@ class _$LoggedIn implements LoggedIn {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) {
     return loggedIn?.call(this);
   }
@@ -872,7 +1379,10 @@ class _$LoggedIn implements LoggedIn {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -896,6 +1406,7 @@ abstract class $RequestSentCopyWith<$Res> {
   factory $RequestSentCopyWith(
           RequestSent value, $Res Function(RequestSent) then) =
       _$RequestSentCopyWithImpl<$Res>;
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -907,26 +1418,48 @@ class _$RequestSentCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
 
   @override
   RequestSent get _value => super._value as RequestSent;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(RequestSent(
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$RequestSent implements RequestSent {
-  const _$RequestSent();
+  const _$RequestSent(this.email);
+
+  @override
+  final String email;
 
   @override
   String toString() {
-    return 'SignInState.requestSent()';
+    return 'SignInState.requestSent(email: $email)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is RequestSent);
+        (other.runtimeType == runtimeType &&
+            other is RequestSent &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  $RequestSentCopyWith<RequestSent> get copyWith =>
+      _$RequestSentCopyWithImpl<RequestSent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -934,10 +1467,13 @@ class _$RequestSent implements RequestSent {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) {
-    return requestSent();
+    return requestSent(email);
   }
 
   @override
@@ -946,10 +1482,13 @@ class _$RequestSent implements RequestSent {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) {
-    return requestSent?.call();
+    return requestSent?.call(email);
   }
 
   @override
@@ -958,12 +1497,15 @@ class _$RequestSent implements RequestSent {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) {
     if (requestSent != null) {
-      return requestSent();
+      return requestSent(email);
     }
     return orElse();
   }
@@ -975,7 +1517,10 @@ class _$RequestSent implements RequestSent {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) {
     return requestSent(this);
   }
@@ -987,7 +1532,10 @@ class _$RequestSent implements RequestSent {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) {
     return requestSent?.call(this);
   }
@@ -999,7 +1547,10 @@ class _$RequestSent implements RequestSent {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) {
     if (requestSent != null) {
@@ -1010,7 +1561,293 @@ class _$RequestSent implements RequestSent {
 }
 
 abstract class RequestSent implements SignInState {
-  const factory RequestSent() = _$RequestSent;
+  const factory RequestSent(String email) = _$RequestSent;
+
+  String get email;
+  @JsonKey(ignore: true)
+  $RequestSentCopyWith<RequestSent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OtpConfirmedCopyWith<$Res> {
+  factory $OtpConfirmedCopyWith(
+          OtpConfirmed value, $Res Function(OtpConfirmed) then) =
+      _$OtpConfirmedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$OtpConfirmedCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
+    implements $OtpConfirmedCopyWith<$Res> {
+  _$OtpConfirmedCopyWithImpl(
+      OtpConfirmed _value, $Res Function(OtpConfirmed) _then)
+      : super(_value, (v) => _then(v as OtpConfirmed));
+
+  @override
+  OtpConfirmed get _value => super._value as OtpConfirmed;
+}
+
+/// @nodoc
+
+class _$OtpConfirmed implements OtpConfirmed {
+  const _$OtpConfirmed();
+
+  @override
+  String toString() {
+    return 'SignInState.otpConfirmed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is OtpConfirmed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(LoginResponse loginResponse) loggedIn,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
+    required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
+  }) {
+    return otpConfirmed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+  }) {
+    return otpConfirmed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (otpConfirmed != null) {
+      return otpConfirmed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SigInInitial value) initial,
+    required TResult Function(SigInLoading value) loading,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
+    required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
+  }) {
+    return otpConfirmed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+  }) {
+    return otpConfirmed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (otpConfirmed != null) {
+      return otpConfirmed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OtpConfirmed implements SignInState {
+  const factory OtpConfirmed() = _$OtpConfirmed;
+}
+
+/// @nodoc
+abstract class $PasswordConfirmedCopyWith<$Res> {
+  factory $PasswordConfirmedCopyWith(
+          PasswordConfirmed value, $Res Function(PasswordConfirmed) then) =
+      _$PasswordConfirmedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$PasswordConfirmedCopyWithImpl<$Res>
+    extends _$SignInStateCopyWithImpl<$Res>
+    implements $PasswordConfirmedCopyWith<$Res> {
+  _$PasswordConfirmedCopyWithImpl(
+      PasswordConfirmed _value, $Res Function(PasswordConfirmed) _then)
+      : super(_value, (v) => _then(v as PasswordConfirmed));
+
+  @override
+  PasswordConfirmed get _value => super._value as PasswordConfirmed;
+}
+
+/// @nodoc
+
+class _$PasswordConfirmed implements PasswordConfirmed {
+  const _$PasswordConfirmed();
+
+  @override
+  String toString() {
+    return 'SignInState.passwordConfirmed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PasswordConfirmed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(LoginResponse loginResponse) loggedIn,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
+    required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
+  }) {
+    return passwordConfirmed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+  }) {
+    return passwordConfirmed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (passwordConfirmed != null) {
+      return passwordConfirmed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SigInInitial value) initial,
+    required TResult Function(SigInLoading value) loading,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
+    required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
+  }) {
+    return passwordConfirmed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+  }) {
+    return passwordConfirmed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (passwordConfirmed != null) {
+      return passwordConfirmed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PasswordConfirmed implements SignInState {
+  const factory PasswordConfirmed() = _$PasswordConfirmed;
 }
 
 /// @nodoc
@@ -1078,8 +1915,11 @@ class _$SigInError implements SigInError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(LoginResponse loginResponse) loggedIn,
-    required TResult Function() requestSent,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
     required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
   }) {
     return error(failure);
   }
@@ -1090,8 +1930,11 @@ class _$SigInError implements SigInError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
   }) {
     return error?.call(failure);
   }
@@ -1102,8 +1945,11 @@ class _$SigInError implements SigInError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(LoginResponse loginResponse)? loggedIn,
-    TResult Function()? requestSent,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
     TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1119,7 +1965,10 @@ class _$SigInError implements SigInError {
     required TResult Function(SigInLoading value) loading,
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
     required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
   }) {
     return error(this);
   }
@@ -1131,7 +1980,10 @@ class _$SigInError implements SigInError {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
   }) {
     return error?.call(this);
   }
@@ -1143,7 +1995,10 @@ class _$SigInError implements SigInError {
     TResult Function(SigInLoading value)? loading,
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
     TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1159,5 +2014,174 @@ abstract class SigInError implements SignInState {
   Failure get failure;
   @JsonKey(ignore: true)
   $SigInErrorCopyWith<SigInError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserNotActivatedCopyWith<$Res> {
+  factory $UserNotActivatedCopyWith(
+          UserNotActivated value, $Res Function(UserNotActivated) then) =
+      _$UserNotActivatedCopyWithImpl<$Res>;
+  $Res call({Failure failure});
+}
+
+/// @nodoc
+class _$UserNotActivatedCopyWithImpl<$Res>
+    extends _$SignInStateCopyWithImpl<$Res>
+    implements $UserNotActivatedCopyWith<$Res> {
+  _$UserNotActivatedCopyWithImpl(
+      UserNotActivated _value, $Res Function(UserNotActivated) _then)
+      : super(_value, (v) => _then(v as UserNotActivated));
+
+  @override
+  UserNotActivated get _value => super._value as UserNotActivated;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(UserNotActivated(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserNotActivated implements UserNotActivated {
+  const _$UserNotActivated(this.failure);
+
+  @override
+  final Failure failure;
+
+  @override
+  String toString() {
+    return 'SignInState.userNotActivated(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserNotActivated &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserNotActivatedCopyWith<UserNotActivated> get copyWith =>
+      _$UserNotActivatedCopyWithImpl<UserNotActivated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(LoginResponse loginResponse) loggedIn,
+    required TResult Function(String email) requestSent,
+    required TResult Function() otpConfirmed,
+    required TResult Function() passwordConfirmed,
+    required TResult Function(Failure failure) error,
+    required TResult Function(Failure failure) userNotActivated,
+  }) {
+    return userNotActivated(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+  }) {
+    return userNotActivated?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(LoginResponse loginResponse)? loggedIn,
+    TResult Function(String email)? requestSent,
+    TResult Function()? otpConfirmed,
+    TResult Function()? passwordConfirmed,
+    TResult Function(Failure failure)? error,
+    TResult Function(Failure failure)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (userNotActivated != null) {
+      return userNotActivated(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SigInInitial value) initial,
+    required TResult Function(SigInLoading value) loading,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(RequestSent value) requestSent,
+    required TResult Function(OtpConfirmed value) otpConfirmed,
+    required TResult Function(PasswordConfirmed value) passwordConfirmed,
+    required TResult Function(SigInError value) error,
+    required TResult Function(UserNotActivated value) userNotActivated,
+  }) {
+    return userNotActivated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+  }) {
+    return userNotActivated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SigInInitial value)? initial,
+    TResult Function(SigInLoading value)? loading,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(RequestSent value)? requestSent,
+    TResult Function(OtpConfirmed value)? otpConfirmed,
+    TResult Function(PasswordConfirmed value)? passwordConfirmed,
+    TResult Function(SigInError value)? error,
+    TResult Function(UserNotActivated value)? userNotActivated,
+    required TResult orElse(),
+  }) {
+    if (userNotActivated != null) {
+      return userNotActivated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserNotActivated implements SignInState {
+  const factory UserNotActivated(Failure failure) = _$UserNotActivated;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  $UserNotActivatedCopyWith<UserNotActivated> get copyWith =>
       throw _privateConstructorUsedError;
 }

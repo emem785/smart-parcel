@@ -6,10 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/auth_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/connectivity_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/converter.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/jwt_authenticator.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/paystack_error_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/paystack_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/services/common_http_service.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -19,9 +22,15 @@ abstract class RegisterModule {
   @Named("paystackPublicKey")
   String get publicKey => dotenv.env['PAYSTACK_PK'].toString();
 
+  @Named("paystackSecretkey")
+  String get secretKey => dotenv.env['PAYSTACK_SK'].toString();
+
   @lazySingleton
-  PaystackPlugin get payStackPlugin =>
-      PaystackPlugin().initialize(publicKey: publicKey);
+  PaystackPlugin get payStackPlugin {
+    final plugin = PaystackPlugin();
+    plugin.initialize(publicKey: publicKey);
+    return plugin;
+  }
 
   @lazySingleton
   Connectivity get connectivity => Connectivity();
@@ -66,6 +75,9 @@ abstract class RegisterModule {
       authenticator: authenticator,
       interceptors: [
         getIt<ConnectivityInterceptor>(),
+        getIt<AuthInterceptor>(),
+        getIt<PaystackInterceptor>(),
+        PaystackErrorInterceptor(),
         ErrorInterceptor(),
       ],
     );

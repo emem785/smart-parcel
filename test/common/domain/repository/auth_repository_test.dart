@@ -63,6 +63,7 @@ Future<void> main() async {
         );
       },
     );
+
     test(
       'returns authToken response on 2xx status code',
       () async {

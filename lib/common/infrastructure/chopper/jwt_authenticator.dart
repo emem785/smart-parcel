@@ -4,6 +4,7 @@ import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
+import 'package:smart_parcel/common/domain/models/exceptions.dart';
 
 const tokenKey = 'token';
 
@@ -41,12 +42,22 @@ class JwtAuthenticator extends Authenticator {
   @override
   FutureOr<Request?> authenticate(Request request, Response response) async {
     if (request.headers["refresh"] != "") {
+      if (request.headers["refresh"] == "paystack") {
+        return _handlePaystack(request, response);
+      }
+
       if (response.statusCode == 401) {
         final authToken = await _refreshToken(request.headers["refresh"]);
         return request.copyWith(headers: {
           "Authorization": "Bearer ${authToken.access}",
         });
       }
+    }
+  }
+
+  FutureOr<Request?> _handlePaystack(Request request, Response response) {
+    if (!response.isSuccessful) {
+      throw ApiException("Payment Gateway error encountered");
     }
   }
 }

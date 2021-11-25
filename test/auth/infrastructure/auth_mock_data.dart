@@ -113,9 +113,17 @@ const mockLoginFailureRespone = '''{
     "error": "This account has not been activated"
 }''';
 
-const mockLoginFailure = Failure("This account has not been activated");
+const loginFailureJson = '''{
+    "status": false,
+    "error": "Please provide a valid email and a password"
+}''';
 
-const forgotPasswordResponse = '''{"status": "OK"}''';
+const loginActivationFailure = Failure("This account has not been activated");
+const mockLoginFailure = Failure("Please provide a valid email and a password");
+
+const forgotPasswordJson = '''{"message": "success"}''';
+
+const forgotPasswordResponse = SimpleAuthResponse(message: "success");
 
 const forgotPasswordFailureResponse = '''{
     "email": [

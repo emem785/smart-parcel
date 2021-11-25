@@ -14,6 +14,13 @@ class ParcelCenter {
     required this.created_at,
   });
 
+  ParcelCenter.empty()
+      : id = 0,
+        location = '',
+        address = '',
+        is_active = false,
+        created_at = '';
+
   ParcelCenter copyWith({
     int? id,
     String? location,

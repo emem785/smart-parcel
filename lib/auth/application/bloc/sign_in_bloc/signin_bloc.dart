@@ -14,5 +14,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc(this.authUseCases) : super(const SigInInitial()) {
     on<Login>(authUseCases.signInUsecase);
     on<ForgotPassword>(authUseCases.forgotPasswordUseCase);
+    on<ForgotPasswordConfirmOtp>(authUseCases.submitPasswordOtpUseCase);
+    on<ForgotPasswordConfirmPasword>(authUseCases.confirmPasswordUseCase);
   }
 }

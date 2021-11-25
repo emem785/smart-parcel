@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
+import 'package:smart_parcel/auth/domain/repositories/sign_in_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../../common/infrastructure/setup_tests.dart';
@@ -53,15 +54,46 @@ Future<void> main() async {
       'Test sign in repository forgot password function returns success response',
       () async {
         // arrange
-        TestSetup.setup(forgotPasswordResponse, 200);
-        final repo =
-            getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
+        TestSetup.setup(forgotPasswordJson, 200);
+        final repo = getIt<SignInRepository>();
         // act
         final response = await repo.forgotPassword(email: mockEmail);
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, mockForgotPasswordSuccess),
+          (r) => expect(r, forgotPasswordResponse),
+        );
+      },
+    );
+    test(
+      'Test sign in repository submit password otp function returns success response',
+      () async {
+        // arrange
+        TestSetup.setup(forgotPasswordJson, 200);
+        final repo = getIt<SignInRepository>();
+        // act
+        final response =
+            await repo.submitPasswordOtp(email: mockEmail, otp: "");
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, forgotPasswordResponse),
+        );
+      },
+    );
+    test(
+      'Test sign in repository confirm password otp function returns success response',
+      () async {
+        // arrange
+        TestSetup.setup(forgotPasswordJson, 200);
+        final repo = getIt<SignInRepository>();
+        // act
+        final response =
+            await repo.confirmPassword(email: mockEmail, password: "emem");
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, forgotPasswordResponse),
         );
       },
     );

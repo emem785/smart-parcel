@@ -15,7 +15,7 @@ class ShowAlertUseCase {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(title),
-      content: Text(content),
+        content: Text(content),
         actions: [
           TextButton(
             onPressed: () => context.router.pop(),

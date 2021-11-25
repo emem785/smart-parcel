@@ -25,7 +25,7 @@ void main() {
       build: () => getIt<SignInBloc>(),
       act: (bloc) => bloc.add(
           const SignInEvent.login(email: mockEmail, password: mockPassword)),
-      wait: const Duration(milliseconds: 500),
+      wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
         SignInState.loggedIn(mockLoginR),
@@ -33,14 +33,26 @@ void main() {
     );
     blocTest<SignInBloc, SignInState>(
       'login event emits failure state when getting 400 status code',
+      setUp: () => TestSetup.setup(loginFailureJson, 400),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) => bloc.add(
+          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.error(mockLoginFailure),
+      ],
+    );
+    blocTest<SignInBloc, SignInState>(
+      'login event emits user not activated error failure state when getting 400 status code',
       setUp: () => TestSetup.setup(mockLoginFailureRespone, 400),
       build: () => getIt<SignInBloc>(),
       act: (bloc) => bloc.add(
           const SignInEvent.login(email: mockEmail, password: mockPassword)),
-      wait: const Duration(milliseconds: 500),
+      wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
-        SignInState.error(mockLoginFailure),
+        SignInState.userNotActivated(loginActivationFailure)
       ],
     );
     blocTest<SignInBloc, SignInState>(
@@ -69,23 +81,90 @@ void main() {
   group('SignIn Bloc Forgot Password Event', () {
     blocTest<SignInBloc, SignInState>(
       'emits request sent state',
-      setUp: () => TestSetup.setup(forgotPasswordResponse, 200),
+      setUp: () => TestSetup.setup(forgotPasswordJson, 200),
       build: () => getIt<SignInBloc>(),
       act: (bloc) =>
           bloc.add(const SignInEvent.forgotPassword(email: mockEmail)),
-      wait: const Duration(milliseconds: 500),
+      wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
-        SignInState.requestSent(),
+        SignInState.requestSent(mockEmail),
       ],
     );
+
     blocTest<SignInBloc, SignInState>(
       'emits failure state when getting 400 status code',
       setUp: () => TestSetup.setup(forgotPasswordFailureResponse, 400),
       build: () => getIt<SignInBloc>(),
       act: (bloc) =>
           bloc.add(const SignInEvent.forgotPassword(email: mockEmail)),
-      wait: const Duration(milliseconds: 500),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.error(forgotPasswordFailure),
+      ],
+    );
+  });
+  group('SignIn Bloc Confirm Otp Event', () {
+    blocTest<SignInBloc, SignInState>(
+      'emits email confirmed state',
+      setUp: () => TestSetup.setup(forgotPasswordJson, 200),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) =>
+          bloc.add(const SignInEvent.confirmOtp(email: mockEmail, otp: "")),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.otpConfirmed(),
+      ],
+    );
+
+    blocTest<SignInBloc, SignInState>(
+      'emits failure state when getting 400 status code',
+      setUp: () => TestSetup.setup(forgotPasswordFailureResponse, 400),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) =>
+          bloc.add(const SignInEvent.forgotPassword(email: mockEmail)),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.error(forgotPasswordFailure),
+      ],
+    );
+  });
+  group('SignIn Bloc Confirm Password Event', () {
+    blocTest<SignInBloc, SignInState>(
+      'emits email confirmed state',
+      setUp: () => TestSetup.setup(forgotPasswordJson, 200),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) => bloc.add(const SignInEvent.confirmPassword(
+          email: mockEmail, password: "", confirmPassword: "")),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.passwordConfirmed(),
+      ],
+    );
+    blocTest<SignInBloc, SignInState>(
+      'emits passwords do not match error state',
+      setUp: () => TestSetup.setup(forgotPasswordJson, 200),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) => bloc.add(const SignInEvent.confirmPassword(
+          email: mockEmail, password: "m", confirmPassword: "p")),
+      wait: const Duration(milliseconds: 300),
+      expect: () => const [
+        SignInState.loading(),
+        SignInState.error(mockFailure),
+      ],
+    );
+
+    blocTest<SignInBloc, SignInState>(
+      'emits failure state when getting 400 status code',
+      setUp: () => TestSetup.setup(forgotPasswordFailureResponse, 400),
+      build: () => getIt<SignInBloc>(),
+      act: (bloc) =>
+          bloc.add(const SignInEvent.forgotPassword(email: mockEmail)),
+      wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
         SignInState.error(forgotPasswordFailure),
