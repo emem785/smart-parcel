@@ -130,8 +130,10 @@ Widget buildCustomerForm({
           controller: phoneController,
           validator: ValidatorUtil.normalValidator,
           keyboardType: TextInputType.number,
-          decoration:
-              const InputDecoration(labelText: "Phone number of Recipient"),
+          decoration: const InputDecoration(
+            labelText: "Phone number of Recipient",
+            prefixText: "+234 ",
+          ),
           key: CustomerToCustomerBody.phoneKey,
         ),
       ],

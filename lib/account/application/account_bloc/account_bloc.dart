@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:smart_parcel/account/domain/usecases/account_usecases.dart';
@@ -14,5 +15,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc(this.accountUseCases) : super(const AccountInitial()) {
     on<EditUser>(accountUseCases.editUserUseCase);
     on<ResetPassword>(accountUseCases.resetPasswordUseCase);
+    on<OpenSupport>(accountUseCases.openSupportUseCase);
   }
 }

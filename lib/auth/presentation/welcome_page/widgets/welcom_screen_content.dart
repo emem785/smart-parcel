@@ -6,12 +6,16 @@ import 'package:smart_parcel/common/theme.dart';
 import '../content_tile_model.dart';
 
 const content1 =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget non turpis congue dui at praesent fringilla. et non turpis congue dui at praesent fringilla.";
+    "Highly economical citywide and intercity logistics. Either personal or business, you will get the lowest prices for sending multiple items to different locations.";
+const content2 =
+    "Store an item for pick-up later or for someone else to pick-up, anonymize your pick-up and delivery by using SmartParcel locker as your default address.";
+const content3 =
+    "Schedule pick-ups, send parcels to diiferent recipients within the same city and receive parcel(s) at your convenience any time.";
 
 const pageContent = [
-  ContentModel(title: "Safe to use", content: content1),
-  ContentModel(title: "Totally Digital", content: content1),
-  ContentModel(title: "Convenient", content: content1),
+  ContentModel(title: "Ultra low-priced logistics", content: content1),
+  ContentModel(title: "Security", content: content2),
+  ContentModel(title: "24/7 Accessible Logistics", content: content3),
 ];
 
 Widget buildContentAnimation({

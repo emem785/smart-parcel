@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/delivery/presentation/select_location_pages/select_location_district_page.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -10,6 +11,7 @@ import '../infrastructure/delivery_mock_data.dart';
 void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
   });
 

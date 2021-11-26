@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/common/domain/repositories/user_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -8,6 +9,8 @@ import '../../infrastructure/setup_tests.dart';
 
 Future<void> main() async {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 

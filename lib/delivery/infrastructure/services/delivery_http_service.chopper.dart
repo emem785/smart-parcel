@@ -17,7 +17,7 @@ class _$DeliveryHttpService extends DeliveryHttpService {
   final definitionType = DeliveryHttpService;
 
   @override
-  Future<Response<BookingResponse>> bookSelfStorage(
+  Future<Response<PaymentResponse>> bookSelfStorage(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/self_storage/';
     final $headers = {
@@ -28,11 +28,11 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client.send<BookingResponse, BookingResponse>($request);
+    return client.send<PaymentResponse, PaymentResponse>($request);
   }
 
   @override
-  Future<Response<BookingResponse>> bookCustomerToCustomer(
+  Future<Response<PaymentResponse>> bookCustomerToCustomer(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/customer_to_customer/';
     final $headers = {
@@ -43,7 +43,7 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client.send<BookingResponse, BookingResponse>($request);
+    return client.send<PaymentResponse, PaymentResponse>($request);
   }
 
   @override

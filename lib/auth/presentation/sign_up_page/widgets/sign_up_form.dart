@@ -39,6 +39,7 @@ Widget buildSignUpForm({
           validator: ValidatorUtil.normalValidator,
           decoration: const InputDecoration(
             labelText: "Phone",
+            prefixText: "+234 ",
           ),
           key: SignUpPageBody.phone,
         ),

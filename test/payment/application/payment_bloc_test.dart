@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -13,6 +14,7 @@ import '../infrastructure/payment_mock_data.dart';
 void main() {
   late CheckoutResponse checkoutResponse;
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     checkoutResponse = CheckoutResponse(
         message: "",
         reference: "",
@@ -22,6 +24,8 @@ void main() {
         status: false,
         method: CheckoutMethod.selectable,
         verify: true);
+
+    await dotenv.load(fileName: ".env");
     await PaymentSetupTest.init();
   });
 

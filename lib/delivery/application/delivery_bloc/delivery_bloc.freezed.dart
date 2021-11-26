@@ -28,12 +28,14 @@ class _$DeliveryEventTearOff {
   ProccedToPayment proceedToPayment(
       {required BuildContext context,
       required PageRouteInfo<dynamic> routeInfo,
+      required PaystackResponse paystackResponse,
       required int locationId,
       required String? duration,
       required CustomerForm? customerForm}) {
     return ProccedToPayment(
       context: context,
       routeInfo: routeInfo,
+      paystackResponse: paystackResponse,
       locationId: locationId,
       duration: duration,
       customerForm: customerForm,
@@ -58,6 +60,7 @@ mixin _$DeliveryEvent {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
             int locationId,
             String? duration,
             CustomerForm? customerForm)
@@ -69,8 +72,13 @@ mixin _$DeliveryEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
   }) =>
@@ -79,8 +87,13 @@ mixin _$DeliveryEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
@@ -206,6 +219,7 @@ class _$SelectLocation implements SelectLocation {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
             int locationId,
             String? duration,
             CustomerForm? customerForm)
@@ -220,8 +234,13 @@ class _$SelectLocation implements SelectLocation {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
   }) {
@@ -233,8 +252,13 @@ class _$SelectLocation implements SelectLocation {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
@@ -300,6 +324,7 @@ abstract class $ProccedToPaymentCopyWith<$Res> {
   $Res call(
       {BuildContext context,
       PageRouteInfo<dynamic> routeInfo,
+      PaystackResponse paystackResponse,
       int locationId,
       String? duration,
       CustomerForm? customerForm});
@@ -320,6 +345,7 @@ class _$ProccedToPaymentCopyWithImpl<$Res>
   $Res call({
     Object? context = freezed,
     Object? routeInfo = freezed,
+    Object? paystackResponse = freezed,
     Object? locationId = freezed,
     Object? duration = freezed,
     Object? customerForm = freezed,
@@ -333,6 +359,10 @@ class _$ProccedToPaymentCopyWithImpl<$Res>
           ? _value.routeInfo
           : routeInfo // ignore: cast_nullable_to_non_nullable
               as PageRouteInfo<dynamic>,
+      paystackResponse: paystackResponse == freezed
+          ? _value.paystackResponse
+          : paystackResponse // ignore: cast_nullable_to_non_nullable
+              as PaystackResponse,
       locationId: locationId == freezed
           ? _value.locationId
           : locationId // ignore: cast_nullable_to_non_nullable
@@ -355,6 +385,7 @@ class _$ProccedToPayment implements ProccedToPayment {
   const _$ProccedToPayment(
       {required this.context,
       required this.routeInfo,
+      required this.paystackResponse,
       required this.locationId,
       required this.duration,
       required this.customerForm});
@@ -364,6 +395,8 @@ class _$ProccedToPayment implements ProccedToPayment {
   @override
   final PageRouteInfo<dynamic> routeInfo;
   @override
+  final PaystackResponse paystackResponse;
+  @override
   final int locationId;
   @override
   final String? duration;
@@ -372,7 +405,7 @@ class _$ProccedToPayment implements ProccedToPayment {
 
   @override
   String toString() {
-    return 'DeliveryEvent.proceedToPayment(context: $context, routeInfo: $routeInfo, locationId: $locationId, duration: $duration, customerForm: $customerForm)';
+    return 'DeliveryEvent.proceedToPayment(context: $context, routeInfo: $routeInfo, paystackResponse: $paystackResponse, locationId: $locationId, duration: $duration, customerForm: $customerForm)';
   }
 
   @override
@@ -383,6 +416,8 @@ class _$ProccedToPayment implements ProccedToPayment {
             (identical(other.context, context) || other.context == context) &&
             (identical(other.routeInfo, routeInfo) ||
                 other.routeInfo == routeInfo) &&
+            (identical(other.paystackResponse, paystackResponse) ||
+                other.paystackResponse == paystackResponse) &&
             (identical(other.locationId, locationId) ||
                 other.locationId == locationId) &&
             (identical(other.duration, duration) ||
@@ -392,8 +427,8 @@ class _$ProccedToPayment implements ProccedToPayment {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, context, routeInfo, locationId, duration, customerForm);
+  int get hashCode => Object.hash(runtimeType, context, routeInfo,
+      paystackResponse, locationId, duration, customerForm);
 
   @JsonKey(ignore: true)
   @override
@@ -409,14 +444,15 @@ class _$ProccedToPayment implements ProccedToPayment {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
             int locationId,
             String? duration,
             CustomerForm? customerForm)
         proceedToPayment,
     required TResult Function() getParcelCenters,
   }) {
-    return proceedToPayment(
-        context, routeInfo, locationId, duration, customerForm);
+    return proceedToPayment(context, routeInfo, paystackResponse, locationId,
+        duration, customerForm);
   }
 
   @override
@@ -424,13 +460,18 @@ class _$ProccedToPayment implements ProccedToPayment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
   }) {
-    return proceedToPayment?.call(
-        context, routeInfo, locationId, duration, customerForm);
+    return proceedToPayment?.call(context, routeInfo, paystackResponse,
+        locationId, duration, customerForm);
   }
 
   @override
@@ -438,15 +479,20 @@ class _$ProccedToPayment implements ProccedToPayment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
   }) {
     if (proceedToPayment != null) {
-      return proceedToPayment(
-          context, routeInfo, locationId, duration, customerForm);
+      return proceedToPayment(context, routeInfo, paystackResponse, locationId,
+          duration, customerForm);
     }
     return orElse();
   }
@@ -490,12 +536,14 @@ abstract class ProccedToPayment implements DeliveryEvent {
   const factory ProccedToPayment(
       {required BuildContext context,
       required PageRouteInfo<dynamic> routeInfo,
+      required PaystackResponse paystackResponse,
       required int locationId,
       required String? duration,
       required CustomerForm? customerForm}) = _$ProccedToPayment;
 
   BuildContext get context;
   PageRouteInfo<dynamic> get routeInfo;
+  PaystackResponse get paystackResponse;
   int get locationId;
   String? get duration;
   CustomerForm? get customerForm;
@@ -551,6 +599,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
             int locationId,
             String? duration,
             CustomerForm? customerForm)
@@ -565,8 +614,13 @@ class _$GetParcelCenters implements GetParcelCenters {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
   }) {
@@ -578,8 +632,13 @@ class _$GetParcelCenters implements GetParcelCenters {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
-    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo,
-            int locationId, String? duration, CustomerForm? customerForm)?
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
         proceedToPayment,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
@@ -653,9 +712,9 @@ class _$DeliveryStateTearOff {
     );
   }
 
-  BookingFinished bookingFinished(PageRouteInfo<dynamic> routeInfo) {
+  BookingFinished bookingFinished(PaymentData paymentData) {
     return BookingFinished(
-      routeInfo,
+      paymentData,
     );
   }
 
@@ -677,7 +736,7 @@ mixin _$DeliveryState {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) =>
       throw _privateConstructorUsedError;
@@ -687,7 +746,7 @@ mixin _$DeliveryState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) =>
       throw _privateConstructorUsedError;
@@ -697,7 +756,7 @@ mixin _$DeliveryState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) =>
@@ -797,7 +856,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return initial();
@@ -810,7 +869,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return initial?.call();
@@ -823,7 +882,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -926,7 +985,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return loading();
@@ -939,7 +998,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return loading?.call();
@@ -952,7 +1011,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1078,7 +1137,7 @@ class _$DeliveryError implements DeliveryError {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return error(failure);
@@ -1091,7 +1150,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return error?.call(failure);
@@ -1104,7 +1163,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1236,7 +1295,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return locationRetrieved(parcelCenter);
@@ -1249,7 +1308,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return locationRetrieved?.call(parcelCenter);
@@ -1262,7 +1321,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1331,7 +1390,7 @@ abstract class $BookingFinishedCopyWith<$Res> {
   factory $BookingFinishedCopyWith(
           BookingFinished value, $Res Function(BookingFinished) then) =
       _$BookingFinishedCopyWithImpl<$Res>;
-  $Res call({PageRouteInfo<dynamic> routeInfo});
+  $Res call({PaymentData paymentData});
 }
 
 /// @nodoc
@@ -1347,13 +1406,13 @@ class _$BookingFinishedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? routeInfo = freezed,
+    Object? paymentData = freezed,
   }) {
     return _then(BookingFinished(
-      routeInfo == freezed
-          ? _value.routeInfo
-          : routeInfo // ignore: cast_nullable_to_non_nullable
-              as PageRouteInfo<dynamic>,
+      paymentData == freezed
+          ? _value.paymentData
+          : paymentData // ignore: cast_nullable_to_non_nullable
+              as PaymentData,
     ));
   }
 }
@@ -1361,14 +1420,14 @@ class _$BookingFinishedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BookingFinished implements BookingFinished {
-  const _$BookingFinished(this.routeInfo);
+  const _$BookingFinished(this.paymentData);
 
   @override
-  final PageRouteInfo<dynamic> routeInfo;
+  final PaymentData paymentData;
 
   @override
   String toString() {
-    return 'DeliveryState.bookingFinished(routeInfo: $routeInfo)';
+    return 'DeliveryState.bookingFinished(paymentData: $paymentData)';
   }
 
   @override
@@ -1376,12 +1435,12 @@ class _$BookingFinished implements BookingFinished {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BookingFinished &&
-            (identical(other.routeInfo, routeInfo) ||
-                other.routeInfo == routeInfo));
+            (identical(other.paymentData, paymentData) ||
+                other.paymentData == paymentData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, routeInfo);
+  int get hashCode => Object.hash(runtimeType, paymentData);
 
   @JsonKey(ignore: true)
   @override
@@ -1395,10 +1454,10 @@ class _$BookingFinished implements BookingFinished {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
-    return bookingFinished(routeInfo);
+    return bookingFinished(paymentData);
   }
 
   @override
@@ -1408,10 +1467,10 @@ class _$BookingFinished implements BookingFinished {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
-    return bookingFinished?.call(routeInfo);
+    return bookingFinished?.call(paymentData);
   }
 
   @override
@@ -1421,12 +1480,12 @@ class _$BookingFinished implements BookingFinished {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
     if (bookingFinished != null) {
-      return bookingFinished(routeInfo);
+      return bookingFinished(paymentData);
     }
     return orElse();
   }
@@ -1476,10 +1535,9 @@ class _$BookingFinished implements BookingFinished {
 }
 
 abstract class BookingFinished implements DeliveryState {
-  const factory BookingFinished(PageRouteInfo<dynamic> routeInfo) =
-      _$BookingFinished;
+  const factory BookingFinished(PaymentData paymentData) = _$BookingFinished;
 
-  PageRouteInfo<dynamic> get routeInfo;
+  PaymentData get paymentData;
   @JsonKey(ignore: true)
   $BookingFinishedCopyWith<BookingFinished> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1554,7 +1612,7 @@ class _$CentersRetreived implements CentersRetreived {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
-    required TResult Function(PageRouteInfo<dynamic> routeInfo) bookingFinished,
+    required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return centersRetreived(districts);
@@ -1567,7 +1625,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return centersRetreived?.call(districts);
@@ -1580,7 +1638,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
-    TResult Function(PageRouteInfo<dynamic> routeInfo)? bookingFinished,
+    TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {

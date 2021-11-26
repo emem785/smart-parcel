@@ -21,14 +21,14 @@ Future<void> main() async {
       'returns self storage response',
       () async {
         // arrange
-        AuthTestSetup.setup(getParcelJson, 200);
+        AuthTestSetup.setup(getParcelJson2, 200);
         final repo = getIt<ParcelRepository>();
         // act
         final response = await repo.getParcelHistory();
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, parcelResponse),
+          (r) => expect(r, parcelResonse2),
         );
       },
     );

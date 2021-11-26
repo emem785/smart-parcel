@@ -6,6 +6,7 @@ class SelfStorage {
   final String duration;
   final int locationId;
   final String status;
+  final String address;
   final bool isActive;
   final String createdAt;
   const SelfStorage({
@@ -14,6 +15,7 @@ class SelfStorage {
     required this.duration,
     required this.locationId,
     required this.status,
+    required this.address,
     required this.isActive,
     required this.createdAt,
   });
@@ -24,6 +26,7 @@ class SelfStorage {
     String? duration,
     int? locationId,
     String? status,
+    String? address,
     bool? isActive,
     String? createdAt,
   }) {
@@ -33,6 +36,7 @@ class SelfStorage {
       duration: duration ?? this.duration,
       locationId: locationId ?? this.locationId,
       status: status ?? this.status,
+      address: address ?? this.address,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -45,6 +49,7 @@ class SelfStorage {
       'duration': duration,
       'locationId': locationId,
       'status': status,
+      'address': address,
       'isActive': isActive,
       'createdAt': createdAt,
     };
@@ -53,12 +58,13 @@ class SelfStorage {
   factory SelfStorage.fromMap(Map<String, dynamic> map) {
     return SelfStorage(
       id: map['id']?.toInt(),
-      userId: map['user_id'],
-      duration: map['duration'],
-      locationId: map['location_id']?.toInt(),
-      status: map['status'],
-      isActive: map['is_active'],
-      createdAt: map['created_at'],
+      userId: map['user_id'] ?? '',
+      duration: map['duration'] ?? '',
+      locationId: map['location_id']?.toInt() ?? 0,
+      status: map['status'] ?? '',
+      address: map['location__address'] ?? '',
+      isActive: map['is_active'] ?? false,
+      createdAt: map['created_at'] ?? '',
     );
   }
 
@@ -69,7 +75,7 @@ class SelfStorage {
 
   @override
   String toString() {
-    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status, isActive: $isActive, createdAt: $createdAt)';
+    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt)';
   }
 
   @override
@@ -82,6 +88,7 @@ class SelfStorage {
         other.duration == duration &&
         other.locationId == locationId &&
         other.status == status &&
+        other.address == address &&
         other.isActive == isActive &&
         other.createdAt == createdAt;
   }
@@ -93,6 +100,7 @@ class SelfStorage {
         duration.hashCode ^
         locationId.hashCode ^
         status.hashCode ^
+        address.hashCode ^
         isActive.hashCode ^
         createdAt.hashCode;
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
@@ -12,6 +13,7 @@ import '../../common/presentation/widget_test_setup.dart';
 void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 

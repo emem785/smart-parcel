@@ -59,7 +59,6 @@ class SelectLocationBody extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 1,
-                      bookingFinished: (v) => context.router.push(v.routeInfo),
                       error: (v) => deliveryBloc.deliveryUseCases
                           .showErrorUseCase(
                               context: context, message: v.failure.message),
@@ -72,6 +71,9 @@ class SelectLocationBody extends HookWidget {
                         final center = centerDistrict.centers[index];
                         return ListTile(
                           onTap: () {
+                            context
+                                .read<DeliveryViewModel>()
+                                .setLocationId(center.id);
                             final route =
                                 context.read<DeliveryViewModel>().routeInfo;
                             context.router.push(route);

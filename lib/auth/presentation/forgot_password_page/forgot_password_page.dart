@@ -20,7 +20,7 @@ class ForgotPasswordPage extends HookWidget {
       create: (context) => getIt<SignInBloc>(),
       child: Scaffold(
         appBar: LayoutConstants.appBar(
-          title: "Create an account",
+          title: "Recover Password",
           context: context,
         ),
         body: const ForgotPasswordBody(),
@@ -72,9 +72,8 @@ class ForgotPasswordBody extends HookWidget {
                             context: context,
                             message: "An otp has been sent to your email",
                           );
-
                           await Future.delayed(
-                            const Duration(microseconds: 500),
+                            const Duration(milliseconds: 200),
                             () => context.router.push(SubmitPasswordOtpRoute(
                                 email: emailController.text)),
                           );

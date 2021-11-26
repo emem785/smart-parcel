@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
@@ -11,12 +12,15 @@ import 'package:smart_parcel/inject_conf.dart';
 
 import '../../common/infrastructure/common_mock_data.dart';
 import '../../common/infrastructure/setup_auth_tests.dart';
+import '../../payment/infrastructure/payment_mock_data.dart';
 import '../infrastructure/delivery_mock_data.dart';
 
 class MockContext extends Mock implements BuildContext {}
 
 void main() {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
   });
 
@@ -71,6 +75,7 @@ void main() {
               duration: "3",
               locationId: 4,
               context: MockContext(),
+              paystackResponse: paystackResponse,
             )),
         wait: const Duration(milliseconds: 300),
         verify: (_) => verify(() => getIt<http.Client>().send(any())));
@@ -85,6 +90,7 @@ void main() {
               duration: "3",
               locationId: 4,
               context: MockContext(),
+              paystackResponse: paystackResponse,
             )),
         wait: const Duration(milliseconds: 300),
         verify: (_) =>
@@ -92,19 +98,19 @@ void main() {
     blocTest<DeliveryBloc, DeliveryState>(
       'emits booking finished state when proceeding to self storage payment page',
       setUp: () =>
-          AuthTestSetup.setup(selfStorageJson, 200, userStringResponse),
+          AuthTestSetup.setup(selfStoragePaymentJson, 200, userStringResponse),
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
-        routeInfo: const SelfStoragePaymentRoute(),
-        duration: "3",
-        customerForm: null,
-        locationId: 4,
-        context: MockContext(),
-      )),
+          routeInfo: const SelfStoragePaymentRoute(),
+          duration: "3",
+          customerForm: null,
+          paystackResponse: paystackResponse,
+          locationId: 4,
+          context: MockContext())),
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const DeliveryState.loading(),
-        const DeliveryState.bookingFinished(SelfStoragePaymentRoute())
+        DeliveryState.bookingFinished(paymentResponse.data)
       ],
     );
     blocTest<DeliveryBloc, DeliveryState>(
@@ -113,16 +119,17 @@ void main() {
           AuthTestSetup.setup(selfStorageJson, 200, userStringResponse),
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
+        paystackResponse: paystackResponse,
         routeInfo: const CustomerToCustomerPaymentRoute(),
         duration: null,
-        customerForm: CustomerForm.empty(),
+        customerForm: const CustomerForm.empty(),
         locationId: 4,
         context: MockContext(),
       )),
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const DeliveryState.loading(),
-        const DeliveryState.bookingFinished(CustomerToCustomerPaymentRoute())
+        DeliveryState.bookingFinished(paymentResponse.data)
       ],
     );
   });

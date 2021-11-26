@@ -30,11 +30,12 @@ class ProceedToPaymentUseCase {
       duration: event.duration ?? "",
       userId: userId,
       location: event.locationId,
+      paystackResponse: event.paystackResponse,
     );
 
     return response.fold(
       (l) => emit(DeliveryState.error(l)),
-      (r) => emit(DeliveryState.bookingFinished(event.routeInfo)),
+      (r) => emit(DeliveryState.bookingFinished(r.data)),
     );
   }
 
@@ -52,19 +53,18 @@ class ProceedToPaymentUseCase {
     Emitter<DeliveryState> emit,
   ) async {
     final userId = _getUserId();
-    print("form:${event.customerForm}");
-    print("route:${event.routeInfo.routeName}");
     final response = await deliveryRepository.bookCustomerToCustomer(
       email: event.customerForm!.email,
       name: event.customerForm!.name,
       phone: event.customerForm!.phone,
       userId: userId,
       location: event.locationId,
+      paystackResponse: event.paystackResponse,
     );
 
     return response.fold(
       (l) => emit(DeliveryState.error(l)),
-      (r) => emit(DeliveryState.bookingFinished(event.routeInfo)),
+      (r) => emit(DeliveryState.bookingFinished(r.data)),
     );
   }
 }

@@ -15,8 +15,8 @@ class MockContext extends Mock implements BuildContext {}
 void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
-    await AuthTestSetup.init();
     await dotenv.load(fileName: ".env");
+    await AuthTestSetup.init();
   });
 
   tearDown(() {
@@ -25,13 +25,13 @@ void main() {
   group('Get Parcel Event', () {
     blocTest<ParcelBloc, ParcelState>(
       'emits a history retreived state',
-      setUp: () => AuthTestSetup.setup(getParcelJson, 200),
+      setUp: () => AuthTestSetup.setup(getParcelJson2, 200),
       build: () => getIt<ParcelBloc>(),
       act: (bloc) => bloc.add(const ParcelEvent.getHistory()),
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const ParcelState.loading(),
-        const ParcelState.historyRetreived(parcelResponse),
+        const ParcelState.historyRetreived(parcelResonse2),
       ],
     );
     blocTest<ParcelBloc, ParcelState>(

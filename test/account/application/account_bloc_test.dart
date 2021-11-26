@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,8 @@ import '../../common/infrastructure/setup_auth_tests.dart';
 
 void main() {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
   });
 
@@ -39,7 +42,7 @@ void main() {
     );
     blocTest<AccountBloc, AccountState>(
       'emits failure state on 4xx response',
-      setUp: () => AuthTestSetup.setup(mockLoginFailureRespone, 400),
+      setUp: () => AuthTestSetup.setup(loginFailureJson, 400),
       build: () => getIt<AccountBloc>(),
       act: (bloc) => bloc.add(const AccountEvent.editUser(mockUser)),
       wait: const Duration(milliseconds: 300),
@@ -83,7 +86,7 @@ void main() {
 
     blocTest<AccountBloc, AccountState>(
       'emits failure state on 4xx response',
-      setUp: () => AuthTestSetup.setup(mockLoginFailureRespone, 400),
+      setUp: () => AuthTestSetup.setup(loginFailureJson, 400),
       build: () => getIt<AccountBloc>(),
       act: (bloc) => bloc.add(const AccountEvent.editUser(mockUser)),
       wait: const Duration(milliseconds: 300),

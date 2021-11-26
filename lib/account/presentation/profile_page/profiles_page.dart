@@ -176,7 +176,10 @@ Widget buildProfileForm({
         TextFormField(
           controller: phoneController,
           validator: ValidatorUtil.normalValidator,
-          decoration: const InputDecoration(labelText: "Phone Number"),
+          decoration: const InputDecoration(
+            labelText: "Phone Number",
+            prefixText: "+234 ",
+          ),
           key: ProfileBody.phone,
         ),
       ],

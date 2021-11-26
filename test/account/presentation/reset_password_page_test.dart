@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/account/presentation/reset_password_page/reset_password_page.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -11,6 +12,7 @@ import '../infrastructure/account_mock_data.dart';
 void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
   });
   tearDown(() {

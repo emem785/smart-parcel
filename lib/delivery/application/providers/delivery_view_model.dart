@@ -7,10 +7,12 @@ class DeliveryViewModel with ChangeNotifier {
   PageRouteInfo<dynamic>? _routeInfo;
   String? _duration;
   CustomerForm? _customerForm;
+  int? _locationId;
 
   PageRouteInfo<dynamic> get routeInfo =>
       _routeInfo ?? SelfStoragePaymentRoute();
   String get duration => _duration ?? '';
+  int get locationId => _locationId ?? 0;
   CustomerForm get customerForm => _customerForm ?? CustomerForm.empty();
 
   setDuration(String duration) {
@@ -25,6 +27,11 @@ class DeliveryViewModel with ChangeNotifier {
 
   setCustomerForm(CustomerForm customerForm) {
     _customerForm = customerForm;
+    notifyListeners();
+  }
+
+  setLocationId(int locationId) {
+    _locationId = locationId;
     notifyListeners();
   }
 }

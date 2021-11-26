@@ -2,6 +2,7 @@ import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart';
 import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -11,8 +12,11 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<AuthBloc>()),
+        BlocProvider(create: (context) => getIt<AccountBloc>()),
+      ],
       child: const SettingsBody(),
     );
   }
@@ -20,6 +24,7 @@ class SettingsPage extends StatelessWidget {
 
 class SettingsBody extends StatelessWidget {
   static const logout = Key("logout_tile");
+  static const delete = Key("delete_tile");
   static const faq = Key("faq_tile");
   static const password = Key("password_tile");
   static const support = Key("support_tile");
@@ -28,6 +33,7 @@ class SettingsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
+    final accountBloc = context.read<AccountBloc>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: BlocListener<AuthBloc, AuthState>(
@@ -54,7 +60,7 @@ class SettingsBody extends StatelessWidget {
               context: context,
               icon: "support",
               title: "Support",
-              onTap: () {},
+              onTap: () => accountBloc.add(AccountEvent.openSupport(context)),
             ),
             buildSettingTile(
               key: password,
@@ -63,6 +69,21 @@ class SettingsBody extends StatelessWidget {
               title: "Change Password",
               onTap: () => context.router.push(const ResetPasswordRoute()),
             ),
+            buildSettingTile(
+                key: delete,
+                context: context,
+                icon: "delete",
+                title: "Delete Account",
+                onTap: () {
+                  authBloc.commonUseCases.showAlertUseCase(
+                    buttonText: "Delete",
+                    content:
+                        "Are you sure you want to delete your account all your user data will be lost ?",
+                    title: "Delete Account",
+                    context: context,
+                    onConfirm: () => authBloc.add(const AuthEvent.logout()),
+                  );
+                }),
             buildSettingTile(
                 key: logout,
                 context: context,

@@ -10,6 +10,7 @@ class DeliveryEvent with _$DeliveryEvent {
   const factory DeliveryEvent.proceedToPayment({
     required BuildContext context,
     required PageRouteInfo routeInfo,
+    required PaystackResponse paystackResponse,
     required int locationId,
     required String? duration,
     required CustomerForm? customerForm,

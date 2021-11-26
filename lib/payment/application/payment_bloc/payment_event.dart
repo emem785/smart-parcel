@@ -7,4 +7,5 @@ class PaymentEvent with _$PaymentEvent {
     required BuildContext context,
     required int amount,
   }) = MakePayment;
+  const factory PaymentEvent.openMap(String address) = OpenMap;
 }

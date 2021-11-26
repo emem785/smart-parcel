@@ -90,14 +90,17 @@ const bookCustomerToCustomerResponse = '''{
   "message": "success",
   "data": {
     "id": 1,
-    "name": "emmzz",
-    "email": "emmmanuelisong1@gmail.com",
-    "phone": "0803333333",
-    "status": "pending",
+    "address": "Lennox Mall, Admiralty Way",
+    "name": "string",
+    "email": "user@example.com",
+    "phone": "string",
+    "pick_up": "M3DOD4",
+    "drop_off": "59G3EU",
+    "status": "string",
     "is_active": true,
-    "created_at": "2021-11-17T15:06:22.007376+01:00",
-    "user": "ff10a581-4a9e-4589-937b-df4ccb1bded4",
-    "location": 4
+    "created_at": "2021-11-25T18:28:33.056583+01:00",
+    "user": "05dd61f9-f989-4006-9a7d-f48296932a40",
+    "location": 2
   }
 }''';
 

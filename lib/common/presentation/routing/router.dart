@@ -26,6 +26,7 @@ import 'package:smart_parcel/parcels/presentation/parcels_page.dart';
 import 'package:smart_parcel/parcels/presentation/self_storage_parcel/self_storage_parcel.dart';
 import 'package:smart_parcel/payment/presentation/customer_to_courier_page/customer_to_courier_payment_page.dart';
 import 'package:smart_parcel/payment/presentation/customer_to_customer_page/customer_to_customer_payment_page.dart';
+import 'package:smart_parcel/payment/presentation/receipt_page/receipt_page.dart';
 import 'package:smart_parcel/payment/presentation/self_storage_page/self_storage_payment_page.dart';
 
 const homePageChildren = [
@@ -53,6 +54,7 @@ const homePageChildren = [
         path: 'customerToCourierPayment',
         page: CustomerToCourierPaymentPage,
       ),
+      AutoRoute(path: 'receiptPage', page: ReceiptPage),
     ],
   ),
   AutoRoute(

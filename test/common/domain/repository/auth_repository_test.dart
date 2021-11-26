@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/common/domain/repositories/auth_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -8,6 +9,8 @@ import '../../infrastructure/setup_tests.dart';
 
 Future<void> main() async {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 
@@ -66,6 +69,21 @@ Future<void> main() async {
 
     test(
       'returns authToken response on 2xx status code',
+      () async {
+        // arrange
+        TestSetup.setup(refreshTokenResponse, 200);
+        final repo = getIt<AuthRepository>();
+        // act
+        final response = await repo.refreshToken(mockAuthToken.refresh);
+        // assere
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, mockAuthToken),
+        );
+      },
+    );
+    test(
+      'delete user returns login response on 2xx status code',
       () async {
         // arrange
         TestSetup.setup(refreshTokenResponse, 200);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/auth/presentation/login_page/login_page.dart';
 import 'package:smart_parcel/auth/presentation/login_page/widgets/login_page_body.dart';
@@ -11,6 +12,7 @@ import '../infrastructure/auth_mock_data.dart';
 void main() {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 

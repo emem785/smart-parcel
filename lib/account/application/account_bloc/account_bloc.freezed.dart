@@ -23,6 +23,12 @@ class _$AccountEventTearOff {
     );
   }
 
+  OpenSupport openSupport(BuildContext context) {
+    return OpenSupport(
+      context,
+    );
+  }
+
   ResetPassword resetPassword(
       {required String oldPassword,
       required String newPassword,
@@ -43,6 +49,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
+    required TResult Function(BuildContext context) openSupport,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
         resetPassword,
@@ -51,6 +58,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -59,6 +67,7 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -68,18 +77,21 @@ mixin _$AccountEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(EditUser value) editUser,
+    required TResult Function(OpenSupport value) openSupport,
     required TResult Function(ResetPassword value) resetPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
     required TResult orElse(),
   }) =>
@@ -164,6 +176,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
+    required TResult Function(BuildContext context) openSupport,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
         resetPassword,
@@ -175,6 +188,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -186,6 +200,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -201,6 +216,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(EditUser value) editUser,
+    required TResult Function(OpenSupport value) openSupport,
     required TResult Function(ResetPassword value) resetPassword,
   }) {
     return editUser(this);
@@ -210,6 +226,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
   }) {
     return editUser?.call(this);
@@ -219,6 +236,7 @@ class _$EditUser implements EditUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
     required TResult orElse(),
   }) {
@@ -235,6 +253,150 @@ abstract class EditUser implements AccountEvent {
   User get user;
   @JsonKey(ignore: true)
   $EditUserCopyWith<EditUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OpenSupportCopyWith<$Res> {
+  factory $OpenSupportCopyWith(
+          OpenSupport value, $Res Function(OpenSupport) then) =
+      _$OpenSupportCopyWithImpl<$Res>;
+  $Res call({BuildContext context});
+}
+
+/// @nodoc
+class _$OpenSupportCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
+    implements $OpenSupportCopyWith<$Res> {
+  _$OpenSupportCopyWithImpl(
+      OpenSupport _value, $Res Function(OpenSupport) _then)
+      : super(_value, (v) => _then(v as OpenSupport));
+
+  @override
+  OpenSupport get _value => super._value as OpenSupport;
+
+  @override
+  $Res call({
+    Object? context = freezed,
+  }) {
+    return _then(OpenSupport(
+      context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OpenSupport implements OpenSupport {
+  const _$OpenSupport(this.context);
+
+  @override
+  final BuildContext context;
+
+  @override
+  String toString() {
+    return 'AccountEvent.openSupport(context: $context)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is OpenSupport &&
+            (identical(other.context, context) || other.context == context));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  $OpenSupportCopyWith<OpenSupport> get copyWith =>
+      _$OpenSupportCopyWithImpl<OpenSupport>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) editUser,
+    required TResult Function(BuildContext context) openSupport,
+    required TResult Function(
+            String oldPassword, String newPassword, String confirmPassword)
+        resetPassword,
+  }) {
+    return openSupport(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
+    TResult Function(
+            String oldPassword, String newPassword, String confirmPassword)?
+        resetPassword,
+  }) {
+    return openSupport?.call(context);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
+    TResult Function(
+            String oldPassword, String newPassword, String confirmPassword)?
+        resetPassword,
+    required TResult orElse(),
+  }) {
+    if (openSupport != null) {
+      return openSupport(context);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EditUser value) editUser,
+    required TResult Function(OpenSupport value) openSupport,
+    required TResult Function(ResetPassword value) resetPassword,
+  }) {
+    return openSupport(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
+    TResult Function(ResetPassword value)? resetPassword,
+  }) {
+    return openSupport?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
+    TResult Function(ResetPassword value)? resetPassword,
+    required TResult orElse(),
+  }) {
+    if (openSupport != null) {
+      return openSupport(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OpenSupport implements AccountEvent {
+  const factory OpenSupport(BuildContext context) = _$OpenSupport;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  $OpenSupportCopyWith<OpenSupport> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -325,6 +487,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
+    required TResult Function(BuildContext context) openSupport,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
         resetPassword,
@@ -336,6 +499,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -347,6 +511,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
+    TResult Function(BuildContext context)? openSupport,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
@@ -362,6 +527,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(EditUser value) editUser,
+    required TResult Function(OpenSupport value) openSupport,
     required TResult Function(ResetPassword value) resetPassword,
   }) {
     return resetPassword(this);
@@ -371,6 +537,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
   }) {
     return resetPassword?.call(this);
@@ -380,6 +547,7 @@ class _$ResetPassword implements ResetPassword {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EditUser value)? editUser,
+    TResult Function(OpenSupport value)? openSupport,
     TResult Function(ResetPassword value)? resetPassword,
     required TResult orElse(),
   }) {

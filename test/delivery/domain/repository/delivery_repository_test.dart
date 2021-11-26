@@ -1,13 +1,17 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../../auth/infrastructure/auth_mock_data.dart';
 import '../../../common/infrastructure/setup_auth_tests.dart';
+import '../../../payment/infrastructure/payment_mock_data.dart';
 import '../../infrastructure/delivery_mock_data.dart';
 
 Future<void> main() async {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
   });
 
@@ -19,15 +23,19 @@ Future<void> main() async {
       'returns self storage response',
       () async {
         // arrange
-        AuthTestSetup.setup(selfStorageJson, 200);
+        AuthTestSetup.setup(selfStoragePaymentJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response =
-            await repo.bookSelfStorage(duration: "2", userId: "", location: 3);
+        final response = await repo.bookSelfStorage(
+          duration: "2",
+          userId: "",
+          location: 3,
+          paystackResponse: paystackResponse,
+        );
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, mockSelfStorageBookingResponse),
+          (r) => expect(r, paymentResponse),
         );
       },
     );
@@ -43,12 +51,13 @@ Future<void> main() async {
           email: "emem@emem",
           location: 4,
           phone: "0805555",
+          paystackResponse: paystackResponse,
           userId: mockUser.id!,
         );
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, mockCustomerToCustomerResponse),
+          (r) => expect(r, paymentResponseCustomer),
         );
       },
     );
@@ -60,8 +69,12 @@ Future<void> main() async {
         AuthTestSetup.setup(selfStorageError, 400);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response =
-            await repo.bookSelfStorage(duration: "2", userId: "", location: 3);
+        final response = await repo.bookSelfStorage(
+          duration: "2",
+          userId: "",
+          location: 3,
+          paystackResponse: paystackResponse,
+        );
         // assert
         return response.fold(
           (l) => expect(l, selfStorageFailure),

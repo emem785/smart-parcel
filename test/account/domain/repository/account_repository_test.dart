@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/account/domain/repositories/account_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -10,6 +11,8 @@ import '../../infrastructure/account_mock_data.dart';
 
 Future<void> main() async {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 

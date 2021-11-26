@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:smart_parcel/common/domain/interface/common_storage_interface.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
@@ -59,5 +60,9 @@ class PaymentRepository {
     } catch (_) {
       return const Left(Failure("No User in storage"));
     }
+  }
+
+  Future<dynamic> openMap(String address) {
+    return MapsLauncher.launchQuery(address);
   }
 }

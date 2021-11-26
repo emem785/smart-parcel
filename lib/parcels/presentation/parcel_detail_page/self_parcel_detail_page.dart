@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_parcel/common/theme.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
+import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
 import 'package:smart_parcel/parcel/domain/models/self_storage.dart';
 
 class SelfParcelDetailsPage extends HookWidget {
@@ -11,18 +14,49 @@ class SelfParcelDetailsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(selfStorage.status),
-        ListTile(
-          title: Text(getDate(selfStorage.createdAt)),
-          subtitle: const Text("Date of Deposit"),
-        ),
-        ListTile(
-          title: Text(selfStorage.duration),
-          subtitle: const Text("Duration of Deposit"),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(selfStorage.status.capitalize(),
+              style: Theme.of(context).textTheme.headline6),
+          LayoutConstants.sizeBox(context, 8),
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black38),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Theme(
+              data: GlobalTheme.getGlobalTheme().copyWith(
+                textTheme: GlobalTheme.getTextTheme().copyWith(
+                  subtitle1: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(getDate(selfStorage.createdAt)),
+                    subtitle: const Text("Date of Deposit"),
+                  ),
+                  ListTile(
+                    title: Text(selfStorage.duration),
+                    subtitle: const Text("Duration of Deposit"),
+                  ),
+                  ListTile(
+                    title: Text(selfStorage.address),
+                    subtitle: const Text("Location Of Locker"),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

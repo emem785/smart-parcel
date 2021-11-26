@@ -8,6 +8,7 @@ class CustomerToCustomer {
   final String phone;
   final int locationId;
   final String status;
+  final String address;
   final bool isActive;
   final String createdAt;
   const CustomerToCustomer({
@@ -18,6 +19,7 @@ class CustomerToCustomer {
     required this.phone,
     required this.locationId,
     required this.status,
+    required this.address,
     required this.isActive,
     required this.createdAt,
   });
@@ -30,6 +32,7 @@ class CustomerToCustomer {
     String? phone,
     int? locationId,
     String? status,
+    String? address,
     bool? isActive,
     String? createdAt,
   }) {
@@ -41,6 +44,7 @@ class CustomerToCustomer {
       phone: phone ?? this.phone,
       locationId: locationId ?? this.locationId,
       status: status ?? this.status,
+      address: address ?? this.address,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -55,6 +59,7 @@ class CustomerToCustomer {
       'phone': phone,
       'locationId': locationId,
       'status': status,
+      'address': address,
       'isActive': isActive,
       'createdAt': createdAt,
     };
@@ -62,15 +67,16 @@ class CustomerToCustomer {
 
   factory CustomerToCustomer.fromMap(Map<String, dynamic> map) {
     return CustomerToCustomer(
-      id: map['id']?.toInt(),
-      userId: map['user_id'],
-      name: map['name'],
-      email: map['email'],
-      phone: map['phone'],
-      locationId: map['location_id']?.toInt(),
-      status: map['status'],
-      isActive: map['is_active'],
-      createdAt: map['created_at'],
+      id: map['id']?.toInt() ?? 0,
+      userId: map['user_id'] ?? '',
+      name: map['name'] ?? '',
+      email: map['email'] ?? '',
+      phone: map['phone'] ?? '',
+      locationId: map['location_id']?.toInt() ?? 0,
+      status: map['status'] ?? '',
+      address: map['location__address'] ?? '',
+      isActive: map['is_active'] ?? false,
+      createdAt: map['created_at'] ?? '',
     );
   }
 
@@ -81,7 +87,7 @@ class CustomerToCustomer {
 
   @override
   String toString() {
-    return 'CustomerToCustomer(id: $id, userId: $userId, name: $name, email: $email, phone: $phone, locationId: $locationId, status: $status, isActive: $isActive, createdAt: $createdAt)';
+    return 'CustomerToCustomer(id: $id, userId: $userId, name: $name, email: $email, phone: $phone, locationId: $locationId, status: $status, address: $address, isActive: $isActive, createdAt: $createdAt)';
   }
 
   @override
@@ -96,6 +102,7 @@ class CustomerToCustomer {
         other.phone == phone &&
         other.locationId == locationId &&
         other.status == status &&
+        other.address == address &&
         other.isActive == isActive &&
         other.createdAt == createdAt;
   }
@@ -109,6 +116,7 @@ class CustomerToCustomer {
         phone.hashCode ^
         locationId.hashCode ^
         status.hashCode ^
+        address.hashCode ^
         isActive.hashCode ^
         createdAt.hashCode;
   }

@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
@@ -8,6 +9,8 @@ import '../../infrastructure/auth_mock_data.dart';
 
 Future<void> main() async {
   setUp(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await TestSetup.init();
   });
 

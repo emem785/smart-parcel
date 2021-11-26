@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   late CheckoutResponse checkoutResponse;
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
     await PaymentSetupTest.init();
     checkoutResponse = CheckoutResponse(
         message: "",

@@ -24,6 +24,12 @@ class _$PaymentEventTearOff {
       amount: amount,
     );
   }
+
+  OpenMap openMap(String address) {
+    return OpenMap(
+      address,
+    );
+  }
 }
 
 /// @nodoc
@@ -31,44 +37,43 @@ const $PaymentEvent = _$PaymentEventTearOff();
 
 /// @nodoc
 mixin _$PaymentEvent {
-  BuildContext get context => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function(String address) openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
+    required TResult Function(OpenMap value) openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $PaymentEventCopyWith<PaymentEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -77,7 +82,6 @@ abstract class $PaymentEventCopyWith<$Res> {
   factory $PaymentEventCopyWith(
           PaymentEvent value, $Res Function(PaymentEvent) then) =
       _$PaymentEventCopyWithImpl<$Res>;
-  $Res call({BuildContext context, int amount});
 }
 
 /// @nodoc
@@ -87,32 +91,13 @@ class _$PaymentEventCopyWithImpl<$Res> implements $PaymentEventCopyWith<$Res> {
   final PaymentEvent _value;
   // ignore: unused_field
   final $Res Function(PaymentEvent) _then;
-
-  @override
-  $Res call({
-    Object? context = freezed,
-    Object? amount = freezed,
-  }) {
-    return _then(_value.copyWith(
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
-      amount: amount == freezed
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $MakePaymentCopyWith<$Res>
-    implements $PaymentEventCopyWith<$Res> {
+abstract class $MakePaymentCopyWith<$Res> {
   factory $MakePaymentCopyWith(
           MakePayment value, $Res Function(MakePayment) then) =
       _$MakePaymentCopyWithImpl<$Res>;
-  @override
   $Res call({BuildContext context, int amount});
 }
 
@@ -180,6 +165,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function(String address) openMap,
   }) {
     return makePayment(context, amount);
   }
@@ -188,6 +174,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
   }) {
     return makePayment?.call(context, amount);
   }
@@ -196,6 +183,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
     required TResult orElse(),
   }) {
     if (makePayment != null) {
@@ -208,6 +196,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
+    required TResult Function(OpenMap value) openMap,
   }) {
     return makePayment(this);
   }
@@ -216,6 +205,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
   }) {
     return makePayment?.call(this);
   }
@@ -224,6 +214,7 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
   }) {
     if (makePayment != null) {
@@ -237,14 +228,140 @@ abstract class MakePayment implements PaymentEvent {
   const factory MakePayment(
       {required BuildContext context, required int amount}) = _$MakePayment;
 
-  @override
   BuildContext get context;
-  @override
   int get amount;
-  @override
   @JsonKey(ignore: true)
   $MakePaymentCopyWith<MakePayment> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OpenMapCopyWith<$Res> {
+  factory $OpenMapCopyWith(OpenMap value, $Res Function(OpenMap) then) =
+      _$OpenMapCopyWithImpl<$Res>;
+  $Res call({String address});
+}
+
+/// @nodoc
+class _$OpenMapCopyWithImpl<$Res> extends _$PaymentEventCopyWithImpl<$Res>
+    implements $OpenMapCopyWith<$Res> {
+  _$OpenMapCopyWithImpl(OpenMap _value, $Res Function(OpenMap) _then)
+      : super(_value, (v) => _then(v as OpenMap));
+
+  @override
+  OpenMap get _value => super._value as OpenMap;
+
+  @override
+  $Res call({
+    Object? address = freezed,
+  }) {
+    return _then(OpenMap(
+      address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OpenMap implements OpenMap {
+  const _$OpenMap(this.address);
+
+  @override
+  final String address;
+
+  @override
+  String toString() {
+    return 'PaymentEvent.openMap(address: $address)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is OpenMap &&
+            (identical(other.address, address) || other.address == address));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address);
+
+  @JsonKey(ignore: true)
+  @override
+  $OpenMapCopyWith<OpenMap> get copyWith =>
+      _$OpenMapCopyWithImpl<OpenMap>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function(String address) openMap,
+  }) {
+    return openMap(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
+  }) {
+    return openMap?.call(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function(String address)? openMap,
+    required TResult orElse(),
+  }) {
+    if (openMap != null) {
+      return openMap(address);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakePayment value) makePayment,
+    required TResult Function(OpenMap value) openMap,
+  }) {
+    return openMap(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
+  }) {
+    return openMap?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(OpenMap value)? openMap,
+    required TResult orElse(),
+  }) {
+    if (openMap != null) {
+      return openMap(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OpenMap implements PaymentEvent {
+  const factory OpenMap(String address) = _$OpenMap;
+
+  String get address;
+  @JsonKey(ignore: true)
+  $OpenMapCopyWith<OpenMap> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -265,9 +382,11 @@ class _$PaymentStateTearOff {
     );
   }
 
-  PaymentSuccessful paymentSuccessful(String message) {
+  PaymentSuccessful paymentSuccessful(
+      String message, PaystackResponse paystackResponse) {
     return PaymentSuccessful(
       message,
+      paystackResponse,
     );
   }
 }
@@ -282,7 +401,8 @@ mixin _$PaymentState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message) paymentSuccessful,
+    required TResult Function(String message, PaystackResponse paystackResponse)
+        paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -290,7 +410,8 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -298,7 +419,8 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -389,7 +511,8 @@ class _$PaymentInitial implements PaymentInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message) paymentSuccessful,
+    required TResult Function(String message, PaystackResponse paystackResponse)
+        paymentSuccessful,
   }) {
     return initial();
   }
@@ -400,7 +523,8 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
   }) {
     return initial?.call();
   }
@@ -411,7 +535,8 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -506,7 +631,8 @@ class _$PaymentLoading implements PaymentLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message) paymentSuccessful,
+    required TResult Function(String message, PaystackResponse paystackResponse)
+        paymentSuccessful,
   }) {
     return loading();
   }
@@ -517,7 +643,8 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
   }) {
     return loading?.call();
   }
@@ -528,7 +655,8 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -645,7 +773,8 @@ class _$PaymentError implements PaymentError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message) paymentSuccessful,
+    required TResult Function(String message, PaystackResponse paystackResponse)
+        paymentSuccessful,
   }) {
     return error(failure);
   }
@@ -656,7 +785,8 @@ class _$PaymentError implements PaymentError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
   }) {
     return error?.call(failure);
   }
@@ -667,7 +797,8 @@ class _$PaymentError implements PaymentError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -728,7 +859,7 @@ abstract class $PaymentSuccessfulCopyWith<$Res> {
   factory $PaymentSuccessfulCopyWith(
           PaymentSuccessful value, $Res Function(PaymentSuccessful) then) =
       _$PaymentSuccessfulCopyWithImpl<$Res>;
-  $Res call({String message});
+  $Res call({String message, PaystackResponse paystackResponse});
 }
 
 /// @nodoc
@@ -745,12 +876,17 @@ class _$PaymentSuccessfulCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = freezed,
+    Object? paystackResponse = freezed,
   }) {
     return _then(PaymentSuccessful(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      paystackResponse == freezed
+          ? _value.paystackResponse
+          : paystackResponse // ignore: cast_nullable_to_non_nullable
+              as PaystackResponse,
     ));
   }
 }
@@ -758,14 +894,16 @@ class _$PaymentSuccessfulCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PaymentSuccessful implements PaymentSuccessful {
-  const _$PaymentSuccessful(this.message);
+  const _$PaymentSuccessful(this.message, this.paystackResponse);
 
   @override
   final String message;
+  @override
+  final PaystackResponse paystackResponse;
 
   @override
   String toString() {
-    return 'PaymentState.paymentSuccessful(message: $message)';
+    return 'PaymentState.paymentSuccessful(message: $message, paystackResponse: $paystackResponse)';
   }
 
   @override
@@ -773,11 +911,13 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PaymentSuccessful &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.paystackResponse, paystackResponse) ||
+                other.paystackResponse == paystackResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, paystackResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -790,9 +930,10 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message) paymentSuccessful,
+    required TResult Function(String message, PaystackResponse paystackResponse)
+        paymentSuccessful,
   }) {
-    return paymentSuccessful(message);
+    return paymentSuccessful(message, paystackResponse);
   }
 
   @override
@@ -801,9 +942,10 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
   }) {
-    return paymentSuccessful?.call(message);
+    return paymentSuccessful?.call(message, paystackResponse);
   }
 
   @override
@@ -812,11 +954,12 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message)? paymentSuccessful,
+    TResult Function(String message, PaystackResponse paystackResponse)?
+        paymentSuccessful,
     required TResult orElse(),
   }) {
     if (paymentSuccessful != null) {
-      return paymentSuccessful(message);
+      return paymentSuccessful(message, paystackResponse);
     }
     return orElse();
   }
@@ -860,9 +1003,11 @@ class _$PaymentSuccessful implements PaymentSuccessful {
 }
 
 abstract class PaymentSuccessful implements PaymentState {
-  const factory PaymentSuccessful(String message) = _$PaymentSuccessful;
+  const factory PaymentSuccessful(
+      String message, PaystackResponse paystackResponse) = _$PaymentSuccessful;
 
   String get message;
+  PaystackResponse get paystackResponse;
   @JsonKey(ignore: true)
   $PaymentSuccessfulCopyWith<PaymentSuccessful> get copyWith =>
       throw _privateConstructorUsedError;

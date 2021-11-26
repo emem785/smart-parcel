@@ -52,7 +52,7 @@ class MakePaymentUseCase {
     );
 
     if (response.status) {
-      emit(const PaymentState.paymentSuccessful("Payment Successful"));
+      emit(PaymentState.paymentSuccessful("Payment Successful", r));
       return;
     }
     emit(PaymentState.error(Failure(response.message)));

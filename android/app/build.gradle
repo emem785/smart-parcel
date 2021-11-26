@@ -54,7 +54,7 @@ android {
         applicationId "com.getmobile.smart_parcel"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger() + 3
+        versionCode flutterVersionCode.toInteger() 
         versionName flutterVersionName
     }
 
