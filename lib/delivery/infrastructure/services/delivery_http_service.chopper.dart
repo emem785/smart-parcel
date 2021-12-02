@@ -58,4 +58,20 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
     return client.send<List<CenterDistrict>, CenterDistrict>($request);
   }
+
+  @override
+  Future<Response<LocationResultResponse>> searchPlaces(
+      String query, String refreshToken, String accessToken) {
+    final $url = '/textsearch/json';
+    final $params = <String, dynamic>{'query': query};
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('GET', $url, client.baseUrl,
+        parameters: $params, headers: $headers);
+    return client
+        .send<LocationResultResponse, LocationResultResponse>($request);
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
+import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 
 // typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
@@ -12,24 +13,24 @@ Widget buildQuickActions({required BuildContext context}) {
     children: [
       buildQuickAction(
         context: context,
-        icon: "self_storage",
+        icon: "self_package",
         title: "Self Storage",
         subtitle:
             "Keep an item at SmartParcel locker for\nyou to pickup at a later time.",
         onTap: () => context.router.push(const ChooseDurationRoute()),
       ),
-      LayoutConstants.sizeBox(context, 32),
+      LayoutConstants.sizeBox(context, 16),
       buildQuickAction(
         context: context,
-        icon: "send_parcel",
+        icon: "send_package",
         title: "Send Parcel",
         subtitle: "Post an item using a courier service\nvia SmartParcel",
         onTap: () => context.router.push(const CustomerToCourierRoute()),
       ),
-      LayoutConstants.sizeBox(context, 32),
+      LayoutConstants.sizeBox(context, 16),
       buildQuickAction(
         context: context,
-        icon: "customer_to_customer",
+        icon: "customer_package",
         title: "Customer to Customer",
         subtitle:
             "Drop off an item in SmartParcel locker\nfor someone else to pickup",
@@ -50,10 +51,18 @@ buildQuickAction({
     onTap: () => onTap(),
     child: Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: const Color(0xFFF6F9EA),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(1, 24, 95, 57),
+            blurRadius: 8,
+            spreadRadius: 7,
+            offset: Offset(2, 4),
+          ),
+        ],
       ),
-      height: Constants.responsiveHeight(context, 114),
+      height: Constants.responsiveHeight(context, 134),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -72,8 +81,8 @@ buildQuickAction({
                 title,
                 style: const TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.w200,
-                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  color: GlobalTheme.primaryColor,
                 ),
               ),
               LayoutConstants.sizeBox(context, 4),

@@ -8,6 +8,8 @@ class CustomerToCustomer {
   final String phone;
   final int locationId;
   final String status;
+  final String dropOff;
+  final String pickUp;
   final String address;
   final bool isActive;
   final String createdAt;
@@ -19,6 +21,8 @@ class CustomerToCustomer {
     required this.phone,
     required this.locationId,
     required this.status,
+    required this.dropOff,
+    required this.pickUp,
     required this.address,
     required this.isActive,
     required this.createdAt,
@@ -32,6 +36,8 @@ class CustomerToCustomer {
     String? phone,
     int? locationId,
     String? status,
+    String? dropOff,
+    String? pickUp,
     String? address,
     bool? isActive,
     String? createdAt,
@@ -44,6 +50,8 @@ class CustomerToCustomer {
       phone: phone ?? this.phone,
       locationId: locationId ?? this.locationId,
       status: status ?? this.status,
+      dropOff: dropOff ?? this.dropOff,
+      pickUp: pickUp ?? this.pickUp,
       address: address ?? this.address,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
@@ -59,6 +67,8 @@ class CustomerToCustomer {
       'phone': phone,
       'locationId': locationId,
       'status': status,
+      'dropOff': dropOff,
+      'pickUp': pickUp,
       'address': address,
       'isActive': isActive,
       'createdAt': createdAt,
@@ -74,6 +84,8 @@ class CustomerToCustomer {
       phone: map['phone'] ?? '',
       locationId: map['location_id']?.toInt() ?? 0,
       status: map['status'] ?? '',
+      dropOff: map['drop_off'] ?? '',
+      pickUp: map['pick_up'] ?? '',
       address: map['location__address'] ?? '',
       isActive: map['is_active'] ?? false,
       createdAt: map['created_at'] ?? '',
@@ -87,7 +99,7 @@ class CustomerToCustomer {
 
   @override
   String toString() {
-    return 'CustomerToCustomer(id: $id, userId: $userId, name: $name, email: $email, phone: $phone, locationId: $locationId, status: $status, address: $address, isActive: $isActive, createdAt: $createdAt)';
+    return 'CustomerToCustomer(id: $id, userId: $userId, name: $name, email: $email, phone: $phone, locationId: $locationId, status: $status, address: $address, isActive: $isActive, createdAt: $createdAt, dropOff: $dropOff, pickUp: $pickUp)';
   }
 
   @override
@@ -102,6 +114,8 @@ class CustomerToCustomer {
         other.phone == phone &&
         other.locationId == locationId &&
         other.status == status &&
+        other.dropOff == dropOff &&
+        other.pickUp == pickUp &&
         other.address == address &&
         other.isActive == isActive &&
         other.createdAt == createdAt;
@@ -116,6 +130,8 @@ class CustomerToCustomer {
         phone.hashCode ^
         locationId.hashCode ^
         status.hashCode ^
+        dropOff.hashCode ^
+        pickUp.hashCode ^
         address.hashCode ^
         isActive.hashCode ^
         createdAt.hashCode;

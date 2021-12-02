@@ -98,4 +98,21 @@ Future<void> main() async {
       },
     );
   });
+  group('Test Delivery Repository Places Http Service', () {
+    test(
+      'returns get location result response',
+      () async {
+        // arrange
+        AuthTestSetup.setup(googlePlacesResponse, 200);
+        final repo = getIt<DeliveryRepository>();
+        // act
+        final response = await repo.searchPlaces("");
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, locationResult),
+        );
+      },
+    );
+  });
 }

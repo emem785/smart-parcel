@@ -138,3 +138,20 @@ Future<Either<Failure, T>> postDataPaystack<T>(
     return left(Failure(e.toString()));
   }
 }
+
+Future<Either<Failure, T>> getDataPlacesSearch<T>(
+  Future<Response<T>> Function(String, String, String) getData,
+  String query,
+) async {
+  try {
+    const authToken = AuthToken.places();
+    final response =
+        await getData(authToken.refresh, "Bearer ${authToken.access}", query);
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Search Error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}

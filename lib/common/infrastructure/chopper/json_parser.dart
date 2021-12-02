@@ -7,6 +7,7 @@ import 'package:smart_parcel/auth/domain/models/verify_otp_response.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_response.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
+import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/parcel/domain/models/parcel_response.dart';
 import 'package:smart_parcel/payment/domain/models/payment_response.dart';
 import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
@@ -27,6 +28,7 @@ class JsonParser {
     PaystackResponse: PaystackResponse.jsonFactory,
     ParcelResponse: ParcelResponse.jsonFactory,
     PaymentResponse: PaymentResponse.jsonFactory,
+    LocationResultResponse: LocationResultResponse.jsonFactory,
   };
 
   static dynamic decode<T>(entity) {

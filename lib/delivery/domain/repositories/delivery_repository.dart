@@ -5,6 +5,7 @@ import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
+import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/payment/domain/models/payment_response.dart';
 import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
@@ -59,6 +60,10 @@ class DeliveryRepository {
 
   ListResponse<CenterDistrict> getParcelCenters() {
     return getListDataAuth(deliveryHttpService.getParcelCenters);
+  }
+
+  SingleResponse<LocationResultResponse> searchPlaces(String query) {
+    return getDataPlacesSearch(deliveryHttpService.searchPlaces, query);
   }
 
   Either<Failure, User> getUserFromStorage() {

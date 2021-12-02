@@ -9,6 +9,8 @@ class SelfStorage {
   final String address;
   final bool isActive;
   final String createdAt;
+  final String dropOff;
+  final String pickUp;
   const SelfStorage({
     required this.id,
     required this.userId,
@@ -18,6 +20,8 @@ class SelfStorage {
     required this.address,
     required this.isActive,
     required this.createdAt,
+    required this.dropOff,
+    required this.pickUp,
   });
 
   SelfStorage copyWith({
@@ -29,6 +33,8 @@ class SelfStorage {
     String? address,
     bool? isActive,
     String? createdAt,
+    String? dropOff,
+    String? pickUp,
   }) {
     return SelfStorage(
       id: id ?? this.id,
@@ -39,6 +45,8 @@ class SelfStorage {
       address: address ?? this.address,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
+      dropOff: dropOff ?? this.dropOff,
+      pickUp: pickUp ?? this.pickUp,
     );
   }
 
@@ -52,6 +60,8 @@ class SelfStorage {
       'address': address,
       'isActive': isActive,
       'createdAt': createdAt,
+      'dropOff': dropOff,
+      'pickUp': pickUp,
     };
   }
 
@@ -65,6 +75,8 @@ class SelfStorage {
       address: map['location__address'] ?? '',
       isActive: map['is_active'] ?? false,
       createdAt: map['created_at'] ?? '',
+      dropOff: map['drop_off'] ?? '',
+      pickUp: map['pick_up'] ?? '',
     );
   }
 
@@ -75,7 +87,7 @@ class SelfStorage {
 
   @override
   String toString() {
-    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt)';
+    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt, dropOff: $dropOff, pickUp: $pickUp)';
   }
 
   @override
@@ -90,7 +102,9 @@ class SelfStorage {
         other.status == status &&
         other.address == address &&
         other.isActive == isActive &&
-        other.createdAt == createdAt;
+        other.createdAt == createdAt &&
+        other.dropOff == dropOff &&
+        other.pickUp == pickUp;
   }
 
   @override
@@ -102,6 +116,8 @@ class SelfStorage {
         status.hashCode ^
         address.hashCode ^
         isActive.hashCode ^
-        createdAt.hashCode;
+        createdAt.hashCode ^
+        dropOff.hashCode ^
+        pickUp.hashCode;
   }
 }

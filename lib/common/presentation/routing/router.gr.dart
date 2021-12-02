@@ -6,7 +6,6 @@
 
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i31;
-import 'package:flutter/widgets.dart' as _i32;
 import 'package:smart_parcel/account/presentation/profile_page/profiles_page.dart'
     as _i28;
 import 'package:smart_parcel/account/presentation/reset_password_page/reset_password_page.dart'
@@ -34,7 +33,7 @@ import 'package:smart_parcel/common/presentation/widgets/home_page.dart'
 import 'package:smart_parcel/common/presentation/widgets/splash_page.dart'
     as _i1;
 import 'package:smart_parcel/delivery/domain/models/center_district.dart'
-    as _i33;
+    as _i32;
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/customer_to_courier.dart'
     as _i17;
 import 'package:smart_parcel/delivery/presentation/customer_to_customer_pages/customer_to_customer.dart'
@@ -50,8 +49,8 @@ import 'package:smart_parcel/delivery/presentation/select_location_pages/select_
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/choose_duration_page.dart'
     as _i14;
 import 'package:smart_parcel/parcel/domain/models/customer_to_customer.dart'
-    as _i36;
-import 'package:smart_parcel/parcel/domain/models/self_storage.dart' as _i35;
+    as _i35;
+import 'package:smart_parcel/parcel/domain/models/self_storage.dart' as _i34;
 import 'package:smart_parcel/parcels/presentation/customer_parcel/customer_2_customer_parcel_page.dart'
     as _i26;
 import 'package:smart_parcel/parcels/presentation/parcel_detail_page/customer_parcel_detail_page.dart'
@@ -61,7 +60,7 @@ import 'package:smart_parcel/parcels/presentation/parcel_detail_page/self_parcel
 import 'package:smart_parcel/parcels/presentation/parcels_page.dart' as _i23;
 import 'package:smart_parcel/parcels/presentation/self_storage_parcel/self_storage_parcel.dart'
     as _i27;
-import 'package:smart_parcel/payment/domain/models/payment_data.dart' as _i34;
+import 'package:smart_parcel/payment/domain/models/payment_data.dart' as _i33;
 import 'package:smart_parcel/payment/presentation/customer_to_courier_page/customer_to_courier_payment_page.dart'
     as _i21;
 import 'package:smart_parcel/payment/presentation/customer_to_customer_page/customer_to_customer_payment_page.dart'
@@ -336,7 +335,7 @@ class SignUpRoute extends _i12.PageRouteInfo<void> {
 /// generated route for [_i5.SubmitPasswordOtpPage]
 class SubmitPasswordOtpRoute
     extends _i12.PageRouteInfo<SubmitPasswordOtpRouteArgs> {
-  SubmitPasswordOtpRoute({_i32.Key? key, required String email})
+  SubmitPasswordOtpRoute({_i31.Key? key, required String email})
       : super(name,
             path: '/submitPasswordOtp',
             args: SubmitPasswordOtpRouteArgs(key: key, email: email));
@@ -347,7 +346,7 @@ class SubmitPasswordOtpRoute
 class SubmitPasswordOtpRouteArgs {
   const SubmitPasswordOtpRouteArgs({this.key, required this.email});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 
   final String email;
 }
@@ -355,7 +354,7 @@ class SubmitPasswordOtpRouteArgs {
 /// generated route for [_i6.ConfirmEmailPage]
 class ConfirmEmailRoute extends _i12.PageRouteInfo<ConfirmEmailRouteArgs> {
   ConfirmEmailRoute(
-      {_i32.Key? key, required String email, required String password})
+      {_i31.Key? key, required String email, required String password})
       : super(name,
             path: '/confirmEmail',
             args: ConfirmEmailRouteArgs(
@@ -368,7 +367,7 @@ class ConfirmEmailRouteArgs {
   const ConfirmEmailRouteArgs(
       {this.key, required this.email, required this.password});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 
   final String email;
 
@@ -385,7 +384,7 @@ class ForgotPasswordRoute extends _i12.PageRouteInfo<void> {
 /// generated route for [_i8.ConfirmPasswordPage]
 class ConfirmPasswordRoute
     extends _i12.PageRouteInfo<ConfirmPasswordRouteArgs> {
-  ConfirmPasswordRoute({_i32.Key? key, required String email})
+  ConfirmPasswordRoute({_i31.Key? key, required String email})
       : super(name,
             path: '/confirmPassword',
             args: ConfirmPasswordRouteArgs(key: key, email: email));
@@ -396,7 +395,7 @@ class ConfirmPasswordRoute
 class ConfirmPasswordRouteArgs {
   const ConfirmPasswordRouteArgs({this.key, required this.email});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 
   final String email;
 }
@@ -465,7 +464,7 @@ class ChooseDurationRoute extends _i12.PageRouteInfo<void> {
 /// generated route for [_i15.SelectLocationPage]
 class SelectLocationRoute extends _i12.PageRouteInfo<SelectLocationRouteArgs> {
   SelectLocationRoute(
-      {_i32.Key? key, required _i33.CenterDistrict centerDistrict})
+      {_i31.Key? key, required _i32.CenterDistrict centerDistrict})
       : super(name,
             path: 'selectLocation',
             args: SelectLocationRouteArgs(
@@ -477,9 +476,9 @@ class SelectLocationRoute extends _i12.PageRouteInfo<SelectLocationRouteArgs> {
 class SelectLocationRouteArgs {
   const SelectLocationRouteArgs({this.key, required this.centerDistrict});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 
-  final _i33.CenterDistrict centerDistrict;
+  final _i32.CenterDistrict centerDistrict;
 }
 
 /// generated route for [_i16.SelectLocationDistrictPage]
@@ -529,7 +528,7 @@ class CustomerToCourierPaymentRoute extends _i12.PageRouteInfo<void> {
 
 /// generated route for [_i22.ReceiptPage]
 class ReceiptRoute extends _i12.PageRouteInfo<ReceiptRouteArgs> {
-  ReceiptRoute({_i32.Key? key, required _i34.PaymentData paymentData})
+  ReceiptRoute({_i31.Key? key, required _i33.PaymentData paymentData})
       : super(name,
             path: 'receiptPage',
             args: ReceiptRouteArgs(key: key, paymentData: paymentData));
@@ -540,9 +539,9 @@ class ReceiptRoute extends _i12.PageRouteInfo<ReceiptRouteArgs> {
 class ReceiptRouteArgs {
   const ReceiptRouteArgs({this.key, required this.paymentData});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 
-  final _i34.PaymentData paymentData;
+  final _i33.PaymentData paymentData;
 }
 
 /// generated route for [_i23.ParcelsPage]
@@ -556,7 +555,7 @@ class ParcelsRoute extends _i12.PageRouteInfo<void> {
 /// generated route for [_i24.SelfParcelDetailsPage]
 class SelfParcelDetailsRoute
     extends _i12.PageRouteInfo<SelfParcelDetailsRouteArgs> {
-  SelfParcelDetailsRoute({required _i35.SelfStorage selfStorage, _i32.Key? key})
+  SelfParcelDetailsRoute({required _i34.SelfStorage selfStorage, _i31.Key? key})
       : super(name,
             path: 'selfDetailsPage',
             args:
@@ -568,16 +567,16 @@ class SelfParcelDetailsRoute
 class SelfParcelDetailsRouteArgs {
   const SelfParcelDetailsRouteArgs({required this.selfStorage, this.key});
 
-  final _i35.SelfStorage selfStorage;
+  final _i34.SelfStorage selfStorage;
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 }
 
 /// generated route for [_i25.CustomerParcelDetailsPage]
 class CustomerParcelDetailsRoute
     extends _i12.PageRouteInfo<CustomerParcelDetailsRouteArgs> {
   CustomerParcelDetailsRoute(
-      {required _i36.CustomerToCustomer customerToCustomer, _i32.Key? key})
+      {required _i35.CustomerToCustomer customerToCustomer, _i31.Key? key})
       : super(name,
             path: 'customerDetailsPage',
             args: CustomerParcelDetailsRouteArgs(
@@ -590,14 +589,14 @@ class CustomerParcelDetailsRouteArgs {
   const CustomerParcelDetailsRouteArgs(
       {required this.customerToCustomer, this.key});
 
-  final _i36.CustomerToCustomer customerToCustomer;
+  final _i35.CustomerToCustomer customerToCustomer;
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 }
 
 /// generated route for [_i26.CustomerParcelPage]
 class CustomerParcelRoute extends _i12.PageRouteInfo<CustomerParcelRouteArgs> {
-  CustomerParcelRoute({_i32.Key? key})
+  CustomerParcelRoute({_i31.Key? key})
       : super(name,
             path: 'customer2Customer', args: CustomerParcelRouteArgs(key: key));
 
@@ -607,13 +606,13 @@ class CustomerParcelRoute extends _i12.PageRouteInfo<CustomerParcelRouteArgs> {
 class CustomerParcelRouteArgs {
   const CustomerParcelRouteArgs({this.key});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 }
 
 /// generated route for [_i27.SelfStorageParcelPage]
 class SelfStorageParcelRoute
     extends _i12.PageRouteInfo<SelfStorageParcelRouteArgs> {
-  SelfStorageParcelRoute({_i32.Key? key})
+  SelfStorageParcelRoute({_i31.Key? key})
       : super(name,
             path: 'selfStorage', args: SelfStorageParcelRouteArgs(key: key));
 
@@ -623,7 +622,7 @@ class SelfStorageParcelRoute
 class SelfStorageParcelRouteArgs {
   const SelfStorageParcelRouteArgs({this.key});
 
-  final _i32.Key? key;
+  final _i31.Key? key;
 }
 
 /// generated route for [_i28.ProfilePage]

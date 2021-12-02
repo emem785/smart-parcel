@@ -53,13 +53,30 @@ class SelfStoragePayment extends HookWidget {
                 "You may proceed to the SmartParcel Locker",
                 textAlign: TextAlign.center,
               ),
-              Text(
-                "Your drop-off code is ${paymentData.dropOff}",
-                textAlign: TextAlign.center,
+              Text.rich(
+                TextSpan(
+                  text: "Your drop-off code is ",
+                  children: [
+                    TextSpan(
+                      text: paymentData.dropOff,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: GlobalTheme.primaryColor,
+                      ),
+                    )
+                  ],
+                ),
               ),
-              Text(
-                "Your pick-up code is ${paymentData.pickUp}",
-                textAlign: TextAlign.center,
+              Text.rich(
+                TextSpan(text: "Your pick-up code is ", children: [
+                  TextSpan(
+                    text: paymentData.pickUp,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFF29E25),
+                    ),
+                  )
+                ]),
               ),
               LayoutConstants.sizeBox(context, 54)
             ],

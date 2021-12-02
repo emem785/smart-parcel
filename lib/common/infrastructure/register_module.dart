@@ -13,6 +13,7 @@ import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dar
 import 'package:smart_parcel/common/infrastructure/chopper/jwt_authenticator.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/paystack_error_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/paystack_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/places_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/services/common_http_service.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -24,6 +25,9 @@ abstract class RegisterModule {
 
   @Named("paystackSecretkey")
   String get secretKey => dotenv.env['PAYSTACK_SK'].toString();
+
+  @Named("googleCloudApiKey")
+  String get apiKey => dotenv.env['GOOGLE_API'].toString();
 
   @lazySingleton
   PaystackPlugin get payStackPlugin {
@@ -77,6 +81,7 @@ abstract class RegisterModule {
         getIt<ConnectivityInterceptor>(),
         getIt<AuthInterceptor>(),
         getIt<PaystackInterceptor>(),
+        getIt<PlacesInterceptor>(),
         PaystackErrorInterceptor(),
         ErrorInterceptor(),
       ],

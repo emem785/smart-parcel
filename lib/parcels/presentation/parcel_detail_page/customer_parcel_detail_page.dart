@@ -59,6 +59,14 @@ class CustomerParcelDetailsPage extends HookWidget {
                     title: Text(customerToCustomer.address),
                     subtitle: const Text("Location Of Locker"),
                   ),
+                  ListTile(
+                    title: Text(customerToCustomer.pickUp),
+                    subtitle: const Text("Pick Up Code"),
+                  ),
+                  ListTile(
+                    title: Text(customerToCustomer.dropOff),
+                    subtitle: const Text("Drop Off Code"),
+                  ),
                 ],
               ),
             ),

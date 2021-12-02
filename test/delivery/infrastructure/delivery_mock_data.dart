@@ -3,6 +3,8 @@ import 'package:smart_parcel/delivery/domain/models/booking_data.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_response.dart';
 import 'package:smart_parcel/delivery/domain/models/center.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
+import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
+import 'package:smart_parcel/delivery/domain/models/result.dart';
 
 const selfStorageError = '''{
   "message": "failed",
@@ -175,3 +177,103 @@ const mockCenterDistricts = [
         created_at: "2021-11-16T17:06:59.540729Z")
   ])
 ];
+
+const googlePlacesResponse = '''{
+    "html_attributions": [],
+    "next_page_token": "Aap_uECmij5juJyyNm6Be0uqmBsvW4ib5YsPZrUStAE7MEb-XBImVyU5mgFxNUHNheXSUOEIM2KvXzFiK835sL2FIbGwBQJKJNiy3NGRFZ5lxbgQgQi-kur0NilMHcHzu3YMgbKXGjnbNHxgpwLAhLsGtKG9lDuPPZYoTLYN3uhXY38gLyPefL2RJxqXaQP0LsZk-WVXWZ3G79uhx7NfBowig17NV8ZdA1TkQkM2kzu7BoiXUe-ny05EvuzU0q3a1YJtVxujq8Fm58H88iRbw8RP8WhD-I_ZEOboqafzzppbS-7xuPcEZ6ncV7aqkEn_FXGMAs3d32FQQzkDi9SBVth1uPnQsNVxBhGnh92a-pCouCpHvMuhkympMBVxK80KwEegjM9iA3gQ",
+    "results": [
+        {
+            "business_status": "OPERATIONAL",
+            "formatted_address": "no 9 bakare street off oriola ketu lagos kosofe local government, Ketu 105102, Lagos, Nigeria",
+            "geometry": {
+                "location": {
+                    "lat": 6.5909719,
+                    "lng": 3.3937029
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.592297979892722,
+                        "lng": 3.395088529892722
+                    },
+                    "southwest": {
+                        "lat": 6.589598320107278,
+                        "lng": 3.392388870107277
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "icon_background_color": "#7B9EB0",
+            "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+            "name": "Adebambo Professional Partners",
+            "opening_hours": {
+                "open_now": true
+            },
+            "place_id": "ChIJs9kWLXeTOxARtlLYZczFvrQ",
+            "plus_code": {
+                "compound_code": "H9RV+9F Lagos",
+                "global_code": "6FR5H9RV+9F"
+            },
+            "rating": 0,
+            "reference": "ChIJs9kWLXeTOxARtlLYZczFvrQ",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "formatted_address": "228 Ikorodu Rd, Somolu 102216, Lagos, Nigeria",
+            "geometry": {
+                "location": {
+                    "lat": 6.5442886,
+                    "lng": 3.3676105
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 6.545637479892722,
+                        "lng": 3.368903979892722
+                    },
+                    "southwest": {
+                        "lat": 6.542937820107278,
+                        "lng": 3.366204320107277
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/shopping-71.png",
+            "icon_background_color": "#4B96F3",
+            "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+            "name": "Abiodun Stores, 7, Adebambo Street, Obanikoro,La",
+            "place_id": "ChIJU2EHwnSNOxARN6Vr7tYmEFo",
+            "plus_code": {
+                "compound_code": "G9V9+P2 Lagos",
+                "global_code": "6FR5G9V9+P2"
+            },
+            "rating": 0,
+            "reference": "ChIJU2EHwnSNOxARN6Vr7tYmEFo",
+            "types": [
+                "food",
+                "point_of_interest",
+                "store",
+                "establishment"
+            ],
+            "user_ratings_total": 0
+        }        
+    ],
+    "status": "OK"
+}''';
+
+const locationResult = LocationResultResponse(
+    htmlAttributions: [],
+    nextPageToken:
+        "Aap_uECmij5juJyyNm6Be0uqmBsvW4ib5YsPZrUStAE7MEb-XBImVyU5mgFxNUHNheXSUOEIM2KvXzFiK835sL2FIbGwBQJKJNiy3NGRFZ5lxbgQgQi-kur0NilMHcHzu3YMgbKXGjnbNHxgpwLAhLsGtKG9lDuPPZYoTLYN3uhXY38gLyPefL2RJxqXaQP0LsZk-WVXWZ3G79uhx7NfBowig17NV8ZdA1TkQkM2kzu7BoiXUe-ny05EvuzU0q3a1YJtVxujq8Fm58H88iRbw8RP8WhD-I_ZEOboqafzzppbS-7xuPcEZ6ncV7aqkEn_FXGMAs3d32FQQzkDi9SBVth1uPnQsNVxBhGnh92a-pCouCpHvMuhkympMBVxK80KwEegjM9iA3gQ",
+    results: [
+      LocationResult(
+          businessStatus: "OPERATIONAL",
+          formattedAddress:
+              "no 9 bakare street off oriola ketu lagos kosofe local government, Ketu 105102, Lagos, Nigeria"),
+      LocationResult(
+          businessStatus: "OPERATIONAL",
+          formattedAddress: "228 Ikorodu Rd, Somolu 102216, Lagos, Nigeria")
+    ],
+    status: "OK");

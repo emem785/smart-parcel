@@ -50,6 +50,9 @@ class CustomerToCustomerPayment extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 1,
+                      error: (v) => deliveryBloc.deliveryUseCases
+                          .showErrorUseCase(
+                              context: context, message: v.failure.message),
                       bookingFinished: (v) => context.router
                           .push(ReceiptRoute(paymentData: v.paymentData)),
                     );

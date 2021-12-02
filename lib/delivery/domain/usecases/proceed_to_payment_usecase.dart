@@ -18,6 +18,8 @@ class ProceedToPaymentUseCase {
       await _bookSelfStorage(event, emit);
     } else if (event.routeInfo is CustomerToCustomerPaymentRoute) {
       await _bookCustomerToCustomer(event, emit);
+    } else if (event.routeInfo is CustomerToCourierPaymentRoute) {
+      await _bookCustomerToCustomer(event, emit);
     }
   }
 

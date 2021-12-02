@@ -2,7 +2,7 @@
     package="com.getmobile.smart_parcel">
    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="smart parcel"
+        android:label="Smart parcel"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

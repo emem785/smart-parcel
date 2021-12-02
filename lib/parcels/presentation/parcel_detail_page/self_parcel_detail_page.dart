@@ -50,7 +50,15 @@ class SelfParcelDetailsPage extends HookWidget {
                   ListTile(
                     title: Text(selfStorage.address),
                     subtitle: const Text("Location Of Locker"),
-                  )
+                  ),
+                  ListTile(
+                    title: Text(selfStorage.pickUp),
+                    subtitle: const Text("Pick Up Code"),
+                  ),
+                  ListTile(
+                    title: Text(selfStorage.dropOff),
+                    subtitle: const Text("Drop Off Code"),
+                  ),
                 ],
               ),
             ),

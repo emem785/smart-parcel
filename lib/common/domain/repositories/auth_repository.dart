@@ -46,6 +46,9 @@ class AuthRepository {
 
   Future<void> storeUser(User user) => authStorageInterface.storeUser(user);
 
+  Future<void> storeToken(AuthToken token) =>
+      authStorageInterface.storeToken(token);
+
   Future<Either<Failure, Unit>> removeUser() async {
     try {
       await commonStorageInterface.removeUser();
