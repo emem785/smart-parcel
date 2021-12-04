@@ -15,5 +15,6 @@ class DeliveryEvent with _$DeliveryEvent {
     required String? duration,
     required CustomerForm? customerForm,
   }) = ProccedToPayment;
+  const factory DeliveryEvent.search(String query) = Search;
   const factory DeliveryEvent.getParcelCenters() = GetParcelCenters;
 }

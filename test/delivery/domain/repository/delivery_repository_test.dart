@@ -106,7 +106,7 @@ Future<void> main() async {
         AuthTestSetup.setup(googlePlacesResponse, 200);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response = await repo.searchPlaces("");
+        final response = await repo.searchPlaces("adebambo");
         // assert
         return response.fold(
           (l) => expect(l, null),

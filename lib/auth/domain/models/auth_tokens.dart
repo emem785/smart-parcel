@@ -23,7 +23,7 @@ class AuthToken {
   const AuthToken.empty() : this(access: '', refresh: '');
   const AuthToken.placeHolder() : this(access: 'access', refresh: 'refresh');
   const AuthToken.paystack() : this(access: 'paystack', refresh: 'paystack');
-  const AuthToken.places() : this(access: 'places', refresh: 'paystack');
+  const AuthToken.places() : this(access: 'places', refresh: 'places');
 
   Map<String, dynamic> toMap() {
     return {

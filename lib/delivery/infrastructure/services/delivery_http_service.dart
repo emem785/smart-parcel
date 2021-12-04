@@ -22,7 +22,7 @@ abstract class DeliveryHttpService extends ChopperService {
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
-  @Get(path: '/parcel_centers/')
+  @Get(path: '/locations/')
   Future<Response<List<CenterDistrict>>> getParcelCenters(
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,

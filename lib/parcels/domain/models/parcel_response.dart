@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
-import 'package:smart_parcel/parcel/domain/models/parcel_data.dart';
+
+import 'parcel_data.dart';
 
 class ParcelResponse {
   final bool status;

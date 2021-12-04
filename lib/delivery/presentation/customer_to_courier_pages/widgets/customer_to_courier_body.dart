@@ -9,6 +9,7 @@ import 'package:smart_parcel/common/utils/validator_util.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
+import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/widgets/address_search_delegate.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_conditions.dart';
 
 const agreement =
@@ -142,6 +143,8 @@ Widget buildCustomerForm({
         ),
         TextFormField(
           controller: addressController,
+          readOnly: true,
+          onTap: () => getAddressResult(context, addressController),
           validator: ValidatorUtil.normalValidator,
           decoration: const InputDecoration(labelText: "Address of Recipient"),
           key: CustomerToCourierBody.addressKey,
@@ -149,4 +152,15 @@ Widget buildCustomerForm({
       ],
     ),
   );
+}
+
+Future<void> getAddressResult(
+  BuildContext context,
+  TextEditingController addressController,
+) async {
+  final address = await showSearch(
+    context: context,
+    delegate: AddressSearchDelegate(context.read<DeliveryBloc>()),
+  );
+  addressController.text = address;
 }

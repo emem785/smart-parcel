@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
-import 'package:smart_parcel/parcel/domain/models/self_storage.dart';
+import 'package:smart_parcel/parcels/domain/models/self_storage.dart';
 
 class SelfParcelDetailsPage extends HookWidget {
   final SelfStorage selfStorage;

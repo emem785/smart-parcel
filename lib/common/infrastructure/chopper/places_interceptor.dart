@@ -22,6 +22,7 @@ class PlacesInterceptor extends RequestInterceptor {
         },
         parameters: {
           "key": apiKey,
+          "query": request.parameters["query"],
         },
       );
       return newRequest;

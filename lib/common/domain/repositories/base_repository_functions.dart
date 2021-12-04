@@ -146,7 +146,7 @@ Future<Either<Failure, T>> getDataPlacesSearch<T>(
   try {
     const authToken = AuthToken.places();
     final response =
-        await getData(authToken.refresh, "Bearer ${authToken.access}", query);
+        await getData(query, "Bearer ${authToken.access}", authToken.refresh);
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Search Error"));

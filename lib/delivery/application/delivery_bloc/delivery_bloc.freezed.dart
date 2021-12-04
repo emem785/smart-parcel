@@ -42,6 +42,12 @@ class _$DeliveryEventTearOff {
     );
   }
 
+  Search search(String query) {
+    return Search(
+      query,
+    );
+  }
+
   GetParcelCenters getParcelCenters() {
     return const GetParcelCenters();
   }
@@ -65,6 +71,7 @@ mixin _$DeliveryEvent {
             String? duration,
             CustomerForm? customerForm)
         proceedToPayment,
+    required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +87,7 @@ mixin _$DeliveryEvent {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
   }) =>
       throw _privateConstructorUsedError;
@@ -95,6 +103,7 @@ mixin _$DeliveryEvent {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
   }) =>
@@ -103,6 +112,7 @@ mixin _$DeliveryEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
     required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
   }) =>
       throw _privateConstructorUsedError;
@@ -110,6 +120,7 @@ mixin _$DeliveryEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +128,7 @@ mixin _$DeliveryEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     required TResult orElse(),
   }) =>
@@ -224,6 +236,7 @@ class _$SelectLocation implements SelectLocation {
             String? duration,
             CustomerForm? customerForm)
         proceedToPayment,
+    required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
   }) {
     return selectLocation(context, routeInfo);
@@ -242,6 +255,7 @@ class _$SelectLocation implements SelectLocation {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
   }) {
     return selectLocation?.call(context, routeInfo);
@@ -260,6 +274,7 @@ class _$SelectLocation implements SelectLocation {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -274,6 +289,7 @@ class _$SelectLocation implements SelectLocation {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
     required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
   }) {
     return selectLocation(this);
@@ -284,6 +300,7 @@ class _$SelectLocation implements SelectLocation {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
   }) {
     return selectLocation?.call(this);
@@ -294,6 +311,7 @@ class _$SelectLocation implements SelectLocation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -449,6 +467,7 @@ class _$ProccedToPayment implements ProccedToPayment {
             String? duration,
             CustomerForm? customerForm)
         proceedToPayment,
+    required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
   }) {
     return proceedToPayment(context, routeInfo, paystackResponse, locationId,
@@ -468,6 +487,7 @@ class _$ProccedToPayment implements ProccedToPayment {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
   }) {
     return proceedToPayment?.call(context, routeInfo, paystackResponse,
@@ -487,6 +507,7 @@ class _$ProccedToPayment implements ProccedToPayment {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -502,6 +523,7 @@ class _$ProccedToPayment implements ProccedToPayment {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
     required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
   }) {
     return proceedToPayment(this);
@@ -512,6 +534,7 @@ class _$ProccedToPayment implements ProccedToPayment {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
   }) {
     return proceedToPayment?.call(this);
@@ -522,6 +545,7 @@ class _$ProccedToPayment implements ProccedToPayment {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -550,6 +574,172 @@ abstract class ProccedToPayment implements DeliveryEvent {
   @JsonKey(ignore: true)
   $ProccedToPaymentCopyWith<ProccedToPayment> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchCopyWith<$Res> {
+  factory $SearchCopyWith(Search value, $Res Function(Search) then) =
+      _$SearchCopyWithImpl<$Res>;
+  $Res call({String query});
+}
+
+/// @nodoc
+class _$SearchCopyWithImpl<$Res> extends _$DeliveryEventCopyWithImpl<$Res>
+    implements $SearchCopyWith<$Res> {
+  _$SearchCopyWithImpl(Search _value, $Res Function(Search) _then)
+      : super(_value, (v) => _then(v as Search));
+
+  @override
+  Search get _value => super._value as Search;
+
+  @override
+  $Res call({
+    Object? query = freezed,
+  }) {
+    return _then(Search(
+      query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Search implements Search {
+  const _$Search(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'DeliveryEvent.search(query: $query)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Search &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  $SearchCopyWith<Search> get copyWith =>
+      _$SearchCopyWithImpl<Search>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            BuildContext context, PageRouteInfo<dynamic> routeInfo)
+        selectLocation,
+    required TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)
+        proceedToPayment,
+    required TResult Function(String query) search,
+    required TResult Function() getParcelCenters,
+  }) {
+    return search(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
+        selectLocation,
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
+        proceedToPayment,
+    TResult Function(String query)? search,
+    TResult Function()? getParcelCenters,
+  }) {
+    return search?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
+        selectLocation,
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
+        proceedToPayment,
+    TResult Function(String query)? search,
+    TResult Function()? getParcelCenters,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectLocation value) selectLocation,
+    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
+    required TResult Function(GetParcelCenters value) getParcelCenters,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SelectLocation value)? selectLocation,
+    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
+    TResult Function(GetParcelCenters value)? getParcelCenters,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectLocation value)? selectLocation,
+    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
+    TResult Function(GetParcelCenters value)? getParcelCenters,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Search implements DeliveryEvent {
+  const factory Search(String query) = _$Search;
+
+  String get query;
+  @JsonKey(ignore: true)
+  $SearchCopyWith<Search> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -604,6 +794,7 @@ class _$GetParcelCenters implements GetParcelCenters {
             String? duration,
             CustomerForm? customerForm)
         proceedToPayment,
+    required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
   }) {
     return getParcelCenters();
@@ -622,6 +813,7 @@ class _$GetParcelCenters implements GetParcelCenters {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
   }) {
     return getParcelCenters?.call();
@@ -640,6 +832,7 @@ class _$GetParcelCenters implements GetParcelCenters {
             String? duration,
             CustomerForm? customerForm)?
         proceedToPayment,
+    TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -654,6 +847,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
     required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
   }) {
     return getParcelCenters(this);
@@ -664,6 +858,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
   }) {
     return getParcelCenters?.call(this);
@@ -674,6 +869,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
     TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     required TResult orElse(),
   }) {
@@ -712,6 +908,12 @@ class _$DeliveryStateTearOff {
     );
   }
 
+  PlaceRetrieved placeRetrieved(LocationResultResponse locationResultResponse) {
+    return PlaceRetrieved(
+      locationResultResponse,
+    );
+  }
+
   BookingFinished bookingFinished(PaymentData paymentData) {
     return BookingFinished(
       paymentData,
@@ -736,6 +938,8 @@ mixin _$DeliveryState {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) =>
@@ -746,6 +950,8 @@ mixin _$DeliveryState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) =>
@@ -756,6 +962,8 @@ mixin _$DeliveryState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -767,6 +975,7 @@ mixin _$DeliveryState {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) =>
@@ -777,6 +986,7 @@ mixin _$DeliveryState {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) =>
@@ -787,6 +997,7 @@ mixin _$DeliveryState {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -856,6 +1067,8 @@ class _$DeliveryInitial implements DeliveryInitial {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -869,6 +1082,8 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -882,6 +1097,8 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -899,6 +1116,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -912,6 +1130,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -925,6 +1144,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -985,6 +1205,8 @@ class _$DeliveryLoading implements DeliveryLoading {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -998,6 +1220,8 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -1011,6 +1235,8 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -1028,6 +1254,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -1041,6 +1268,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -1054,6 +1282,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -1137,6 +1366,8 @@ class _$DeliveryError implements DeliveryError {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -1150,6 +1381,8 @@ class _$DeliveryError implements DeliveryError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -1163,6 +1396,8 @@ class _$DeliveryError implements DeliveryError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -1180,6 +1415,7 @@ class _$DeliveryError implements DeliveryError {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -1193,6 +1429,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -1206,6 +1443,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -1295,6 +1533,8 @@ class _$LocationRetrieved implements LocationRetrieved {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -1308,6 +1548,8 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -1321,6 +1563,8 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -1338,6 +1582,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -1351,6 +1596,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -1364,6 +1610,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -1382,6 +1629,174 @@ abstract class LocationRetrieved implements DeliveryState {
   ParcelCenter get parcelCenter;
   @JsonKey(ignore: true)
   $LocationRetrievedCopyWith<LocationRetrieved> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlaceRetrievedCopyWith<$Res> {
+  factory $PlaceRetrievedCopyWith(
+          PlaceRetrieved value, $Res Function(PlaceRetrieved) then) =
+      _$PlaceRetrievedCopyWithImpl<$Res>;
+  $Res call({LocationResultResponse locationResultResponse});
+}
+
+/// @nodoc
+class _$PlaceRetrievedCopyWithImpl<$Res>
+    extends _$DeliveryStateCopyWithImpl<$Res>
+    implements $PlaceRetrievedCopyWith<$Res> {
+  _$PlaceRetrievedCopyWithImpl(
+      PlaceRetrieved _value, $Res Function(PlaceRetrieved) _then)
+      : super(_value, (v) => _then(v as PlaceRetrieved));
+
+  @override
+  PlaceRetrieved get _value => super._value as PlaceRetrieved;
+
+  @override
+  $Res call({
+    Object? locationResultResponse = freezed,
+  }) {
+    return _then(PlaceRetrieved(
+      locationResultResponse == freezed
+          ? _value.locationResultResponse
+          : locationResultResponse // ignore: cast_nullable_to_non_nullable
+              as LocationResultResponse,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PlaceRetrieved implements PlaceRetrieved {
+  const _$PlaceRetrieved(this.locationResultResponse);
+
+  @override
+  final LocationResultResponse locationResultResponse;
+
+  @override
+  String toString() {
+    return 'DeliveryState.placeRetrieved(locationResultResponse: $locationResultResponse)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PlaceRetrieved &&
+            (identical(other.locationResultResponse, locationResultResponse) ||
+                other.locationResultResponse == locationResultResponse));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationResultResponse);
+
+  @JsonKey(ignore: true)
+  @override
+  $PlaceRetrievedCopyWith<PlaceRetrieved> get copyWith =>
+      _$PlaceRetrievedCopyWithImpl<PlaceRetrieved>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) error,
+    required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
+    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(List<CenterDistrict> districts) centersRetreived,
+  }) {
+    return placeRetrieved(locationResultResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
+    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(List<CenterDistrict> districts)? centersRetreived,
+  }) {
+    return placeRetrieved?.call(locationResultResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
+    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(List<CenterDistrict> districts)? centersRetreived,
+    required TResult orElse(),
+  }) {
+    if (placeRetrieved != null) {
+      return placeRetrieved(locationResultResponse);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeliveryInitial value) initial,
+    required TResult Function(DeliveryLoading value) loading,
+    required TResult Function(DeliveryError value) error,
+    required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
+    required TResult Function(BookingFinished value) bookingFinished,
+    required TResult Function(CentersRetreived value) centersRetreived,
+  }) {
+    return placeRetrieved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(DeliveryInitial value)? initial,
+    TResult Function(DeliveryLoading value)? loading,
+    TResult Function(DeliveryError value)? error,
+    TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
+    TResult Function(BookingFinished value)? bookingFinished,
+    TResult Function(CentersRetreived value)? centersRetreived,
+  }) {
+    return placeRetrieved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeliveryInitial value)? initial,
+    TResult Function(DeliveryLoading value)? loading,
+    TResult Function(DeliveryError value)? error,
+    TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
+    TResult Function(BookingFinished value)? bookingFinished,
+    TResult Function(CentersRetreived value)? centersRetreived,
+    required TResult orElse(),
+  }) {
+    if (placeRetrieved != null) {
+      return placeRetrieved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PlaceRetrieved implements DeliveryState {
+  const factory PlaceRetrieved(LocationResultResponse locationResultResponse) =
+      _$PlaceRetrieved;
+
+  LocationResultResponse get locationResultResponse;
+  @JsonKey(ignore: true)
+  $PlaceRetrievedCopyWith<PlaceRetrieved> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1454,6 +1869,8 @@ class _$BookingFinished implements BookingFinished {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -1467,6 +1884,8 @@ class _$BookingFinished implements BookingFinished {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -1480,6 +1899,8 @@ class _$BookingFinished implements BookingFinished {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -1497,6 +1918,7 @@ class _$BookingFinished implements BookingFinished {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -1510,6 +1932,7 @@ class _$BookingFinished implements BookingFinished {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -1523,6 +1946,7 @@ class _$BookingFinished implements BookingFinished {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),
@@ -1612,6 +2036,8 @@ class _$CentersRetreived implements CentersRetreived {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
+    required TResult Function(LocationResultResponse locationResultResponse)
+        placeRetrieved,
     required TResult Function(PaymentData paymentData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
@@ -1625,6 +2051,8 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
@@ -1638,6 +2066,8 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
+    TResult Function(LocationResultResponse locationResultResponse)?
+        placeRetrieved,
     TResult Function(PaymentData paymentData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
@@ -1655,6 +2085,7 @@ class _$CentersRetreived implements CentersRetreived {
     required TResult Function(DeliveryLoading value) loading,
     required TResult Function(DeliveryError value) error,
     required TResult Function(LocationRetrieved value) locationRetrieved,
+    required TResult Function(PlaceRetrieved value) placeRetrieved,
     required TResult Function(BookingFinished value) bookingFinished,
     required TResult Function(CentersRetreived value) centersRetreived,
   }) {
@@ -1668,6 +2099,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
   }) {
@@ -1681,6 +2113,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function(DeliveryLoading value)? loading,
     TResult Function(DeliveryError value)? error,
     TResult Function(LocationRetrieved value)? locationRetrieved,
+    TResult Function(PlaceRetrieved value)? placeRetrieved,
     TResult Function(BookingFinished value)? bookingFinished,
     TResult Function(CentersRetreived value)? centersRetreived,
     required TResult orElse(),

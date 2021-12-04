@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
-import 'package:smart_parcel/parcel/domain/models/parcel_response.dart';
+import 'package:smart_parcel/parcels/domain/models/parcel_response.dart';
 
 part 'parcel_http_service.chopper.dart';
 

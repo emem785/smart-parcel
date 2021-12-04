@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class LocationResult {
-  final String businessStatus;
+  final String? businessStatus;
   final String formattedAddress;
 
   const LocationResult({
@@ -21,7 +21,7 @@ class LocationResult {
 
   Map<String, dynamic> toMap() {
     return {
-      'businessStatus': businessStatus,
+      'businessStatus': businessStatus ?? '',
       'formattedAddress': formattedAddress,
     };
   }

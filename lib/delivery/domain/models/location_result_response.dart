@@ -7,7 +7,7 @@ import 'result.dart';
 
 class LocationResultResponse {
   final List<dynamic> htmlAttributions;
-  final String nextPageToken;
+  final String? nextPageToken;
   final List<LocationResult> results;
   final String status;
   const LocationResultResponse({
@@ -34,7 +34,7 @@ class LocationResultResponse {
   Map<String, dynamic> toMap() {
     return {
       'htmlAttributions': htmlAttributions,
-      'nextPageToken': nextPageToken,
+      'nextPageToken': nextPageToken ?? "",
       'results': results.map((x) => x.toMap()).toList(),
       'status': status,
     };

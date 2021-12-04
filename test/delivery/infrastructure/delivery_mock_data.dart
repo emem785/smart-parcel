@@ -30,21 +30,40 @@ const selfStorageJson = '''{
 
 const getParcelCentersJson = '''[
     {
-        "name": "Yaba",
+        "name": "Lekki",
         "centers": [
             {
-                "id": 3,
-                "location": "Yaba",
-                "address": "Spar, Tejuoso Market, Yaba",
+                "id": 1,
+                "user_id": null,
+                "location": "Lekki",
+                "center_name": "The Palms Shopping Mall",
+                "address": "10, Fola Osibo Road, Lekki, Lagos, Nigeria",
+                "no_of_compartment": 5,
+                "available_space": 5,
                 "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540708Z"
+                "created_at": "2021-12-02T11:24:12.880460Z"
             },
             {
-                "id": 5,
-                "location": "Yaba",
-                "address": "Mini so, Tejuoso Market, Yaba",
+                "id": 2,
+                "user_id": null,
+                "location": "Lekki",
+                "center_name": "Lennox Mall, Admiralty Way",
+                "address": " 12, Layi Yusuf Crescent, Lekki, Lagos, Nigeria",
+                "no_of_compartment": 2,
+                "available_space": 2,
                 "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540747Z"
+                "created_at": "2021-12-02T11:24:12.880499Z"
+            },
+            {
+                "id": 4,
+                "user_id": null,
+                "location": "Lekki",
+                "center_name": "The Palms Shopping Mall",
+                "address": " 38, Olanrewaju Ninalowo Crescent, Lekki, Lagos, Nigeria",
+                "no_of_compartment": 5,
+                "available_space": 5,
+                "is_active": true,
+                "created_at": "2021-12-02T11:24:12.880541Z"
             }
         ]
     },
@@ -53,36 +72,41 @@ const getParcelCentersJson = '''[
         "centers": [
             {
                 "id": 6,
+                "user_id": null,
                 "location": "Surulere",
-                "address": "Leisure Mall",
+                "center_name": "Leisure Mall",
+                "address": "18,oyekan Street, Surulere, Lagos, Nigeria",
+                "no_of_compartment": 3,
+                "available_space": 3,
                 "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540767Z"
+                "created_at": "2021-12-02T11:24:12.880594Z"
             }
         ]
     },
     {
-        "name": "Lekki",
+        "name": "Yaba",
         "centers": [
             {
-                "id": 1,
-                "location": "Lekki",
-                "address": "The Palms Shopping Mall",
+                "id": 3,
+                "user_id": null,
+                "location": "Yaba",
+                "center_name": "Spar, Tejuoso Market, Yaba",
+                "address": "1-3, Ijaoye Street, Yaba, Nigeria",
+                "no_of_compartment": 2,
+                "available_space": 2,
                 "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540638Z"
+                "created_at": "2021-12-02T11:24:12.880518Z"
             },
             {
-                "id": 2,
-                "location": "Lekki",
-                "address": "Lennox Mall, Admiralty Way",
+                "id": 5,
+                "user_id": null,
+                "location": "Yaba",
+                "center_name": "Mini so, Tejuoso Market, Yaba",
+                "address": "6 Araoti Street, Yaba, Lagos, Nigeria",
+                "no_of_compartment": 4,
+                "available_space": 4,
                 "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540686Z"
-            },
-            {
-                "id": 4,
-                "location": "Lekki",
-                "address": "The Palms Shopping Mall",
-                "is_active": true,
-                "created_at": "2021-11-16T17:06:59.540729Z"
+                "created_at": "2021-12-02T11:24:12.880563Z"
             }
         ]
     }
@@ -134,47 +158,59 @@ const mockCustomerToCustomerResponse = BookingResponse(
 const selfStorageFailure = Failure("Unexpected Server Error");
 
 const mockCenterDistricts = [
-  CenterDistrict(name: "Yaba", centers: [
-    ParcelCenter(
-        id: 3,
-        location: "Yaba",
-        address: "Spar, Tejuoso Market, Yaba",
-        is_active: true,
-        created_at: "2021-11-16T17:06:59.540708Z"),
-    ParcelCenter(
-        id: 5,
-        location: "Yaba",
-        address: "Mini so, Tejuoso Market, Yaba",
-        is_active: true,
-        created_at: "2021-11-16T17:06:59.540747Z")
-  ]),
-  CenterDistrict(name: "Surulere", centers: [
-    ParcelCenter(
-        id: 6,
-        location: "Surulere",
-        address: "Leisure Mall",
-        is_active: true,
-        created_at: "2021-11-16T17:06:59.540767Z")
-  ]),
-  CenterDistrict(name: "Lekki", centers: [
+  CenterDistrict(name: 'Lekki', centers: [
     ParcelCenter(
         id: 1,
-        location: "Lekki",
-        address: "The Palms Shopping Mall",
+        noOfCompartments: 5,
+        availableSpaces: 5,
+        location: 'Lekki',
+        address: '10, Fola Osibo Road, Lekki, Lagos, Nigeria',
         is_active: true,
-        created_at: "2021-11-16T17:06:59.540638Z"),
+        created_at: '2021-12-02T11:24:12.880460Z'),
     ParcelCenter(
         id: 2,
-        location: "Lekki",
-        address: "Lennox Mall, Admiralty Way",
+        noOfCompartments: 2,
+        availableSpaces: 2,
+        location: 'Lekki',
+        address: ' 12, Layi Yusuf Crescent, Lekki, Lagos, Nigeria',
         is_active: true,
-        created_at: "2021-11-16T17:06:59.540686Z"),
+        created_at: '2021-12-02T11:24:12.880499Z'),
     ParcelCenter(
         id: 4,
-        location: "Lekki",
-        address: "The Palms Shopping Mall",
+        noOfCompartments: 5,
+        availableSpaces: 5,
+        location: 'Lekki',
+        address: ' 38, Olanrewaju Ninalowo Crescent, Lekki, Lagos, Nigeria',
         is_active: true,
-        created_at: "2021-11-16T17:06:59.540729Z")
+        created_at: '2021-12-02T11:24:12.880541Z')
+  ]),
+  CenterDistrict(name: 'Surulere', centers: [
+    ParcelCenter(
+        id: 6,
+        noOfCompartments: 3,
+        availableSpaces: 3,
+        location: 'Surulere',
+        address: '18,oyekan Street, Surulere, Lagos, Nigeria',
+        is_active: true,
+        created_at: '2021-12-02T11:24:12.880594Z')
+  ]),
+  CenterDistrict(name: 'Yaba', centers: [
+    ParcelCenter(
+        id: 3,
+        noOfCompartments: 2,
+        availableSpaces: 2,
+        location: 'Yaba',
+        address: '1-3, Ijaoye Street, Yaba, Nigeria',
+        is_active: true,
+        created_at: '2021-12-02T11:24:12.880518Z'),
+    ParcelCenter(
+        id: 5,
+        noOfCompartments: 4,
+        availableSpaces: 4,
+        location: 'Yaba',
+        address: '6 Araoti Street, Yaba, Lagos, Nigeria',
+        is_active: true,
+        created_at: '2021-12-02T11:24:12.880563Z')
   ])
 ];
 

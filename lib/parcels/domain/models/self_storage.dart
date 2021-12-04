@@ -7,10 +7,10 @@ class SelfStorage {
   final int locationId;
   final String status;
   final String address;
+  final String pickUp;
+  final String dropOff;
   final bool isActive;
   final String createdAt;
-  final String dropOff;
-  final String pickUp;
   const SelfStorage({
     required this.id,
     required this.userId,
@@ -18,10 +18,10 @@ class SelfStorage {
     required this.locationId,
     required this.status,
     required this.address,
+    required this.pickUp,
+    required this.dropOff,
     required this.isActive,
     required this.createdAt,
-    required this.dropOff,
-    required this.pickUp,
   });
 
   SelfStorage copyWith({
@@ -31,10 +31,10 @@ class SelfStorage {
     int? locationId,
     String? status,
     String? address,
+    String? pickUp,
+    String? dropOff,
     bool? isActive,
     String? createdAt,
-    String? dropOff,
-    String? pickUp,
   }) {
     return SelfStorage(
       id: id ?? this.id,
@@ -43,10 +43,10 @@ class SelfStorage {
       locationId: locationId ?? this.locationId,
       status: status ?? this.status,
       address: address ?? this.address,
+      pickUp: pickUp ?? this.pickUp,
+      dropOff: dropOff ?? this.dropOff,
       isActive: isActive ?? this.isActive,
       createdAt: createdAt ?? this.createdAt,
-      dropOff: dropOff ?? this.dropOff,
-      pickUp: pickUp ?? this.pickUp,
     );
   }
 
@@ -58,10 +58,10 @@ class SelfStorage {
       'locationId': locationId,
       'status': status,
       'address': address,
+      'pickUp': pickUp,
+      'dropOff': dropOff,
       'isActive': isActive,
       'createdAt': createdAt,
-      'dropOff': dropOff,
-      'pickUp': pickUp,
     };
   }
 
@@ -73,10 +73,10 @@ class SelfStorage {
       locationId: map['location_id']?.toInt() ?? 0,
       status: map['status'] ?? '',
       address: map['location__address'] ?? '',
+      pickUp: map['pick_up'] ?? '',
+      dropOff: map['drop_off'] ?? '',
       isActive: map['is_active'] ?? false,
       createdAt: map['created_at'] ?? '',
-      dropOff: map['drop_off'] ?? '',
-      pickUp: map['pick_up'] ?? '',
     );
   }
 
@@ -87,7 +87,7 @@ class SelfStorage {
 
   @override
   String toString() {
-    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt, dropOff: $dropOff, pickUp: $pickUp)';
+    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt)';
   }
 
   @override
@@ -101,10 +101,10 @@ class SelfStorage {
         other.locationId == locationId &&
         other.status == status &&
         other.address == address &&
-        other.isActive == isActive &&
-        other.createdAt == createdAt &&
+        other.pickUp == pickUp &&
         other.dropOff == dropOff &&
-        other.pickUp == pickUp;
+        other.isActive == isActive &&
+        other.createdAt == createdAt;
   }
 
   @override
@@ -115,9 +115,9 @@ class SelfStorage {
         locationId.hashCode ^
         status.hashCode ^
         address.hashCode ^
-        isActive.hashCode ^
-        createdAt.hashCode ^
+        pickUp.hashCode ^
         dropOff.hashCode ^
-        pickUp.hashCode;
+        isActive.hashCode ^
+        createdAt.hashCode;
   }
 }

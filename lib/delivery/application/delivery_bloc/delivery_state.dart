@@ -8,6 +8,8 @@ class DeliveryState with _$DeliveryState {
   const factory DeliveryState.error(Failure failure) = DeliveryError;
   const factory DeliveryState.locationRetrieved(ParcelCenter parcelCenter) =
       LocationRetrieved;
+  const factory DeliveryState.placeRetrieved(
+      LocationResultResponse locationResultResponse) = PlaceRetrieved;
   const factory DeliveryState.bookingFinished(PaymentData paymentData) =
       BookingFinished;
   const factory DeliveryState.centersRetreived(List<CenterDistrict> districts) =

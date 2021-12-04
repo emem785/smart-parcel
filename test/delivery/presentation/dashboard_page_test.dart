@@ -41,7 +41,7 @@ void main() {
         WidgetHelper.testableWidgetScaffold(child: const DashboardPage()),
       );
       await tester.pumpAndSettle();
-      expect(find.text(mockUser.username.capitalize()), findsOneWidget);
+      expect(find.text(mockUser.firstName.capitalize()), findsOneWidget);
     },
   );
 }

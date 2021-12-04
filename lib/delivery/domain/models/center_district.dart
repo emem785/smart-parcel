@@ -45,7 +45,7 @@ class CenterDistrict {
       CenterDistrict.fromMap(json.decode(source));
 
   @override
-  String toString() => 'CenterDistrict(name: $name, centers: $centers)';
+  String toString() => "CenterDistrict(name: '$name', centers: $centers)";
 
   @override
   bool operator ==(Object other) {

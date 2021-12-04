@@ -48,9 +48,9 @@ import 'package:smart_parcel/delivery/presentation/select_location_pages/select_
     as _i15;
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/choose_duration_page.dart'
     as _i14;
-import 'package:smart_parcel/parcel/domain/models/customer_to_customer.dart'
+import 'package:smart_parcel/parcels/domain/models/customer_to_customer.dart'
     as _i35;
-import 'package:smart_parcel/parcel/domain/models/self_storage.dart' as _i34;
+import 'package:smart_parcel/parcels/domain/models/self_storage.dart' as _i34;
 import 'package:smart_parcel/parcels/presentation/customer_parcel/customer_2_customer_parcel_page.dart'
     as _i26;
 import 'package:smart_parcel/parcels/presentation/parcel_detail_page/customer_parcel_detail_page.dart'

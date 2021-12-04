@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
-import 'package:smart_parcel/parcel/domain/models/self_storage.dart';
 import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
+import 'package:smart_parcel/parcels/domain/models/self_storage.dart';
 
 class SelfStorageParcelPage extends HookWidget {
   final DateFormat dateFormat = DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY);
@@ -86,13 +86,20 @@ class SelfStorageParcelPage extends HookWidget {
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
       opacity: visibility.value,
-      child: ListView.builder(
-        itemCount: selfStorages.length,
-        itemBuilder: (context, index) {
-          final historyItem = selfStorages[index];
-          return buildHistoryItem(historyItem, ctx);
-        },
-      ),
+      child: selfStorages.isNotEmpty
+          ? ListView.builder(
+              itemCount: selfStorages.length,
+              itemBuilder: (context, index) {
+                final historyItem = selfStorages[index];
+                return buildHistoryItem(historyItem, ctx);
+              },
+            )
+          : const Center(
+              child: Text(
+                "You currently have no  parcel's",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+            ),
     );
   }
 }

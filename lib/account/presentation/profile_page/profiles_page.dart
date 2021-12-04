@@ -119,7 +119,6 @@ class ProfileBody extends HookWidget {
                     if (formKey.value.currentState!.validate()) {
                       accountBloc.add(AccountEvent.editUser(User(
                         id: null,
-                        username: firstnameController.text,
                         firstName: firstnameController.text,
                         lastName: lastnameController.text,
                         email: emailController.text,

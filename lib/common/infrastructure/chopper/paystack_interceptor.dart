@@ -19,7 +19,8 @@ class PaystackInterceptor extends RequestInterceptor {
         baseUrl: "https://api.paystack.co/transaction",
         headers: {
           HttpHeaders.contentTypeHeader: "application/json",
-          HttpHeaders.authorizationHeader: "Bearer $paystackSecretKey"
+          HttpHeaders.authorizationHeader: "Bearer $paystackSecretKey",
+          "refresh": request.headers["refresh"]!,
         },
       );
       return newRequest;

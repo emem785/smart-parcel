@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
-import 'package:smart_parcel/parcel/domain/models/customer_to_customer.dart';
 import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
+import 'package:smart_parcel/parcels/domain/models/customer_to_customer.dart';
 
 class CustomerParcelPage extends HookWidget {
   final DateFormat dateFormat = DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY);
@@ -72,13 +72,20 @@ class CustomerParcelPage extends HookWidget {
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
       opacity: visibility.value,
-      child: ListView.builder(
-        itemCount: c2c.length,
-        itemBuilder: (context, index) {
-          final historyItem = c2c[index];
-          return buildCustomerItem(historyItem, ctx);
-        },
-      ),
+      child: c2c.isNotEmpty
+          ? ListView.builder(
+              itemCount: c2c.length,
+              itemBuilder: (context, index) {
+                final historyItem = c2c[index];
+                return buildCustomerItem(historyItem, ctx);
+              },
+            )
+          : const Center(
+              child: Text(
+                "You currently have no parcel's",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+            ),
     );
   }
 

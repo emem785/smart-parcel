@@ -133,4 +133,18 @@ void main() {
       ],
     );
   });
+
+  group('Search Event', () {
+    blocTest<DeliveryBloc, DeliveryState>(
+      'emits booking places retreived state when searching for booking places',
+      setUp: () => AuthTestSetup.setup(googlePlacesResponse, 200),
+      build: () => getIt<DeliveryBloc>(),
+      act: (bloc) => bloc.add(const DeliveryEvent.search("")),
+      wait: const Duration(milliseconds: 300),
+      expect: () => [
+        const DeliveryState.loading(),
+        const DeliveryState.placeRetrieved(locationResult)
+      ],
+    );
+  });
 }

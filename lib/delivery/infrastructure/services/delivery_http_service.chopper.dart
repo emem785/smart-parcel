@@ -49,7 +49,7 @@ class _$DeliveryHttpService extends DeliveryHttpService {
   @override
   Future<Response<List<CenterDistrict>>> getParcelCenters(
       String refreshToken, String accessToken) {
-    final $url = '/parcel_centers/';
+    final $url = '/locations/';
     final $headers = {
       'refresh': refreshToken,
       'authorization': accessToken,

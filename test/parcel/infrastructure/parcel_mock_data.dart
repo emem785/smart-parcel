@@ -1,7 +1,7 @@
-import 'package:smart_parcel/parcel/domain/models/customer_to_customer.dart';
-import 'package:smart_parcel/parcel/domain/models/parcel_data.dart';
-import 'package:smart_parcel/parcel/domain/models/parcel_response.dart';
-import 'package:smart_parcel/parcel/domain/models/self_storage.dart';
+import 'package:smart_parcel/parcels/domain/models/customer_to_customer.dart';
+import 'package:smart_parcel/parcels/domain/models/parcel_data.dart';
+import 'package:smart_parcel/parcels/domain/models/parcel_response.dart';
+import 'package:smart_parcel/parcels/domain/models/self_storage.dart';
 
 const getParcelJson2 = '''{
     "status": true,
