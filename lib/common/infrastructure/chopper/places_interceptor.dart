@@ -23,6 +23,7 @@ class PlacesInterceptor extends RequestInterceptor {
         parameters: {
           "key": apiKey,
           "query": request.parameters["query"],
+          "region": "ng"
         },
       );
       return newRequest;
