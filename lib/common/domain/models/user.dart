@@ -7,6 +7,7 @@ class User {
   final String firstName;
   final String lastName;
   final String email;
+  final String? profilePicUrl;
   final String phone;
 
   const User({
@@ -14,14 +15,24 @@ class User {
     required this.firstName,
     required this.lastName,
     required this.email,
+    required this.profilePicUrl,
     required this.phone,
   });
+
+  User.empty()
+      : id = null,
+        firstName = '',
+        lastName = '',
+        email = '',
+        profilePicUrl = '',
+        phone = '';
 
   User copyWith({
     String? id,
     String? firstName,
     String? lastName,
     String? email,
+    String? profilePicUrl,
     String? phone,
   }) {
     return User(
@@ -29,6 +40,7 @@ class User {
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
+      profilePicUrl: profilePicUrl ?? this.profilePicUrl,
       phone: phone ?? this.phone,
     );
   }
@@ -39,6 +51,7 @@ class User {
       'first_name': firstName,
       'last_name': lastName,
       'email': email,
+      'profile_pics_url': profilePicUrl,
       'phone': phone,
     };
   }
@@ -49,6 +62,7 @@ class User {
       firstName: map['first_name'],
       lastName: map['last_name'],
       email: map['email'],
+      profilePicUrl: map['profile_pics_url'] ?? "",
       phone: map['phone'],
     );
   }
@@ -59,7 +73,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id:$id , firstName: $firstName, lastName: $lastName, email: $email, phone: $phone)';
+    return 'User(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl , phone: $phone)';
   }
 
   @override
@@ -71,6 +85,7 @@ class User {
         other.firstName == firstName &&
         other.lastName == lastName &&
         other.email == email &&
+        other.profilePicUrl == profilePicUrl &&
         other.phone == phone;
   }
 
@@ -80,6 +95,7 @@ class User {
         firstName.hashCode ^
         lastName.hashCode ^
         email.hashCode ^
+        profilePicUrl.hashCode ^
         phone.hashCode;
   }
 

@@ -94,7 +94,11 @@ class CustomerParcelPage extends HookWidget {
     return ListTile(
       onTap: () => context.router
           .push(CustomerParcelDetailsRoute(customerToCustomer: historyItem)),
-      title: Text("Obanikoro"),
+      title: Text(
+        historyItem.address,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
       subtitle: Text(
         historyItem.status,
         style: const TextStyle(color: Color(0xFFF29E25)),

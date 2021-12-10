@@ -32,6 +32,19 @@ class _$AccountHttpService extends AccountHttpService {
   }
 
   @override
+  Future<Response<LoginResponse>> profilePhoto(
+      List<int> imageBytes, String refreshToken, String accessToken) {
+    final $url = '/user/profile/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('PUT', $url, client.baseUrl, headers: $headers);
+    return client.send<LoginResponse, LoginResponse>($request);
+  }
+
+  @override
   Future<Response<SimpleAuthResponse>> resetPassword(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/user/reset_password/';

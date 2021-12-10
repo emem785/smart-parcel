@@ -1,5 +1,6 @@
 import 'package:smart_parcel/common/domain/usecases/authenticate_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/base_usecases.dart';
+import 'package:smart_parcel/common/domain/usecases/get_stored_user_stream_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/get_stored_user_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/logout_usecase.dart';
 import 'package:smart_parcel/common/domain/usecases/populate_textforms_usecase.dart';
@@ -9,6 +10,7 @@ import 'package:smart_parcel/common/domain/usecases/show_prompt_usecase.dart';
 
 class CommonUseCases extends BaseUseCases {
   final GetStoredUserUseCase getStoredUserUseCase;
+  final GetStoredUserStreamUseCase getStoredUserStreamUseCase;
   final AuthenticateUseCase authenticateUseCase;
   final LogoutUseCase logoutUseCase;
   final PopulateTextFormUseCase populateTextFormUseCase;
@@ -18,6 +20,7 @@ class CommonUseCases extends BaseUseCases {
     required this.authenticateUseCase,
     required this.logoutUseCase,
     required this.populateTextFormUseCase,
+    required this.getStoredUserStreamUseCase,
   }) : super(
           showErrorUseCase: ShowErrorUseCase(),
           showPromptUseCase: ShowPromptUseCase(),

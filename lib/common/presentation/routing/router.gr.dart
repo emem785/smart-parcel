@@ -5,14 +5,15 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i12;
-import 'package:flutter/material.dart' as _i31;
-import 'package:flutter/widgets.dart' as _i32;
+import 'package:flutter/material.dart' as _i32;
+import 'package:smart_parcel/account/presentation/profile_page/edit_photo_page.dart'
+    as _i29;
 import 'package:smart_parcel/account/presentation/profile_page/profiles_page.dart'
     as _i28;
 import 'package:smart_parcel/account/presentation/reset_password_page/reset_password_page.dart'
-    as _i30;
+    as _i31;
 import 'package:smart_parcel/account/presentation/settings_page/settings_page.dart'
-    as _i29;
+    as _i30;
 import 'package:smart_parcel/auth/presentation/confirm_email/confirm_email.dart'
     as _i6;
 import 'package:smart_parcel/auth/presentation/confirm_email/password_changed_page.dart'
@@ -72,7 +73,7 @@ import 'package:smart_parcel/payment/presentation/self_storage_page/self_storage
     as _i19;
 
 class AppRouter extends _i12.RootStackRouter {
-  AppRouter([_i31.GlobalKey<_i31.NavigatorState>? navigatorKey])
+  AppRouter([_i32.GlobalKey<_i32.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
@@ -237,13 +238,17 @@ class AppRouter extends _i12.RootStackRouter {
       return _i12.AdaptivePage<dynamic>(
           routeData: routeData, child: const _i28.ProfilePage());
     },
+    EditPhotoRoute.name: (routeData) {
+      return _i12.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i29.EditPhotoPage());
+    },
     SettingsRoute.name: (routeData) {
       return _i12.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i29.SettingsPage());
+          routeData: routeData, child: const _i30.SettingsPage());
     },
     ResetPasswordRoute.name: (routeData) {
       return _i12.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i30.ResetPasswordPage());
+          routeData: routeData, child: const _i31.ResetPasswordPage());
     }
   };
 
@@ -294,9 +299,10 @@ class AppRouter extends _i12.RootStackRouter {
             _i12.RouteConfig(CustomerParcelDetailsRoute.name,
                 path: 'customerDetailsPage')
           ]),
-          _i12.RouteConfig(ProfileRouter.name,
-              path: 'profile',
-              children: [_i12.RouteConfig(ProfileRoute.name, path: '')]),
+          _i12.RouteConfig(ProfileRouter.name, path: 'profile', children: [
+            _i12.RouteConfig(ProfileRoute.name, path: ''),
+            _i12.RouteConfig(EditPhotoRoute.name, path: 'profilePhoto')
+          ]),
           _i12.RouteConfig(SettingsRouter.name, path: 'settings', children: [
             _i12.RouteConfig(SettingsRoute.name, path: ''),
             _i12.RouteConfig(ResetPasswordRoute.name, path: 'resetPassword')
@@ -633,14 +639,21 @@ class ProfileRoute extends _i12.PageRouteInfo<void> {
   static const String name = 'ProfileRoute';
 }
 
-/// generated route for [_i29.SettingsPage]
+/// generated route for [_i29.EditPhotoPage]
+class EditPhotoRoute extends _i12.PageRouteInfo<void> {
+  const EditPhotoRoute() : super(name, path: 'profilePhoto');
+
+  static const String name = 'EditPhotoRoute';
+}
+
+/// generated route for [_i30.SettingsPage]
 class SettingsRoute extends _i12.PageRouteInfo<void> {
   const SettingsRoute() : super(name, path: '');
 
   static const String name = 'SettingsRoute';
 }
 
-/// generated route for [_i30.ResetPasswordPage]
+/// generated route for [_i31.ResetPasswordPage]
 class ResetPasswordRoute extends _i12.PageRouteInfo<void> {
   const ResetPasswordRoute() : super(name, path: 'resetPassword');
 

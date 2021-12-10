@@ -20,6 +20,10 @@ class _$UserEventTearOff {
   GetUserFromStorage getUserFromStorage() {
     return const GetUserFromStorage();
   }
+
+  GetUserStreamFromStorage getUserStreamFromStorage() {
+    return const GetUserStreamFromStorage();
+  }
 }
 
 /// @nodoc
@@ -30,32 +34,39 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
+    required TResult Function() getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(GetUserStreamFromStorage value)
+        getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +129,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
+    required TResult Function() getUserStreamFromStorage,
   }) {
     return getUserFromStorage();
   }
@@ -126,6 +138,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
   }) {
     return getUserFromStorage?.call();
   }
@@ -134,6 +147,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
     if (getUserFromStorage != null) {
@@ -146,6 +160,8 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(GetUserStreamFromStorage value)
+        getUserStreamFromStorage,
   }) {
     return getUserFromStorage(this);
   }
@@ -154,6 +170,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
   }) {
     return getUserFromStorage?.call(this);
   }
@@ -162,6 +179,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
     if (getUserFromStorage != null) {
@@ -173,6 +191,113 @@ class _$GetUserFromStorage implements GetUserFromStorage {
 
 abstract class GetUserFromStorage implements UserEvent {
   const factory GetUserFromStorage() = _$GetUserFromStorage;
+}
+
+/// @nodoc
+abstract class $GetUserStreamFromStorageCopyWith<$Res> {
+  factory $GetUserStreamFromStorageCopyWith(GetUserStreamFromStorage value,
+          $Res Function(GetUserStreamFromStorage) then) =
+      _$GetUserStreamFromStorageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetUserStreamFromStorageCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements $GetUserStreamFromStorageCopyWith<$Res> {
+  _$GetUserStreamFromStorageCopyWithImpl(GetUserStreamFromStorage _value,
+      $Res Function(GetUserStreamFromStorage) _then)
+      : super(_value, (v) => _then(v as GetUserStreamFromStorage));
+
+  @override
+  GetUserStreamFromStorage get _value =>
+      super._value as GetUserStreamFromStorage;
+}
+
+/// @nodoc
+
+class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
+  const _$GetUserStreamFromStorage();
+
+  @override
+  String toString() {
+    return 'UserEvent.getUserStreamFromStorage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetUserStreamFromStorage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserFromStorage,
+    required TResult Function() getUserStreamFromStorage,
+  }) {
+    return getUserStreamFromStorage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
+  }) {
+    return getUserStreamFromStorage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserFromStorage,
+    TResult Function()? getUserStreamFromStorage,
+    required TResult orElse(),
+  }) {
+    if (getUserStreamFromStorage != null) {
+      return getUserStreamFromStorage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(GetUserStreamFromStorage value)
+        getUserStreamFromStorage,
+  }) {
+    return getUserStreamFromStorage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
+  }) {
+    return getUserStreamFromStorage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
+    required TResult orElse(),
+  }) {
+    if (getUserStreamFromStorage != null) {
+      return getUserStreamFromStorage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUserStreamFromStorage implements UserEvent {
+  const factory GetUserStreamFromStorage() = _$GetUserStreamFromStorage;
 }
 
 /// @nodoc
@@ -193,6 +318,12 @@ class _$UserStateTearOff {
     );
   }
 
+  UserStreamRetreived userStreamRetreived(Stream<User> userStream) {
+    return UserStreamRetreived(
+      userStream,
+    );
+  }
+
   UserError error(Failure failure) {
     return UserError(
       failure,
@@ -210,6 +341,7 @@ mixin _$UserState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -218,6 +350,7 @@ mixin _$UserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -226,6 +359,7 @@ mixin _$UserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) =>
@@ -235,6 +369,7 @@ mixin _$UserState {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -243,6 +378,7 @@ mixin _$UserState {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -251,6 +387,7 @@ mixin _$UserState {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) =>
@@ -315,6 +452,7 @@ class _$UserInitial implements UserInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
     return initial();
@@ -326,6 +464,7 @@ class _$UserInitial implements UserInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
     return initial?.call();
@@ -337,6 +476,7 @@ class _$UserInitial implements UserInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -352,6 +492,7 @@ class _$UserInitial implements UserInitial {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
     return initial(this);
@@ -363,6 +504,7 @@ class _$UserInitial implements UserInitial {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
     return initial?.call(this);
@@ -374,6 +516,7 @@ class _$UserInitial implements UserInitial {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -431,6 +574,7 @@ class _$UserLoading implements UserLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
     return loading();
@@ -442,6 +586,7 @@ class _$UserLoading implements UserLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
     return loading?.call();
@@ -453,6 +598,7 @@ class _$UserLoading implements UserLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -468,6 +614,7 @@ class _$UserLoading implements UserLoading {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
     return loading(this);
@@ -479,6 +626,7 @@ class _$UserLoading implements UserLoading {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
     return loading?.call(this);
@@ -490,6 +638,7 @@ class _$UserLoading implements UserLoading {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -570,6 +719,7 @@ class _$UserRetreived implements UserRetreived {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
     return userRetreived(user);
@@ -581,6 +731,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
     return userRetreived?.call(user);
@@ -592,6 +743,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -607,6 +759,7 @@ class _$UserRetreived implements UserRetreived {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
     return userRetreived(this);
@@ -618,6 +771,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
     return userRetreived?.call(this);
@@ -629,6 +783,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -645,6 +800,159 @@ abstract class UserRetreived implements UserState {
   User get user;
   @JsonKey(ignore: true)
   $UserRetreivedCopyWith<UserRetreived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserStreamRetreivedCopyWith<$Res> {
+  factory $UserStreamRetreivedCopyWith(
+          UserStreamRetreived value, $Res Function(UserStreamRetreived) then) =
+      _$UserStreamRetreivedCopyWithImpl<$Res>;
+  $Res call({Stream<User> userStream});
+}
+
+/// @nodoc
+class _$UserStreamRetreivedCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res>
+    implements $UserStreamRetreivedCopyWith<$Res> {
+  _$UserStreamRetreivedCopyWithImpl(
+      UserStreamRetreived _value, $Res Function(UserStreamRetreived) _then)
+      : super(_value, (v) => _then(v as UserStreamRetreived));
+
+  @override
+  UserStreamRetreived get _value => super._value as UserStreamRetreived;
+
+  @override
+  $Res call({
+    Object? userStream = freezed,
+  }) {
+    return _then(UserStreamRetreived(
+      userStream == freezed
+          ? _value.userStream
+          : userStream // ignore: cast_nullable_to_non_nullable
+              as Stream<User>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserStreamRetreived implements UserStreamRetreived {
+  const _$UserStreamRetreived(this.userStream);
+
+  @override
+  final Stream<User> userStream;
+
+  @override
+  String toString() {
+    return 'UserState.userStreamRetreived(userStream: $userStream)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UserStreamRetreived &&
+            (identical(other.userStream, userStream) ||
+                other.userStream == userStream));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userStream);
+
+  @JsonKey(ignore: true)
+  @override
+  $UserStreamRetreivedCopyWith<UserStreamRetreived> get copyWith =>
+      _$UserStreamRetreivedCopyWithImpl<UserStreamRetreived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
+    required TResult Function(Failure failure) error,
+  }) {
+    return userStreamRetreived(userStream);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
+    TResult Function(Failure failure)? error,
+  }) {
+    return userStreamRetreived?.call(userStream);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
+    TResult Function(Failure failure)? error,
+    required TResult orElse(),
+  }) {
+    if (userStreamRetreived != null) {
+      return userStreamRetreived(userStream);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
+    required TResult Function(UserError value) error,
+  }) {
+    return userStreamRetreived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
+    TResult Function(UserError value)? error,
+  }) {
+    return userStreamRetreived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
+    TResult Function(UserError value)? error,
+    required TResult orElse(),
+  }) {
+    if (userStreamRetreived != null) {
+      return userStreamRetreived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserStreamRetreived implements UserState {
+  const factory UserStreamRetreived(Stream<User> userStream) =
+      _$UserStreamRetreived;
+
+  Stream<User> get userStream;
+  @JsonKey(ignore: true)
+  $UserStreamRetreivedCopyWith<UserStreamRetreived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -712,6 +1020,7 @@ class _$UserError implements UserError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
     return error(failure);
@@ -723,6 +1032,7 @@ class _$UserError implements UserError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
     return error?.call(failure);
@@ -734,6 +1044,7 @@ class _$UserError implements UserError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
   }) {
@@ -749,6 +1060,7 @@ class _$UserError implements UserError {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
     return error(this);
@@ -760,6 +1072,7 @@ class _$UserError implements UserError {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
     return error?.call(this);
@@ -771,6 +1084,7 @@ class _$UserError implements UserError {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {

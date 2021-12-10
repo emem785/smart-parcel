@@ -66,4 +66,13 @@ class AuthRepository {
       return const Left(Failure("No Auth in storage"));
     }
   }
+
+  Either<Failure, T> uncacheOrFail<T>(Function fun) {
+    try {
+      final cache = fun();
+      return Right(cache);
+    } catch (_) {
+      return const Left(Failure("Not found in storage"));
+    }
+  }
 }

@@ -13,5 +13,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final CommonUseCases commonUseCases;
   UserBloc(this.commonUseCases) : super(const UserInitial()) {
     on<GetUserFromStorage>(commonUseCases.getStoredUserUseCase);
+    on<GetUserStreamFromStorage>(commonUseCases.getStoredUserStreamUseCase);
   }
 }

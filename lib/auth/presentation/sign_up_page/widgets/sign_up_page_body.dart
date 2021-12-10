@@ -90,6 +90,7 @@ class SignUpPageBody extends HookWidget {
                           if (formKey.value.currentState!.validate()) {
                             final user = User(
                               id: null,
+                              profilePicUrl: null,
                               firstName: firstnameController.text,
                               lastName: lastnameController.text,
                               email: emailController.text,

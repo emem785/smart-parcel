@@ -1,9 +1,13 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_storage_service.dart';
 import 'package:smart_parcel/common/domain/interface/common_storage_interface.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/common/domain/models/user_entitiy.dart';
+
+import '../../../main.dart';
 
 const userKey = 'user';
 
@@ -14,12 +18,14 @@ class CommonStorageService implements CommonStorageInterface {
   CommonStorageService(this.preferences);
 
   @override
-  User getUser() {
-    final userJson = preferences.getString(userKey);
-    if (userJson != null) {
-      return User.fromJson(userJson);
+  Option<User> getUser() {
+    final box = objectbox.store.box<UserEntity>();
+    final userEntity = box.query().build().findFirst();
+    print("profiler $userEntity");
+    if (userEntity != null) {
+      return some(userEntity.fromDomain());
     }
-    throw Exception("Nothing Stored");
+    return none();
   }
 
   @override
@@ -50,5 +56,19 @@ class CommonStorageService implements CommonStorageInterface {
       return;
     }
     throw Exception("Nothing Stored");
+  }
+
+  @override
+  Stream<User?> getUserStream() {
+    final box = objectbox.store.box<UserEntity>();
+    final queryStream = box
+        .query()
+        .watch(triggerImmediately: true)
+        .map((query) => query.findFirst())
+        .map((event) {
+      print(event);
+      return event?.fromDomain();
+    });
+    return queryStream;
   }
 }

@@ -6,5 +6,7 @@ class UserState with _$UserState {
   const factory UserState.initial() = UserInitial;
   const factory UserState.loading() = UserLoading;
   const factory UserState.userRetreived(User user) = UserRetreived;
+  const factory UserState.userStreamRetreived(Stream<User> userStream) =
+      UserStreamRetreived;
   const factory UserState.error(Failure failure) = UserError;
 }

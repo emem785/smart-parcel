@@ -155,3 +155,20 @@ Future<Either<Failure, T>> getDataPlacesSearch<T>(
     return left(Failure(e.toString()));
   }
 }
+
+Future<Either<Failure, T>> postBytes<T>(
+  Future<Response<T>> Function(List<int>, String, String) postData,
+  List<int> bytes,
+) async {
+  try {
+    const authToken = AuthToken.placeHolder();
+    final response =
+        await postData(bytes, authToken.refresh, "Bearer ${authToken.access}");
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Unexpected Search Error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}

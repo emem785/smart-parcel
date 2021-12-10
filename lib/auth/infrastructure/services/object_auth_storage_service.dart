@@ -5,19 +5,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/domain/interface/auth_storage_interface.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/common/domain/models/user_entitiy.dart';
+import 'package:smart_parcel/main.dart';
 
 const userKey = 'user';
 const tokenKey = 'token';
 
-@test
+@dev
 @Injectable(as: AuthStorageInterface)
-class AuthStorageService implements AuthStorageInterface {
+class ObjectAuthStorageService implements AuthStorageInterface {
   final SharedPreferences preferences;
 
-  AuthStorageService(this.preferences);
+  ObjectAuthStorageService(this.preferences);
   @override
   Future<void> storeUser(User user) async {
-    await preferences.setString(userKey, jsonEncode(user.toMap()));
+    final box = objectbox.store.box<UserEntity>();
+    box.put(UserEntity.toDomain(user));
   }
 
   @override

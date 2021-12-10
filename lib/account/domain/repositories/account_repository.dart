@@ -30,6 +30,14 @@ class AccountRepository {
     return postDataAuth(accountHttpService.editUser, user.toMap());
   }
 
+  // SingleResponse<LoginResponse> deleteUser(String userId) {
+  //   return postDataAuth(accountHttpService.editUser, user.toMap());
+  // }
+
+  SingleResponse<LoginResponse> addProfilePhoto(List<int> imageBytes) {
+    return postBytes(accountHttpService.profilePhoto, imageBytes);
+  }
+
   SingleResponse<SimpleAuthResponse> resetPassword({
     required String password,
     required String newPassword,

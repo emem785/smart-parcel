@@ -15,6 +15,13 @@ abstract class AccountHttpService extends ChopperService {
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
+  @Put(path: '/profile/', optionalBody: true)
+  Future<Response<LoginResponse>> profilePhoto(
+    @PartFile('image') List<int> imageBytes,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
+  );
+
   @Post(path: '/reset_password/')
   Future<Response<SimpleAuthResponse>> resetPassword(
     @Body() Map<String, dynamic> body,

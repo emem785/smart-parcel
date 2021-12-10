@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "760140056434",
+    "project_id": "smart-parcel-c0041",
+    "storage_bucket": "smart-parcel-c0041.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760140056434:android:6ef2f6d8684c35d6ebbfeb",
+        "android_client_info": {
+          "package_name": "com.getmobile.smart_parcel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760140056434-5871lclgseq9f5bibdo5vtj0976pk2rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfGHBh5O6BMt-jQv8U4IIUzb05qmiKQuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760140056434-5871lclgseq9f5bibdo5vtj0976pk2rl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

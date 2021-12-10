@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart';
 import 'package:smart_parcel/common/application/user_bloc/user_bloc.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
@@ -58,7 +60,7 @@ class ProfileBody extends HookWidget {
                   children: [
                     LayoutConstants.sizeBox(context, 24),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => context.router.push(const EditPhotoRoute()),
                       child: const CircleAvatar(
                         child: Icon(
                           Icons.person_add_alt,
@@ -119,6 +121,7 @@ class ProfileBody extends HookWidget {
                     if (formKey.value.currentState!.validate()) {
                       accountBloc.add(AccountEvent.editUser(User(
                         id: null,
+                        profilePicUrl: null,
                         firstName: firstnameController.text,
                         lastName: lastnameController.text,
                         email: emailController.text,

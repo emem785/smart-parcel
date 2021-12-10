@@ -38,6 +38,21 @@ Future<void> main() async {
       },
     );
     test(
+      'delete profile returns user response on 2xx status code',
+      () async {
+        // // arrange
+        // TestSetup.setup(getUserResponse, 200, mockAuthTokenJson);
+        // final repo = getIt<AccountRepository>();
+        // // act
+        // final response = await repo.
+        // // assere
+        // return response.fold(
+        //   (l) => expect(l, null),
+        //   (r) => expect(r, userLoginResponse),
+        // );
+      },
+    );
+    test(
       'reset password returns simple auth response',
       () async {
         // arrange

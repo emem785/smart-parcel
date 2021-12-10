@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
@@ -48,9 +49,13 @@ class JwtAuthenticator extends Authenticator {
 
       if (response.statusCode == 401) {
         final authToken = await _refreshToken(request.headers["refresh"]);
-        return request.copyWith(headers: {
-          "Authorization": "Bearer ${authToken.access}",
-        });
+        return request.copyWith(
+          headers: {
+            HttpHeaders.authorizationHeader: "Bearer ${authToken.access}",
+            HttpHeaders.contentTypeHeader: "application/json",
+            "refresh": request.headers["refresh"]!,
+          },
+        );
       }
     }
   }

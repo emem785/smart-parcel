@@ -12,11 +12,12 @@ class UserRepository {
   UserRepository(this.commonStorageInterface);
 
   Either<Failure, User> getUserFromStorage() {
-    try {
-      final user = commonStorageInterface.getUser();
-      return Right(user);
-    } catch (_) {
-      return const Left(Failure("No User in storage"));
-    }
+    final userOption = commonStorageInterface.getUser();
+    return userOption.fold(
+      () => const Left(Failure("No User in storage")),
+      (a) => right(a),
+    );
   }
+
+  Stream<User?> getUserStream() => commonStorageInterface.getUserStream();
 }

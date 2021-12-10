@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,5 +18,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<EditUser>(accountUseCases.editUserUseCase);
     on<ResetPassword>(accountUseCases.resetPasswordUseCase);
     on<OpenSupport>(accountUseCases.openSupportUseCase);
+    on<UploadPhoto>(accountUseCases.uploadPhotoUsecase);
+    on<SelectImage>(accountUseCases.selectImageUsecase);
   }
 }
