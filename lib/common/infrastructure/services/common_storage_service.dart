@@ -21,7 +21,7 @@ class CommonStorageService implements CommonStorageInterface {
   Option<User> getUser() {
     final box = objectbox.store.box<UserEntity>();
     final userEntity = box.query().build().findFirst();
-    print("profiler $userEntity");
+    print(userEntity);
     if (userEntity != null) {
       return some(userEntity.fromDomain());
     }
@@ -65,10 +65,7 @@ class CommonStorageService implements CommonStorageInterface {
         .query()
         .watch(triggerImmediately: true)
         .map((query) => query.findFirst())
-        .map((event) {
-      print(event);
-      return event?.fromDomain();
-    });
+        .map((event) => event?.fromDomain());
     return queryStream;
   }
 }

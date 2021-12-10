@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
 
@@ -8,6 +9,7 @@ class User {
   final String lastName;
   final String email;
   final String? profilePicUrl;
+  final Uint8List? profilePicBytes;
   final String phone;
 
   const User({
@@ -16,6 +18,7 @@ class User {
     required this.lastName,
     required this.email,
     required this.profilePicUrl,
+    required this.profilePicBytes,
     required this.phone,
   });
 
@@ -25,22 +28,24 @@ class User {
         lastName = '',
         email = '',
         profilePicUrl = '',
+        profilePicBytes = Uint8List(0),
         phone = '';
 
-  User copyWith({
-    String? id,
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? profilePicUrl,
-    String? phone,
-  }) {
+  User copyWith(
+      {String? id,
+      String? firstName,
+      String? lastName,
+      String? email,
+      String? profilePicUrl,
+      Uint8List? profilePicBytes,
+      String? phone}) {
     return User(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       profilePicUrl: profilePicUrl ?? this.profilePicUrl,
+      profilePicBytes: profilePicBytes ?? this.profilePicBytes,
       phone: phone ?? this.phone,
     );
   }
@@ -63,6 +68,7 @@ class User {
       lastName: map['last_name'],
       email: map['email'],
       profilePicUrl: map['profile_pics_url'] ?? "",
+      profilePicBytes: Uint8List(0),
       phone: map['phone'],
     );
   }
@@ -73,7 +79,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl , phone: $phone)';
+    return 'User(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl , profilePicBytes:$profilePicBytes, phone: $phone)';
   }
 
   @override
@@ -86,6 +92,7 @@ class User {
         other.lastName == lastName &&
         other.email == email &&
         other.profilePicUrl == profilePicUrl &&
+        other.profilePicBytes == profilePicBytes &&
         other.phone == phone;
   }
 
@@ -96,6 +103,7 @@ class User {
         lastName.hashCode ^
         email.hashCode ^
         profilePicUrl.hashCode ^
+        profilePicBytes.hashCode ^
         phone.hashCode;
   }
 

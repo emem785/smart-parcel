@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:dartz/dartz.dart';
+import 'package:http/http.dart' show MultipartFile;
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 
@@ -157,13 +158,13 @@ Future<Either<Failure, T>> getDataPlacesSearch<T>(
 }
 
 Future<Either<Failure, T>> postBytes<T>(
-  Future<Response<T>> Function(List<int>, String, String) postData,
-  List<int> bytes,
+  Future<Response<T>> Function(MultipartFile, String, String) postData,
+  MultipartFile file,
 ) async {
   try {
     const authToken = AuthToken.placeHolder();
     final response =
-        await postData(bytes, authToken.refresh, "Bearer ${authToken.access}");
+        await postData(file, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
     return left(const Failure("Unexpected Search Error"));

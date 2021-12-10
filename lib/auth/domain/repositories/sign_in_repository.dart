@@ -62,7 +62,7 @@ class SignInRepository {
     return postData(_authHttpService.confirmPassword, body);
   }
 
-  Future<void> storeUser(User user) => authStorage.storeUser(user);
+  Future<void> storeUser(User user) => authStorage.createUser(user);
   Future<void> storeToken(AuthToken authToken) =>
       authStorage.storeToken(authToken);
 }

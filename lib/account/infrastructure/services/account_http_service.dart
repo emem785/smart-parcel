@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
+import 'package:http/http.dart' show MultipartFile;
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
 
@@ -16,8 +17,9 @@ abstract class AccountHttpService extends ChopperService {
   );
 
   @Put(path: '/profile/', optionalBody: true)
+  @Multipart()
   Future<Response<LoginResponse>> profilePhoto(
-    @PartFile('image') List<int> imageBytes,
+    @PartFile('profile_pics') MultipartFile imageFile,
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );

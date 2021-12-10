@@ -16,8 +16,7 @@ class SelectImageUsecase {
 
     if (result != null) {
       File file = File(result.files.single.path!);
-      final imageBytes = await file.readAsBytes();
-      emit(AccountState.imageSelected(imageBytes));
+      emit(AccountState.imageSelected(file));
     } else {
       emit(const AccountState.error(Failure("Failed to select image")));
     }

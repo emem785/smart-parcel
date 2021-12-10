@@ -91,6 +91,7 @@ class SignUpPageBody extends HookWidget {
                             final user = User(
                               id: null,
                               profilePicUrl: null,
+                              profilePicBytes: null,
                               firstName: firstnameController.text,
                               lastName: lastnameController.text,
                               email: emailController.text,

@@ -44,7 +44,7 @@ class AuthRepository {
     return postData(commonHttpService.refreshToken, body);
   }
 
-  Future<void> storeUser(User user) => authStorageInterface.storeUser(user);
+  Future<void> storeUser(User user) => authStorageInterface.createUser(user);
 
   Future<void> storeToken(AuthToken token) =>
       authStorageInterface.storeToken(token);

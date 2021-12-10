@@ -7,6 +7,6 @@ class AccountState with _$AccountState {
   const factory AccountState.loading() = AccountLoading;
   const factory AccountState.error(Failure failure) = AccountError;
   const factory AccountState.userModified(User user) = UserModified;
-  const factory AccountState.imageSelected(Uint8List imageData) = ImageSelected;
+  const factory AccountState.imageSelected(File imageFile) = ImageSelected;
   const factory AccountState.passwordChanged() = PasswordChanged;
 }

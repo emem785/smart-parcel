@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -60,16 +62,28 @@ class ProfileBody extends HookWidget {
                   children: [
                     LayoutConstants.sizeBox(context, 24),
                     InkWell(
-                      onTap: () => context.router.push(const EditPhotoRoute()),
-                      child: const CircleAvatar(
-                        child: Icon(
-                          Icons.person_add_alt,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: GlobalTheme.lightGrey,
-                        minRadius: 32,
-                      ),
-                    ),
+                        onTap: () => context.router.push(EditPhotoRoute(
+                            onUploaded: () => userBloc
+                                .add(const UserEvent.getUserFromStorage()))),
+                        child: BlocBuilder<UserBloc, UserState>(
+                          builder: (context, state) {
+                            return state.maybeMap(
+                              orElse: () => const SizedBox(),
+                              userRetreived: (v) => v
+                                      .user.profilePicBytes!.isEmpty
+                                  ? const CircleAvatar(
+                                      child: Icon(
+                                        Icons.person_add_alt,
+                                        color: Colors.white,
+                                      ),
+                                      backgroundColor: GlobalTheme.lightGrey,
+                                      minRadius: 32,
+                                    )
+                                  : buildImageHolder(
+                                      context, v.user.profilePicBytes!),
+                            );
+                          },
+                        )),
                     LayoutConstants.sizeBox(context, 45),
                     BlocListener<UserBloc, UserState>(
                       listener: (context, state) {
@@ -122,6 +136,7 @@ class ProfileBody extends HookWidget {
                       accountBloc.add(AccountEvent.editUser(User(
                         id: null,
                         profilePicUrl: null,
+                        profilePicBytes: null,
                         firstName: firstnameController.text,
                         lastName: lastnameController.text,
                         email: emailController.text,
@@ -136,6 +151,22 @@ class ProfileBody extends HookWidget {
             },
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildImageHolder(BuildContext context, Uint8List bytes) {
+    return ClipOval(
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: MemoryImage(bytes),
+          ),
+        ),
       ),
     );
   }

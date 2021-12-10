@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,8 @@ import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 class EditPhotoPage extends StatelessWidget {
-  const EditPhotoPage({Key? key}) : super(key: key);
+  final Function() onUploaded;
+  const EditPhotoPage({Key? key, required this.onUploaded}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,18 @@ class EditPhotoPage extends StatelessWidget {
         BlocProvider(create: (_) => getIt<UserBloc>()),
         BlocProvider(create: (_) => getIt<AccountBloc>()),
       ],
-      child: const EditPhotoBody(),
+      child: EditPhotoBody(onUploaded: onUploaded),
     );
   }
 }
 
 class EditPhotoBody extends HookWidget {
-  const EditPhotoBody({Key? key}) : super(key: key);
+  final Function() onUploaded;
+  const EditPhotoBody({Key? key, required this.onUploaded}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final imageBytes = useState<Uint8List?>(null);
+    final imageBytes = useState<File?>(null);
     final accountBloc = context.read<AccountBloc>();
 
     return Column(
@@ -49,8 +51,11 @@ class EditPhotoBody extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 1,
-                      userModified: (v) => context.router.pop(),
-                      imageSelected: (v) => imageBytes.value = v.imageData,
+                      userModified: (v) {
+                        onUploaded();
+                        context.router.pop();
+                      },
+                      imageSelected: (v) => imageBytes.value = v.imageFile,
                       error: (v) => accountBloc.accountUseCases
                           .showErrorUseCase(
                               message: v.failure.message, context: context),
@@ -60,7 +65,7 @@ class EditPhotoBody extends HookWidget {
                     return state.maybeMap(
                       orElse: () => const ImageContainer(imageData: null),
                       imageSelected: (v) =>
-                          ImageContainer(imageData: v.imageData),
+                          ImageContainer(imageData: v.imageFile),
                     );
                   },
                   buildWhen: (previous, current) {
@@ -103,7 +108,7 @@ class EditPhotoBody extends HookWidget {
 }
 
 class ImageContainer extends HookWidget {
-  final Uint8List? imageData;
+  final File? imageData;
   const ImageContainer({
     Key? key,
     required this.imageData,
@@ -128,7 +133,7 @@ class ImageContainer extends HookWidget {
                 decoration: imageData != null
                     ? BoxDecoration(
                         image: DecorationImage(
-                          image: MemoryImage(imageData!),
+                          image: FileImage(imageData!),
                           fit: BoxFit.fill,
                         ),
                       )

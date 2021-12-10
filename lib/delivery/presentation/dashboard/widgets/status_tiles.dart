@@ -56,9 +56,7 @@ class _StatusTilesState extends State<StatusTiles> {
                                 AssetImage("assets/images/Avatar.png"),
                           )
                         : CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              user.profilePicUrl!,
-                            ),
+                            backgroundImage: MemoryImage(user.profilePicBytes!),
                             backgroundColor: Colors.grey,
                           ),
                     title: user.firstName.isNotEmpty

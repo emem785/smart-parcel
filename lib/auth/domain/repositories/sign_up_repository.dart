@@ -63,7 +63,7 @@ class SignUpRepository {
     return postData(authHttpService.signIn, body);
   }
 
-  Future<void> storeUser(User user) => authStorage.storeUser(user);
+  Future<void> storeUser(User user) => authStorage.createUser(user);
   Future<void> storeToken(AuthToken authToken) =>
       authStorage.storeToken(authToken);
 }

@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:dartz/dartz.dart';
+import 'package:http/http.dart';
 import 'package:smart_parcel/account/infrastructure/services/account_http_service.dart';
 import 'package:smart_parcel/auth/domain/interface/auth_storage_interface.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
@@ -34,8 +35,8 @@ class AccountRepository {
   //   return postDataAuth(accountHttpService.editUser, user.toMap());
   // }
 
-  SingleResponse<LoginResponse> addProfilePhoto(List<int> imageBytes) {
-    return postBytes(accountHttpService.profilePhoto, imageBytes);
+  SingleResponse<LoginResponse> addProfilePhoto(MultipartFile imageFile) {
+    return postBytes(accountHttpService.profilePhoto, imageFile);
   }
 
   SingleResponse<SimpleAuthResponse> resetPassword({
@@ -50,5 +51,5 @@ class AccountRepository {
     return postDataAuth(accountHttpService.resetPassword, body);
   }
 
-  Future<void> storeUser(User user) => authStorageInterface.storeUser(user);
+  Future<void> storeUser(User user) => authStorageInterface.editUser(user);
 }

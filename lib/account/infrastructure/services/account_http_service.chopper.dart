@@ -33,14 +33,18 @@ class _$AccountHttpService extends AccountHttpService {
 
   @override
   Future<Response<LoginResponse>> profilePhoto(
-      List<int> imageBytes, String refreshToken, String accessToken) {
+      MultipartFile imageFile, String refreshToken, String accessToken) {
     final $url = '/user/profile/';
     final $headers = {
       'refresh': refreshToken,
       'authorization': accessToken,
     };
 
-    final $request = Request('PUT', $url, client.baseUrl, headers: $headers);
+    final $parts = <PartValue>[
+      PartValueFile<MultipartFile>('profile_pics', imageFile)
+    ];
+    final $request = Request('PUT', $url, client.baseUrl,
+        parts: $parts, multipart: true, headers: $headers);
     return client.send<LoginResponse, LoginResponse>($request);
   }
 

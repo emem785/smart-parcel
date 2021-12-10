@@ -29,9 +29,9 @@ class _$AccountEventTearOff {
     );
   }
 
-  UploadPhoto uploadPhoto(Uint8List imageData) {
+  UploadPhoto uploadPhoto(File imageFile) {
     return UploadPhoto(
-      imageData,
+      imageFile,
     );
   }
 
@@ -62,7 +62,7 @@ mixin _$AccountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
@@ -73,7 +73,7 @@ mixin _$AccountEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -84,7 +84,7 @@ mixin _$AccountEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -201,7 +201,7 @@ class _$EditUser implements EditUser {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
@@ -215,7 +215,7 @@ class _$EditUser implements EditUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -229,7 +229,7 @@ class _$EditUser implements EditUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -357,7 +357,7 @@ class _$OpenSupport implements OpenSupport {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
@@ -371,7 +371,7 @@ class _$OpenSupport implements OpenSupport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -385,7 +385,7 @@ class _$OpenSupport implements OpenSupport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -453,7 +453,7 @@ abstract class $UploadPhotoCopyWith<$Res> {
   factory $UploadPhotoCopyWith(
           UploadPhoto value, $Res Function(UploadPhoto) then) =
       _$UploadPhotoCopyWithImpl<$Res>;
-  $Res call({Uint8List imageData});
+  $Res call({File imageFile});
 }
 
 /// @nodoc
@@ -468,13 +468,13 @@ class _$UploadPhotoCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? imageData = freezed,
+    Object? imageFile = freezed,
   }) {
     return _then(UploadPhoto(
-      imageData == freezed
-          ? _value.imageData
-          : imageData // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+      imageFile == freezed
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
   }
 }
@@ -482,14 +482,14 @@ class _$UploadPhotoCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UploadPhoto implements UploadPhoto {
-  const _$UploadPhoto(this.imageData);
+  const _$UploadPhoto(this.imageFile);
 
   @override
-  final Uint8List imageData;
+  final File imageFile;
 
   @override
   String toString() {
-    return 'AccountEvent.uploadPhoto(imageData: $imageData)';
+    return 'AccountEvent.uploadPhoto(imageFile: $imageFile)';
   }
 
   @override
@@ -497,12 +497,12 @@ class _$UploadPhoto implements UploadPhoto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UploadPhoto &&
-            (identical(other.imageData, imageData) ||
-                other.imageData == imageData));
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageData);
+  int get hashCode => Object.hash(runtimeType, imageFile);
 
   @JsonKey(ignore: true)
   @override
@@ -514,13 +514,13 @@ class _$UploadPhoto implements UploadPhoto {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
         resetPassword,
   }) {
-    return uploadPhoto(imageData);
+    return uploadPhoto(imageFile);
   }
 
   @override
@@ -528,13 +528,13 @@ class _$UploadPhoto implements UploadPhoto {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
         resetPassword,
   }) {
-    return uploadPhoto?.call(imageData);
+    return uploadPhoto?.call(imageFile);
   }
 
   @override
@@ -542,7 +542,7 @@ class _$UploadPhoto implements UploadPhoto {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -550,7 +550,7 @@ class _$UploadPhoto implements UploadPhoto {
     required TResult orElse(),
   }) {
     if (uploadPhoto != null) {
-      return uploadPhoto(imageData);
+      return uploadPhoto(imageFile);
     }
     return orElse();
   }
@@ -597,9 +597,9 @@ class _$UploadPhoto implements UploadPhoto {
 }
 
 abstract class UploadPhoto implements AccountEvent {
-  const factory UploadPhoto(Uint8List imageData) = _$UploadPhoto;
+  const factory UploadPhoto(File imageFile) = _$UploadPhoto;
 
-  Uint8List get imageData;
+  File get imageFile;
   @JsonKey(ignore: true)
   $UploadPhotoCopyWith<UploadPhoto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -670,7 +670,7 @@ class _$SelectImage implements SelectImage {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
@@ -684,7 +684,7 @@ class _$SelectImage implements SelectImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -698,7 +698,7 @@ class _$SelectImage implements SelectImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -849,7 +849,7 @@ class _$ResetPassword implements ResetPassword {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) editUser,
     required TResult Function(BuildContext context) openSupport,
-    required TResult Function(Uint8List imageData) uploadPhoto,
+    required TResult Function(File imageFile) uploadPhoto,
     required TResult Function(BuildContext context) selectImage,
     required TResult Function(
             String oldPassword, String newPassword, String confirmPassword)
@@ -863,7 +863,7 @@ class _$ResetPassword implements ResetPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -877,7 +877,7 @@ class _$ResetPassword implements ResetPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? editUser,
     TResult Function(BuildContext context)? openSupport,
-    TResult Function(Uint8List imageData)? uploadPhoto,
+    TResult Function(File imageFile)? uploadPhoto,
     TResult Function(BuildContext context)? selectImage,
     TResult Function(
             String oldPassword, String newPassword, String confirmPassword)?
@@ -969,9 +969,9 @@ class _$AccountStateTearOff {
     );
   }
 
-  ImageSelected imageSelected(Uint8List imageData) {
+  ImageSelected imageSelected(File imageFile) {
     return ImageSelected(
-      imageData,
+      imageFile,
     );
   }
 
@@ -991,7 +991,7 @@ mixin _$AccountState {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) =>
       throw _privateConstructorUsedError;
@@ -1001,7 +1001,7 @@ mixin _$AccountState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) =>
       throw _privateConstructorUsedError;
@@ -1011,7 +1011,7 @@ mixin _$AccountState {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) =>
@@ -1110,7 +1110,7 @@ class _$AccountInitial implements AccountInitial {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
     return initial();
@@ -1123,7 +1123,7 @@ class _$AccountInitial implements AccountInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
     return initial?.call();
@@ -1136,7 +1136,7 @@ class _$AccountInitial implements AccountInitial {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
@@ -1239,7 +1239,7 @@ class _$AccountLoading implements AccountLoading {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
     return loading();
@@ -1252,7 +1252,7 @@ class _$AccountLoading implements AccountLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
     return loading?.call();
@@ -1265,7 +1265,7 @@ class _$AccountLoading implements AccountLoading {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
@@ -1390,7 +1390,7 @@ class _$AccountError implements AccountError {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
     return error(failure);
@@ -1403,7 +1403,7 @@ class _$AccountError implements AccountError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
     return error?.call(failure);
@@ -1416,7 +1416,7 @@ class _$AccountError implements AccountError {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
@@ -1546,7 +1546,7 @@ class _$UserModified implements UserModified {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
     return userModified(user);
@@ -1559,7 +1559,7 @@ class _$UserModified implements UserModified {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
     return userModified?.call(user);
@@ -1572,7 +1572,7 @@ class _$UserModified implements UserModified {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
@@ -1640,7 +1640,7 @@ abstract class $ImageSelectedCopyWith<$Res> {
   factory $ImageSelectedCopyWith(
           ImageSelected value, $Res Function(ImageSelected) then) =
       _$ImageSelectedCopyWithImpl<$Res>;
-  $Res call({Uint8List imageData});
+  $Res call({File imageFile});
 }
 
 /// @nodoc
@@ -1655,13 +1655,13 @@ class _$ImageSelectedCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? imageData = freezed,
+    Object? imageFile = freezed,
   }) {
     return _then(ImageSelected(
-      imageData == freezed
-          ? _value.imageData
-          : imageData // ignore: cast_nullable_to_non_nullable
-              as Uint8List,
+      imageFile == freezed
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
   }
 }
@@ -1669,14 +1669,14 @@ class _$ImageSelectedCopyWithImpl<$Res> extends _$AccountStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ImageSelected implements ImageSelected {
-  const _$ImageSelected(this.imageData);
+  const _$ImageSelected(this.imageFile);
 
   @override
-  final Uint8List imageData;
+  final File imageFile;
 
   @override
   String toString() {
-    return 'AccountState.imageSelected(imageData: $imageData)';
+    return 'AccountState.imageSelected(imageFile: $imageFile)';
   }
 
   @override
@@ -1684,12 +1684,12 @@ class _$ImageSelected implements ImageSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ImageSelected &&
-            (identical(other.imageData, imageData) ||
-                other.imageData == imageData));
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageData);
+  int get hashCode => Object.hash(runtimeType, imageFile);
 
   @JsonKey(ignore: true)
   @override
@@ -1703,10 +1703,10 @@ class _$ImageSelected implements ImageSelected {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
-    return imageSelected(imageData);
+    return imageSelected(imageFile);
   }
 
   @override
@@ -1716,10 +1716,10 @@ class _$ImageSelected implements ImageSelected {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
-    return imageSelected?.call(imageData);
+    return imageSelected?.call(imageFile);
   }
 
   @override
@@ -1729,12 +1729,12 @@ class _$ImageSelected implements ImageSelected {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
     if (imageSelected != null) {
-      return imageSelected(imageData);
+      return imageSelected(imageFile);
     }
     return orElse();
   }
@@ -1784,9 +1784,9 @@ class _$ImageSelected implements ImageSelected {
 }
 
 abstract class ImageSelected implements AccountState {
-  const factory ImageSelected(Uint8List imageData) = _$ImageSelected;
+  const factory ImageSelected(File imageFile) = _$ImageSelected;
 
-  Uint8List get imageData;
+  File get imageFile;
   @JsonKey(ignore: true)
   $ImageSelectedCopyWith<ImageSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1837,7 +1837,7 @@ class _$PasswordChanged implements PasswordChanged {
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
     required TResult Function(User user) userModified,
-    required TResult Function(Uint8List imageData) imageSelected,
+    required TResult Function(File imageFile) imageSelected,
     required TResult Function() passwordChanged,
   }) {
     return passwordChanged();
@@ -1850,7 +1850,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
   }) {
     return passwordChanged?.call();
@@ -1863,7 +1863,7 @@ class _$PasswordChanged implements PasswordChanged {
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
     TResult Function(User user)? userModified,
-    TResult Function(Uint8List imageData)? imageSelected,
+    TResult Function(File imageFile)? imageSelected,
     TResult Function()? passwordChanged,
     required TResult orElse(),
   }) {
