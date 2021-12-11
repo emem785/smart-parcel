@@ -60,7 +60,6 @@ const userLoginResponse = LoginResponse(
   authToken: null,
   user: User(
       profilePicUrl: null,
-      profilePicBytes: null,
       id: "ff10a581-4a9e-4589-937b-df4ccb1bded4",
       firstName: "emem",
       lastName: "emem",

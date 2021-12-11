@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +70,7 @@ class ProfileBody extends HookWidget {
                             return state.maybeMap(
                               orElse: () => const SizedBox(),
                               userRetreived: (v) => v
-                                      .user.profilePicBytes!.isEmpty
+                                      .user.profilePicFilePath!.isEmpty
                                   ? const CircleAvatar(
                                       child: Icon(
                                         Icons.person_add_alt,
@@ -80,7 +80,7 @@ class ProfileBody extends HookWidget {
                                       minRadius: 32,
                                     )
                                   : buildImageHolder(
-                                      context, v.user.profilePicBytes!),
+                                      context, v.user.profilePicFilePath!),
                             );
                           },
                         )),
@@ -136,7 +136,6 @@ class ProfileBody extends HookWidget {
                       accountBloc.add(AccountEvent.editUser(User(
                         id: null,
                         profilePicUrl: null,
-                        profilePicBytes: null,
                         firstName: firstnameController.text,
                         lastName: lastnameController.text,
                         email: emailController.text,
@@ -155,7 +154,7 @@ class ProfileBody extends HookWidget {
     );
   }
 
-  Widget buildImageHolder(BuildContext context, Uint8List bytes) {
+  Widget buildImageHolder(BuildContext context, String filePath) {
     return ClipOval(
       child: Container(
         width: 100,
@@ -164,7 +163,7 @@ class ProfileBody extends HookWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: MemoryImage(bytes),
+            image: FileImage(File(filePath)),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -56,7 +57,8 @@ class _StatusTilesState extends State<StatusTiles> {
                                 AssetImage("assets/images/Avatar.png"),
                           )
                         : CircleAvatar(
-                            backgroundImage: MemoryImage(user.profilePicBytes!),
+                            backgroundImage:
+                                FileImage(File(user.profilePicFilePath!)),
                             backgroundColor: Colors.grey,
                           ),
                     title: user.firstName.isNotEmpty

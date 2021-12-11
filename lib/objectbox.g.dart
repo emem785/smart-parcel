@@ -17,7 +17,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(1, 5054737816769856400),
       name: 'UserEntity',
-      lastPropertyId: const IdUid(8, 4292903254923179199),
+      lastPropertyId: const IdUid(9, 699431118709255589),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -56,9 +56,9 @@ final _entities = <ModelEntity>[
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 4292903254923179199),
-            name: 'profilePictureBytes',
-            type: 23,
+            id: const IdUid(9, 699431118709255589),
+            name: 'profilePicturePath',
+            type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -91,7 +91,7 @@ ModelDefinition getObjectBoxModel() {
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [4292903254923179199],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -115,10 +115,10 @@ ModelDefinition getObjectBoxModel() {
               ? null
               : fbb.writeString(object.profilePicUrl!);
           final phoneOffset = fbb.writeString(object.phone);
-          final profilePictureBytesOffset = object.profilePictureBytes == null
+          final profilePicturePathOffset = object.profilePicturePath == null
               ? null
-              : fbb.writeListInt8(object.profilePictureBytes!);
-          fbb.startTable(9);
+              : fbb.writeString(object.profilePicturePath!);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id ?? 0);
           fbb.addOffset(1, uidOffset);
           fbb.addOffset(2, firstNameOffset);
@@ -126,16 +126,14 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(4, emailOffset);
           fbb.addOffset(5, profilePicUrlOffset);
           fbb.addOffset(6, phoneOffset);
-          fbb.addOffset(7, profilePictureBytesOffset);
+          fbb.addOffset(8, profilePicturePathOffset);
           fbb.finish(fbb.endTable());
           return object.id ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-          final profilePictureBytesValue =
-              const fb.ListReader<int>(fb.Int8Reader())
-                  .vTableGetNullable(buffer, rootOffset, 18);
+
           final object = UserEntity(
               id: const fb.Int64Reader()
                   .vTableGetNullable(buffer, rootOffset, 4),
@@ -148,9 +146,8 @@ ModelDefinition getObjectBoxModel() {
                   const fb.StringReader().vTableGet(buffer, rootOffset, 12, ''),
               profilePicUrl: const fb.StringReader()
                   .vTableGetNullable(buffer, rootOffset, 14),
-              profilePictureBytes: profilePictureBytesValue == null
-                  ? null
-                  : Uint8List.fromList(profilePictureBytesValue),
+              profilePicturePath: const fb.StringReader()
+                  .vTableGetNullable(buffer, rootOffset, 20),
               phone: const fb.StringReader()
                   .vTableGet(buffer, rootOffset, 16, ''));
 
@@ -191,7 +188,7 @@ class UserEntity_ {
   static final phone =
       QueryStringProperty<UserEntity>(_entities[0].properties[6]);
 
-  /// see [UserEntity.profilePictureBytes]
-  static final profilePictureBytes =
-      QueryByteVectorProperty<UserEntity>(_entities[0].properties[7]);
+  /// see [UserEntity.profilePicturePath]
+  static final profilePicturePath =
+      QueryStringProperty<UserEntity>(_entities[0].properties[7]);
 }

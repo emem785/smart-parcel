@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:objectbox/objectbox.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 
@@ -11,7 +9,7 @@ class UserEntity {
   String lastName;
   String email;
   String? profilePicUrl;
-  Uint8List? profilePictureBytes;
+  String? profilePicturePath;
   String phone;
 
   UserEntity({
@@ -21,38 +19,36 @@ class UserEntity {
     required this.lastName,
     required this.email,
     this.profilePicUrl,
-    this.profilePictureBytes,
+    this.profilePicturePath = '',
     required this.phone,
   });
 
   @override
   String toString() {
-    return 'UserEntity(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl,profilePicBytes:$profilePictureBytes , phone: $phone)';
+    return 'UserEntity(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl,profilePicBytes:$profilePicturePath , phone: $phone)';
   }
 
   factory UserEntity.toDomain(User user) {
     return UserEntity(
-      id: 0,
-      uid: user.id ?? "",
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      profilePicUrl: user.profilePicUrl,
-      phone: user.phone,
-      profilePictureBytes: user.profilePicBytes,
-    );
+        id: 0,
+        uid: user.id ?? "",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        profilePicUrl: user.profilePicUrl,
+        phone: user.phone,
+        profilePicturePath: user.profilePicFilePath);
   }
   factory UserEntity.toDomainEdit(User user) {
     return UserEntity(
-      id: 1,
-      uid: user.id ?? "",
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      profilePicUrl: user.profilePicUrl,
-      phone: user.phone,
-      profilePictureBytes: user.profilePicBytes,
-    );
+        id: 1,
+        uid: user.id ?? "",
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        profilePicUrl: user.profilePicUrl,
+        phone: user.phone,
+        profilePicturePath: user.profilePicFilePath);
   }
 
   User fromDomain() {
@@ -63,7 +59,7 @@ class UserEntity {
       email: email,
       profilePicUrl: profilePicUrl,
       phone: phone,
-      profilePicBytes: profilePictureBytes,
+      profilePicFilePath: profilePicturePath,
     );
   }
 }

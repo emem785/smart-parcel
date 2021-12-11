@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:5054737816769856400",
-      "lastPropertyId": "8:4292903254923179199",
+      "lastPropertyId": "9:699431118709255589",
       "name": "UserEntity",
       "properties": [
         {
@@ -45,9 +45,9 @@
           "type": 9
         },
         {
-          "id": "8:4292903254923179199",
-          "name": "profilePictureBytes",
-          "type": 23
+          "id": "9:699431118709255589",
+          "name": "profilePicturePath",
+          "type": 9
         }
       ],
       "relations": []
@@ -61,7 +61,9 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    4292903254923179199
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

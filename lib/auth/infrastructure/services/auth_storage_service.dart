@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,12 +23,6 @@ class AuthStorageService implements AuthStorageInterface {
   }
 
   @override
-  Future<User> convertUserImageToBytes(User user) {
-    // TODO: implement convertUserImageToBytes
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> createUser(User user) {
     // TODO: implement createUser
     throw UnimplementedError();
@@ -36,6 +31,18 @@ class AuthStorageService implements AuthStorageInterface {
   @override
   Future<void> editUser(User user) {
     // TODO: implement editUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Uint8List> loadImageFromNetwork(User user) {
+    // TODO: implement loadImageFromNetwork
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<User> saveProfilePictureInStorage(User user) {
+    // TODO: implement saveProfilePictureInStorage
     throw UnimplementedError();
   }
 }

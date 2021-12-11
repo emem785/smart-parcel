@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/domain/interface/auth_storage_interface.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
@@ -27,27 +30,36 @@ class ObjectAuthStorageService implements AuthStorageInterface {
   }
 
   @override
-  Future<User> convertUserImageToBytes(User user) async {
-    if (user.profilePicUrl!.isNotEmpty) {
-      final networkBundle = NetworkAssetBundle(Uri.parse(user.profilePicUrl!));
-      final imageBytes = await networkBundle.load(user.profilePicUrl!);
-      final uin8Image = imageBytes.buffer.asUint8List();
-      return user.copyWith(profilePicBytes: uin8Image);
-    }
-    return user;
-  }
-
-  @override
   Future<void> createUser(User user) async {
-    final userWithImage = await convertUserImageToBytes(user);
+    final userWithImage = await saveProfilePictureInStorage(user);
     final box = objectbox.store.box<UserEntity>();
     box.put(UserEntity.toDomain(userWithImage));
   }
 
   @override
   Future<void> editUser(User user) async {
-    final userWithImage = await convertUserImageToBytes(user);
+    final userWithImage = await saveProfilePictureInStorage(user);
     final box = objectbox.store.box<UserEntity>();
     box.put(UserEntity.toDomainEdit(userWithImage));
+  }
+
+  @override
+  Future<Uint8List> loadImageFromNetwork(User user) async {
+    final networkBundle = NetworkAssetBundle(Uri.parse(user.profilePicUrl!));
+    final imageBytes = await networkBundle.load(user.profilePicUrl!);
+    return imageBytes.buffer.asUint8List();
+  }
+
+  @override
+  Future<User> saveProfilePictureInStorage(User user) async {
+    if (user.profilePicUrl!.isNotEmpty) {
+      final directory = await getApplicationDocumentsDirectory();
+      final file =
+          File('${directory.path}/${user.profilePicUrl!.split("/").last}.jpg');
+      await file.writeAsBytes(await loadImageFromNetwork(user));
+      await file.create();
+      return user.copyWith(profilePicFilePath: file.path);
+    }
+    return user;
   }
 }

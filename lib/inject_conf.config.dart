@@ -34,8 +34,8 @@ import 'auth/domain/usecases/sign_up_usecase.dart' as _i43;
 import 'auth/domain/usecases/start_countdown_usecase.dart' as _i17;
 import 'auth/domain/usecases/submit_otp_usecase.dart' as _i44;
 import 'auth/domain/usecases/submit_password_otp_usecase.dart' as _i45;
-import 'auth/infrastructure/services/auth_storage_service.dart' as _i21;
-import 'auth/infrastructure/services/object_auth_storage_service.dart' as _i20;
+import 'auth/infrastructure/services/auth_storage_service.dart' as _i20;
+import 'auth/infrastructure/services/object_auth_storage_service.dart' as _i21;
 import 'common/application/auth_bloc/auth_bloc.dart' as _i73;
 import 'common/application/user_bloc/user_bloc.dart' as _i71;
 import 'common/domain/interface/common_storage_interface.dart' as _i23;
@@ -80,8 +80,8 @@ import 'payment/domain/usecases/open_map_usecase.dart' as _i57;
 import 'payment/domain/usecases/payment_usecases.dart' as _i59;
 import 'payment/infrastructure/services/payment_service.dart' as _i27;
 
-const String _dev = 'dev';
 const String _test = 'test';
+const String _dev = 'dev';
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -90,8 +90,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.factory<_i3.ChooseDurationUseCase>(() => _i3.ChooseDurationUseCase());
-  gh.factory<_i4.Client>(() => registerModule.authClient, instanceName: 'auth');
   gh.singleton<_i4.Client>(registerModule.httpClient);
+  gh.factory<_i4.Client>(() => registerModule.authClient, instanceName: 'auth');
   gh.lazySingleton<_i5.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i6.ConnectivityInterceptor>(
       () => _i6.ConnectivityInterceptor(connectivity: get<_i5.Connectivity>()));
@@ -110,21 +110,21 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i15.ShowErrorUseCase>(() => _i15.ShowErrorUseCase());
   gh.factory<_i16.ShowPromptUseCase>(() => _i16.ShowPromptUseCase());
   gh.factory<_i17.StartCountDownUseCase>(() => _i17.StartCountDownUseCase());
+  gh.factory<String>(() => registerModule.apiKey,
+      instanceName: 'googleCloudApiKey');
   gh.factory<String>(() => registerModule.secretKey,
       instanceName: 'paystackSecretkey');
   gh.factory<String>(() => registerModule.publicKey,
       instanceName: 'paystackPublicKey');
   gh.factory<String>(() => registerModule.baseUrl, instanceName: 'baseUrl');
-  gh.factory<String>(() => registerModule.apiKey,
-      instanceName: 'googleCloudApiKey');
   gh.factory<_i18.AuthInterceptor>(() =>
       _i18.AuthInterceptor(sharedPreferences: get<_i13.SharedPreferences>()));
   gh.factory<_i19.AuthStorageInterface>(
-      () => _i20.ObjectAuthStorageService(get<_i13.SharedPreferences>()),
-      registerFor: {_dev});
-  gh.factory<_i19.AuthStorageInterface>(
-      () => _i21.AuthStorageService(get<_i13.SharedPreferences>()),
+      () => _i20.AuthStorageService(get<_i13.SharedPreferences>()),
       registerFor: {_test});
+  gh.factory<_i19.AuthStorageInterface>(
+      () => _i21.ObjectAuthStorageService(get<_i13.SharedPreferences>()),
+      registerFor: {_dev});
   gh.factory<_i22.BaseUseCases>(() => _i22.BaseUseCases(
       showAlertUseCase: get<_i14.ShowAlertUseCase>(),
       showErrorUseCase: get<_i15.ShowErrorUseCase>(),
