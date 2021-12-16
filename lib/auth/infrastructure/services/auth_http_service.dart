@@ -60,3 +60,4 @@ abstract class AuthHttpService extends ChopperService {
   static AuthHttpService create([ChopperClient? client]) =>
       _$AuthHttpService(client);
 }
+  

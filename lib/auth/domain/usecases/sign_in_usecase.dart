@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
@@ -21,11 +22,15 @@ class SignInUsecase {
 
     return response.fold(
       (l) => _checkError(l, emit),
-      (r) => _storeToken(r, emit),
+      (r) => _storeToken(r, emit, event.context),
     );
   }
 
-  _storeToken(LoginResponse r, Emitter<SignInState> emit) async {
+  _storeToken(
+    LoginResponse r,
+    Emitter<SignInState> emit,
+    BuildContext context,
+  ) async {
     if (r.user != null && r.authToken != null) {
       await signInRepository.storeToken(r.authToken!);
       await signInRepository.storeUser(r.user!);

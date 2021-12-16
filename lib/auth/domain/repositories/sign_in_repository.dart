@@ -5,6 +5,7 @@ import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/models/simple_auth_response.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
+import 'package:smart_parcel/common/domain/interface/common_storage_interface.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
@@ -14,10 +15,11 @@ typedef SingleResponse<T> = Future<Either<Failure, T>>;
 
 class SignInRepository {
   final ChopperClient client;
+  final CommonStorageInterface commonStorageInterface;
   final AuthStorageInterface authStorage;
   late AuthHttpService _authHttpService;
 
-  SignInRepository(this.client, this.authStorage) {
+  SignInRepository(this.client, this.authStorage, this.commonStorageInterface) {
     _authHttpService = AuthHttpService.create(client);
   }
 
@@ -65,4 +67,11 @@ class SignInRepository {
   Future<void> storeUser(User user) => authStorage.createUser(user);
   Future<void> storeToken(AuthToken authToken) =>
       authStorage.storeToken(authToken);
+  Either<Failure, User> getUserFromStorage() {
+    final userOption = commonStorageInterface.getUser();
+    return userOption.fold(
+      () => const Left(Failure("No User in storage")),
+      (a) => right(a),
+    );
+  }
 }

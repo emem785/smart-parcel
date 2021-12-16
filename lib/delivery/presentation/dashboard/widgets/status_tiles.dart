@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
@@ -74,8 +75,11 @@ class _StatusTilesState extends State<StatusTiles> {
                           ),
                     subtitle: const Text(
                       "Verified SmartParceler",
-                      style:
-                          TextStyle(fontSize: 11, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white,
+                      ),
                     ),
                   );
                 }
@@ -131,6 +135,20 @@ Widget buildStatusTile({
                 ?.copyWith(color: Colors.white, fontSize: 11),
           ),
         ],
+      ),
+    ),
+  );
+}
+
+Widget statusTilesWithShimmers(BuildContext context) {
+  return Shimmer.fromColors(
+    baseColor: Colors.grey[300]!,
+    highlightColor: const Color(0xFFDEDEDE),
+    child: Container(
+      height: Constants.responsiveHeight(context, 190),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.grey[300]!,
       ),
     ),
   );

@@ -165,7 +165,9 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i39.SearchUsecase>(
       () => _i39.SearchUsecase(get<_i32.DeliveryRepository>()));
   gh.factory<_i40.SignInRepository>(() => _i40.SignInRepository(
-      get<_i31.ChopperClient>(), get<_i19.AuthStorageInterface>()));
+      get<_i31.ChopperClient>(),
+      get<_i19.AuthStorageInterface>(),
+      get<_i23.CommonStorageInterface>()));
   gh.factory<_i41.SignInUsecase>(
       () => _i41.SignInUsecase(get<_i40.SignInRepository>()));
   gh.factory<_i42.SignUpRepository>(() => _i42.SignUpRepository(

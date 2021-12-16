@@ -27,7 +27,7 @@ class DashboardBody extends HookWidget {
     final userBloc = context.read<UserBloc>();
 
     useEffect(() {
-      userBloc.add(const GetUserStreamFromStorage());
+      userBloc.add(GetUserStreamFromStorage(context));
     }, []);
 
     return Scaffold(
@@ -41,7 +41,7 @@ class DashboardBody extends HookWidget {
               BlocConsumer<UserBloc, UserState>(
                 builder: (context, state) {
                   return state.maybeMap(
-                    orElse: () => const SizedBox(),
+                    orElse: () => statusTilesWithShimmers(context),
                     userStreamRetreived: (v) =>
                         StatusTiles(stream: v.userStream),
                   );

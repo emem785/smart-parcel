@@ -17,10 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SignInEventTearOff {
   const _$SignInEventTearOff();
 
-  Login login({required String email, required String password}) {
+  Login login(
+      {required String email,
+      required String password,
+      required BuildContext context}) {
     return Login(
       email: email,
       password: password,
+      context: context,
     );
   }
 
@@ -59,7 +63,9 @@ mixin _$SignInEvent {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) login,
+    required TResult Function(
+            String email, String password, BuildContext context)
+        login,
     required TResult Function(String email) forgotPassword,
     required TResult Function(String otp, String email) confirmOtp,
     required TResult Function(
@@ -69,7 +75,8 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -78,7 +85,8 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -152,7 +160,7 @@ abstract class $LoginCopyWith<$Res> implements $SignInEventCopyWith<$Res> {
   factory $LoginCopyWith(Login value, $Res Function(Login) then) =
       _$LoginCopyWithImpl<$Res>;
   @override
-  $Res call({String email, String password});
+  $Res call({String email, String password, BuildContext context});
 }
 
 /// @nodoc
@@ -168,6 +176,7 @@ class _$LoginCopyWithImpl<$Res> extends _$SignInEventCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
+    Object? context = freezed,
   }) {
     return _then(Login(
       email: email == freezed
@@ -178,6 +187,10 @@ class _$LoginCopyWithImpl<$Res> extends _$SignInEventCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      context: context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ));
   }
 }
@@ -185,16 +198,19 @@ class _$LoginCopyWithImpl<$Res> extends _$SignInEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Login implements Login {
-  const _$Login({required this.email, required this.password});
+  const _$Login(
+      {required this.email, required this.password, required this.context});
 
   @override
   final String email;
   @override
   final String password;
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'SignInEvent.login(email: $email, password: $password)';
+    return 'SignInEvent.login(email: $email, password: $password, context: $context)';
   }
 
   @override
@@ -204,11 +220,12 @@ class _$Login implements Login {
             other is Login &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, context);
 
   @JsonKey(ignore: true)
   @override
@@ -218,32 +235,36 @@ class _$Login implements Login {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) login,
+    required TResult Function(
+            String email, String password, BuildContext context)
+        login,
     required TResult Function(String email) forgotPassword,
     required TResult Function(String otp, String email) confirmOtp,
     required TResult Function(
             String email, String password, String confirmPassword)
         confirmPassword,
   }) {
-    return login(email, password);
+    return login(email, password, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
         confirmPassword,
   }) {
-    return login?.call(email, password);
+    return login?.call(email, password, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -251,7 +272,7 @@ class _$Login implements Login {
     required TResult orElse(),
   }) {
     if (login != null) {
-      return login(email, password);
+      return login(email, password, context);
     }
     return orElse();
   }
@@ -296,12 +317,15 @@ class _$Login implements Login {
 }
 
 abstract class Login implements SignInEvent {
-  const factory Login({required String email, required String password}) =
-      _$Login;
+  const factory Login(
+      {required String email,
+      required String password,
+      required BuildContext context}) = _$Login;
 
   @override
   String get email;
   String get password;
+  BuildContext get context;
   @override
   @JsonKey(ignore: true)
   $LoginCopyWith<Login> get copyWith => throw _privateConstructorUsedError;
@@ -372,7 +396,9 @@ class _$ForgotPassword implements ForgotPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) login,
+    required TResult Function(
+            String email, String password, BuildContext context)
+        login,
     required TResult Function(String email) forgotPassword,
     required TResult Function(String otp, String email) confirmOtp,
     required TResult Function(
@@ -385,7 +411,8 @@ class _$ForgotPassword implements ForgotPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -397,7 +424,8 @@ class _$ForgotPassword implements ForgotPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -536,7 +564,9 @@ class _$ForgotPasswordConfirmOtp implements ForgotPasswordConfirmOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) login,
+    required TResult Function(
+            String email, String password, BuildContext context)
+        login,
     required TResult Function(String email) forgotPassword,
     required TResult Function(String otp, String email) confirmOtp,
     required TResult Function(
@@ -549,7 +579,8 @@ class _$ForgotPasswordConfirmOtp implements ForgotPasswordConfirmOtp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -561,7 +592,8 @@ class _$ForgotPasswordConfirmOtp implements ForgotPasswordConfirmOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -719,7 +751,9 @@ class _$ForgotPasswordConfirmPasword implements ForgotPasswordConfirmPasword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) login,
+    required TResult Function(
+            String email, String password, BuildContext context)
+        login,
     required TResult Function(String email) forgotPassword,
     required TResult Function(String otp, String email) confirmOtp,
     required TResult Function(
@@ -732,7 +766,8 @@ class _$ForgotPasswordConfirmPasword implements ForgotPasswordConfirmPasword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?
@@ -744,7 +779,8 @@ class _$ForgotPasswordConfirmPasword implements ForgotPasswordConfirmPasword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? login,
+    TResult Function(String email, String password, BuildContext context)?
+        login,
     TResult Function(String email)? forgotPassword,
     TResult Function(String otp, String email)? confirmOtp,
     TResult Function(String email, String password, String confirmPassword)?

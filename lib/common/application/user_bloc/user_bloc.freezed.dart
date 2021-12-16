@@ -21,8 +21,10 @@ class _$UserEventTearOff {
     return const GetUserFromStorage();
   }
 
-  GetUserStreamFromStorage getUserStreamFromStorage() {
-    return const GetUserStreamFromStorage();
+  GetUserStreamFromStorage getUserStreamFromStorage(BuildContext context) {
+    return GetUserStreamFromStorage(
+      context,
+    );
   }
 }
 
@@ -34,19 +36,19 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
-    required TResult Function() getUserStreamFromStorage,
+    required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,7 +131,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
-    required TResult Function() getUserStreamFromStorage,
+    required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) {
     return getUserFromStorage();
   }
@@ -138,7 +140,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) {
     return getUserFromStorage?.call();
   }
@@ -147,7 +149,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
     if (getUserFromStorage != null) {
@@ -198,6 +200,7 @@ abstract class $GetUserStreamFromStorageCopyWith<$Res> {
   factory $GetUserStreamFromStorageCopyWith(GetUserStreamFromStorage value,
           $Res Function(GetUserStreamFromStorage) then) =
       _$GetUserStreamFromStorageCopyWithImpl<$Res>;
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -211,54 +214,77 @@ class _$GetUserStreamFromStorageCopyWithImpl<$Res>
   @override
   GetUserStreamFromStorage get _value =>
       super._value as GetUserStreamFromStorage;
+
+  @override
+  $Res call({
+    Object? context = freezed,
+  }) {
+    return _then(GetUserStreamFromStorage(
+      context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
-  const _$GetUserStreamFromStorage();
+  const _$GetUserStreamFromStorage(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'UserEvent.getUserStreamFromStorage()';
+    return 'UserEvent.getUserStreamFromStorage(context: $context)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GetUserStreamFromStorage);
+        (other.runtimeType == runtimeType &&
+            other is GetUserStreamFromStorage &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetUserStreamFromStorageCopyWith<GetUserStreamFromStorage> get copyWith =>
+      _$GetUserStreamFromStorageCopyWithImpl<GetUserStreamFromStorage>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
-    required TResult Function() getUserStreamFromStorage,
+    required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) {
-    return getUserStreamFromStorage();
+    return getUserStreamFromStorage(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) {
-    return getUserStreamFromStorage?.call();
+    return getUserStreamFromStorage?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
-    TResult Function()? getUserStreamFromStorage,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
     if (getUserStreamFromStorage != null) {
-      return getUserStreamFromStorage();
+      return getUserStreamFromStorage(context);
     }
     return orElse();
   }
@@ -297,7 +323,13 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
 }
 
 abstract class GetUserStreamFromStorage implements UserEvent {
-  const factory GetUserStreamFromStorage() = _$GetUserStreamFromStorage;
+  const factory GetUserStreamFromStorage(BuildContext context) =
+      _$GetUserStreamFromStorage;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  $GetUserStreamFromStorageCopyWith<GetUserStreamFromStorage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

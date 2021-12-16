@@ -75,4 +75,12 @@ class AuthRepository {
       return const Left(Failure("Not found in storage"));
     }
   }
+
+  Either<Failure, User> getUserFromStorage() {
+    final userOption = commonStorageInterface.getUser();
+    return userOption.fold(
+      () => const Left(Failure("No User in storage")),
+      (a) => right(a),
+    );
+  }
 }

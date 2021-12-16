@@ -9,6 +9,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../common/infrastructure/setup_tests.dart';
+import '../../delivery/application/delivery_bloc_test.dart';
 import '../infrastructure/auth_mock_data.dart';
 
 void main() {
@@ -26,8 +27,8 @@ void main() {
       'login event calls sign in repository sign in function',
       setUp: () => TestSetup.setup(mockLoginResponse, 200),
       build: () => getIt<SignInBloc>(),
-      act: (bloc) => bloc.add(
-          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      act: (bloc) => bloc.add(SignInEvent.login(
+          email: mockEmail, password: mockPassword, context: MockContext())),
       wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
@@ -38,8 +39,8 @@ void main() {
       'login event emits failure state when getting 400 status code',
       setUp: () => TestSetup.setup(loginFailureJson, 400),
       build: () => getIt<SignInBloc>(),
-      act: (bloc) => bloc.add(
-          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      act: (bloc) => bloc.add(SignInEvent.login(
+          email: mockEmail, password: mockPassword, context: MockContext())),
       wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
@@ -50,8 +51,8 @@ void main() {
       'login event emits user not activated error failure state when getting 400 status code',
       setUp: () => TestSetup.setup(mockLoginFailureRespone, 400),
       build: () => getIt<SignInBloc>(),
-      act: (bloc) => bloc.add(
-          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      act: (bloc) => bloc.add(SignInEvent.login(
+          email: mockEmail, password: mockPassword, context: MockContext())),
       wait: const Duration(milliseconds: 300),
       expect: () => const [
         SignInState.loading(),
@@ -63,8 +64,8 @@ void main() {
       setUp: () =>
           TestSetup.setup(mockLoginResponse, 200, mockAuthToken.toJson()),
       build: () => getIt<SignInBloc>(),
-      act: (bloc) => bloc.add(
-          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      act: (bloc) => bloc.add(SignInEvent.login(
+          email: mockEmail, password: mockPassword, context: MockContext())),
       wait: const Duration(milliseconds: 300),
       verify: (_) => verify(() => getIt<SharedPreferences>()
           .setString(any(), jsonEncode(mockAuthToken.toMap()))),
@@ -73,8 +74,8 @@ void main() {
       ' check login event bloc stores user',
       setUp: () => TestSetup.setup(mockLoginResponse, 200),
       build: () => getIt<SignInBloc>(),
-      act: (bloc) => bloc.add(
-          const SignInEvent.login(email: mockEmail, password: mockPassword)),
+      act: (bloc) => bloc.add(SignInEvent.login(
+          email: mockEmail, password: mockPassword, context: MockContext())),
       wait: const Duration(milliseconds: 300),
       verify: (_) => verify(() => getIt<SharedPreferences>()
           .setString(any(), jsonEncode(mockUser.toMap()))),

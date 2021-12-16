@@ -6,6 +6,7 @@ class SignInEvent with _$SignInEvent {
   const factory SignInEvent.login({
     required String email,
     required String password,
+    required BuildContext context,
   }) = Login;
   const factory SignInEvent.forgotPassword({
     required String email,

@@ -75,8 +75,10 @@ class LoginPageBody extends HookWidget {
                         onPressed: () {
                           if (formKey.value.currentState!.validate()) {
                             signInBloc.add(SignInEvent.login(
-                                email: emailController.text,
-                                password: passwordController.text));
+                              email: emailController.text,
+                              password: passwordController.text,
+                              context: context,
+                            ));
                           }
                         },
                         child: const Text("Sign In"),

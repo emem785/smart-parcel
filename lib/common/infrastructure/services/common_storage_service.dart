@@ -21,7 +21,6 @@ class CommonStorageService implements CommonStorageInterface {
   Option<User> getUser() {
     final box = objectbox.store.box<UserEntity>();
     final userEntity = box.query().build().findFirst();
-    print(userEntity);
     if (userEntity != null) {
       return some(userEntity.fromDomain());
     }
@@ -40,9 +39,9 @@ class CommonStorageService implements CommonStorageInterface {
 
   @override
   Future<void> removeUser() async {
-    final isValid = await preferences.remove(userKey);
-
-    if (isValid) {
+    final box = objectbox.store.box<UserEntity>();
+    final count = box.query().build().remove();
+    if (count > 0) {
       return;
     }
     throw Exception("Nothing Stored");

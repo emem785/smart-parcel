@@ -11,6 +11,7 @@ class GetStoredUserUseCase {
   FutureOr<void> call(GetUserFromStorage event, Emitter<UserState> emit) async {
     emit(const UserLoading());
     final response = userRepository.getUserFromStorage();
+
     return response.fold(
       (l) => emit(UserState.error(l)),
       (r) => emit(UserState.userRetreived(r)),

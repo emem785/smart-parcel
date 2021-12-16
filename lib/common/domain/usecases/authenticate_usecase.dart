@@ -29,7 +29,10 @@ class AuthenticateUseCase {
     );
   }
 
-  _storeToken(AuthToken r, Emitter<AuthState> emit) async {
+  _storeToken(
+    AuthToken r,
+    Emitter<AuthState> emit,
+  ) async {
     await authRepository.storeToken(r);
     emit(const AuthState.authenticated());
   }
