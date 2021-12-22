@@ -29,7 +29,9 @@ class GetStoredUserStreamUseCase {
     Emitter<UserState> emit,
     User user,
   ) {
-    precacheImage(FileImage(File(user.profilePicFilePath!)), event.context);
+    if (user.profilePicFilePath!.isNotEmpty) {
+      precacheImage(FileImage(File(user.profilePicFilePath!)), event.context);
+    }
     final response =
         userRepository.getUserStream().map((user) => user ?? User.empty());
     emit(UserState.userStreamRetreived(response));

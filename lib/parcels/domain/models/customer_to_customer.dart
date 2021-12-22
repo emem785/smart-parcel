@@ -99,7 +99,7 @@ class CustomerToCustomer {
 
   @override
   String toString() {
-    return 'CustomerToCustomer(id: $id, userId: $userId, name: $name, email: $email, phone: $phone, locationId: $locationId, status: $status, address: $address, dropOff: $dropOff, pickUp: $pickUp  isActive: $isActive, createdAt: $createdAt)';
+    return "CustomerToCustomer(id: $id, userId: '$userId', name: '$name', email: '$email', phone: '$phone', locationId: $locationId, status: '$status', address: '$address', dropOff: '$dropOff', pickUp: '$pickUp', isActive: $isActive, createdAt: '$createdAt')";
   }
 
   @override

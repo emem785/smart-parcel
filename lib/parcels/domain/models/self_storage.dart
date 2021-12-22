@@ -87,7 +87,7 @@ class SelfStorage {
 
   @override
   String toString() {
-    return 'SelfStorage(id: $id, userId: $userId, duration: $duration, locationId: $locationId, status: $status,status: $status, isActive: $isActive, createdAt: $createdAt)';
+    return "SelfStorage(id: $id, userId: '$userId', duration: '$duration', locationId: $locationId, status: '$status', isActive: $isActive, createdAt: '$createdAt', address: '$address', pickUp: '$pickUp', dropOff: '$dropOff')";
   }
 
   @override

@@ -3,7 +3,7 @@ class ValidatorUtil {
         return value!.isEmpty ? "This field cannot be left blank" : null;
       };
   static String? Function(String?)? get emailValidator => (value) {
-        if (value!.contains("@") && value.isNotEmpty) {
+        if (value!.contains("@") && value.isNotEmpty && value.contains(".")) {
           return null;
         }
         return "Please Enter a valid Email";

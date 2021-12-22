@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart';
 
 import 'customer_to_customer.dart';
 import 'self_storage.dart';
@@ -8,18 +9,22 @@ import 'self_storage.dart';
 class ParcelData {
   final List<SelfStorage> selfStorages;
   final List<CustomerToCustomer> customerToCustomer;
+  final List<CustomerToCourier> customerToCourier;
   const ParcelData({
     required this.selfStorages,
     required this.customerToCustomer,
+    required this.customerToCourier,
   });
 
   ParcelData copyWith({
     List<SelfStorage>? selfStorages,
     List<CustomerToCustomer>? customerToCustomer,
+    List<CustomerToCourier>? customerToCourier,
   }) {
     return ParcelData(
       selfStorages: selfStorages ?? this.selfStorages,
       customerToCustomer: customerToCustomer ?? this.customerToCustomer,
+      customerToCourier: customerToCourier ?? this.customerToCourier,
     );
   }
 
@@ -27,6 +32,7 @@ class ParcelData {
     return {
       'selfStorages': selfStorages.map((x) => x.toMap()).toList(),
       'customerToCustomer': customerToCustomer.map((x) => x.toMap()).toList(),
+      'customerToCourier': customerToCourier.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -37,6 +43,8 @@ class ParcelData {
       customerToCustomer: List<CustomerToCustomer>.from(
           map['customer_to_customer']
               ?.map((x) => CustomerToCustomer.fromMap(x))),
+      customerToCourier: List<CustomerToCourier>.from(
+          map['customer_to_courier']?.map((x) => CustomerToCourier.fromMap(x))),
     );
   }
 
@@ -47,7 +55,7 @@ class ParcelData {
 
   @override
   String toString() =>
-      'ParcelData(selfStorages: $selfStorages, customerToCustomer: $customerToCustomer)';
+      'ParcelData(selfStorages: $selfStorages, customerToCustomer: $customerToCustomer, customerToCourier: $customerToCourier)';
 
   @override
   bool operator ==(Object other) {
@@ -55,9 +63,13 @@ class ParcelData {
 
     return other is ParcelData &&
         listEquals(other.selfStorages, selfStorages) &&
-        listEquals(other.customerToCustomer, customerToCustomer);
+        listEquals(other.customerToCustomer, customerToCustomer) &&
+        listEquals(other.customerToCourier, customerToCourier);
   }
 
   @override
-  int get hashCode => selfStorages.hashCode ^ customerToCustomer.hashCode;
+  int get hashCode =>
+      selfStorages.hashCode ^
+      customerToCustomer.hashCode ^
+      customerToCourier.hashCode;
 }

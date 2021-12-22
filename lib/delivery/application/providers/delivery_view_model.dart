@@ -10,10 +10,10 @@ class DeliveryViewModel with ChangeNotifier {
   int? _locationId;
 
   PageRouteInfo<dynamic> get routeInfo =>
-      _routeInfo ?? SelfStoragePaymentRoute();
+      _routeInfo ?? const SelfStoragePaymentRoute();
   String get duration => _duration ?? '';
   int get locationId => _locationId ?? 0;
-  CustomerForm get customerForm => _customerForm ?? CustomerForm.empty();
+  CustomerForm get customerForm => _customerForm ?? const CustomerForm.empty();
 
   setDuration(String duration) {
     _duration = duration;

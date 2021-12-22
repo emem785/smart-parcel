@@ -1,4 +1,4 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,16 +6,17 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
-import 'package:smart_parcel/parcels/domain/models/customer_to_customer.dart';
+import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart';
 
-class CustomerParcelPage extends HookWidget {
+class CourierParcelPage extends HookWidget {
   final DateFormat dateFormat = DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY);
-  CustomerParcelPage({Key? key}) : super(key: key);
+  CourierParcelPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final visibility = useState(0.0);
     final parcelBloc = context.read<ParcelBloc>();
+
     useEffect(() {
       parcelBloc.add(const ParcelEvent.getHistory());
     }, []);
@@ -42,8 +43,8 @@ class CustomerParcelPage extends HookWidget {
               builder: (context, state) {
                 return state.maybeMap(
                   orElse: () => const SizedBox(),
-                  historyRetreived: (v) => buildCustomerList(
-                      v.parcelResponse.data.customerToCustomer,
+                  historyRetreived: (v) => buildCourierList(
+                      v.parcelResponse.data.customerToCourier,
                       visibility,
                       context),
                 );
@@ -66,20 +67,20 @@ class CustomerParcelPage extends HookWidget {
     );
   }
 
-  Widget buildCustomerList(
-    List<CustomerToCustomer> c2c,
+  Widget buildCourierList(
+    List<CustomerToCourier> courier,
     ValueNotifier<double> visibility,
     BuildContext ctx,
   ) {
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
       opacity: visibility.value,
-      child: c2c.isNotEmpty
+      child: courier.isNotEmpty
           ? ListView.builder(
-              itemCount: c2c.length,
+              itemCount: courier.length,
               itemBuilder: (context, index) {
-                final historyItem = c2c[index];
-                return buildCustomerItem(historyItem, ctx);
+                final historyItem = courier[index];
+                return buildCourierItem(historyItem, ctx);
               },
             )
           : const Center(
@@ -91,13 +92,12 @@ class CustomerParcelPage extends HookWidget {
     );
   }
 
-  Widget buildCustomerItem(
-      CustomerToCustomer historyItem, BuildContext context) {
+  Widget buildCourierItem(CustomerToCourier historyItem, BuildContext context) {
     return ListTile(
       onTap: () => context.router
-          .push(CustomerParcelDetailsRoute(customerToCustomer: historyItem)),
+          .push(CourierParcelDetailsRoute(customerToCourier: historyItem)),
       title: Text(
-        historyItem.address,
+        historyItem.locationAddress,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),

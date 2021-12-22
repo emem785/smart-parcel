@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
-
-import 'parcel_data.dart';
+import 'package:smart_parcel/parcels/domain/models/parcel_data.dart';
 
 class ParcelResponse {
   final bool status;
@@ -36,8 +35,8 @@ class ParcelResponse {
 
   factory ParcelResponse.fromMap(Map<String, dynamic> map) {
     return ParcelResponse(
-      status: map['status'],
-      message: map['message'],
+      status: map['status'] ?? false,
+      message: map['message'] ?? '',
       data: ParcelData.fromMap(map['data']),
     );
   }
@@ -49,7 +48,7 @@ class ParcelResponse {
 
   @override
   String toString() =>
-      'ParcelResponse(status: $status, message: $message, data: $data)';
+      "ParcelResponse(status: $status, message: '$message', data: $data)";
 
   @override
   bool operator ==(Object other) {

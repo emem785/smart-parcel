@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
+import 'package:smart_parcel/parcels/presentation/courier_parcel/customer_2_courier_parcel_page.dart';
 import 'package:smart_parcel/parcels/presentation/customer_parcel/customer_2_customer_parcel_page.dart';
 import 'package:smart_parcel/parcels/presentation/self_storage_parcel/self_storage_parcel.dart';
 
@@ -25,7 +26,7 @@ class ParcelsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -35,13 +36,16 @@ class ParcelsBody extends StatelessWidget {
             bottom: const TabBar(
               tabs: [
                 Tab(child: Text("Self Storage")),
+                Tab(child: Text("Courier")),
                 Tab(child: Text("Customer-Customer")),
               ],
+              labelStyle: TextStyle(fontSize: 13),
             ),
           ),
         ),
         body: TabBarView(children: [
           SelfStorageParcelPage(),
+          CourierParcelPage(),
           CustomerParcelPage(),
         ]),
       ),

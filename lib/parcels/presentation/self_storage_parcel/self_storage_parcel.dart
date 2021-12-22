@@ -15,8 +15,9 @@ class SelfStorageParcelPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final visibility = useState(0.0);
+    final parcelBloc = context.read<ParcelBloc>();
     useEffect(() {
-      context.read<ParcelBloc>().add(const ParcelEvent.getHistory());
+      parcelBloc.add(const ParcelEvent.getHistory());
     }, []);
     return RefreshIndicator(
       onRefresh: () async {

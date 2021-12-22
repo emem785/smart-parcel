@@ -20,7 +20,9 @@ import 'package:smart_parcel/delivery/presentation/home_wrapper_page.dart';
 import 'package:smart_parcel/delivery/presentation/select_location_pages/select_location_district_page.dart';
 import 'package:smart_parcel/delivery/presentation/select_location_pages/select_location_page.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/choose_duration_page.dart';
+import 'package:smart_parcel/parcels/presentation/courier_parcel/customer_2_courier_parcel_page.dart';
 import 'package:smart_parcel/parcels/presentation/customer_parcel/customer_2_customer_parcel_page.dart';
+import 'package:smart_parcel/parcels/presentation/parcel_detail_page/courier_parcel_detail_page.dart';
 import 'package:smart_parcel/parcels/presentation/parcel_detail_page/customer_parcel_detail_page.dart';
 import 'package:smart_parcel/parcels/presentation/parcel_detail_page/self_parcel_detail_page.dart';
 import 'package:smart_parcel/parcels/presentation/parcels_page.dart';
@@ -66,9 +68,11 @@ const homePageChildren = [
         AutoRoute(path: '', page: ParcelsPage, children: [
           AutoRoute(path: 'customer2Customer', page: CustomerParcelPage),
           AutoRoute(path: 'selfStorage', page: SelfStorageParcelPage),
+          AutoRoute(path: 'customer2Courier', page: CourierParcelPage),
         ]),
         AutoRoute(path: 'selfDetailsPage', page: SelfParcelDetailsPage),
         AutoRoute(path: 'customerDetailsPage', page: CustomerParcelDetailsPage),
+        AutoRoute(path: 'courierDetailsPage', page: CourierParcelDetailsPage),
       ]),
   AutoRoute(
     path: 'profile',

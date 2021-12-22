@@ -42,7 +42,7 @@ class PaymentResponse {
       PaymentResponse.fromMap(json.decode(source));
 
   @override
-  String toString() => 'PaymentResponse(message: $message, data: $data)';
+  String toString() => "PaymentResponse(message: '$message', data: $data)";
 
   @override
   bool operator ==(Object other) {

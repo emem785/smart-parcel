@@ -42,20 +42,42 @@ class DeliveryRepository {
     required String name,
     required String email,
     required String phone,
-    required String userId,
+    required String address,
     required PaystackResponse paystackResponse,
     required int location,
   }) {
     final Map<String, dynamic> body = {
       "reference": paystackResponse.data.reference,
       "name": name,
-      "email": email,
       "phone": phone,
-      "status": "pending",
-      "user": userId,
+      "email": email,
+      "address": address,
       "location": location,
     };
+
     return postDataAuth(deliveryHttpService.bookCustomerToCustomer, body);
+  }
+
+  SingleResponse<PaymentResponse> bookCustomerToCourier({
+    required String name,
+    required String email,
+    required String phone,
+    required String address,
+    required String city,
+    required PaystackResponse paystackResponse,
+    required int location,
+  }) {
+    final Map<String, dynamic> body = {
+      "reference": paystackResponse.data.reference,
+      "name": name,
+      "phone": phone,
+      "email": email,
+      "address": address,
+      "location": location,
+      "city": city
+    };
+
+    return postDataAuth(deliveryHttpService.bookCustomerToCourier, body);
   }
 
   ListResponse<CenterDistrict> getParcelCenters() {

@@ -78,7 +78,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id:$id , firstName: $firstName, lastName: $lastName, email: $email, profilePicUrl:$profilePicUrl , profilePicFilePath:$profilePicFilePath, phone: $phone)';
+    return "User(id:'$id' , firstName: '$firstName', lastName: '$lastName', email: '$email', profilePicUrl:'$profilePicUrl' , profilePicFilePath:'$profilePicFilePath', phone: '$phone')";
   }
 
   @override

@@ -9,6 +9,7 @@ import 'package:smart_parcel/common/utils/validator_util.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
+import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/widgets/address_search_delegate.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_conditions.dart';
 
 const agreement =
@@ -22,12 +23,15 @@ class CustomerToCustomerBody extends HookWidget {
   static const nameKey = Key("customer_name_text_Field");
   static const emailKey = Key("customer_email_text_Field");
   static const phoneKey = Key("customer_phone_text_Field");
+  static const addressKey = Key("customer_address_text_Field");
 
   @override
   Widget build(BuildContext context) {
     final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final phoneController = useTextEditingController();
+    final addressController = useTextEditingController();
+    final descController = useTextEditingController();
     final formKey = useState(GlobalKey<FormState>());
     final hasAgreed = useState(false);
     final deliveryBloc = context.read<DeliveryBloc>();
@@ -47,11 +51,18 @@ class CustomerToCustomerBody extends HookWidget {
                   emailController: emailController,
                   nameController: nameController,
                   phoneController: phoneController,
+                  addressController: addressController,
                   formKey: formKey.value,
                 ),
                 const Text(
                   demurrage,
                   style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+                TextFormField(
+                  controller: descController,
+                  validator: ValidatorUtil.normalValidator,
+                  decoration:
+                      const InputDecoration(labelText: "Item Description"),
                 ),
                 LayoutConstants.sizeBox(context, 62),
               ],
@@ -74,7 +85,9 @@ class CustomerToCustomerBody extends HookWidget {
                     if (formKey.value.currentState!.validate()) {
                       if (hasAgreed.value) {
                         final form = CustomerForm(
-                          address: null,
+                          city: null,
+                          description: null,
+                          address: addressController.text,
                           email: emailController.text,
                           name: nameController.text,
                           phone: phoneController.text,
@@ -108,6 +121,7 @@ Widget buildCustomerForm({
   required TextEditingController nameController,
   required TextEditingController emailController,
   required TextEditingController phoneController,
+  required TextEditingController addressController,
   required GlobalKey<FormState> formKey,
 }) {
   return Form(
@@ -136,7 +150,26 @@ Widget buildCustomerForm({
           ),
           key: CustomerToCustomerBody.phoneKey,
         ),
+        TextFormField(
+          controller: addressController,
+          readOnly: true,
+          onTap: () => getAddressResult(context, addressController),
+          validator: ValidatorUtil.normalValidator,
+          decoration: const InputDecoration(labelText: "Address of Recipient"),
+          key: CustomerToCustomerBody.addressKey,
+        ),
       ],
     ),
   );
+}
+
+Future<void> getAddressResult(
+  BuildContext context,
+  TextEditingController addressController,
+) async {
+  final address = await showSearch(
+    context: context,
+    delegate: AddressSearchDelegate(context.read<DeliveryBloc>()),
+  );
+  addressController.text = address;
 }

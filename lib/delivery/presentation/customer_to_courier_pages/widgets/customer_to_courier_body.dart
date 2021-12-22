@@ -12,6 +12,8 @@ import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/widgets/address_search_delegate.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_conditions.dart';
 
+const cities = ["lagos"];
+
 const agreement =
     "By clicking on this box, you have agreed to the Terms and Conditions that guides the booking of a box on Smart Parcel App";
 
@@ -31,6 +33,8 @@ class CustomerToCourierBody extends HookWidget {
     final emailController = useTextEditingController();
     final phoneController = useTextEditingController();
     final addressController = useTextEditingController();
+    final descController = useTextEditingController();
+    final city = useState("");
     final formKey = useState(GlobalKey<FormState>());
     final hasAgreed = useState(false);
     final deliveryBloc = context.read<DeliveryBloc>();
@@ -51,11 +55,18 @@ class CustomerToCourierBody extends HookWidget {
                   nameController: nameController,
                   phoneController: phoneController,
                   addressController: addressController,
+                  city: city,
                   formKey: formKey.value,
                 ),
                 const Text(
                   demurrage,
                   style: TextStyle(color: Colors.red, fontSize: 12),
+                ),
+                TextFormField(
+                  controller: descController,
+                  validator: ValidatorUtil.normalValidator,
+                  decoration:
+                      const InputDecoration(labelText: "Item Description"),
                 ),
                 LayoutConstants.sizeBox(context, 62),
               ],
@@ -78,6 +89,8 @@ class CustomerToCourierBody extends HookWidget {
                     if (formKey.value.currentState!.validate()) {
                       if (hasAgreed.value) {
                         final form = CustomerForm(
+                          description: descController.text,
+                          city: city.value,
                           email: emailController.text,
                           name: nameController.text,
                           phone: phoneController.text,
@@ -113,6 +126,7 @@ Widget buildCustomerForm({
   required TextEditingController emailController,
   required TextEditingController phoneController,
   required TextEditingController addressController,
+  required ValueNotifier<String> city,
   required GlobalKey<FormState> formKey,
 }) {
   return Form(
@@ -149,6 +163,23 @@ Widget buildCustomerForm({
           decoration: const InputDecoration(labelText: "Address of Recipient"),
           key: CustomerToCourierBody.addressKey,
         ),
+        DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: 16),
+            ),
+            validator: (v) {
+              if (v == null) {
+                return "Please select a city";
+              }
+            },
+            onChanged: (v) => city.value = v!,
+            hint: const Text("Select a city"),
+            items: cities.map((e) {
+              return DropdownMenuItem<String>(
+                value: e,
+                child: Text(e),
+              );
+            }).toList()),
       ],
     ),
   );

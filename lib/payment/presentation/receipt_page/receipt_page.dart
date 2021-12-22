@@ -94,7 +94,8 @@ class SelfStoragePayment extends HookWidget {
             return state.maybeMap(
               orElse: () => LayoutConstants.padButton(ElevatedButton(
                 onPressed: () {
-                  paymentBloc.add(PaymentEvent.openMap(paymentData.address));
+                  paymentBloc
+                      .add(PaymentEvent.openMap(paymentData.location.address));
                 },
                 child: const Text("Open In Map"),
               )),

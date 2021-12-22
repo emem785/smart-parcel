@@ -6,14 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/auth/infrastructure/services/auth_http_service.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/auth_interceptor.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/connectivity_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/authenticator/jwt_authenticator.dart';
 import 'package:smart_parcel/common/infrastructure/chopper/converter.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/error_interceptor.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/jwt_authenticator.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/paystack_error_interceptor.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/paystack_interceptor.dart';
-import 'package:smart_parcel/common/infrastructure/chopper/places_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/interceptors/auth_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/interceptors/connectivity_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/interceptors/error_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/interceptors/paystack_interceptor.dart';
+import 'package:smart_parcel/common/infrastructure/chopper/interceptors/places_interceptor.dart';
 import 'package:smart_parcel/common/infrastructure/services/common_http_service.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/inject_conf.dart';
@@ -82,7 +81,6 @@ abstract class RegisterModule {
         getIt<AuthInterceptor>(),
         getIt<PaystackInterceptor>(),
         getIt<PlacesInterceptor>(),
-        PaystackErrorInterceptor(),
         ErrorInterceptor(),
       ],
     );

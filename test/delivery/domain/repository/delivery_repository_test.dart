@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-import '../../../auth/infrastructure/auth_mock_data.dart';
 import '../../../common/infrastructure/setup_auth_tests.dart';
 import '../../../payment/infrastructure/payment_mock_data.dart';
 import '../../infrastructure/delivery_mock_data.dart';
@@ -23,7 +22,7 @@ Future<void> main() async {
       'returns self storage response',
       () async {
         // arrange
-        AuthTestSetup.setup(selfStoragePaymentJson, 200);
+        AuthTestSetup.setup(selfStorageJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.bookSelfStorage(
@@ -47,17 +46,38 @@ Future<void> main() async {
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.bookCustomerToCustomer(
-          name: "emem",
-          email: "emem@emem",
-          location: 4,
-          phone: "0805555",
-          paystackResponse: paystackResponse,
-          userId: mockUser.id!,
-        );
+            name: "emem",
+            email: "emem@emem",
+            location: 4,
+            phone: "0805555",
+            paystackResponse: paystackResponse,
+            address: '');
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, paymentResponseCustomer),
+          (r) => expect(r, paymentResponeCustomer),
+        );
+      },
+    );
+    test(
+      'returns customer to courier response',
+      () async {
+        // arrange
+        AuthTestSetup.setup(bookCustomerToCourierResponse, 200);
+        final repo = getIt<DeliveryRepository>();
+        // act
+        final response = await repo.bookCustomerToCourier(
+            name: "emem",
+            email: "emem@emem",
+            location: 4,
+            phone: "0805555",
+            paystackResponse: paystackResponse,
+            city: '',
+            address: '');
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, paymentResponeCourier),
         );
       },
     );

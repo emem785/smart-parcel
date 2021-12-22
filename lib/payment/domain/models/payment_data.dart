@@ -1,84 +1,93 @@
 import 'dart:convert';
 
+import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/payment/domain/models/location.dart';
+
 class PaymentData {
-  final int id;
-  final String? duration;
+  final String name;
+  final String phone;
+  final String email;
+  final String duration;
+  final String address;
+  final String city;
   final String pickUp;
   final String dropOff;
-  final String status;
-  final String address;
-  final bool isActive;
-  final String createdAt;
-  final String user;
-  final int location;
+  final String parcelType;
+  final User user;
+  final Location location;
   const PaymentData({
-    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
     required this.duration,
+    required this.address,
+    required this.city,
     required this.pickUp,
     required this.dropOff,
-    required this.status,
-    required this.isActive,
-    required this.createdAt,
+    required this.parcelType,
     required this.user,
     required this.location,
-    required this.address,
   });
 
   PaymentData copyWith({
-    int? id,
+    String? name,
+    String? phone,
+    String? email,
     String? duration,
+    String? address,
+    String? city,
     String? pickUp,
     String? dropOff,
-    String? status,
-    String? address,
-    bool? isActive,
-    String? createdAt,
-    String? user,
-    int? location,
+    String? parcelType,
+    User? user,
+    Location? location,
   }) {
     return PaymentData(
-      id: id ?? this.id,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      email: email ?? this.email,
       duration: duration ?? this.duration,
+      address: address ?? this.address,
+      city: city ?? this.city,
       pickUp: pickUp ?? this.pickUp,
       dropOff: dropOff ?? this.dropOff,
-      status: status ?? this.status,
-      isActive: isActive ?? this.isActive,
-      createdAt: createdAt ?? this.createdAt,
+      parcelType: parcelType ?? this.parcelType,
       user: user ?? this.user,
-      address: address ?? this.address,
       location: location ?? this.location,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'name': name,
+      'phone': phone,
+      'email': email,
       'duration': duration,
-      'pickUp': pickUp,
-      'dropOff': dropOff,
-      'status': status,
-      'isActive': isActive,
-      'createdAt': createdAt,
-      'user': user,
-      'location': location,
+      'address': address,
+      'city': city,
+      'pick_up': pickUp,
+      'drop_off': dropOff,
+      'parcel_type': parcelType,
+      'user': user.toMap(),
+      'location': location.toMap(),
     };
   }
 
   factory PaymentData.fromMap(Map<String, dynamic> map) {
     return PaymentData(
-      id: map['id']?.toInt(),
-      duration: map['duration'] ?? "",
-      pickUp: map['pick_up'],
-      dropOff: map['drop_off'],
-      status: map['status'],
-      isActive: map['is_active'],
-      address: map['address'],
-      createdAt: map['created_at'],
-      user: map['user'],
-      location: map['location']?.toInt(),
+      name: map['name'] ?? '',
+      phone: map['phone'] ?? '',
+      email: map['email'] ?? '',
+      duration: map['duration'] ?? '',
+      address: map['address'] ?? '',
+      city: map['city'] ?? '',
+      pickUp: map['pick_up'] ?? '',
+      dropOff: map['drop_off'] ?? '',
+      parcelType: map['parcel_type'] ?? '',
+      user: User.fromMap(map['user']),
+      location: Location.fromMap(map['location']),
     );
   }
-
   String toJson() => json.encode(toMap());
 
   factory PaymentData.fromJson(String source) =>
@@ -86,7 +95,7 @@ class PaymentData {
 
   @override
   String toString() {
-    return 'PaymentData(id: $id, duration: $duration, pickUp: $pickUp, dropOff: $dropOff, status: $status, isActive: $isActive, createdAt: $createdAt, user: $user, location: $location)';
+    return "PaymentData(name: '$name', phone: '$phone', email: '$email', duration: '$duration', address: '$address', city: '$city', pickUp: '$pickUp', dropOff: '$dropOff', parcelType: '$parcelType', user: $user, location: $location)";
   }
 
   @override
@@ -94,28 +103,30 @@ class PaymentData {
     if (identical(this, other)) return true;
 
     return other is PaymentData &&
-        other.id == id &&
+        other.name == name &&
+        other.phone == phone &&
+        other.email == email &&
         other.duration == duration &&
+        other.address == address &&
+        other.city == city &&
         other.pickUp == pickUp &&
         other.dropOff == dropOff &&
-        other.status == status &&
-        other.isActive == isActive &&
-        other.createdAt == createdAt &&
-        other.address == address &&
+        other.parcelType == parcelType &&
         other.user == user &&
         other.location == location;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
+    return name.hashCode ^
+        phone.hashCode ^
+        email.hashCode ^
         duration.hashCode ^
+        address.hashCode ^
+        city.hashCode ^
         pickUp.hashCode ^
         dropOff.hashCode ^
-        status.hashCode ^
-        isActive.hashCode ^
-        address.hashCode ^
-        createdAt.hashCode ^
+        parcelType.hashCode ^
         user.hashCode ^
         location.hashCode;
   }
