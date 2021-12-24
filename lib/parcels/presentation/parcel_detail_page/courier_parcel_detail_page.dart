@@ -19,13 +19,19 @@ class CourierParcelDetailsPage extends HookWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(customerToCourier.status.capitalize(),
-              style: Theme.of(context).textTheme.headline6),
+          Text(
+            customerToCourier.status.capitalize(),
+            style: Theme.of(context).textTheme.headline6?.copyWith(
+                color: LayoutConstants.getStatusColor(
+                    customerToCourier.statusStrict)),
+          ),
           LayoutConstants.sizeBox(context, 8),
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black38),
+              border: Border.all(
+                  color: LayoutConstants.getStatusColor(
+                      customerToCourier.statusStrict)),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Theme(

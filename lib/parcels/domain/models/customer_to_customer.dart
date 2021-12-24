@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class CustomerToCustomer {
+import 'package:smart_parcel/parcels/domain/models/parcel_data.dart';
+
+class CustomerToCustomer extends DeliveryDetail with StatusMixin {
   final int id;
   final String userId;
   final String name;
@@ -26,7 +28,7 @@ class CustomerToCustomer {
     required this.dropOff,
     required this.isActive,
     required this.createdAt,
-  });
+  }) : super(status);
 
   CustomerToCustomer copyWith({
     int? id,
