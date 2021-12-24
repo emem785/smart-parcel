@@ -25,6 +25,8 @@ class Constants {
   }
 
   static final dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+
+  static const phoneRegex = r'^(0?)\d{10}$';
 }
 
 class LayoutConstants {

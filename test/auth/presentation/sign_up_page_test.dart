@@ -29,7 +29,8 @@ void main() {
 
       await tester.tap(find.byKey(SignUpPageBody.signUpButtonKey));
       await tester.pumpAndSettle();
-      expect(find.text("This field cannot be left blank"), findsNWidgets(5));
+      expect(find.text("This field cannot be left blank"), findsNWidgets(4));
+      expect(find.text("Invalid phone number format"), findsOneWidget);
       expect(find.text("Please Enter a valid Email"), findsOneWidget);
     },
   );
@@ -44,7 +45,7 @@ void main() {
       await tester.enterText(find.byKey(SignUpPageBody.firstName), "emem");
       await tester.enterText(find.byKey(SignUpPageBody.lastname), "emem");
       await tester.enterText(find.byKey(SignUpPageBody.email), "emem@emem");
-      await tester.enterText(find.byKey(SignUpPageBody.phone), "00000");
+      await tester.enterText(find.byKey(SignUpPageBody.phone), "09137801016");
       await tester.enterText(find.byKey(SignUpPageBody.password), "emem");
       await tester.enterText(
           find.byKey(SignUpPageBody.confirmPassword), "ddddd");
@@ -66,16 +67,15 @@ void main() {
 
       await tester.enterText(find.byKey(SignUpPageBody.firstName), "emem");
       await tester.enterText(find.byKey(SignUpPageBody.lastname), "emem");
-      await tester.enterText(find.byKey(SignUpPageBody.email), "emem@emem");
-      await tester.enterText(find.byKey(SignUpPageBody.phone), "00000");
+      await tester.enterText(find.byKey(SignUpPageBody.email), "emem@emem.com");
+      await tester.enterText(find.byKey(SignUpPageBody.phone), "09137802225");
       await tester.enterText(find.byKey(SignUpPageBody.password), "emem");
       await tester.enterText(
           find.byKey(SignUpPageBody.confirmPassword), "emem");
 
       await tester.tap(find.byType(ElevatedButton));
       await tester.pump(const Duration(milliseconds: 450));
-      expect(find.text("Sign In"), findsOneWidget);
-
+      expect(find.byKey(const Key('flushbar')), findsOneWidget);
       await tester.pumpAndSettle();
     },
   );

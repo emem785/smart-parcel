@@ -5,6 +5,7 @@ import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart'
 import 'package:smart_parcel/account/domain/repositories/account_repository.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/common/utils/phone_validate_util.dart';
 
 class EditUserUseCase {
   final AccountRepository accountRepository;
@@ -12,7 +13,11 @@ class EditUserUseCase {
   EditUserUseCase(this.accountRepository);
   FutureOr<void> call(EditUser event, Emitter<AccountState> emit) async {
     emit(const AccountState.loading());
-    final response = await accountRepository.editUser(event.user);
+
+    final validatedUser = event.user.copyWith(
+        phone: PhoneValidateUtil.validatePhoneNumber(event.user.phone));
+
+    final response = await accountRepository.editUser(validatedUser);
 
     return response.fold(
       (l) => emit(AccountState.error(l)),
