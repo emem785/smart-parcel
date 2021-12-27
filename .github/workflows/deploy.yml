@@ -22,7 +22,8 @@ jobs:
     - run: flutter pub get
     - run: flutter build appbundle
   
-    - name: Slack ${{ job.status }} Notification
+    - name:  Notify Slack
+      if: ${{ always() }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
