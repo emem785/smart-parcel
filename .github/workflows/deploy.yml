@@ -19,7 +19,7 @@ jobs:
       with:
         flutter-version: '2.5.2'
   
-    - name: Create env file
+    - name: Create env file with secrets
       env:
         PAYSTACK_PK: ${{ secrets.PAYSTACK_PK }}
         PAYSTACK_SK: ${{ secrets.PAYSTACK_SK }} 
