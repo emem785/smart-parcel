@@ -22,8 +22,8 @@ jobs:
     - name: Create env file
       env:
         PAYSTACK_PK: ${{ secrets.PAYSTACK_PK }}
-        PAYSTACK_SK: ${{ secret.PAYSTACK_SK }} 
-        GOOGLE_API: ${{ secret.GOOGLE_API }} 
+        PAYSTACK_SK: ${{ secrets.PAYSTACK_SK }} 
+        GOOGLE_API: ${{ secrets.GOOGLE_API }} 
 
       run: |
         touch .env
