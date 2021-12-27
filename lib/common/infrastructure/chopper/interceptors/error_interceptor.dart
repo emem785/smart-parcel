@@ -8,7 +8,7 @@ import 'package:smart_parcel/auth/domain/models/forgot_password_error.dart';
 import 'package:smart_parcel/auth/domain/models/login_error.dart';
 import 'package:smart_parcel/common/domain/models/exceptions.dart';
 import 'package:smart_parcel/common/domain/models/token_error.dart';
-import 'package:smart_parcel/delivery/domain/models/delivery_Error.dart';
+import 'package:smart_parcel/delivery/domain/models/delivery_error.dart';
 
 @injectable
 class ErrorInterceptor implements ResponseInterceptor {
