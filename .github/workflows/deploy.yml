@@ -20,11 +20,16 @@ jobs:
         flutter-version: '2.5.2'
   
     - name: Create env file
+      env:
+        PAYSTACK_PK: ${{ secrets.PAYSTACK_PK }}
+        PAYSTACK_SK: ${{ secret.PAYSTACK_SK }} 
+        GOOGLE_API: ${{ secret.GOOGLE_API }} 
+
       run: |
         touch .env
-        echo PAYSTACK_PK=${{ secrets.PAYSTACK_PK }} >> .env
-        echo PAYSTACK_SK=${{ secret.PAYSTACK_SK }} >> .env
-        echo GOOGLE_API=${{ secret.GOOGLE_API }} >> .env
+        echo PAYSTACK_PK=$PAYSTACK_PK >> .env
+        echo PAYSTACK_SK=$PAYSTACK_SK >> .env
+        echo GOOGLE_API=$GOOGLE_API >> .env
         cat .env
 
     - run: flutter pub get
