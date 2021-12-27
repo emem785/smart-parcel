@@ -36,7 +36,7 @@ Widget buildSignUpForm({
         TextFormField(
           controller: phoneController,
           keyboardType: TextInputType.number,
-          validator: ValidatorUtil.normalValidator,
+          validator: ValidatorUtil.phoneValidator,
           decoration: const InputDecoration(
             labelText: "Phone",
             prefixText: "+234 ",

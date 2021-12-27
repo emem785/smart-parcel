@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
 import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart';
 
@@ -92,7 +93,10 @@ class CourierParcelPage extends HookWidget {
     );
   }
 
-  Widget buildCourierItem(CustomerToCourier historyItem, BuildContext context) {
+  Widget buildCourierItem(
+    CustomerToCourier historyItem,
+    BuildContext context,
+  ) {
     return ListTile(
       onTap: () => context.router
           .push(CourierParcelDetailsRoute(customerToCourier: historyItem)),
@@ -103,7 +107,9 @@ class CourierParcelPage extends HookWidget {
       ),
       subtitle: Text(
         historyItem.status,
-        style: const TextStyle(color: Color(0xFFF29E25)),
+        style: TextStyle(
+          color: LayoutConstants.getStatusColor(historyItem.statusStrict),
+        ),
       ),
       trailing: Text(getDate(historyItem.createdAt)),
     );

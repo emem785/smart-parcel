@@ -142,7 +142,7 @@ Widget buildCustomerForm({
         ),
         TextFormField(
           controller: phoneController,
-          validator: ValidatorUtil.normalValidator,
+          validator: ValidatorUtil.phoneValidator,
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
             labelText: "Phone number of Recipient",

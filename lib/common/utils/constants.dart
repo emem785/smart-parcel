@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/theme.dart';
 
+enum Status { pending, assigned }
+
 const canvsHeight = 926;
 const canvasWidth = 428;
 
@@ -25,6 +27,8 @@ class Constants {
   }
 
   static final dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+
+  static const phoneRegex = r'^(0?)\d{10}$';
 }
 
 class LayoutConstants {
@@ -83,5 +87,14 @@ class LayoutConstants {
     return SizedBox(
       width: Constants.width(context) * (size / canvasWidth),
     );
+  }
+
+  static Color getStatusColor(Status status) {
+    switch (status) {
+      case Status.pending:
+        return const Color(0xFFF29E25);
+      default:
+        return const Color(0xFF27930C);
+    }
   }
 }

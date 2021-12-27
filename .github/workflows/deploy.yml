@@ -1,0 +1,48 @@
+name: Deploy
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  flutter_build:
+    name: Build appbundle
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '2.5.2'
+    - run: touch .env
+    - run: flutter pub get
+    - run: flutter build appbundle
+  
+    - name: Slack Notification 
+    - name: Success Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: ${{ success() }}
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: 'Application build successful'
+        SLACK_TITLE: App Successfully Built
+    - name: Failure Notification
+      uses: rtCamp/action-slack-notify@v2
+      if: ${{ failure() }}
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_MESSAGE: 'Application failed to build'
+        SLACK_TITLE: App Failed to Build
+  # deploy_to_playstore:
+  #   name: Deploy to Playstore
+  #   needs: flutter_build
+
+  # deploy_to_playstore:
+  #   name: Deploy to Playstore
+  #   needs: flutter_build

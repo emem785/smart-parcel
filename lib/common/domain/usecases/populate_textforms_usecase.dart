@@ -14,7 +14,7 @@ class PopulateTextFormUseCase {
   }) async {
     firstnameController.text = user.firstName;
     lastnameController.text = user.lastName;
-    phoneController.text = user.phone;
+    phoneController.text = user.phone.substring(4);
     emailController.text = user.email;
   }
 }

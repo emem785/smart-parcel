@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class SelfStorage {
+import 'package:smart_parcel/parcels/domain/models/parcel_data.dart';
+
+class SelfStorage extends DeliveryDetail with StatusMixin {
   final int id;
   final String userId;
   final String duration;
@@ -11,6 +13,7 @@ class SelfStorage {
   final String dropOff;
   final bool isActive;
   final String createdAt;
+
   const SelfStorage({
     required this.id,
     required this.userId,
@@ -22,7 +25,7 @@ class SelfStorage {
     required this.dropOff,
     required this.isActive,
     required this.createdAt,
-  });
+  }) : super(status);
 
   SelfStorage copyWith({
     int? id,

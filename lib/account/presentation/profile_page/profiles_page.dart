@@ -207,7 +207,7 @@ Widget buildProfileForm({
         LayoutConstants.sizeBox(context, 24),
         TextFormField(
           controller: phoneController,
-          validator: ValidatorUtil.normalValidator,
+          validator: ValidatorUtil.phoneValidator,
           decoration: const InputDecoration(
             labelText: "Phone Number",
             prefixText: "+234 ",

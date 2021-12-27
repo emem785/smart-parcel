@@ -5,6 +5,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_up_bloc/signup_bloc.dart
 import 'package:smart_parcel/auth/domain/models/register_response.dart';
 import 'package:smart_parcel/auth/domain/repositories/sign_up_repository.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/common/utils/phone_validate_util.dart';
 
 class SignUpUsecase {
   final SignUpRepository signUpRepository;
@@ -16,8 +17,12 @@ class SignUpUsecase {
       emit(const SignUpState.error(Failure("Passwords do not match")));
       return;
     }
+
+    final validatedUser = event.user.copyWith(
+        phone: PhoneValidateUtil.validatePhoneNumber(event.user.phone));
+
     final response = await signUpRepository.signUp(
-      user: event.user,
+      user: validatedUser,
       password: event.password,
     );
 

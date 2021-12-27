@@ -45,7 +45,7 @@ class PaystackData {
 
   @override
   String toString() =>
-      'PaystackData(authorizationUrl: $authorizationUrl, accessCode: $accessCode, reference: $reference)';
+      "PaystackData(authorizationUrl: '$authorizationUrl', accessCode: '$accessCode', reference: '$reference')";
 
   @override
   bool operator ==(Object other) {

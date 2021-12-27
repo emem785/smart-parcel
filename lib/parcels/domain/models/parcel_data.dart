@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart';
 
 import 'customer_to_customer.dart';
@@ -72,4 +73,21 @@ class ParcelData {
       selfStorages.hashCode ^
       customerToCustomer.hashCode ^
       customerToCourier.hashCode;
+}
+
+abstract class DeliveryDetail {
+  final String status;
+
+  const DeliveryDetail(this.status);
+}
+
+mixin StatusMixin on DeliveryDetail {
+  Status get statusStrict {
+    switch (status) {
+      case "assigned":
+        return Status.assigned;
+      default:
+        return Status.pending;
+    }
+  }
 }

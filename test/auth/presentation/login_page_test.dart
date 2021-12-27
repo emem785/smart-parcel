@@ -40,7 +40,8 @@ void main() {
       await tester.pumpWidget(
         WidgetHelper.testableWidget(child: const LoginPage()),
       );
-      await tester.enterText(find.byKey(LoginPageBody.emailKey), "emem@emem");
+      await tester.enterText(
+          find.byKey(LoginPageBody.emailKey), "emem@emem.com");
       await tester.enterText(find.byKey(LoginPageBody.passwordKey), "emem");
       await tester.tap(find.byType(ElevatedButton));
       await tester.pump(const Duration(milliseconds: 450));

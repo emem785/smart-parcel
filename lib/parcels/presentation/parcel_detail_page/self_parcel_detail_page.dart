@@ -20,7 +20,10 @@ class SelfParcelDetailsPage extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(selfStorage.status.capitalize(),
-              style: Theme.of(context).textTheme.headline6),
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: LayoutConstants.getStatusColor(
+                        selfStorage.statusStrict),
+                  )),
           LayoutConstants.sizeBox(context, 8),
           Container(
             padding: const EdgeInsets.all(8),

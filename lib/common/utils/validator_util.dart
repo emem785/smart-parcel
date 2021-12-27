@@ -1,3 +1,5 @@
+import 'package:smart_parcel/common/utils/constants.dart';
+
 class ValidatorUtil {
   static String? Function(String?)? get normalValidator => (value) {
         return value!.isEmpty ? "This field cannot be left blank" : null;
@@ -15,5 +17,13 @@ class ValidatorUtil {
           return "Otp cannot be less than 6 digits";
         }
         return null;
+      };
+
+  static String? Function(String?)? get phoneValidator => (value) {
+        RegExp regex = RegExp(Constants.phoneRegex);
+        if (regex.hasMatch(value!)) {
+          return null;
+        }
+        return "Invalid phone number format";
       };
 }
