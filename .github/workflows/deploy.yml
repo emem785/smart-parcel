@@ -18,7 +18,15 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '2.5.2'
-    - run: touch .env
+  
+    - name: Create env file
+          run: |
+            touch .env
+            echo PAYSTACK_PK=${{ secrets.PAYSTACK_PK }} >> .env
+            echo PAYSTACK_SK=${{ secret.PAYSTACK_SK }} >> .env
+            echo GOOGLE_API=${{ secret.GOOGLE_API }} >> .env
+            cat .env
+
     - run: flutter pub get
     - run: flutter build appbundle
   
