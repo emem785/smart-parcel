@@ -22,7 +22,8 @@ jobs:
     - run: flutter pub get
     - run: flutter build appbundle
   
-    - name: Slack Notification Success
+    - name: Slack Notification 
+    - name: Success Notification
       uses: rtCamp/action-slack-notify@v2
       if: ${{ success() }}
       env:
@@ -30,6 +31,8 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: 'Application build successful'
         SLACK_TITLE: App Successfully Built
+    - name: Failure Notification
+      uses: rtCamp/action-slack-notify@v2
       if: ${{ failure() }}
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
