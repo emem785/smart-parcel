@@ -50,8 +50,10 @@ class SelfStoragePayment extends HookWidget {
                   listener: (context, state) {
                     state.maybeMap(
                       orElse: () => 1,
-                      bookingFinished: (v) => context.router
-                          .push(ReceiptRoute(paymentData: v.paymentData)),
+                      bookingFinished: (v) => context.router.pushAndPopUntil(
+                        ReceiptRoute(paymentData: v.paymentData),
+                        predicate: (route) => false,
+                      ),
                       error: (v) => deliveryBloc.deliveryUseCases
                           .showErrorUseCase(
                               context: context, message: v.failure.message),

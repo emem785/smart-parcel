@@ -86,7 +86,7 @@ class CustomerToCustomerBody extends HookWidget {
                       if (hasAgreed.value) {
                         final form = CustomerForm(
                           city: null,
-                          description: null,
+                          description: descController.text,
                           address: addressController.text,
                           email: emailController.text,
                           name: nameController.text,
