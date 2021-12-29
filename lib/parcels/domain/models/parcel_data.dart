@@ -86,6 +86,10 @@ mixin StatusMixin on DeliveryDetail {
     switch (status) {
       case "assigned":
         return Status.assigned;
+      case "dropped":
+        return Status.dropped;
+      case "completed":
+        return Status.completed;
       default:
         return Status.pending;
     }

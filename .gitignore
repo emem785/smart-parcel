@@ -47,3 +47,4 @@ app.*.map.json
 
 # object Box related
 lib/objectbox-model.json
+.env

@@ -3,6 +3,7 @@ import 'package:smart_parcel/delivery/domain/models/booking_data.dart';
 import 'package:smart_parcel/delivery/domain/models/booking_response.dart';
 import 'package:smart_parcel/delivery/domain/models/center.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
+import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/delivery/domain/models/result.dart';
 
@@ -160,6 +161,7 @@ const bookCustomerToCourierResponse = '''{
     "email": "emma@emma.com",
     "duration": null,
     "address": "No.1 nndfkjdf",
+    "description": "a big box",
     "city": "lagos",
     "pick_up": "8VT1",
     "drop_off": "7S54",
@@ -212,6 +214,7 @@ const bookCustomerToCustomerResponse = '''{
     "email": "emma@emma.com",
     "duration": null,
     "address": "No.1 nndfkjdf",
+    "description": "a big box",
     "city": null,
     "pick_up": "ZNDI",
     "drop_off": "BBTS",
@@ -438,3 +441,19 @@ const locationResult = LocationResultResponse(
           formattedAddress: "228 Ikorodu Rd, Somolu 102216, Lagos, Nigeria")
     ],
     status: "OK");
+
+const customerFormCourier = CustomerForm(
+    name: 'person',
+    phone: '080373737737',
+    email: 'emma@emma.com',
+    address: 'No.1 nndfkjdf',
+    city: 'lagos',
+    description: "a tiny box");
+
+const customerFormC = CustomerForm(
+    name: 'person',
+    phone: '080373737737',
+    email: 'emma@emma.com',
+    address: 'No.1 nndfkjdf',
+    city: null,
+    description: "a tiny box");

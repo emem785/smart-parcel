@@ -5,6 +5,7 @@ import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
+import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/payment/domain/models/payment_response.dart';
@@ -39,44 +40,35 @@ class DeliveryRepository {
   }
 
   SingleResponse<PaymentResponse> bookCustomerToCustomer({
-    required String name,
-    required String email,
-    required String phone,
-    required String address,
+    required CustomerForm customerForm,
     required PaystackResponse paystackResponse,
     required int location,
   }) {
     final Map<String, dynamic> body = {
       "reference": paystackResponse.data.reference,
-      "name": name,
-      "phone": phone,
-      "email": email,
-      "address": address,
       "location": location,
     };
+    body.addAll(customerForm.toMap());
+
+    print(body);
 
     return postDataAuth(deliveryHttpService.bookCustomerToCustomer, body);
   }
 
   SingleResponse<PaymentResponse> bookCustomerToCourier({
-    required String name,
-    required String email,
-    required String phone,
-    required String address,
+    required CustomerForm customerForm,
     required String city,
     required PaystackResponse paystackResponse,
     required int location,
   }) {
     final Map<String, dynamic> body = {
       "reference": paystackResponse.data.reference,
-      "name": name,
-      "phone": phone,
-      "email": email,
-      "address": address,
       "location": location,
       "city": city
     };
+    body.addAll(customerForm.toMap());
 
+    print(body);
     return postDataAuth(deliveryHttpService.bookCustomerToCourier, body);
   }
 

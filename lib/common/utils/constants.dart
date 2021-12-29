@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:smart_parcel/common/theme.dart';
 
-enum Status { pending, assigned }
+enum Status { pending, assigned, dropped, completed }
 
 const canvsHeight = 926;
 const canvasWidth = 428;
@@ -93,7 +93,11 @@ class LayoutConstants {
     switch (status) {
       case Status.pending:
         return const Color(0xFFF29E25);
-      default:
+      case Status.dropped:
+        return const Color(0xFF27930C);
+      case Status.assigned:
+        return const Color(0xFF1120A8);
+      case Status.completed:
         return const Color(0xFF27930C);
     }
   }

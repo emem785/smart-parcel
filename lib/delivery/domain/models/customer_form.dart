@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:smart_parcel/common/utils/phone_validate_util.dart';
+
 class CustomerForm {
   final String name;
   final String email;
@@ -15,6 +17,9 @@ class CustomerForm {
     required this.description,
     required this.city,
   });
+
+  String get validatedPhoneNumber =>
+      PhoneValidateUtil.validatePhoneNumber(phone);
 
   const CustomerForm.empty()
       : email = '',
@@ -46,7 +51,7 @@ class CustomerForm {
     return {
       'name': name,
       'email': email,
-      'phone': phone,
+      'phone': validatedPhoneNumber,
       'address': address,
       'description': description,
       'city': city,

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
-import 'package:smart_parcel/common/utils/phone_validate_util.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 
@@ -56,10 +55,7 @@ class ProceedToPaymentUseCase {
     Emitter<DeliveryState> emit,
   ) async {
     final response = await deliveryRepository.bookCustomerToCustomer(
-      email: event.customerForm!.email,
-      name: event.customerForm!.name,
-      phone: PhoneValidateUtil.validatePhoneNumber(event.customerForm!.phone),
-      address: event.customerForm!.address!,
+      customerForm: event.customerForm!,
       location: event.locationId,
       paystackResponse: event.paystackResponse,
     );
@@ -75,10 +71,7 @@ class ProceedToPaymentUseCase {
     Emitter<DeliveryState> emit,
   ) async {
     final response = await deliveryRepository.bookCustomerToCourier(
-      email: event.customerForm!.email,
-      name: event.customerForm!.name,
-      phone: PhoneValidateUtil.validatePhoneNumber(event.customerForm!.phone),
-      address: event.customerForm!.address!,
+      customerForm: event.customerForm!,
       city: event.customerForm!.city!,
       location: event.locationId,
       paystackResponse: event.paystackResponse,
