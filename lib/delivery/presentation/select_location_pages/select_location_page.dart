@@ -6,6 +6,7 @@ import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
+import 'package:smart_parcel/delivery/domain/models/center.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
@@ -70,14 +71,7 @@ class SelectLocationBody extends HookWidget {
                       itemBuilder: (context, index) {
                         final center = centerDistrict.centers[index];
                         return ListTile(
-                          onTap: () {
-                            context
-                                .read<DeliveryViewModel>()
-                                .setLocationId(center.id);
-                            final route =
-                                context.read<DeliveryViewModel>().routeInfo;
-                            context.router.push(route);
-                          },
+                          onTap: () => _selectLocation(context, center),
                           leading: const Icon(
                             Icons.location_searching,
                             color: GlobalTheme.primaryColor,
@@ -90,6 +84,8 @@ class SelectLocationBody extends HookWidget {
                               color: Colors.black,
                             ),
                           ),
+                          subtitle: Text(
+                              "${center.availableSpaces} spaces available"),
                         );
                       },
                     ),
@@ -111,5 +107,19 @@ class SelectLocationBody extends HookWidget {
         )
       ],
     );
+  }
+
+  void _selectLocation(BuildContext context, ParcelCenter center) {
+    if (center.availableSpaces == 0) {
+      context.read<DeliveryBloc>().deliveryUseCases.showErrorUseCase(
+            context: context,
+            message: 'No available spaces in selected location',
+          );
+      return;
+    }
+    final deliveryVM = context.read<DeliveryViewModel>();
+    deliveryVM.setParcelCenter(center);
+    final route = context.read<DeliveryViewModel>().routeInfo;
+    context.router.push(route);
   }
 }

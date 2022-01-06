@@ -88,7 +88,7 @@ class SelfStoragePayment extends HookWidget {
                           context: context,
                           routeInfo: deliveryViewModel.routeInfo,
                           paystackResponse: v.paystackResponse,
-                          locationId: deliveryViewModel.locationId,
+                          locationId: deliveryViewModel.parcelCenter.id,
                           duration: deliveryViewModel.duration,
                           customerForm: deliveryViewModel.customerForm,
                         ));

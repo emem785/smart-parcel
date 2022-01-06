@@ -95,17 +95,6 @@ class HomePage extends HookWidget {
   }
 
   PreferredSizeWidget getAppBar(TabsRouter tabsRouter, BuildContext context) {
-    // if (tabsRouter.current.name == DashboardRoute.name) {
-    //   return AppBar(
-    //     title: const Text(
-    //       'Smart Parcel',
-    //       style: TextStyle(
-    //         fontSize: 18,
-    //         fontWeight: FontWeight.bold,
-    //       ),
-    //     ),
-    //   );
-    // }
     return LayoutConstants.autoAppBar(
       title: tabsRouter.current.path.capitalize(),
       context: context,

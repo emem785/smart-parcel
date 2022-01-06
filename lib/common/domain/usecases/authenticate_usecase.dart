@@ -1,14 +1,17 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
 import 'package:smart_parcel/common/domain/repositories/auth_repository.dart';
+import 'package:smart_parcel/common/domain/repositories/user_repository.dart';
 
 class AuthenticateUseCase {
   final AuthRepository authRepository;
+  final UserRepository userRepository;
 
-  AuthenticateUseCase(this.authRepository);
+  AuthenticateUseCase(this.authRepository, this.userRepository);
   FutureOr<void> call(Authenticate event, Emitter<AuthState> emit) async {
     emit(const AuthLoading());
     final response = authRepository.getAuthFromStorage();
@@ -17,7 +20,7 @@ class AuthenticateUseCase {
         await Future.delayed(const Duration(seconds: 1));
         emit(AuthState.error(l));
       },
-      (r) => _refreshToken(r, emit),
+      (r) => _updateFirebaseKey(event, emit, r),
     );
   }
 
@@ -29,6 +32,21 @@ class AuthenticateUseCase {
     );
   }
 
+  _updateFirebaseKey(
+    Authenticate event,
+    Emitter<AuthState> emit,
+    AuthToken authToken,
+  ) async {
+    final firebaseMessaging = event.context.read<FirebaseMessaging>();
+    final firebaseKey = (await firebaseMessaging.getToken()) ?? '';
+    final response =
+        await userRepository.updateFirebaseKey(firebaseKey, authToken);
+    return response.fold(
+      (l) => emit(AuthState.error(l)),
+      (r) => emit(const AuthState.authenticated()),
+    );
+  }
+
   _storeToken(
     AuthToken r,
     Emitter<AuthState> emit,
@@ -37,21 +55,3 @@ class AuthenticateUseCase {
     emit(const AuthState.authenticated());
   }
 }
-
-
-  // _checkToken(AuthToken r, Emitter<AuthState> emit) async {
-  //   final response = await authRepository.getUserResponse(r);
-  //   return response.fold(
-  //     (l) => emit(AuthState.error(l)),
-  //     (r) => _storeUser(r, emit),
-  //   );
-  // }
-
-  // _storeUser(LoginResponse r, Emitter<AuthState> emit) async {
-  //   if (r.user != null) {
-  //     await authRepository.storeUser(r.user!);
-  //     emit(const AuthState.authenticated());
-  //     return;
-  //   }
-  //   emit(const AuthState.error(Failure("Invalid Response")));
-  // }

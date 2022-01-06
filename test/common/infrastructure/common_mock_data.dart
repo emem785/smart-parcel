@@ -1,5 +1,7 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/common/domain/models/notification_message.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 
 const registerResponse = '''{
@@ -84,4 +86,19 @@ const tokenFailure = Failure("Token is invalid or expired");
 const refreshTokenResponse = '''{
     "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2NjY5NTkxLCJqdGkiOiIzODVjNzM4ZGY2NzM0NmFlOWI0OThkODllYTNlZDFlNCIsInVzZXJfaWQiOjF9.EsG0uUr6eqmMx_ilchQdwfknZYGMVsw1aso7t0nf4Fw",
     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNzA5OTc5MSwianRpIjoiODZlY2RmNGU1YzgyNDFkNjliNjRlYjExYjQ3MTJiMjciLCJ1c2VyX2lkIjoxfQ.9rNoSvRG2Z3nID6qIGuXNy1543NIOqBu_mrwcJe7wvI"
+}''';
+
+const notificationMsg =
+    NotificationMessage(title: 'test', body: 'test', dataMsg: 'test');
+
+const fakeRmtMsg = RemoteMessage(
+    notification: RemoteNotification(
+        title: "New Pickup Alert",
+        body: "Hello Ade, A new pickup has been sent to you."),
+    data: {
+      "message": "Hello Ade, A new pickup has been sent to you.",
+    });
+
+const firebaseKeyUpdatedJson = '''{
+    "message": "success"
 }''';

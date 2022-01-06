@@ -26,10 +26,12 @@ class SignInRepository {
   SingleResponse<LoginResponse> login({
     required String email,
     required String password,
+    required String fireBaseKey,
   }) {
     final Map<String, dynamic> body = {};
     body.addAll({'email': email});
     body.addAll({'password': password});
+    body.addAll({'firebase_key': fireBaseKey});
 
     return postData(_authHttpService.signIn, body);
   }

@@ -9,6 +9,7 @@ import 'package:smart_parcel/inject_conf.dart';
 import '../../auth/infrastructure/auth_mock_data.dart';
 import '../../common/infrastructure/setup_tests.dart';
 import '../infrastructure/common_mock_data.dart';
+import 'notification_bloc_test.dart';
 
 void main() {
   setUp(() async {
@@ -25,7 +26,7 @@ void main() {
       'calls auth storage interface get auth token function',
       setUp: () => TestSetup.setup(null, null, mockAuthTokenJson),
       build: () => getIt<AuthBloc>(),
-      act: (bloc) => bloc.add(const AuthEvent.authenticate()),
+      act: (bloc) => bloc.add(AuthEvent.authenticate(MockContext())),
       wait: const Duration(milliseconds: 300),
       verify: (_) => verify(() => getIt<SharedPreferences>().getString(any())),
     );
@@ -33,7 +34,7 @@ void main() {
       'emit error state if there is no user in storage',
       setUp: () => TestSetup.setup(null, null),
       build: () => getIt<AuthBloc>(),
-      act: (bloc) => bloc.add(const AuthEvent.authenticate()),
+      act: (bloc) => bloc.add(AuthEvent.authenticate(MockContext())),
       wait: const Duration(milliseconds: 1200),
       expect: () => const [
         AuthState.loading(),
@@ -44,7 +45,7 @@ void main() {
       'calls Auth Repository store user function',
       setUp: () => TestSetup.setup(getUserResponse, 200, mockAuthTokenJson),
       build: () => getIt<AuthBloc>(),
-      act: (bloc) => bloc.add(const AuthEvent.authenticate()),
+      act: (bloc) => bloc.add(AuthEvent.authenticate(MockContext())),
       wait: const Duration(milliseconds: 300),
       verify: (_) => verify(
         () => getIt<SharedPreferences>().setString(any(), mockUser.toJson()),

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_up_bloc/signup_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/register_response.dart';
@@ -21,9 +22,12 @@ class SignUpUsecase {
     final validatedUser = event.user.copyWith(
         phone: PhoneValidateUtil.validatePhoneNumber(event.user.phone));
 
+    final token = await event.context.read<FirebaseMessaging>().getToken();
+
     final response = await signUpRepository.signUp(
       user: validatedUser,
       password: event.password,
+      fireBaseKey: token!,
     );
 
     return response.fold(

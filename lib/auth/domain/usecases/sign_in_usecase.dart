@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart';
@@ -14,10 +15,12 @@ class SignInUsecase {
 
   FutureOr<void> call(Login event, Emitter<SignInState> emit) async {
     emit(const SigInLoading());
+    final token = await event.context.read<FirebaseMessaging>().getToken();
 
     final response = await signInRepository.login(
       email: event.email,
       password: event.password,
+      fireBaseKey: token!,
     );
 
     return response.fold(

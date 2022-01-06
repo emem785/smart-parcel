@@ -6,14 +6,18 @@ import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/widgets/quick_actions.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/widgets/status_tiles.dart';
 import 'package:smart_parcel/inject_conf.dart';
+import 'package:smart_parcel/parcels/application/parcels_bloc/parcel_bloc.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<UserBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<UserBloc>()),
+        BlocProvider(create: (context) => getIt<ParcelBloc>()),
+      ],
       child: const DashboardBody(),
     );
   }
@@ -38,14 +42,8 @@ class DashboardBody extends HookWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               LayoutConstants.sizeBox(context, 24),
-              BlocConsumer<UserBloc, UserState>(
-                builder: (context, state) {
-                  return state.maybeMap(
-                    orElse: () => statusTilesWithShimmers(context),
-                    userStreamRetreived: (v) =>
-                        StatusTiles(stream: v.userStream),
-                  );
-                },
+              BlocListener<UserBloc, UserState>(
+                child: const StatusTiles(),
                 listener: (context, state) => state.maybeMap(
                   orElse: () => 1,
                   error: (v) => userBloc.commonUseCases.showErrorUseCase(

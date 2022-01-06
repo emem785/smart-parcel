@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_parcel/common/presentation/widgets/notification_icon.dart';
 import 'package:smart_parcel/common/theme.dart';
 
 enum Status { pending, assigned, dropped, completed }
@@ -26,7 +27,7 @@ class Constants {
     return width(context) * (size / canvsHeight);
   }
 
-  static final dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+  static final dateFormat = DateFormat("dd/MM/yyyy hh:mm aa");
 
   static const phoneRegex = r'^(0?)\d{10}$';
 }
@@ -54,6 +55,10 @@ class LayoutConstants {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       leading: const AutoBackButton(color: GlobalTheme.primaryColor),
+      actions: const [
+        NotificationIcon(),
+        SizedBox(width: 8),
+      ],
     );
   }
 

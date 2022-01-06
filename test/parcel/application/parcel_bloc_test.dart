@@ -31,7 +31,7 @@ void main() {
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const ParcelState.loading(),
-        const ParcelState.historyRetreived(parcelResonse2),
+        const ParcelState.historyRetreived(parcelResponse),
       ],
     );
     blocTest<ParcelBloc, ParcelState>(

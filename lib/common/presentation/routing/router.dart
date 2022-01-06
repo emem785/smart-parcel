@@ -17,6 +17,7 @@ import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/cus
 import 'package:smart_parcel/delivery/presentation/customer_to_customer_pages/customer_to_customer.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
 import 'package:smart_parcel/delivery/presentation/home_wrapper_page.dart';
+import 'package:smart_parcel/delivery/presentation/notification_page/notification_page.dart';
 import 'package:smart_parcel/delivery/presentation/select_location_pages/select_location_district_page.dart';
 import 'package:smart_parcel/delivery/presentation/select_location_pages/select_location_page.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/choose_duration_page.dart';
@@ -110,6 +111,7 @@ const routes = [
   AutoRoute(page: SubmitPasswordOtpPage, path: '/submitPasswordOtp'),
   AutoRoute(page: ConfirmPasswordPage, path: '/confirmPassword'),
   AutoRoute(page: PasswordChangedPage, path: '/emailConfirmedPage'),
+  AutoRoute(page: NotificationPage, path: '/notifications'),
   CustomRoute(
     page: HomePage,
     path: '/home',

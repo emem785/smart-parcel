@@ -7,6 +7,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_up_bloc/signup_bloc.dart
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../common/infrastructure/setup_tests.dart';
+import '../../delivery/application/delivery_bloc_test.dart';
 import '../infrastructure/auth_mock_data.dart';
 
 void main() {
@@ -24,10 +25,12 @@ void main() {
       'calls sign in repository sign up function',
       setUp: () => TestSetup.setup(registerResponse, 200),
       build: () => getIt<SignUpBloc>(),
-      act: (bloc) => bloc.add(const SignUpEvent.signUp(
-          user: mockUser,
-          password: mockPassword,
-          confirmPassword: mockPassword)),
+      act: (bloc) => bloc.add(SignUpEvent.signUp(
+        user: mockUser,
+        password: mockPassword,
+        context: MockContext(),
+        confirmPassword: mockPassword,
+      )),
       wait: const Duration(milliseconds: 500),
       expect: () => const [
         SignUpState.loading(),
@@ -38,10 +41,12 @@ void main() {
       'calls sign in repository cacheUser function',
       setUp: () => TestSetup.setup(registerResponse, 200),
       build: () => getIt<SignUpBloc>(),
-      act: (bloc) => bloc.add(const SignUpEvent.signUp(
-          user: mockUser,
-          password: mockPassword,
-          confirmPassword: mockPassword)),
+      act: (bloc) => bloc.add(SignUpEvent.signUp(
+        user: mockUser,
+        password: mockPassword,
+        context: MockContext(),
+        confirmPassword: mockPassword,
+      )),
       wait: const Duration(milliseconds: 300),
       verify: (bloc) {
         final prefs = getIt<SharedPreferences>();
@@ -52,12 +57,16 @@ void main() {
       "emits failure when passwords don't match",
       setUp: () => TestSetup.setup(registerResponse, 200),
       build: () => getIt<SignUpBloc>(),
-      act: (bloc) => bloc.add(const SignUpEvent.signUp(
-          user: mockUser, password: mockPassword, confirmPassword: "hello")),
+      act: (bloc) => bloc.add(SignUpEvent.signUp(
+        user: mockUser,
+        password: mockPassword,
+        context: MockContext(),
+        confirmPassword: "hello",
+      )),
       wait: const Duration(milliseconds: 300),
       expect: () => [
-        const SignUpState.loading(),
-        const SignUpState.error(mockFailure),
+        SignUpState.loading(),
+        SignUpState.error(mockFailure),
       ],
     );
   });
