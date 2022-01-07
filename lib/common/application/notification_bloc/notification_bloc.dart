@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
@@ -21,6 +22,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     on<AddNotification>(_addNotification);
     on<RemoveNotification>(_removeNotification);
     on<ClearNotification>(_clearNotification);
+    on<InitializeFirebaseMessaging>(_initialFirebaseMessaging);
   }
 
   FutureOr<void> _addNotification(
@@ -31,7 +33,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     final notificationMessage =
         NotificationMessage.fromRemoteMessage(event.remoteMessage);
     notificationMessages = [notificationMessage, ...notificationMessages];
-    emit(NotificationRemoved(notificationMessages));
+    emit(NotificationAdded(notificationMessages));
   }
 
   FutureOr<void> _removeNotification(
@@ -49,6 +51,16 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   ) async {
     emit(const NotificationLoading());
     notificationMessages.clear();
-    emit(NotificationRemoved(notificationMessages));
+    emit(NotificationCleared(notificationMessages));
+  }
+
+  FutureOr<void> _initialFirebaseMessaging(
+    InitializeFirebaseMessaging event,
+    Emitter<NotificationState> emit,
+  ) async {
+    emit(const NotificationLoading());
+    firebaseMessaging = event.firebaseMessaging;
+    print("initialized");
+    emit(const NotificationInitial());
   }
 }

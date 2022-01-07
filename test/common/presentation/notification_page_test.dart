@@ -31,7 +31,7 @@ void main() {
       home: Scaffold(
           body: BlocProvider(
         create: (context) => _notificationBloc,
-        child: const NotificationBody(),
+        child: NotificationBody(notificationBloc: _notificationBloc),
       )),
     );
   }
@@ -59,7 +59,8 @@ void main() {
       (WidgetTester tester) async {
         TestSetup.setup(null, null, userStringResponse);
         await tester.pumpWidget(
-          WidgetHelper.testableWidgetScaffold(child: const NotificationPage()),
+          WidgetHelper.testableWidgetScaffold(
+              child: NotificationPage(notificationBloc: _notificationBloc)),
         );
         await tester.pumpAndSettle();
         expect(find.text(mockUser.firstName.capitalize()), findsOneWidget);

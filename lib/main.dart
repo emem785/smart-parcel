@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/hooks/firebase_hook.dart';
 
@@ -41,20 +39,16 @@ class MyApp extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firebaseMessaging = useState<FirebaseMessaging?>(null);
-
     useEffect(() {
-      firebaseMessaging.value = useFirebaseMessagingHook(context);
+      context.read<NotificationBloc>().add(
+          NotificationEvent.initializeFirebaseMessaging(
+              useFirebaseMessagingHook(context)));
     });
-
-    return Provider(
-      create: (context) => firebaseMessaging.value,
-      child: MaterialApp.router(
-        routeInformationParser: appRouter.defaultRouteParser(),
-        routerDelegate: appRouter.delegate(),
-        debugShowCheckedModeBanner: false,
-        theme: GlobalTheme.getGlobalTheme(),
-      ),
+    return MaterialApp.router(
+      routeInformationParser: appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      debugShowCheckedModeBanner: false,
+      theme: GlobalTheme.getGlobalTheme(),
     );
   }
 }

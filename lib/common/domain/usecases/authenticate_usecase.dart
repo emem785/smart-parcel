@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
 import 'package:smart_parcel/common/domain/repositories/auth_repository.dart';
 import 'package:smart_parcel/common/domain/repositories/user_repository.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
 
 class AuthenticateUseCase {
   final AuthRepository authRepository;
@@ -37,8 +37,7 @@ class AuthenticateUseCase {
     Emitter<AuthState> emit,
     AuthToken authToken,
   ) async {
-    final firebaseMessaging = event.context.read<FirebaseMessaging>();
-    final firebaseKey = (await firebaseMessaging.getToken()) ?? '';
+    final firebaseKey = await Constants.getToken(event.context);
     final response =
         await userRepository.updateFirebaseKey(firebaseKey, authToken);
     return response.fold(

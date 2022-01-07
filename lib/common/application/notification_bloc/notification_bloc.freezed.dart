@@ -734,6 +734,13 @@ class _$NotificationStateTearOff {
       notifications,
     );
   }
+
+  NotificationCleared notificationCleared(
+      List<NotificationMessage> notifications) {
+    return NotificationCleared(
+      notifications,
+    );
+  }
 }
 
 /// @nodoc
@@ -750,6 +757,8 @@ mixin _$NotificationState {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -761,6 +770,8 @@ mixin _$NotificationState {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -772,6 +783,8 @@ mixin _$NotificationState {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -782,6 +795,7 @@ mixin _$NotificationState {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -791,6 +805,7 @@ mixin _$NotificationState {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -800,6 +815,7 @@ mixin _$NotificationState {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -870,6 +886,8 @@ class _$NotificationInitial implements NotificationInitial {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) {
     return initial();
   }
@@ -884,6 +902,8 @@ class _$NotificationInitial implements NotificationInitial {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) {
     return initial?.call();
   }
@@ -898,6 +918,8 @@ class _$NotificationInitial implements NotificationInitial {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -914,6 +936,7 @@ class _$NotificationInitial implements NotificationInitial {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) {
     return initial(this);
   }
@@ -926,6 +949,7 @@ class _$NotificationInitial implements NotificationInitial {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) {
     return initial?.call(this);
   }
@@ -938,6 +962,7 @@ class _$NotificationInitial implements NotificationInitial {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -999,6 +1024,8 @@ class _$NotificationLoading implements NotificationLoading {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) {
     return loading();
   }
@@ -1013,6 +1040,8 @@ class _$NotificationLoading implements NotificationLoading {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) {
     return loading?.call();
   }
@@ -1027,6 +1056,8 @@ class _$NotificationLoading implements NotificationLoading {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1043,6 +1074,7 @@ class _$NotificationLoading implements NotificationLoading {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) {
     return loading(this);
   }
@@ -1055,6 +1087,7 @@ class _$NotificationLoading implements NotificationLoading {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) {
     return loading?.call(this);
   }
@@ -1067,6 +1100,7 @@ class _$NotificationLoading implements NotificationLoading {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1151,6 +1185,8 @@ class _$NotificationError implements NotificationError {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) {
     return error(failure);
   }
@@ -1165,6 +1201,8 @@ class _$NotificationError implements NotificationError {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) {
     return error?.call(failure);
   }
@@ -1179,6 +1217,8 @@ class _$NotificationError implements NotificationError {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1195,6 +1235,7 @@ class _$NotificationError implements NotificationError {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) {
     return error(this);
   }
@@ -1207,6 +1248,7 @@ class _$NotificationError implements NotificationError {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) {
     return error?.call(this);
   }
@@ -1219,6 +1261,7 @@ class _$NotificationError implements NotificationError {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1310,6 +1353,8 @@ class _$NotificationAdded implements NotificationAdded {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) {
     return notificationAdded(notifications);
   }
@@ -1324,6 +1369,8 @@ class _$NotificationAdded implements NotificationAdded {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) {
     return notificationAdded?.call(notifications);
   }
@@ -1338,6 +1385,8 @@ class _$NotificationAdded implements NotificationAdded {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) {
     if (notificationAdded != null) {
@@ -1354,6 +1403,7 @@ class _$NotificationAdded implements NotificationAdded {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) {
     return notificationAdded(this);
   }
@@ -1366,6 +1416,7 @@ class _$NotificationAdded implements NotificationAdded {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) {
     return notificationAdded?.call(this);
   }
@@ -1378,6 +1429,7 @@ class _$NotificationAdded implements NotificationAdded {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) {
     if (notificationAdded != null) {
@@ -1470,6 +1522,8 @@ class _$NotificationRemoved implements NotificationRemoved {
         notificationAdded,
     required TResult Function(List<NotificationMessage> notifications)
         notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
   }) {
     return notificationRemoved(notifications);
   }
@@ -1484,6 +1538,8 @@ class _$NotificationRemoved implements NotificationRemoved {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
   }) {
     return notificationRemoved?.call(notifications);
   }
@@ -1498,6 +1554,8 @@ class _$NotificationRemoved implements NotificationRemoved {
         notificationAdded,
     TResult Function(List<NotificationMessage> notifications)?
         notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
     required TResult orElse(),
   }) {
     if (notificationRemoved != null) {
@@ -1514,6 +1572,7 @@ class _$NotificationRemoved implements NotificationRemoved {
     required TResult Function(NotificationError value) error,
     required TResult Function(NotificationAdded value) notificationAdded,
     required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
   }) {
     return notificationRemoved(this);
   }
@@ -1526,6 +1585,7 @@ class _$NotificationRemoved implements NotificationRemoved {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
   }) {
     return notificationRemoved?.call(this);
   }
@@ -1538,6 +1598,7 @@ class _$NotificationRemoved implements NotificationRemoved {
     TResult Function(NotificationError value)? error,
     TResult Function(NotificationAdded value)? notificationAdded,
     TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
     required TResult orElse(),
   }) {
     if (notificationRemoved != null) {
@@ -1554,5 +1615,174 @@ abstract class NotificationRemoved implements NotificationState {
   List<NotificationMessage> get notifications;
   @JsonKey(ignore: true)
   $NotificationRemovedCopyWith<NotificationRemoved> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NotificationClearedCopyWith<$Res> {
+  factory $NotificationClearedCopyWith(
+          NotificationCleared value, $Res Function(NotificationCleared) then) =
+      _$NotificationClearedCopyWithImpl<$Res>;
+  $Res call({List<NotificationMessage> notifications});
+}
+
+/// @nodoc
+class _$NotificationClearedCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res>
+    implements $NotificationClearedCopyWith<$Res> {
+  _$NotificationClearedCopyWithImpl(
+      NotificationCleared _value, $Res Function(NotificationCleared) _then)
+      : super(_value, (v) => _then(v as NotificationCleared));
+
+  @override
+  NotificationCleared get _value => super._value as NotificationCleared;
+
+  @override
+  $Res call({
+    Object? notifications = freezed,
+  }) {
+    return _then(NotificationCleared(
+      notifications == freezed
+          ? _value.notifications
+          : notifications // ignore: cast_nullable_to_non_nullable
+              as List<NotificationMessage>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NotificationCleared implements NotificationCleared {
+  const _$NotificationCleared(this.notifications);
+
+  @override
+  final List<NotificationMessage> notifications;
+
+  @override
+  String toString() {
+    return 'NotificationState.notificationCleared(notifications: $notifications)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NotificationCleared &&
+            const DeepCollectionEquality()
+                .equals(other.notifications, notifications));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(notifications));
+
+  @JsonKey(ignore: true)
+  @override
+  $NotificationClearedCopyWith<NotificationCleared> get copyWith =>
+      _$NotificationClearedCopyWithImpl<NotificationCleared>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) error,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationAdded,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationRemoved,
+    required TResult Function(List<NotificationMessage> notifications)
+        notificationCleared,
+  }) {
+    return notificationCleared(notifications);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationAdded,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
+  }) {
+    return notificationCleared?.call(notifications);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationAdded,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationRemoved,
+    TResult Function(List<NotificationMessage> notifications)?
+        notificationCleared,
+    required TResult orElse(),
+  }) {
+    if (notificationCleared != null) {
+      return notificationCleared(notifications);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationInitial value) initial,
+    required TResult Function(NotificationLoading value) loading,
+    required TResult Function(NotificationError value) error,
+    required TResult Function(NotificationAdded value) notificationAdded,
+    required TResult Function(NotificationRemoved value) notificationRemoved,
+    required TResult Function(NotificationCleared value) notificationCleared,
+  }) {
+    return notificationCleared(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? initial,
+    TResult Function(NotificationLoading value)? loading,
+    TResult Function(NotificationError value)? error,
+    TResult Function(NotificationAdded value)? notificationAdded,
+    TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
+  }) {
+    return notificationCleared?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? initial,
+    TResult Function(NotificationLoading value)? loading,
+    TResult Function(NotificationError value)? error,
+    TResult Function(NotificationAdded value)? notificationAdded,
+    TResult Function(NotificationRemoved value)? notificationRemoved,
+    TResult Function(NotificationCleared value)? notificationCleared,
+    required TResult orElse(),
+  }) {
+    if (notificationCleared != null) {
+      return notificationCleared(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationCleared implements NotificationState {
+  const factory NotificationCleared(List<NotificationMessage> notifications) =
+      _$NotificationCleared;
+
+  List<NotificationMessage> get notifications;
+  @JsonKey(ignore: true)
+  $NotificationClearedCopyWith<NotificationCleared> get copyWith =>
       throw _privateConstructorUsedError;
 }

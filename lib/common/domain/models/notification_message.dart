@@ -55,7 +55,7 @@ class NotificationMessage {
 
   @override
   String toString() =>
-      "NotificationMessage(title: '$title', body: '$body', dataMsg: '$dataMsg')";
+      "NotificationMessage(title: '$title', body: '$body', dataMsg: '$dataMsg' )";
 
   @override
   bool operator ==(Object other) {

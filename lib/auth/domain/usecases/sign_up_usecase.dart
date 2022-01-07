@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/auth/application/bloc/sign_up_bloc/signup_bloc.dart';
 import 'package:smart_parcel/auth/domain/models/register_response.dart';
 import 'package:smart_parcel/auth/domain/repositories/sign_up_repository.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/phone_validate_util.dart';
 
 class SignUpUsecase {
@@ -22,12 +22,12 @@ class SignUpUsecase {
     final validatedUser = event.user.copyWith(
         phone: PhoneValidateUtil.validatePhoneNumber(event.user.phone));
 
-    final token = await event.context.read<FirebaseMessaging>().getToken();
+    final token = await Constants.getToken(event.context);
 
     final response = await signUpRepository.signUp(
       user: validatedUser,
       password: event.password,
-      fireBaseKey: token!,
+      fireBaseKey: token,
     );
 
     return response.fold(

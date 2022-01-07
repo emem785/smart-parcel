@@ -12,4 +12,7 @@ class NotificationState with _$NotificationState {
   const factory NotificationState.notificationRemoved(
     List<NotificationMessage> notifications,
   ) = NotificationRemoved;
+  const factory NotificationState.notificationCleared(
+    List<NotificationMessage> notifications,
+  ) = NotificationCleared;
 }

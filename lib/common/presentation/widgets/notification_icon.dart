@@ -17,6 +17,7 @@ class NotificationIcon extends StatelessWidget {
           orElse: () => '0',
           notificationAdded: (notifications) => notifications.length.toString(),
         );
+        final notificationBloc = context.read<NotificationBloc>();
 
         return SizedBox(
           height: 18,
@@ -24,7 +25,8 @@ class NotificationIcon extends StatelessWidget {
           child: Stack(
             children: [
               IconButton(
-                onPressed: () => context.router.push(const NotificationRoute()),
+                onPressed: () => context.router.push(
+                    NotificationRoute(notificationBloc: notificationBloc)),
                 icon: const Icon(
                   Icons.notifications_none,
                   color: Colors.black,

@@ -30,12 +30,14 @@ import 'package:smart_parcel/auth/presentation/sign_up_page/sign_up_page.dart'
     as _i4;
 import 'package:smart_parcel/auth/presentation/welcome_page/welcome_page.dart'
     as _i2;
+import 'package:smart_parcel/common/application/notification_bloc/notification_bloc.dart'
+    as _i36;
 import 'package:smart_parcel/common/presentation/widgets/home_page.dart'
     as _i11;
 import 'package:smart_parcel/common/presentation/widgets/splash_page.dart'
     as _i1;
 import 'package:smart_parcel/delivery/domain/models/center_district.dart'
-    as _i36;
+    as _i37;
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/customer_to_courier.dart'
     as _i18;
 import 'package:smart_parcel/delivery/presentation/customer_to_customer_pages/customer_to_customer.dart'
@@ -53,10 +55,10 @@ import 'package:smart_parcel/delivery/presentation/select_location_pages/select_
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/choose_duration_page.dart'
     as _i15;
 import 'package:smart_parcel/parcels/domain/models/customer_to_customer.dart'
-    as _i39;
-import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart'
     as _i40;
-import 'package:smart_parcel/parcels/domain/models/self_storage.dart' as _i38;
+import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart'
+    as _i41;
+import 'package:smart_parcel/parcels/domain/models/self_storage.dart' as _i39;
 import 'package:smart_parcel/parcels/presentation/courier_parcel/customer_2_courier_parcel_page.dart'
     as _i30;
 import 'package:smart_parcel/parcels/presentation/customer_parcel/customer_2_customer_parcel_page.dart'
@@ -70,7 +72,7 @@ import 'package:smart_parcel/parcels/presentation/parcel_detail_page/self_parcel
 import 'package:smart_parcel/parcels/presentation/parcels_page.dart' as _i24;
 import 'package:smart_parcel/parcels/presentation/self_storage_parcel/self_storage_parcel.dart'
     as _i29;
-import 'package:smart_parcel/payment/domain/models/payment_data.dart' as _i37;
+import 'package:smart_parcel/payment/domain/models/payment_data.dart' as _i38;
 import 'package:smart_parcel/payment/presentation/customer_to_courier_page/customer_to_courier_payment_page.dart'
     as _i22;
 import 'package:smart_parcel/payment/presentation/customer_to_customer_page/customer_to_customer_payment_page.dart'
@@ -139,8 +141,11 @@ class AppRouter extends _i13.RootStackRouter {
           routeData: routeData, child: const _i9.PasswordChangedPage());
     },
     NotificationRoute.name: (routeData) {
+      final args = routeData.argsAs<NotificationRouteArgs>();
       return _i13.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i10.NotificationPage());
+          routeData: routeData,
+          child: _i10.NotificationPage(
+              key: args.key, notificationBloc: args.notificationBloc));
     },
     HomeRoute.name: (routeData) {
       return _i13.CustomPage<dynamic>(
@@ -449,10 +454,23 @@ class PasswordChangedRoute extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for [_i10.NotificationPage]
-class NotificationRoute extends _i13.PageRouteInfo<void> {
-  const NotificationRoute() : super(name, path: '/notifications');
+class NotificationRoute extends _i13.PageRouteInfo<NotificationRouteArgs> {
+  NotificationRoute(
+      {_i35.Key? key, required _i36.NotificationBloc notificationBloc})
+      : super(name,
+            path: '/notifications',
+            args: NotificationRouteArgs(
+                key: key, notificationBloc: notificationBloc));
 
   static const String name = 'NotificationRoute';
+}
+
+class NotificationRouteArgs {
+  const NotificationRouteArgs({this.key, required this.notificationBloc});
+
+  final _i35.Key? key;
+
+  final _i36.NotificationBloc notificationBloc;
 }
 
 /// generated route for [_i11.HomePage]
@@ -512,7 +530,7 @@ class ChooseDurationRoute extends _i13.PageRouteInfo<void> {
 /// generated route for [_i16.SelectLocationPage]
 class SelectLocationRoute extends _i13.PageRouteInfo<SelectLocationRouteArgs> {
   SelectLocationRoute(
-      {_i35.Key? key, required _i36.CenterDistrict centerDistrict})
+      {_i35.Key? key, required _i37.CenterDistrict centerDistrict})
       : super(name,
             path: 'selectLocation',
             args: SelectLocationRouteArgs(
@@ -526,7 +544,7 @@ class SelectLocationRouteArgs {
 
   final _i35.Key? key;
 
-  final _i36.CenterDistrict centerDistrict;
+  final _i37.CenterDistrict centerDistrict;
 }
 
 /// generated route for [_i17.SelectLocationDistrictPage]
@@ -576,7 +594,7 @@ class CustomerToCourierPaymentRoute extends _i13.PageRouteInfo<void> {
 
 /// generated route for [_i23.ReceiptPage]
 class ReceiptRoute extends _i13.PageRouteInfo<ReceiptRouteArgs> {
-  ReceiptRoute({_i35.Key? key, required _i37.PaymentData paymentData})
+  ReceiptRoute({_i35.Key? key, required _i38.PaymentData paymentData})
       : super(name,
             path: 'receiptPage',
             args: ReceiptRouteArgs(key: key, paymentData: paymentData));
@@ -589,7 +607,7 @@ class ReceiptRouteArgs {
 
   final _i35.Key? key;
 
-  final _i37.PaymentData paymentData;
+  final _i38.PaymentData paymentData;
 }
 
 /// generated route for [_i24.ParcelsPage]
@@ -603,7 +621,7 @@ class ParcelsRoute extends _i13.PageRouteInfo<void> {
 /// generated route for [_i25.SelfParcelDetailsPage]
 class SelfParcelDetailsRoute
     extends _i13.PageRouteInfo<SelfParcelDetailsRouteArgs> {
-  SelfParcelDetailsRoute({required _i38.SelfStorage selfStorage, _i35.Key? key})
+  SelfParcelDetailsRoute({required _i39.SelfStorage selfStorage, _i35.Key? key})
       : super(name,
             path: 'selfDetailsPage',
             args:
@@ -615,7 +633,7 @@ class SelfParcelDetailsRoute
 class SelfParcelDetailsRouteArgs {
   const SelfParcelDetailsRouteArgs({required this.selfStorage, this.key});
 
-  final _i38.SelfStorage selfStorage;
+  final _i39.SelfStorage selfStorage;
 
   final _i35.Key? key;
 }
@@ -624,7 +642,7 @@ class SelfParcelDetailsRouteArgs {
 class CustomerParcelDetailsRoute
     extends _i13.PageRouteInfo<CustomerParcelDetailsRouteArgs> {
   CustomerParcelDetailsRoute(
-      {required _i39.CustomerToCustomer customerToCustomer, _i35.Key? key})
+      {required _i40.CustomerToCustomer customerToCustomer, _i35.Key? key})
       : super(name,
             path: 'customerDetailsPage',
             args: CustomerParcelDetailsRouteArgs(
@@ -637,7 +655,7 @@ class CustomerParcelDetailsRouteArgs {
   const CustomerParcelDetailsRouteArgs(
       {required this.customerToCustomer, this.key});
 
-  final _i39.CustomerToCustomer customerToCustomer;
+  final _i40.CustomerToCustomer customerToCustomer;
 
   final _i35.Key? key;
 }
@@ -646,7 +664,7 @@ class CustomerParcelDetailsRouteArgs {
 class CourierParcelDetailsRoute
     extends _i13.PageRouteInfo<CourierParcelDetailsRouteArgs> {
   CourierParcelDetailsRoute(
-      {required _i40.CustomerToCourier customerToCourier, _i35.Key? key})
+      {required _i41.CustomerToCourier customerToCourier, _i35.Key? key})
       : super(name,
             path: 'courierDetailsPage',
             args: CourierParcelDetailsRouteArgs(
@@ -659,7 +677,7 @@ class CourierParcelDetailsRouteArgs {
   const CourierParcelDetailsRouteArgs(
       {required this.customerToCourier, this.key});
 
-  final _i40.CustomerToCourier customerToCourier;
+  final _i41.CustomerToCourier customerToCourier;
 
   final _i35.Key? key;
 }
