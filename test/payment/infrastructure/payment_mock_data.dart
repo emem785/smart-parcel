@@ -114,7 +114,6 @@ const paymentResponse = PaymentResponse(
             lastName: 'emem',
             email: 'iemmanuel785@gmail.com',
             profilePicUrl: '',
-            profilePicFilePath: '',
             phone: '0803333333'),
         location: Location(
             id: 3,
@@ -173,7 +172,6 @@ const paymentResponeCustomer = PaymentResponse(
             lastName: 'emem',
             email: 'iemmanuel785@gmail.com',
             profilePicUrl: '',
-            profilePicFilePath: '',
             phone: '0803333333'),
         location: Location(
             id: 1,
@@ -203,7 +201,6 @@ const paymentResponeCourier = PaymentResponse(
             lastName: 'emem',
             email: 'iemmanuel785@gmail.com',
             profilePicUrl: '',
-            profilePicFilePath: '',
             phone: '0803333333'),
         location: Location(
             id: 1,

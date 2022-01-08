@@ -30,25 +30,25 @@ class UserEntity {
 
   factory UserEntity.toDomain(User user) {
     return UserEntity(
-        id: 0,
-        uid: user.id ?? "",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        profilePicUrl: user.profilePicUrl,
-        phone: user.phone,
-        profilePicturePath: user.profilePicFilePath);
+      id: 0,
+      uid: user.id ?? "",
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      profilePicUrl: user.profilePicUrl,
+      phone: user.phone,
+    );
   }
   factory UserEntity.toDomainEdit(User user) {
     return UserEntity(
-        id: 1,
-        uid: user.id ?? "",
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        profilePicUrl: user.profilePicUrl,
-        phone: user.phone,
-        profilePicturePath: user.profilePicFilePath);
+      id: 1,
+      uid: user.id ?? "",
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      profilePicUrl: user.profilePicUrl,
+      phone: user.phone,
+    );
   }
 
   User fromDomain() {
@@ -59,7 +59,6 @@ class UserEntity {
       email: email,
       profilePicUrl: profilePicUrl,
       phone: phone,
-      profilePicFilePath: profilePicturePath,
     );
   }
 }

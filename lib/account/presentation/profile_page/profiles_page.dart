@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,7 +69,7 @@ class ProfileBody extends HookWidget {
                             return state.maybeMap(
                               orElse: () => const SizedBox(),
                               userRetreived: (v) => v
-                                      .user.profilePicFilePath!.isEmpty
+                                      .user.profilePicUrl!.isEmpty
                                   ? const CircleAvatar(
                                       child: Icon(
                                         Icons.person_add_alt,
@@ -80,7 +79,7 @@ class ProfileBody extends HookWidget {
                                       minRadius: 32,
                                     )
                                   : buildImageHolder(
-                                      context, v.user.profilePicFilePath!),
+                                      context, v.user.profilePicUrl!),
                             );
                           },
                         )),
@@ -154,7 +153,7 @@ class ProfileBody extends HookWidget {
     );
   }
 
-  Widget buildImageHolder(BuildContext context, String filePath) {
+  Widget buildImageHolder(BuildContext context, String url) {
     return ClipOval(
       child: Container(
         width: 100,
@@ -163,7 +162,7 @@ class ProfileBody extends HookWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: FileImage(File(filePath)),
+            image: CachedNetworkImageProvider(url),
           ),
         ),
       ),

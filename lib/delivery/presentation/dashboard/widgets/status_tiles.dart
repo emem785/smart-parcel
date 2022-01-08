@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,8 +63,9 @@ class _StatusTilesState extends State<StatusTiles> {
                                       AssetImage("assets/images/Avatar.png"),
                                 )
                               : CircleAvatar(
-                                  backgroundImage:
-                                      FileImage(File(user.profilePicFilePath!)),
+                                  backgroundImage: CachedNetworkImageProvider(
+                                    user.profilePicUrl!,
+                                  ),
                                   backgroundColor: Colors.grey,
                                 ),
                           title: user.firstName.isNotEmpty

@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/common/application/user_bloc/user_bloc.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
@@ -29,9 +27,6 @@ class GetStoredUserStreamUseCase {
     Emitter<UserState> emit,
     User user,
   ) {
-    if (user.profilePicFilePath!.isNotEmpty) {
-      precacheImage(FileImage(File(user.profilePicFilePath!)), event.context);
-    }
     final response =
         userRepository.getUserStream().map((user) => user ?? User.empty());
     emit(UserState.userStreamRetreived(response));
