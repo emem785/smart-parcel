@@ -60,7 +60,6 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   ) async {
     emit(const NotificationLoading());
     firebaseMessaging = event.firebaseMessaging;
-    print("initialized");
     emit(const NotificationInitial());
   }
 }

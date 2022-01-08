@@ -66,9 +66,7 @@ class NotificationBody extends HookWidget {
                           ),
                           trailing: IconButton(
                             onPressed: () => notificationBloc.add(
-                              NotificationEvent.removeNotification(
-                                notifications.length - index,
-                              ),
+                              NotificationEvent.removeNotification(index),
                             ),
                             icon: const Icon(Icons.cancel_outlined),
                           ),

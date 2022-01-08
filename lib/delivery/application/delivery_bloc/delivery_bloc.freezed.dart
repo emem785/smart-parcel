@@ -51,6 +51,12 @@ class _$DeliveryEventTearOff {
   GetParcelCenters getParcelCenters() {
     return const GetParcelCenters();
   }
+
+  OpenUrl openUrl(String url) {
+    return OpenUrl(
+      url,
+    );
+  }
 }
 
 /// @nodoc
@@ -73,6 +79,7 @@ mixin _$DeliveryEvent {
         proceedToPayment,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,6 +96,7 @@ mixin _$DeliveryEvent {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +113,7 @@ mixin _$DeliveryEvent {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +123,7 @@ mixin _$DeliveryEvent {
     required TResult Function(ProccedToPayment value) proceedToPayment,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -122,6 +132,7 @@ mixin _$DeliveryEvent {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -130,6 +141,7 @@ mixin _$DeliveryEvent {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -238,6 +250,7 @@ class _$SelectLocation implements SelectLocation {
         proceedToPayment,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
   }) {
     return selectLocation(context, routeInfo);
   }
@@ -257,6 +270,7 @@ class _$SelectLocation implements SelectLocation {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
   }) {
     return selectLocation?.call(context, routeInfo);
   }
@@ -276,6 +290,7 @@ class _$SelectLocation implements SelectLocation {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) {
     if (selectLocation != null) {
@@ -291,6 +306,7 @@ class _$SelectLocation implements SelectLocation {
     required TResult Function(ProccedToPayment value) proceedToPayment,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
   }) {
     return selectLocation(this);
   }
@@ -302,6 +318,7 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
   }) {
     return selectLocation?.call(this);
   }
@@ -313,6 +330,7 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) {
     if (selectLocation != null) {
@@ -469,6 +487,7 @@ class _$ProccedToPayment implements ProccedToPayment {
         proceedToPayment,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
   }) {
     return proceedToPayment(context, routeInfo, paystackResponse, locationId,
         duration, customerForm);
@@ -489,6 +508,7 @@ class _$ProccedToPayment implements ProccedToPayment {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
   }) {
     return proceedToPayment?.call(context, routeInfo, paystackResponse,
         locationId, duration, customerForm);
@@ -509,6 +529,7 @@ class _$ProccedToPayment implements ProccedToPayment {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) {
     if (proceedToPayment != null) {
@@ -525,6 +546,7 @@ class _$ProccedToPayment implements ProccedToPayment {
     required TResult Function(ProccedToPayment value) proceedToPayment,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
   }) {
     return proceedToPayment(this);
   }
@@ -536,6 +558,7 @@ class _$ProccedToPayment implements ProccedToPayment {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
   }) {
     return proceedToPayment?.call(this);
   }
@@ -547,6 +570,7 @@ class _$ProccedToPayment implements ProccedToPayment {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) {
     if (proceedToPayment != null) {
@@ -650,6 +674,7 @@ class _$Search implements Search {
         proceedToPayment,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
   }) {
     return search(query);
   }
@@ -669,6 +694,7 @@ class _$Search implements Search {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
   }) {
     return search?.call(query);
   }
@@ -688,6 +714,7 @@ class _$Search implements Search {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -703,6 +730,7 @@ class _$Search implements Search {
     required TResult Function(ProccedToPayment value) proceedToPayment,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
   }) {
     return search(this);
   }
@@ -714,6 +742,7 @@ class _$Search implements Search {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
   }) {
     return search?.call(this);
   }
@@ -725,6 +754,7 @@ class _$Search implements Search {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -796,6 +826,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         proceedToPayment,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
   }) {
     return getParcelCenters();
   }
@@ -815,6 +846,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
   }) {
     return getParcelCenters?.call();
   }
@@ -834,6 +866,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         proceedToPayment,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) {
     if (getParcelCenters != null) {
@@ -849,6 +882,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     required TResult Function(ProccedToPayment value) proceedToPayment,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
   }) {
     return getParcelCenters(this);
   }
@@ -860,6 +894,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
   }) {
     return getParcelCenters?.call(this);
   }
@@ -871,6 +906,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(ProccedToPayment value)? proceedToPayment,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) {
     if (getParcelCenters != null) {
@@ -882,6 +918,178 @@ class _$GetParcelCenters implements GetParcelCenters {
 
 abstract class GetParcelCenters implements DeliveryEvent {
   const factory GetParcelCenters() = _$GetParcelCenters;
+}
+
+/// @nodoc
+abstract class $OpenUrlCopyWith<$Res> {
+  factory $OpenUrlCopyWith(OpenUrl value, $Res Function(OpenUrl) then) =
+      _$OpenUrlCopyWithImpl<$Res>;
+  $Res call({String url});
+}
+
+/// @nodoc
+class _$OpenUrlCopyWithImpl<$Res> extends _$DeliveryEventCopyWithImpl<$Res>
+    implements $OpenUrlCopyWith<$Res> {
+  _$OpenUrlCopyWithImpl(OpenUrl _value, $Res Function(OpenUrl) _then)
+      : super(_value, (v) => _then(v as OpenUrl));
+
+  @override
+  OpenUrl get _value => super._value as OpenUrl;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(OpenUrl(
+      url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OpenUrl implements OpenUrl {
+  const _$OpenUrl(this.url);
+
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'DeliveryEvent.openUrl(url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is OpenUrl &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  $OpenUrlCopyWith<OpenUrl> get copyWith =>
+      _$OpenUrlCopyWithImpl<OpenUrl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            BuildContext context, PageRouteInfo<dynamic> routeInfo)
+        selectLocation,
+    required TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)
+        proceedToPayment,
+    required TResult Function(String query) search,
+    required TResult Function() getParcelCenters,
+    required TResult Function(String url) openUrl,
+  }) {
+    return openUrl(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
+        selectLocation,
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
+        proceedToPayment,
+    TResult Function(String query)? search,
+    TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
+  }) {
+    return openUrl?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
+        selectLocation,
+    TResult Function(
+            BuildContext context,
+            PageRouteInfo<dynamic> routeInfo,
+            PaystackResponse paystackResponse,
+            int locationId,
+            String? duration,
+            CustomerForm? customerForm)?
+        proceedToPayment,
+    TResult Function(String query)? search,
+    TResult Function()? getParcelCenters,
+    TResult Function(String url)? openUrl,
+    required TResult orElse(),
+  }) {
+    if (openUrl != null) {
+      return openUrl(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SelectLocation value) selectLocation,
+    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(Search value) search,
+    required TResult Function(GetParcelCenters value) getParcelCenters,
+    required TResult Function(OpenUrl value) openUrl,
+  }) {
+    return openUrl(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SelectLocation value)? selectLocation,
+    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
+    TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
+  }) {
+    return openUrl?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SelectLocation value)? selectLocation,
+    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(Search value)? search,
+    TResult Function(GetParcelCenters value)? getParcelCenters,
+    TResult Function(OpenUrl value)? openUrl,
+    required TResult orElse(),
+  }) {
+    if (openUrl != null) {
+      return openUrl(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OpenUrl implements DeliveryEvent {
+  const factory OpenUrl(String url) = _$OpenUrl;
+
+  String get url;
+  @JsonKey(ignore: true)
+  $OpenUrlCopyWith<OpenUrl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -12,8 +12,6 @@ import 'package:smart_parcel/inject_conf.dart';
 
 const hours = [6, 12, 24, 48, 72];
 
-const termsAndConditions =
-    "By clicking on this box, you have agreed to the Terms and Conditions that guides the booking of a box on Smart Parcel App";
 const demurrage =
     "Note: You will need to pay demurrage after 72hours if pickup does not occur and your item will be archived after 1 week.";
 
@@ -76,12 +74,9 @@ class ChooseDuration extends HookWidget {
           ),
         ),
         Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: buildTermsAndConditions(
-              context: context,
-              hasAgreed: hasAgreed,
-              agreement: termsAndConditions,
-            )),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: TermsAndConditions(hasAgreed: hasAgreed),
+        ),
         LayoutConstants.sizeBox(context, 21),
         LayoutConstants.padButton(ElevatedButton(
           onPressed: () async {

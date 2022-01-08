@@ -40,6 +40,8 @@ class Constants {
             .getToken() ??
         "";
   }
+
+  static String termsAndConditionsUrl = "http://smartparcel.ng/";
 }
 
 class LayoutConstants {

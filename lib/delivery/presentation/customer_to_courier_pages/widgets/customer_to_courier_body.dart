@@ -14,9 +14,6 @@ import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_
 
 const cities = ["lagos"];
 
-const agreement =
-    "By clicking on this box, you have agreed to the Terms and Conditions that guides the booking of a box on Smart Parcel App";
-
 const demurrage =
     "Note: Your item will be archived if left in the locker for over 12 weeks.";
 
@@ -74,11 +71,7 @@ class CustomerToCourierBody extends HookWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: buildTermsAndConditions(
-              context: context,
-              hasAgreed: hasAgreed,
-              agreement: agreement,
-            ),
+            child: TermsAndConditions(hasAgreed: hasAgreed),
           ),
           LayoutConstants.sizeBox(context, 21),
           BlocBuilder<DeliveryBloc, DeliveryState>(

@@ -70,4 +70,21 @@ class CommonWidgets {
       ),
     ));
   }
+
+  static Text termsAnConditions() {
+    return const Text.rich(
+      TextSpan(children: [
+        TextSpan(text: "By clicking on this box, you have agreed to the "),
+        TextSpan(
+          text: "Terms and Conditions",
+          style: TextStyle(
+            color: GlobalTheme.primaryColor,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+        TextSpan(text: " that guides the booking of a box on Smart Parcel App"),
+      ]),
+      style: TextStyle(fontSize: 11),
+    );
+  }
 }

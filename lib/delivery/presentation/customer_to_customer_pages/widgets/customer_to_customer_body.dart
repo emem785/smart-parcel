@@ -12,9 +12,6 @@ import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/widgets/address_search_delegate.dart';
 import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_conditions.dart';
 
-const agreement =
-    "By clicking on this box, you have agreed to the Terms and Conditions that guides the booking of a box on Smart Parcel App";
-
 const demurrage =
     "Note: Your item will be archived if left in the locker for over 12 weeks.";
 
@@ -69,12 +66,9 @@ class CustomerToCustomerBody extends HookWidget {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: buildTermsAndConditions(
-                context: context,
-                hasAgreed: hasAgreed,
-                agreement: agreement,
-              )),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: TermsAndConditions(hasAgreed: hasAgreed),
+          ),
           LayoutConstants.sizeBox(context, 21),
           BlocConsumer<DeliveryBloc, DeliveryState>(
             listener: (context, state) {},

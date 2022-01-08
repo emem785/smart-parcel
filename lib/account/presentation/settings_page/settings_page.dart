@@ -17,7 +17,6 @@ class SettingsPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => getIt<AuthBloc>()),
         BlocProvider(create: (context) => getIt<AccountBloc>()),
-        BlocProvider(create: (context) => getIt<NotificationBloc>()),
       ],
       child: const SettingsBody(),
     );

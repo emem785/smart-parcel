@@ -35,8 +35,6 @@ class _FirebaseMessagingHookState
   Future<void> initHook() async {
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
 
-    print(await firebaseMessaging.getToken());
-
     FirebaseMessaging.onMessage.listen((event) {
       print(event.data);
       context
