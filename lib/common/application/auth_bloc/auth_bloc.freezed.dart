@@ -17,8 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-  Authenticate authenticate() {
-    return const Authenticate();
+  Authenticate authenticate(BuildContext context) {
+    return Authenticate(
+      context,
+    );
   }
 
   Logout logout() {
@@ -33,19 +35,19 @@ const $AuthEvent = _$AuthEventTearOff();
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authenticate,
+    required TResult Function(BuildContext context) authenticate,
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
     required TResult orElse(),
   }) =>
@@ -91,6 +93,7 @@ abstract class $AuthenticateCopyWith<$Res> {
   factory $AuthenticateCopyWith(
           Authenticate value, $Res Function(Authenticate) then) =
       _$AuthenticateCopyWithImpl<$Res>;
+  $Res call({BuildContext context});
 }
 
 /// @nodoc
@@ -102,54 +105,76 @@ class _$AuthenticateCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 
   @override
   Authenticate get _value => super._value as Authenticate;
+
+  @override
+  $Res call({
+    Object? context = freezed,
+  }) {
+    return _then(Authenticate(
+      context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Authenticate implements Authenticate {
-  const _$Authenticate();
+  const _$Authenticate(this.context);
+
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'AuthEvent.authenticate()';
+    return 'AuthEvent.authenticate(context: $context)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Authenticate);
+        (other.runtimeType == runtimeType &&
+            other is Authenticate &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, context);
+
+  @JsonKey(ignore: true)
+  @override
+  $AuthenticateCopyWith<Authenticate> get copyWith =>
+      _$AuthenticateCopyWithImpl<Authenticate>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authenticate,
+    required TResult Function(BuildContext context) authenticate,
     required TResult Function() logout,
   }) {
-    return authenticate();
+    return authenticate(context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
   }) {
-    return authenticate?.call();
+    return authenticate?.call(context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (authenticate != null) {
-      return authenticate();
+      return authenticate(context);
     }
     return orElse();
   }
@@ -187,7 +212,12 @@ class _$Authenticate implements Authenticate {
 }
 
 abstract class Authenticate implements AuthEvent {
-  const factory Authenticate() = _$Authenticate;
+  const factory Authenticate(BuildContext context) = _$Authenticate;
+
+  BuildContext get context;
+  @JsonKey(ignore: true)
+  $AuthenticateCopyWith<Authenticate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -228,7 +258,7 @@ class _$Logout implements Logout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authenticate,
+    required TResult Function(BuildContext context) authenticate,
     required TResult Function() logout,
   }) {
     return logout();
@@ -237,7 +267,7 @@ class _$Logout implements Logout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
   }) {
     return logout?.call();
@@ -246,7 +276,7 @@ class _$Logout implements Logout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authenticate,
+    TResult Function(BuildContext context)? authenticate,
     TResult Function()? logout,
     required TResult orElse(),
   }) {

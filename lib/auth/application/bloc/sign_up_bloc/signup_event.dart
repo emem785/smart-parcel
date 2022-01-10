@@ -7,6 +7,7 @@ class SignUpEvent with _$SignUpEvent {
     required User user,
     required String password,
     required String confirmPassword,
+    required BuildContext context,
   }) = SignUp;
   const factory SignUpEvent.requestOtp({
     required String email,

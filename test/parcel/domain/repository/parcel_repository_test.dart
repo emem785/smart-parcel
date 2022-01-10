@@ -28,7 +28,7 @@ Future<void> main() async {
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, parcelResonse2),
+          (r) => expect(r, parcelResponse),
         );
       },
     );

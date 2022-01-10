@@ -107,8 +107,9 @@ class SelfStoragePayment extends HookWidget {
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: LayoutConstants.padButton(ElevatedButton(
             onPressed: () {
-              context.router.popUntil(
-                (route) => route.settings.name == DashboardRoute.name,
+              context.router.pushAndPopUntil(
+                const DashboardRoute(),
+                predicate: (route) => false,
               );
             },
             child: const Text("Done"),

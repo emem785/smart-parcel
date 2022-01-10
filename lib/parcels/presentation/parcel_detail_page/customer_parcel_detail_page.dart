@@ -20,12 +20,18 @@ class CustomerParcelDetailsPage extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(customerToCustomer.status.capitalize(),
-              style: Theme.of(context).textTheme.headline6),
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                    color: LayoutConstants.getStatusColor(
+                        customerToCustomer.statusStrict),
+                  )),
           LayoutConstants.sizeBox(context, 8),
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black38),
+              border: Border.all(
+                color: LayoutConstants.getStatusColor(
+                    customerToCustomer.statusStrict),
+              ),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Theme(

@@ -43,4 +43,19 @@ class _$CommonHttpService extends CommonHttpService {
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<AuthToken, AuthToken>($request);
   }
+
+  @override
+  Future<Response<SimpleAuthResponse>> updateFirebaseKey(
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
+    final $url = '/user/firebase_key/update/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $body = body;
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
+    return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
+  }
 }

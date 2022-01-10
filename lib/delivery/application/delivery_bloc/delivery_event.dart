@@ -17,4 +17,5 @@ class DeliveryEvent with _$DeliveryEvent {
   }) = ProccedToPayment;
   const factory DeliveryEvent.search(String query) = Search;
   const factory DeliveryEvent.getParcelCenters() = GetParcelCenters;
+  const factory DeliveryEvent.openUrl(String url) = OpenUrl;
 }

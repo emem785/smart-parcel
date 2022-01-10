@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:smart_parcel/common/application/notification_bloc/notification_bloc.dart';
+import 'package:smart_parcel/common/presentation/widgets/notification_icon.dart';
 import 'package:smart_parcel/common/theme.dart';
 
-enum Status { pending, assigned }
+enum Status { pending, assigned, dropped, completed }
 
 const canvsHeight = 926;
 const canvasWidth = 428;
@@ -26,9 +29,19 @@ class Constants {
     return width(context) * (size / canvsHeight);
   }
 
-  static final dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+  static final dateFormat = DateFormat("dd/MM/yyyy hh:mm aa");
 
   static const phoneRegex = r'^(0?)\d{10}$';
+
+  static Future<String> getToken(BuildContext context) async {
+    return await context
+            .read<NotificationBloc>()
+            .firebaseMessaging
+            .getToken() ??
+        "";
+  }
+
+  static String termsAndConditionsUrl = "http://smartparcel.ng/";
 }
 
 class LayoutConstants {
@@ -54,6 +67,10 @@ class LayoutConstants {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       leading: const AutoBackButton(color: GlobalTheme.primaryColor),
+      actions: const [
+        NotificationIcon(),
+        SizedBox(width: 8),
+      ],
     );
   }
 
@@ -93,7 +110,11 @@ class LayoutConstants {
     switch (status) {
       case Status.pending:
         return const Color(0xFFF29E25);
-      default:
+      case Status.dropped:
+        return const Color(0xFF27930C);
+      case Status.assigned:
+        return const Color(0xFF1120A8);
+      case Status.completed:
         return const Color(0xFF27930C);
     }
   }

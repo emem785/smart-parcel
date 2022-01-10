@@ -1,17 +1,19 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:smart_parcel/auth/domain/models/auth_tokens.dart';
 import 'package:smart_parcel/common/domain/repositories/user_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../../auth/infrastructure/auth_mock_data.dart';
 import '../../infrastructure/common_mock_data.dart';
+import '../../infrastructure/setup_auth_tests.dart';
 import '../../infrastructure/setup_tests.dart';
 
 Future<void> main() async {
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     await dotenv.load(fileName: ".env");
-    await TestSetup.init();
+    await AuthTestSetup.init();
   });
 
   tearDown(() {
@@ -45,6 +47,24 @@ Future<void> main() async {
         return response.fold(
           (l) => expect(l, mockStorageFailure),
           (r) => expect(r, null),
+        );
+      },
+    );
+  });
+  group('Test User Repository Common Http Service', () {
+    test(
+      'returns get success response on update firebase key',
+      () async {
+        // arrange
+        AuthTestSetup.setup(firebaseKeyUpdatedJson, 200);
+        final repo = getIt<UserRepository>();
+        // act
+        final response =
+            await repo.updateFirebaseKey("", const AuthToken.empty());
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, forgotPasswordResponse),
         );
       },
     );

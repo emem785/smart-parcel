@@ -27,8 +27,8 @@ Future<void> main() async {
         final repo =
             getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
         // act
-        final response =
-            await repo.login(email: mockEmail, password: mockPassword);
+        final response = await repo.login(
+            email: mockEmail, password: mockPassword, fireBaseKey: "");
         // assert
         return response.fold(
           (l) => expect(l, null),
@@ -44,8 +44,8 @@ Future<void> main() async {
         final repo =
             getIt<SignInBloc>().authUseCases.signInUsecase.signInRepository;
         // act
-        final response =
-            await repo.login(email: mockEmail, password: mockPassword);
+        final response = await repo.login(
+            email: mockEmail, password: mockPassword, fireBaseKey: "");
         // assert
         return response.fold(
           (l) => expect(l.message, mockLoginFailure.message),

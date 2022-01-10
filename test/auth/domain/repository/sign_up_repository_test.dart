@@ -26,8 +26,8 @@ Future<void> main() async {
         final repo =
             getIt<SignInBloc>().authUseCases.signUpUsecase.signUpRepository;
         // act
-        final response =
-            await repo.signUp(user: mockUser, password: mockPassword);
+        final response = await repo.signUp(
+            user: mockUser, password: mockPassword, fireBaseKey: "");
         // assert
         return response.fold(
           (l) => expect(l, null),

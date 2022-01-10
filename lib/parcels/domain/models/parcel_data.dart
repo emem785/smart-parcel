@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/parcels/domain/models/cutomer_to_courier.dart';
+import 'package:smart_parcel/parcels/domain/models/parcel_stats.dart';
 
 import 'customer_to_customer.dart';
 import 'self_storage.dart';
@@ -11,21 +12,25 @@ class ParcelData {
   final List<SelfStorage> selfStorages;
   final List<CustomerToCustomer> customerToCustomer;
   final List<CustomerToCourier> customerToCourier;
+  final ParcelStats parcelStats;
   const ParcelData({
     required this.selfStorages,
     required this.customerToCustomer,
     required this.customerToCourier,
+    required this.parcelStats,
   });
 
   ParcelData copyWith({
     List<SelfStorage>? selfStorages,
     List<CustomerToCustomer>? customerToCustomer,
     List<CustomerToCourier>? customerToCourier,
+    ParcelStats? parcelStats,
   }) {
     return ParcelData(
       selfStorages: selfStorages ?? this.selfStorages,
       customerToCustomer: customerToCustomer ?? this.customerToCustomer,
       customerToCourier: customerToCourier ?? this.customerToCourier,
+      parcelStats: parcelStats ?? this.parcelStats,
     );
   }
 
@@ -34,6 +39,7 @@ class ParcelData {
       'selfStorages': selfStorages.map((x) => x.toMap()).toList(),
       'customerToCustomer': customerToCustomer.map((x) => x.toMap()).toList(),
       'customerToCourier': customerToCourier.map((x) => x.toMap()).toList(),
+      'parcelStats': parcelStats.toMap(),
     };
   }
 
@@ -46,6 +52,7 @@ class ParcelData {
               ?.map((x) => CustomerToCustomer.fromMap(x))),
       customerToCourier: List<CustomerToCourier>.from(
           map['customer_to_courier']?.map((x) => CustomerToCourier.fromMap(x))),
+      parcelStats: ParcelStats.fromMap(map['parcel_stats']),
     );
   }
 
@@ -56,7 +63,7 @@ class ParcelData {
 
   @override
   String toString() =>
-      'ParcelData(selfStorages: $selfStorages, customerToCustomer: $customerToCustomer, customerToCourier: $customerToCourier)';
+      'ParcelData(selfStorages: $selfStorages, customerToCustomer: $customerToCustomer, customerToCourier: $customerToCourier, parcelStats: $parcelStats)';
 
   @override
   bool operator ==(Object other) {
@@ -65,14 +72,16 @@ class ParcelData {
     return other is ParcelData &&
         listEquals(other.selfStorages, selfStorages) &&
         listEquals(other.customerToCustomer, customerToCustomer) &&
-        listEquals(other.customerToCourier, customerToCourier);
+        listEquals(other.customerToCourier, customerToCourier) &&
+        other.parcelStats == parcelStats;
   }
 
   @override
   int get hashCode =>
       selfStorages.hashCode ^
       customerToCustomer.hashCode ^
-      customerToCourier.hashCode;
+      customerToCourier.hashCode ^
+      parcelStats.hashCode;
 }
 
 abstract class DeliveryDetail {
@@ -86,6 +95,10 @@ mixin StatusMixin on DeliveryDetail {
     switch (status) {
       case "assigned":
         return Status.assigned;
+      case "dropped":
+        return Status.dropped;
+      case "completed":
+        return Status.completed;
       default:
         return Status.pending;
     }

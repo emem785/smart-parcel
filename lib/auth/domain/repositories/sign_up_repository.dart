@@ -26,10 +26,12 @@ class SignUpRepository {
   SingleResponse<RegisterResponse> signUp({
     required User user,
     required String password,
+    required String fireBaseKey,
   }) {
     final Map<String, dynamic> body = {};
     body.addAll(user.toMap());
     body.addAll({'password': password});
+    body.addAll({'firebase_key': fireBaseKey});
 
     return postData(authHttpService.signUp, body);
   }

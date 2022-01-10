@@ -46,12 +46,9 @@ Future<void> main() async {
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.bookCustomerToCustomer(
-            name: "emem",
-            email: "emem@emem",
             location: 4,
-            phone: "0805555",
             paystackResponse: paystackResponse,
-            address: '');
+            customerForm: customerFormC);
         // assert
         return response.fold(
           (l) => expect(l, null),
@@ -67,13 +64,10 @@ Future<void> main() async {
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.bookCustomerToCourier(
-            name: "emem",
-            email: "emem@emem",
             location: 4,
-            phone: "0805555",
             paystackResponse: paystackResponse,
-            city: '',
-            address: '');
+            city: 'lagos',
+            customerForm: customerFormCourier);
         // assert
         return response.fold(
           (l) => expect(l, null),

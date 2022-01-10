@@ -20,11 +20,13 @@ class _$SignUpEventTearOff {
   SignUp signUp(
       {required User user,
       required String password,
-      required String confirmPassword}) {
+      required String confirmPassword,
+      required BuildContext context}) {
     return SignUp(
       user: user,
       password: password,
       confirmPassword: confirmPassword,
+      context: context,
     );
   }
 
@@ -51,8 +53,8 @@ const $SignUpEvent = _$SignUpEventTearOff();
 mixin _$SignUpEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            User user, String password, String confirmPassword)
+    required TResult Function(User user, String password,
+            String confirmPassword, BuildContext context)
         signUp,
     required TResult Function(String email) requestOtp,
     required TResult Function(String otp, String email, String password)
@@ -61,7 +63,8 @@ mixin _$SignUpEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
@@ -69,7 +72,8 @@ mixin _$SignUpEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
@@ -120,7 +124,11 @@ class _$SignUpEventCopyWithImpl<$Res> implements $SignUpEventCopyWith<$Res> {
 abstract class $SignUpCopyWith<$Res> {
   factory $SignUpCopyWith(SignUp value, $Res Function(SignUp) then) =
       _$SignUpCopyWithImpl<$Res>;
-  $Res call({User user, String password, String confirmPassword});
+  $Res call(
+      {User user,
+      String password,
+      String confirmPassword,
+      BuildContext context});
 }
 
 /// @nodoc
@@ -137,6 +145,7 @@ class _$SignUpCopyWithImpl<$Res> extends _$SignUpEventCopyWithImpl<$Res>
     Object? user = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
+    Object? context = freezed,
   }) {
     return _then(SignUp(
       user: user == freezed
@@ -151,6 +160,10 @@ class _$SignUpCopyWithImpl<$Res> extends _$SignUpEventCopyWithImpl<$Res>
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
+      context: context == freezed
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
     ));
   }
 }
@@ -161,7 +174,8 @@ class _$SignUp implements SignUp {
   const _$SignUp(
       {required this.user,
       required this.password,
-      required this.confirmPassword});
+      required this.confirmPassword,
+      required this.context});
 
   @override
   final User user;
@@ -169,10 +183,12 @@ class _$SignUp implements SignUp {
   final String password;
   @override
   final String confirmPassword;
+  @override
+  final BuildContext context;
 
   @override
   String toString() {
-    return 'SignUpEvent.signUp(user: $user, password: $password, confirmPassword: $confirmPassword)';
+    return 'SignUpEvent.signUp(user: $user, password: $password, confirmPassword: $confirmPassword, context: $context)';
   }
 
   @override
@@ -184,11 +200,13 @@ class _$SignUp implements SignUp {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword));
+                other.confirmPassword == confirmPassword) &&
+            (identical(other.context, context) || other.context == context));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, password, confirmPassword);
+  int get hashCode =>
+      Object.hash(runtimeType, user, password, confirmPassword, context);
 
   @JsonKey(ignore: true)
   @override
@@ -198,38 +216,40 @@ class _$SignUp implements SignUp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            User user, String password, String confirmPassword)
+    required TResult Function(User user, String password,
+            String confirmPassword, BuildContext context)
         signUp,
     required TResult Function(String email) requestOtp,
     required TResult Function(String otp, String email, String password)
         submitOtp,
   }) {
-    return signUp(user, password, confirmPassword);
+    return signUp(user, password, confirmPassword, context);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
   }) {
-    return signUp?.call(user, password, confirmPassword);
+    return signUp?.call(user, password, confirmPassword, context);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
     required TResult orElse(),
   }) {
     if (signUp != null) {
-      return signUp(user, password, confirmPassword);
+      return signUp(user, password, confirmPassword, context);
     }
     return orElse();
   }
@@ -273,11 +293,13 @@ abstract class SignUp implements SignUpEvent {
   const factory SignUp(
       {required User user,
       required String password,
-      required String confirmPassword}) = _$SignUp;
+      required String confirmPassword,
+      required BuildContext context}) = _$SignUp;
 
   User get user;
   String get password;
   String get confirmPassword;
+  BuildContext get context;
   @JsonKey(ignore: true)
   $SignUpCopyWith<SignUp> get copyWith => throw _privateConstructorUsedError;
 }
@@ -344,8 +366,8 @@ class _$RequestOtp implements RequestOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            User user, String password, String confirmPassword)
+    required TResult Function(User user, String password,
+            String confirmPassword, BuildContext context)
         signUp,
     required TResult Function(String email) requestOtp,
     required TResult Function(String otp, String email, String password)
@@ -357,7 +379,8 @@ class _$RequestOtp implements RequestOtp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
@@ -368,7 +391,8 @@ class _$RequestOtp implements RequestOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
@@ -503,8 +527,8 @@ class _$SubmitOtp implements SubmitOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            User user, String password, String confirmPassword)
+    required TResult Function(User user, String password,
+            String confirmPassword, BuildContext context)
         signUp,
     required TResult Function(String email) requestOtp,
     required TResult Function(String otp, String email, String password)
@@ -516,7 +540,8 @@ class _$SubmitOtp implements SubmitOtp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,
@@ -527,7 +552,8 @@ class _$SubmitOtp implements SubmitOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user, String password, String confirmPassword)?
+    TResult Function(User user, String password, String confirmPassword,
+            BuildContext context)?
         signUp,
     TResult Function(String email)? requestOtp,
     TResult Function(String otp, String email, String password)? submitOtp,

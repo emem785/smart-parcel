@@ -100,6 +100,7 @@ class SignUpPageBody extends HookWidget {
                               user: user,
                               password: passwordController.text,
                               confirmPassword: confirmPasswordController.text,
+                              context: context,
                             ));
                           }
                         },

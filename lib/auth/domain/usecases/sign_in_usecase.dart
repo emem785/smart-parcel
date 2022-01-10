@@ -6,6 +6,7 @@ import 'package:smart_parcel/auth/application/bloc/sign_in_bloc/signin_bloc.dart
 import 'package:smart_parcel/auth/domain/models/login_response.dart';
 import 'package:smart_parcel/auth/domain/repositories/sign_in_repository.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/common/utils/constants.dart';
 
 class SignInUsecase {
   final SignInRepository signInRepository;
@@ -15,9 +16,12 @@ class SignInUsecase {
   FutureOr<void> call(Login event, Emitter<SignInState> emit) async {
     emit(const SigInLoading());
 
+    final token = await Constants.getToken(event.context);
+
     final response = await signInRepository.login(
       email: event.email,
       password: event.password,
+      fireBaseKey: token,
     );
 
     return response.fold(

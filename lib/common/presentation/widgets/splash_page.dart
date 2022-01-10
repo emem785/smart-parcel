@@ -1,4 +1,4 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +28,7 @@ class SplashPageBody extends HookWidget {
     final authBloc = context.read<AuthBloc>();
 
     useEffect(() {
-      authBloc.add(const AuthEvent.authenticate());
+      authBloc.add(AuthEvent.authenticate(context));
     }, []);
 
     return Scaffold(

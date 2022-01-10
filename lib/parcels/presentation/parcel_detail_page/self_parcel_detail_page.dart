@@ -28,7 +28,9 @@ class SelfParcelDetailsPage extends HookWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black38),
+              border: Border.all(
+                color: LayoutConstants.getStatusColor(selfStorage.statusStrict),
+              ),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Theme(

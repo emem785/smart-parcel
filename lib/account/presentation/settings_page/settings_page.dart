@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart';
 import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
+import 'package:smart_parcel/common/application/notification_bloc/notification_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
@@ -40,10 +41,16 @@ class SettingsBody extends StatelessWidget {
         listener: (context, state) {
           state.maybeMap(
             orElse: () => 1,
-            loggedOut: (v) => context.router.pushAndPopUntil(
-              const WelcomeRoute(),
-              predicate: (route) => false,
-            ),
+            loggedOut: (v) {
+              context
+                  .read<NotificationBloc>()
+                  .add(const NotificationEvent.clearNotification());
+
+              context.router.pushAndPopUntil(
+                const WelcomeRoute(),
+                predicate: (route) => false,
+              );
+            },
           );
         },
         child: Column(

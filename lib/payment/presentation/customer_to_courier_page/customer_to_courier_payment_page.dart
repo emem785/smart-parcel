@@ -49,8 +49,10 @@ class CustomerToCourierPayment extends HookWidget {
                 orElse: () => 1,
                 error: (v) => deliveryBloc.deliveryUseCases.showErrorUseCase(
                     context: context, message: v.failure.message),
-                bookingFinished: (v) => context.router
-                    .push(ReceiptRoute(paymentData: v.paymentData)),
+                bookingFinished: (v) => context.router.pushAndPopUntil(
+                  ReceiptRoute(paymentData: v.paymentData),
+                  predicate: (route) => false,
+                ),
               );
             },
             child: Column(
@@ -80,7 +82,7 @@ class CustomerToCourierPayment extends HookWidget {
                     context: context,
                     routeInfo: deliveryViewModel.routeInfo,
                     paystackResponse: v.paystackResponse,
-                    locationId: deliveryViewModel.locationId,
+                    locationId: deliveryViewModel.parcelCenter.id,
                     duration: deliveryViewModel.duration,
                     customerForm: deliveryViewModel.customerForm,
                   ));
