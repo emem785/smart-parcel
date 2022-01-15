@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:smart_parcel/common/application/notification_bloc/notification_bloc.dart';
 import 'package:smart_parcel/common/presentation/widgets/notification_icon.dart';
 import 'package:smart_parcel/common/theme.dart';
 
@@ -34,11 +33,7 @@ class Constants {
   static const phoneRegex = r'^(0?)\d{10}$';
 
   static Future<String> getToken(BuildContext context) async {
-    return await context
-            .read<NotificationBloc>()
-            .firebaseMessaging
-            .getToken() ??
-        "";
+    return await FirebaseMessaging.instance.getToken() ?? "";
   }
 
   static String termsAndConditionsUrl = "http://smartparcel.ng/";

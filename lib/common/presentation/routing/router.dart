@@ -12,7 +12,6 @@ import 'package:smart_parcel/auth/presentation/login_page/login_page.dart';
 import 'package:smart_parcel/auth/presentation/sign_up_page/sign_up_page.dart';
 import 'package:smart_parcel/auth/presentation/welcome_page/welcome_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/home_page.dart';
-import 'package:smart_parcel/common/presentation/widgets/root_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/splash_page.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/customer_to_courier.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_customer_pages/customer_to_customer.dart';
@@ -96,34 +95,30 @@ const homePageChildren = [
   ),
 ];
 
-const appRoutes = [
-  AutoRoute(page: SplashPage, path: 'splashPage', initial: true),
+const routes = [
+  AutoRoute(page: SplashPage, path: '/', initial: true),
   CustomRoute(
     page: WelcomePage,
-    path: 'welcome',
+    path: '/welcome',
     transitionsBuilder: TransitionsBuilders.fadeIn,
     durationInMilliseconds: 500,
   ),
-  AutoRoute(page: LoginPage, path: 'login'),
-  AutoRoute(page: SignUpPage, path: 'signUp'),
-  AutoRoute(page: SubmitPasswordOtpPage, path: 'submitPasswordOtp'),
-  AutoRoute(page: ConfirmEmailPage, path: 'confirmEmail'),
-  AutoRoute(page: ForgotPasswordPage, path: 'forgotPassword'),
-  AutoRoute(page: SubmitPasswordOtpPage, path: 'submitPasswordOtp'),
-  AutoRoute(page: ConfirmPasswordPage, path: 'confirmPassword'),
-  AutoRoute(page: PasswordChangedPage, path: 'emailConfirmedPage'),
-  AutoRoute(page: NotificationPage, path: 'notifications'),
+  AutoRoute(page: LoginPage, path: '/login'),
+  AutoRoute(page: SignUpPage, path: '/signUp'),
+  AutoRoute(page: SubmitPasswordOtpPage, path: '/submitPasswordOtp'),
+  AutoRoute(page: ConfirmEmailPage, path: '/confirmEmail'),
+  AutoRoute(page: ForgotPasswordPage, path: '/forgotPassword'),
+  AutoRoute(page: SubmitPasswordOtpPage, path: '/submitPasswordOtp'),
+  AutoRoute(page: ConfirmPasswordPage, path: '/confirmPassword'),
+  AutoRoute(page: PasswordChangedPage, path: '/emailConfirmedPage'),
+  AutoRoute(page: NotificationPage, path: '/notifications'),
   CustomRoute(
     page: HomePage,
-    path: 'home',
+    path: '/home',
     children: homePageChildren,
     transitionsBuilder: TransitionsBuilders.fadeIn,
     durationInMilliseconds: 500,
   ),
-];
-
-const routes = [
-  AutoRoute(page: RootPage, path: '/', children: appRoutes),
 ];
 
 @AdaptiveAutoRouter(

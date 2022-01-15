@@ -23,7 +23,6 @@ class NotificationBody extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final notificationBloc = context.read<NotificationBloc>();
     return Scaffold(
       appBar: LayoutConstants.appBar(title: "Notifications", context: context),
       body: Padding(
