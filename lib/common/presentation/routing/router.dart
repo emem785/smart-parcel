@@ -97,7 +97,7 @@ const homePageChildren = [
 ];
 
 const appRoutes = [
-  AutoRoute(page: SplashPage, path: ''),
+  AutoRoute(page: SplashPage, path: 'splashPage', initial: true),
   CustomRoute(
     page: WelcomePage,
     path: 'welcome',

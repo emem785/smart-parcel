@@ -299,7 +299,13 @@ class AppRouter extends _i14.RootStackRouter {
   @override
   List<_i14.RouteConfig> get routes => [
         _i14.RouteConfig(RootRoute.name, path: '/', children: [
-          _i14.RouteConfig(SplashRoute.name, path: '', parent: RootRoute.name),
+          _i14.RouteConfig('#redirect',
+              path: '',
+              parent: RootRoute.name,
+              redirectTo: 'splashPage',
+              fullMatch: true),
+          _i14.RouteConfig(SplashRoute.name,
+              path: 'splashPage', parent: RootRoute.name),
           _i14.RouteConfig(WelcomeRoute.name,
               path: 'welcome', parent: RootRoute.name),
           _i14.RouteConfig(LoginRoute.name,
@@ -414,7 +420,7 @@ class RootRoute extends _i14.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.SplashPage]
 class SplashRoute extends _i14.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '');
+  const SplashRoute() : super(SplashRoute.name, path: 'splashPage');
 
   static const String name = 'SplashRoute';
 }
