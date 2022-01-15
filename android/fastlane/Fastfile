@@ -17,14 +17,15 @@ default_platform(:android)
 
 desc "Deploy a new version to the Google Play"
 lane :internal do
-Dir.chdir "../.." do
+Dir.chdir ".." do
   sh("flutter", "packages", "get")
   sh("flutter", "clean")
   sh("flutter", "build", "appbundle")
 end
   upload_to_play_store(
-  aab: "../build/app/outputs/bundle/release/app.aab",
+  aab: "/home/circleci/project/build/app/outputs/bundle/release/app-release.aab",
   release_status: 'draft',
   track: "internal",
+  json_key: "/home/circleci/project/android/google_play_json_key.json",
   )
 end

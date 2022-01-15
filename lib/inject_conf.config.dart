@@ -96,8 +96,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.factory<_i3.ChooseDurationUseCase>(() => _i3.ChooseDurationUseCase());
-  gh.singleton<_i4.Client>(registerModule.httpClient);
   gh.factory<_i4.Client>(() => registerModule.authClient, instanceName: 'auth');
+  gh.singleton<_i4.Client>(registerModule.httpClient);
   gh.lazySingleton<_i5.Connectivity>(() => registerModule.connectivity);
   gh.factory<_i6.ConnectivityInterceptor>(
       () => _i6.ConnectivityInterceptor(connectivity: get<_i5.Connectivity>()));

@@ -96,10 +96,10 @@ const homePageChildren = [
 ];
 
 const routes = [
-  AutoRoute(page: SplashPage, path: '/'),
+  AutoRoute(page: SplashPage, path: '/', initial: true),
   CustomRoute(
     page: WelcomePage,
-    path: '/welcomePage',
+    path: '/welcome',
     transitionsBuilder: TransitionsBuilders.fadeIn,
     durationInMilliseconds: 500,
   ),

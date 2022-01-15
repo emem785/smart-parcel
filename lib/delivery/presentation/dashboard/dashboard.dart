@@ -29,6 +29,7 @@ class DashboardBody extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final userBloc = context.read<UserBloc>();
+    final parcelBloc = context.read<ParcelBloc>();
 
     useEffect(() {
       userBloc.add(GetUserStreamFromStorage(context));
@@ -37,27 +38,32 @@ class DashboardBody extends HookWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LayoutConstants.sizeBox(context, 24),
-              BlocListener<UserBloc, UserState>(
-                child: const StatusTiles(),
-                listener: (context, state) => state.maybeMap(
-                  orElse: () => 1,
-                  error: (v) => userBloc.commonUseCases.showErrorUseCase(
-                      message: v.failure.message, context: context),
+        child: RefreshIndicator(
+          onRefresh: () async {
+            parcelBloc.add(const ParcelEvent.getHistory());
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LayoutConstants.sizeBox(context, 24),
+                BlocListener<UserBloc, UserState>(
+                  child: const StatusTiles(),
+                  listener: (context, state) => state.maybeMap(
+                    orElse: () => 1,
+                    error: (v) => userBloc.commonUseCases.showErrorUseCase(
+                        message: v.failure.message, context: context),
+                  ),
                 ),
-              ),
-              LayoutConstants.sizeBox(context, 24),
-              LayoutConstants.sizeBox(context, 24),
-              const Text(
-                  "Schedule a delivery by selecting from the list below."),
-              LayoutConstants.sizeBox(context, 24),
-              LayoutConstants.sizeBox(context, 16),
-              buildQuickActions(context: context),
-            ],
+                LayoutConstants.sizeBox(context, 24),
+                LayoutConstants.sizeBox(context, 24),
+                const Text(
+                    "Schedule a delivery by selecting from the list below."),
+                LayoutConstants.sizeBox(context, 24),
+                LayoutConstants.sizeBox(context, 16),
+                buildQuickActions(context: context),
+              ],
+            ),
           ),
         ),
       ),

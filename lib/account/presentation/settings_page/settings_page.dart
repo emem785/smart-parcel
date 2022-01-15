@@ -46,6 +46,8 @@ class SettingsBody extends StatelessWidget {
                   .read<NotificationBloc>()
                   .add(const NotificationEvent.clearNotification());
 
+              context.router.pop();
+
               context.router.pushAndPopUntil(
                 const WelcomeRoute(),
                 predicate: (route) => false,

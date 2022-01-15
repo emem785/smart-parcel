@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 
+const int flex = 14;
+
 class StatusSkeleton extends StatelessWidget {
   const StatusSkeleton({Key? key}) : super(key: key);
 
@@ -11,39 +13,45 @@ class StatusSkeleton extends StatelessWidget {
       child: Row(
         children: [
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white.withOpacity(0.2),
+          Expanded(
+            flex: flex,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white.withOpacity(0.2),
+                ),
+                height: Constants.responsiveHeight(context, 80),
               ),
-              height: Constants.responsiveHeight(context, 80),
-              width: Constants.responsiveWidth(context, 110),
             ),
           ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white.withOpacity(0.2),
+          Expanded(
+            flex: flex,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white.withOpacity(0.2),
+                ),
+                height: Constants.responsiveHeight(context, 80),
               ),
-              height: Constants.responsiveHeight(context, 80),
-              width: Constants.responsiveWidth(context, 110),
             ),
           ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white.withOpacity(0.2),
+          Expanded(
+            flex: flex,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white.withOpacity(0.2),
+                ),
+                height: Constants.responsiveHeight(context, 80),
               ),
-              height: Constants.responsiveHeight(context, 80),
-              width: Constants.responsiveWidth(context, 110),
             ),
           ),
           const Spacer(),

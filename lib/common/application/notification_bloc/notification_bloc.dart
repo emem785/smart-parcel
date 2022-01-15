@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/notification_message.dart';
 import 'package:smart_parcel/common/domain/usecases/common_usecases.dart';

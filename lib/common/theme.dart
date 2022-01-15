@@ -74,22 +74,24 @@ class GlobalTheme {
   }
 
   static TextTheme getTextTheme() {
-    return GoogleFonts.montserratTextTheme(const TextTheme(
-      headline6: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w700,
+    return GoogleFonts.montserratTextTheme(
+      const TextTheme(
+        headline6: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+        ),
+        bodyText1: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w400,
+          color: lightGrey,
+        ),
+        bodyText2: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w400,
+          color: lightGrey,
+        ),
       ),
-      bodyText1: TextStyle(
-        fontSize: 13,
-        fontWeight: FontWeight.w400,
-        color: lightGrey,
-      ),
-      bodyText2: TextStyle(
-        fontSize: 13,
-        fontWeight: FontWeight.w400,
-        color: lightGrey,
-      ),
-    ));
+    );
   }
 
   static TabBarTheme getTabBarTheme() {

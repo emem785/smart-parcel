@@ -54,8 +54,9 @@ class LoginPageBody extends HookWidget {
                     state.maybeMap(
                       orElse: () => 1,
                       loggedIn: (v) => context.router.pushAndPopUntil(
-                          const HomeRoute(),
-                          predicate: (route) => false),
+                        const HomeRoute(),
+                        predicate: (route) => false,
+                      ),
                       error: (v) => signInBloc.authUseCases.showErrorUseCase(
                           message: v.failure.message, context: context),
                       userNotActivated: (v) =>
@@ -71,18 +72,20 @@ class LoginPageBody extends HookWidget {
                   },
                   builder: (context, state) {
                     return state.maybeMap(
-                      orElse: () => LayoutConstants.padButton(ElevatedButton(
-                        onPressed: () {
-                          if (formKey.value.currentState!.validate()) {
-                            signInBloc.add(SignInEvent.login(
-                              email: emailController.text,
-                              password: passwordController.text,
-                              context: context,
-                            ));
-                          }
-                        },
-                        child: const Text("Sign In"),
-                      )),
+                      orElse: () => LayoutConstants.padButton(
+                        ElevatedButton(
+                          onPressed: () {
+                            if (formKey.value.currentState!.validate()) {
+                              signInBloc.add(SignInEvent.login(
+                                email: emailController.text,
+                                password: passwordController.text,
+                                context: context,
+                              ));
+                            }
+                          },
+                          child: const Text("Sign In"),
+                        ),
+                      ),
                       loading: (v) => CommonWidgets.loading(),
                     );
                   },
