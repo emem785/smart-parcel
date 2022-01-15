@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
+import 'package:smart_parcel/common/utils/extensions/router_extension.dart';
 import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
 
 class HomePage extends HookWidget {
@@ -75,7 +76,7 @@ class HomePage extends HookWidget {
         type: BottomNavigationBarType.fixed,
         currentIndex: tabsRouter.activeIndex,
         unselectedItemColor: GlobalTheme.lightGrey,
-        onTap: tabsRouter.setActiveIndex,
+        onTap: tabsRouter.setActiveIndexReset,
         showUnselectedLabels: true,
         elevation: 0.0,
       ),
