@@ -17,16 +17,16 @@ class AuthenticatorFactory {
     Tuple3<http.Client, String, SharedPreferences> jwtItems,
   ) {
     switch (refresh) {
-      case "refresh":
+      case "":
+        return DefaultAuthObject(requestItems.value1, requestItems.value2);
+      case "paystack":
+        return PaystackAuthObject(requestItems.value1, requestItems.value2);
+      default:
         return JwtAuthObject(
           requestItems.value1,
           requestItems.value2,
           jwtItems,
         );
-      case "paystack":
-        return PaystackAuthObject(requestItems.value1, requestItems.value2);
-      default:
-        return DefaultAuthObject(requestItems.value1, requestItems.value2);
     }
   }
 }
