@@ -7,6 +7,9 @@ import 'package:smart_parcel/payment/application/payment_bloc/payment_bloc.dart'
 import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 import 'package:smart_parcel/payment/domain/repositories/payment_repository.dart';
 
+
+const nairaConversionRate = 100;
+
 class MakePaymentUseCase {
   final PaymentRepository paymentRepository;
 
@@ -29,7 +32,7 @@ class MakePaymentUseCase {
   ) async {
     final response = await paymentRepository.initializePayment(
       email: user.email,
-      amount: event.amount,
+      amount: (event.amount * nairaConversionRate).toInt(),
     );
 
     return response.fold(
