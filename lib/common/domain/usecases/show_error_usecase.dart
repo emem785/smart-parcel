@@ -11,7 +11,7 @@ class ShowErrorUseCase {
   }) {
     CommonWidgets.showFlushbar(
             message: message,
-            duration: const Duration(milliseconds: 950),
+            duration: const Duration(seconds: 3),
             onTap: onTap,
             buttonText: buttonText)
         .show(context);

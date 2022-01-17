@@ -59,9 +59,15 @@ class ErrorInterceptor implements ResponseInterceptor {
     final authError = AuthError.fromJson(body);
     final emailErr = authError.error.email ?? [];
     final userNameErr = authError.error.username ?? [];
-    final errMsg = userNameErr.isNotEmpty ? userNameErr : emailErr;
+    final phoneNumber = authError.error.phone ?? [];
 
-    return errMsg[0];
+    if (emailErr.isNotEmpty) {
+      return emailErr.first;
+    } else if (phoneNumber.isNotEmpty) {
+      return phoneNumber.first;
+    }
+
+    return userNameErr.first;
   }
 
   String getLoginError(String body) {
