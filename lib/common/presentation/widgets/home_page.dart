@@ -9,7 +9,6 @@ import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/extensions/router_extension.dart';
-import 'package:smart_parcel/common/utils/extensions/string_extension.dart';
 import 'package:smart_parcel/common/utils/hooks/firebase_hook.dart';
 
 import '../../../inject_conf.dart';
@@ -113,7 +112,7 @@ class HomeBody extends HookWidget {
 
   PreferredSizeWidget getAppBar(TabsRouter tabsRouter, BuildContext context) {
     return LayoutConstants.autoAppBar(
-      title: tabsRouter.current.path.capitalize(),
+      title: tabsRouter.getRouteName(),
       context: context,
     );
   }

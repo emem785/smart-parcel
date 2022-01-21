@@ -46,8 +46,8 @@ const homePageChildren = [
         path: 'selectLocationDistrict',
         page: SelectLocationDistrictPage,
       ),
-      AutoRoute(path: 'customerToCourier', page: CustomerToCourierPage),
       AutoRoute(path: 'cutomerToCustomer', page: CustomerToCustomerPage),
+      AutoRoute(path: 'customerToCourier', page: CustomerToCourierPage),
       AutoRoute(path: 'selfStoragePayment', page: SelfStoragePaymentPage),
       AutoRoute(path: 'customerToCourier', page: CustomerToCourierPage),
       AutoRoute(

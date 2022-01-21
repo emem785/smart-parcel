@@ -60,11 +60,14 @@ class ErrorInterceptor implements ResponseInterceptor {
     final emailErr = authError.error.email ?? [];
     final userNameErr = authError.error.username ?? [];
     final phoneNumber = authError.error.phone ?? [];
+    final password = authError.error.password ?? [];
 
     if (emailErr.isNotEmpty) {
       return emailErr.first;
     } else if (phoneNumber.isNotEmpty) {
       return phoneNumber.first;
+    } else if (password.isNotEmpty) {
+      return password.first;
     }
 
     return userNameErr.first;

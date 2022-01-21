@@ -6,18 +6,21 @@ class ValidationError {
   List<String>? username;
   List<String>? email;
   List<String>? phone;
+  List<String>? password;
 
-  ValidationError({this.username, this.email, this.phone});
+  ValidationError({this.username, this.email, this.phone, this.password});
 
   ValidationError copyWith({
     List<String>? username,
     List<String>? email,
     List<String>? phone,
+    List<String>? password,
   }) {
     return ValidationError(
       username: username ?? this.username,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      password: password ?? this.password,
     );
   }
 
@@ -26,6 +29,7 @@ class ValidationError {
       'username': username,
       'email': email,
       'phone': phone,
+      'password': password,
     };
   }
 
@@ -35,6 +39,8 @@ class ValidationError {
           map['username'] != null ? List<String>.from(map['username']) : [],
       email: map['email'] != null ? List<String>.from(map['email']) : [],
       phone: map['phone'] != null ? List<String>.from(map['phone']) : [],
+      password:
+          map['password'] != null ? List<String>.from(map['password']) : [],
     );
   }
 
@@ -45,7 +51,7 @@ class ValidationError {
 
   @override
   String toString() =>
-      'ValidationError(username: $username, email: $email phone: $phone)';
+      'ValidationError(username: $username, email: $email phone: $phone password: $password)';
 
   @override
   bool operator ==(Object other) {
@@ -54,9 +60,11 @@ class ValidationError {
     return other is ValidationError &&
         listEquals(other.username, username) &&
         listEquals(other.phone, phone) &&
+        listEquals(other.password, password) &&
         listEquals(other.email, email);
   }
 
   @override
-  int get hashCode => username.hashCode ^ email.hashCode ^ phone.hashCode;
+  int get hashCode =>
+      username.hashCode ^ email.hashCode ^ phone.hashCode ^ password.hashCode;
 }

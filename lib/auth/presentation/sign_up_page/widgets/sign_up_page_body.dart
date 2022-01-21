@@ -78,7 +78,7 @@ class SignUpPageBody extends HookWidget {
                         message: v.failure.message,
                         context: context,
                         buttonText: "Sign In",
-                        onTap: () => context.router.pop(),
+                        onTap: () => context.router.push(const LoginRoute()),
                       ),
                     );
                   },

@@ -104,7 +104,7 @@ class SelfStorageParcelPage extends HookWidget {
             )
           : const Center(
               child: Text(
-                "You currently have no  parcel's",
+                "You currently have no  parcels",
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
               ),
             ),

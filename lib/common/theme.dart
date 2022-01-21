@@ -77,8 +77,9 @@ class GlobalTheme {
     return GoogleFonts.montserratTextTheme(
       const TextTheme(
         headline6: TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w700,
+          color: Colors.black87,
         ),
         bodyText1: TextStyle(
           fontSize: 13,

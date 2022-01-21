@@ -66,7 +66,7 @@ class LoginPageBody extends HookWidget {
                         buttonText: "Complete Registration",
                         onTap: () => context.router.push(ConfirmEmailRoute(
                             email: emailController.text,
-                            password: passwordController.text)),
+                            password: passwordController.text),),
                       ),
                     );
                   },
