@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
@@ -85,10 +84,9 @@ class ChooseDuration extends HookWidget {
                 context
                     .read<DeliveryViewModel>()
                     .setDuration(hour.value.toString());
-                context
-                    .read<DeliveryViewModel>()
-                    .setRouteInfo(const SelfStoragePaymentRoute());
-                context.router.push(const SelectLocationDistrictRoute());
+                context.router.push(
+                  context.read<DeliveryViewModel>().routeInfoPayment,
+                );
                 return;
               }
               deliveryBloc.deliveryUseCases.showErrorUseCase(

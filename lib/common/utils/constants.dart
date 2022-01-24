@@ -44,7 +44,7 @@ class LayoutConstants {
     return AppBar(
       title: Text(title),
       titleTextStyle: GlobalTheme.textTheme(context).headline6,
-      centerTitle: false,
+      centerTitle: true,
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       leading: const BackButton(color: GlobalTheme.primaryColor),
@@ -57,6 +57,27 @@ class LayoutConstants {
   }) {
     return AppBar(
       title: Text(title),
+      titleTextStyle: GlobalTheme.textTheme(context).headline6,
+      elevation: 0.0,
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      leading: const AutoBackButton(color: GlobalTheme.primaryColor),
+      actions: const [
+        NotificationIcon(),
+        SizedBox(width: 8),
+      ],
+    );
+  }
+
+  static AppBar autoAppBarLogo({
+    required BuildContext context,
+  }) {
+    return AppBar(
+      title: const Image(
+        image: AssetImage("assets/images/title_logo.png"),
+        height: 32,
+        fit: BoxFit.fill,
+      ),
       titleTextStyle: GlobalTheme.textTheme(context).headline6,
       elevation: 0.0,
       centerTitle: true,

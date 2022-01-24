@@ -9,14 +9,14 @@ class GetAppBarName {
         return "SmartParcel Centers";
       case "SelectLocationDistrictRoute":
         return "SmartParcel Centers";
-      case "CustomerToCustomerRoute":
-        return "Choose Duration";
       case "CustomerToCourierRoute":
-        return "Home";
+        return "Send Parcel";
       case "SelfStoragePaymentRoute":
-        return "Home";
+        return "Self Storage";
       case "CustomerToCustomerPaymentRoute":
-        return "Home";
+        return "Customer - Customer";
+      case "CustomerToCourierPaymentRoute":
+        return "Send Parcel";
       case "ReceiptRoute":
         return "Home";
 // Settings

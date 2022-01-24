@@ -86,7 +86,7 @@ class CustomerToCustomerPayment extends HookWidget {
                             context.read<DeliveryViewModel>();
                         deliveryBloc.add(DeliveryEvent.proceedToPayment(
                           context: context,
-                          routeInfo: deliveryViewModel.routeInfo,
+                          routeInfo: deliveryViewModel.routeInfoPayment,
                           paystackResponse: v.paystackResponse,
                           locationId: deliveryViewModel.parcelCenter.id,
                           duration: deliveryViewModel.duration,

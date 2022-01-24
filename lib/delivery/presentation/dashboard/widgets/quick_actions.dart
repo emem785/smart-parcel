@@ -2,13 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
+import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 
 // typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
 
 Widget buildQuickActions({required BuildContext context}) {
+  final deliveryVm = context.read<DeliveryViewModel>();
   return Column(
     children: [
       buildQuickAction(
@@ -17,7 +20,10 @@ Widget buildQuickActions({required BuildContext context}) {
         title: "Self Storage",
         subtitle:
             "Keep an item at SmartParcel locker for\nyou to pickup at a later time.",
-        onTap: () => context.router.push(const ChooseDurationRoute()),
+        onTap: () {
+          deliveryVm.setBooking(Booking.selfStorage);
+          context.router.push(const SelectLocationDistrictRoute());
+        },
       ),
       LayoutConstants.sizeBox(context, 16),
       buildQuickAction(
@@ -25,7 +31,10 @@ Widget buildQuickActions({required BuildContext context}) {
         icon: "send_package",
         title: "Send Parcel",
         subtitle: "Post an item using a courier service\nvia SmartParcel",
-        onTap: () => context.router.push(const CustomerToCourierRoute()),
+        onTap: () {
+          deliveryVm.setBooking(Booking.courier);
+          context.router.push(const SelectLocationDistrictRoute());
+        },
       ),
       LayoutConstants.sizeBox(context, 16),
       buildQuickAction(
@@ -34,7 +43,10 @@ Widget buildQuickActions({required BuildContext context}) {
         title: "Customer to Customer",
         subtitle:
             "Drop off an item in SmartParcel locker\nfor someone else to pickup",
-        onTap: () => context.router.push(const CustomerToCustomerRoute()),
+        onTap: () {
+          deliveryVm.setBooking(Booking.customer);
+          context.router.push(const SelectLocationDistrictRoute());
+        },
       ),
     ],
   );

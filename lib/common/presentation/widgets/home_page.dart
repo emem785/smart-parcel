@@ -111,9 +111,9 @@ class HomeBody extends HookWidget {
   }
 
   PreferredSizeWidget getAppBar(TabsRouter tabsRouter, BuildContext context) {
-    return LayoutConstants.autoAppBar(
-      title: tabsRouter.getRouteName(),
-      context: context,
-    );
+    return tabsRouter.getRouteName() == "Home"
+        ? LayoutConstants.autoAppBarLogo(context: context)
+        : LayoutConstants.autoAppBar(
+            title: tabsRouter.getRouteName(), context: context);
   }
 }
