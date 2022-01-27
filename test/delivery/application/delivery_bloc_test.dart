@@ -70,6 +70,7 @@ void main() {
             AuthTestSetup.setup(getParcelCentersJson, 200, userStringResponse),
         build: () => getIt<DeliveryBloc>(),
         act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
+              saveCard: true,
               routeInfo: const SelfStoragePaymentRoute(),
               customerForm: null,
               duration: "3",
@@ -85,6 +86,7 @@ void main() {
             AuthTestSetup.setup(selfStorageJson, 200, userStringResponse),
         build: () => getIt<DeliveryBloc>(),
         act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
+              saveCard: true,
               routeInfo: const SelfStoragePaymentRoute(),
               customerForm: null,
               duration: "3",
@@ -101,6 +103,7 @@ void main() {
           AuthTestSetup.setup(selfStoragePaymentJson, 200, userStringResponse),
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
+          saveCard: true,
           routeInfo: const SelfStoragePaymentRoute(),
           duration: "3",
           customerForm: null,
@@ -119,6 +122,7 @@ void main() {
           AuthTestSetup.setup(selfStorageJson, 200, userStringResponse),
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(DeliveryEvent.proceedToPayment(
+        saveCard: true,
         paystackResponse: paystackResponse,
         routeInfo: const CustomerToCustomerPaymentRoute(),
         duration: null,

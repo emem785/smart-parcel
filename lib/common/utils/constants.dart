@@ -37,6 +37,9 @@ class Constants {
   }
 
   static String termsAndConditionsUrl = "http://smartparcel.ng/";
+  static int selfStoragePrice = 200;
+  static int customerCustomerPrice = 200;
+  static int customerCourierPrice = 200;
 }
 
 class LayoutConstants {

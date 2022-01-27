@@ -44,6 +44,7 @@ class PaymentSetupTest extends AuthTestSetup {
               _registerPaystack().checkout(any(), charge: any(named: "charge")))
           .thenAnswer((inv) async => response);
     }
+    _registerPaystack();
   }
 
   static void setupPayment(

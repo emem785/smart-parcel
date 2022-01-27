@@ -25,18 +25,20 @@ class _$DeliveryEventTearOff {
     );
   }
 
-  ProccedToPayment proceedToPayment(
+  ProccedToBooking proceedToBooking(
       {required BuildContext context,
       required PageRouteInfo<dynamic> routeInfo,
-      required PaystackResponse paystackResponse,
+      required String reference,
       required int locationId,
+      required bool saveCard,
       required String? duration,
       required CustomerForm? customerForm}) {
-    return ProccedToPayment(
+    return ProccedToBooking(
       context: context,
       routeInfo: routeInfo,
-      paystackResponse: paystackResponse,
+      reference: reference,
       locationId: locationId,
+      saveCard: saveCard,
       duration: duration,
       customerForm: customerForm,
     );
@@ -72,11 +74,12 @@ mixin _$DeliveryEvent {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
@@ -89,11 +92,12 @@ mixin _$DeliveryEvent {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -106,11 +110,12 @@ mixin _$DeliveryEvent {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -120,7 +125,7 @@ mixin _$DeliveryEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
@@ -129,7 +134,7 @@ mixin _$DeliveryEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -138,7 +143,7 @@ mixin _$DeliveryEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -243,11 +248,12 @@ class _$SelectLocation implements SelectLocation {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
@@ -263,11 +269,12 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -283,11 +290,12 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -303,7 +311,7 @@ class _$SelectLocation implements SelectLocation {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
@@ -315,7 +323,7 @@ class _$SelectLocation implements SelectLocation {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -327,7 +335,7 @@ class _$SelectLocation implements SelectLocation {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -353,40 +361,42 @@ abstract class SelectLocation implements DeliveryEvent {
 }
 
 /// @nodoc
-abstract class $ProccedToPaymentCopyWith<$Res> {
-  factory $ProccedToPaymentCopyWith(
-          ProccedToPayment value, $Res Function(ProccedToPayment) then) =
-      _$ProccedToPaymentCopyWithImpl<$Res>;
+abstract class $ProccedToBookingCopyWith<$Res> {
+  factory $ProccedToBookingCopyWith(
+          ProccedToBooking value, $Res Function(ProccedToBooking) then) =
+      _$ProccedToBookingCopyWithImpl<$Res>;
   $Res call(
       {BuildContext context,
       PageRouteInfo<dynamic> routeInfo,
-      PaystackResponse paystackResponse,
+      String reference,
       int locationId,
+      bool saveCard,
       String? duration,
       CustomerForm? customerForm});
 }
 
 /// @nodoc
-class _$ProccedToPaymentCopyWithImpl<$Res>
+class _$ProccedToBookingCopyWithImpl<$Res>
     extends _$DeliveryEventCopyWithImpl<$Res>
-    implements $ProccedToPaymentCopyWith<$Res> {
-  _$ProccedToPaymentCopyWithImpl(
-      ProccedToPayment _value, $Res Function(ProccedToPayment) _then)
-      : super(_value, (v) => _then(v as ProccedToPayment));
+    implements $ProccedToBookingCopyWith<$Res> {
+  _$ProccedToBookingCopyWithImpl(
+      ProccedToBooking _value, $Res Function(ProccedToBooking) _then)
+      : super(_value, (v) => _then(v as ProccedToBooking));
 
   @override
-  ProccedToPayment get _value => super._value as ProccedToPayment;
+  ProccedToBooking get _value => super._value as ProccedToBooking;
 
   @override
   $Res call({
     Object? context = freezed,
     Object? routeInfo = freezed,
-    Object? paystackResponse = freezed,
+    Object? reference = freezed,
     Object? locationId = freezed,
+    Object? saveCard = freezed,
     Object? duration = freezed,
     Object? customerForm = freezed,
   }) {
-    return _then(ProccedToPayment(
+    return _then(ProccedToBooking(
       context: context == freezed
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
@@ -395,14 +405,18 @@ class _$ProccedToPaymentCopyWithImpl<$Res>
           ? _value.routeInfo
           : routeInfo // ignore: cast_nullable_to_non_nullable
               as PageRouteInfo<dynamic>,
-      paystackResponse: paystackResponse == freezed
-          ? _value.paystackResponse
-          : paystackResponse // ignore: cast_nullable_to_non_nullable
-              as PaystackResponse,
+      reference: reference == freezed
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
       locationId: locationId == freezed
           ? _value.locationId
           : locationId // ignore: cast_nullable_to_non_nullable
               as int,
+      saveCard: saveCard == freezed
+          ? _value.saveCard
+          : saveCard // ignore: cast_nullable_to_non_nullable
+              as bool,
       duration: duration == freezed
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -417,12 +431,13 @@ class _$ProccedToPaymentCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProccedToPayment implements ProccedToPayment {
-  const _$ProccedToPayment(
+class _$ProccedToBooking implements ProccedToBooking {
+  const _$ProccedToBooking(
       {required this.context,
       required this.routeInfo,
-      required this.paystackResponse,
+      required this.reference,
       required this.locationId,
+      required this.saveCard,
       required this.duration,
       required this.customerForm});
 
@@ -431,9 +446,11 @@ class _$ProccedToPayment implements ProccedToPayment {
   @override
   final PageRouteInfo<dynamic> routeInfo;
   @override
-  final PaystackResponse paystackResponse;
+  final String reference;
   @override
   final int locationId;
+  @override
+  final bool saveCard;
   @override
   final String? duration;
   @override
@@ -441,21 +458,23 @@ class _$ProccedToPayment implements ProccedToPayment {
 
   @override
   String toString() {
-    return 'DeliveryEvent.proceedToPayment(context: $context, routeInfo: $routeInfo, paystackResponse: $paystackResponse, locationId: $locationId, duration: $duration, customerForm: $customerForm)';
+    return 'DeliveryEvent.proceedToBooking(context: $context, routeInfo: $routeInfo, reference: $reference, locationId: $locationId, saveCard: $saveCard, duration: $duration, customerForm: $customerForm)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ProccedToPayment &&
+            other is ProccedToBooking &&
             (identical(other.context, context) || other.context == context) &&
             (identical(other.routeInfo, routeInfo) ||
                 other.routeInfo == routeInfo) &&
-            (identical(other.paystackResponse, paystackResponse) ||
-                other.paystackResponse == paystackResponse) &&
+            (identical(other.reference, reference) ||
+                other.reference == reference) &&
             (identical(other.locationId, locationId) ||
                 other.locationId == locationId) &&
+            (identical(other.saveCard, saveCard) ||
+                other.saveCard == saveCard) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.customerForm, customerForm) ||
@@ -463,13 +482,13 @@ class _$ProccedToPayment implements ProccedToPayment {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context, routeInfo,
-      paystackResponse, locationId, duration, customerForm);
+  int get hashCode => Object.hash(runtimeType, context, routeInfo, reference,
+      locationId, saveCard, duration, customerForm);
 
   @JsonKey(ignore: true)
   @override
-  $ProccedToPaymentCopyWith<ProccedToPayment> get copyWith =>
-      _$ProccedToPaymentCopyWithImpl<ProccedToPayment>(this, _$identity);
+  $ProccedToBookingCopyWith<ProccedToBooking> get copyWith =>
+      _$ProccedToBookingCopyWithImpl<ProccedToBooking>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -480,16 +499,17 @@ class _$ProccedToPayment implements ProccedToPayment {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
   }) {
-    return proceedToPayment(context, routeInfo, paystackResponse, locationId,
+    return proceedToBooking(context, routeInfo, reference, locationId, saveCard,
         duration, customerForm);
   }
 
@@ -501,17 +521,18 @@ class _$ProccedToPayment implements ProccedToPayment {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
   }) {
-    return proceedToPayment?.call(context, routeInfo, paystackResponse,
-        locationId, duration, customerForm);
+    return proceedToBooking?.call(context, routeInfo, reference, locationId,
+        saveCard, duration, customerForm);
   }
 
   @override
@@ -522,19 +543,20 @@ class _$ProccedToPayment implements ProccedToPayment {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
     required TResult orElse(),
   }) {
-    if (proceedToPayment != null) {
-      return proceedToPayment(context, routeInfo, paystackResponse, locationId,
-          duration, customerForm);
+    if (proceedToBooking != null) {
+      return proceedToBooking(context, routeInfo, reference, locationId,
+          saveCard, duration, customerForm);
     }
     return orElse();
   }
@@ -543,60 +565,62 @@ class _$ProccedToPayment implements ProccedToPayment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
   }) {
-    return proceedToPayment(this);
+    return proceedToBooking(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
   }) {
-    return proceedToPayment?.call(this);
+    return proceedToBooking?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
     required TResult orElse(),
   }) {
-    if (proceedToPayment != null) {
-      return proceedToPayment(this);
+    if (proceedToBooking != null) {
+      return proceedToBooking(this);
     }
     return orElse();
   }
 }
 
-abstract class ProccedToPayment implements DeliveryEvent {
-  const factory ProccedToPayment(
+abstract class ProccedToBooking implements DeliveryEvent {
+  const factory ProccedToBooking(
       {required BuildContext context,
       required PageRouteInfo<dynamic> routeInfo,
-      required PaystackResponse paystackResponse,
+      required String reference,
       required int locationId,
+      required bool saveCard,
       required String? duration,
-      required CustomerForm? customerForm}) = _$ProccedToPayment;
+      required CustomerForm? customerForm}) = _$ProccedToBooking;
 
   BuildContext get context;
   PageRouteInfo<dynamic> get routeInfo;
-  PaystackResponse get paystackResponse;
+  String get reference;
   int get locationId;
+  bool get saveCard;
   String? get duration;
   CustomerForm? get customerForm;
   @JsonKey(ignore: true)
-  $ProccedToPaymentCopyWith<ProccedToPayment> get copyWith =>
+  $ProccedToBookingCopyWith<ProccedToBooking> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -667,11 +691,12 @@ class _$Search implements Search {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
@@ -687,11 +712,12 @@ class _$Search implements Search {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -707,11 +733,12 @@ class _$Search implements Search {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -727,7 +754,7 @@ class _$Search implements Search {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
@@ -739,7 +766,7 @@ class _$Search implements Search {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -751,7 +778,7 @@ class _$Search implements Search {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -819,11 +846,12 @@ class _$GetParcelCenters implements GetParcelCenters {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
@@ -839,11 +867,12 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -859,11 +888,12 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -879,7 +909,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
@@ -891,7 +921,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -903,7 +933,7 @@ class _$GetParcelCenters implements GetParcelCenters {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -987,11 +1017,12 @@ class _$OpenUrl implements OpenUrl {
     required TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)
-        proceedToPayment,
+        proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
@@ -1007,11 +1038,12 @@ class _$OpenUrl implements OpenUrl {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -1027,11 +1059,12 @@ class _$OpenUrl implements OpenUrl {
     TResult Function(
             BuildContext context,
             PageRouteInfo<dynamic> routeInfo,
-            PaystackResponse paystackResponse,
+            String reference,
             int locationId,
+            bool saveCard,
             String? duration,
             CustomerForm? customerForm)?
-        proceedToPayment,
+        proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
@@ -1047,7 +1080,7 @@ class _$OpenUrl implements OpenUrl {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SelectLocation value) selectLocation,
-    required TResult Function(ProccedToPayment value) proceedToPayment,
+    required TResult Function(ProccedToBooking value) proceedToBooking,
     required TResult Function(Search value) search,
     required TResult Function(GetParcelCenters value) getParcelCenters,
     required TResult Function(OpenUrl value) openUrl,
@@ -1059,7 +1092,7 @@ class _$OpenUrl implements OpenUrl {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,
@@ -1071,7 +1104,7 @@ class _$OpenUrl implements OpenUrl {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SelectLocation value)? selectLocation,
-    TResult Function(ProccedToPayment value)? proceedToPayment,
+    TResult Function(ProccedToBooking value)? proceedToBooking,
     TResult Function(Search value)? search,
     TResult Function(GetParcelCenters value)? getParcelCenters,
     TResult Function(OpenUrl value)? openUrl,

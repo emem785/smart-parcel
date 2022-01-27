@@ -1,5 +1,11 @@
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/parcels/domain/models/payment_history.dart';
+import 'package:smart_parcel/payment/domain/models/bank_card.dart';
+import 'package:smart_parcel/payment/domain/models/card_data.dart';
+import 'package:smart_parcel/payment/domain/models/cards_response.dart';
+import 'package:smart_parcel/payment/domain/models/charge_data.dart';
+import 'package:smart_parcel/payment/domain/models/charge_response.dart';
 import 'package:smart_parcel/payment/domain/models/location.dart';
 import 'package:smart_parcel/payment/domain/models/payment_data.dart';
 import 'package:smart_parcel/payment/domain/models/payment_response.dart';
@@ -211,3 +217,188 @@ const paymentResponeCourier = PaymentResponse(
             availableSpace: 5,
             isActive: true,
             createdAt: '2021-12-15T18:23:24.484591+01:00')));
+
+const getCardsJson = '''{
+    "status": true,
+    "message": "Successful",
+    "data": {
+        "id": "f98874f7-8662-4376-a83c-238c9e5c7586",
+        "first_name": "emmanuel",
+        "last_name": "isong",
+        "email": "iemmanuel785@gmail.com",
+        "phone": "+2348011111111",
+        "role": "user",
+        "address": null,
+        "profile_pics": null,
+        "logistic_partner": null,
+        "profile_pics_url": null,
+        "firebase_key": "cj0JIj3WTp27tTMHb3N_U4:APA91bFqZO1M1oiwajCHFZ2It6jrGujZgyjpYmp23p9fri69XSgqI2Tl3Gm2dw2qo-MiLBCUnmIKyiCQkkE1BKlgcMtmgB4uZWJo_gFjjo70Jbpq-DW_qqcmJk29fbk9kmlDQ-JEYR0-",
+        "date_joined": "2022-01-21T16:10:41.290558+01:00",
+        "self_storages": [
+            {
+                "id": 40,
+                "duration": "12",
+                "location__address": "Murtala Muhammed Way",
+                "status": "pending",
+                "drop_off": "45AT",
+                "pick_up": "NXS8",
+                "created_at": "2022-01-22T18:57:00.499753Z"
+            }
+        ],
+        "customer_to_customer": [
+            {
+                "id": 38,
+                "name": "emem",
+                "email": "emembest10@yahoo.com",
+                "phone": "+2349137801016",
+                "location__address": "Surulere, Lagos State",
+                "status": "pending",
+                "drop_off": "ZJVG",
+                "pick_up": "KZ0E",
+                "created_at": "2022-01-21T16:33:51.024367Z"
+            }
+        ],
+        "customer_to_courier": [
+            {
+                "id": 39,
+                "name": "emem",
+                "email": "emembest10@yahoo.com",
+                "phone": "+2349137801016",
+                "location__address": "Surulere, Lagos State",
+                "city": "lagos",
+                "status": "pending",
+                "drop_off": "778J",
+                "pick_up": "Q1Y8",
+                "created_at": "2022-01-21T16:34:56.818032Z"
+            }
+        ],
+        "payment_history": [
+            {
+                "id": 37,
+                "user_id": "f98874f7-8662-4376-a83c-238c9e5c7586",
+                "amount": 1000.0,
+                "payment_for": "self_storage",
+                "reference": "tzyccci21w",
+                "currency": "NGN",
+                "transaction_date": "2021-12-29T13:30:15Z",
+                "is_active": true,
+                "created_at": "2022-01-21T16:32:12.926668Z"
+            }
+         
+        ],
+        "parcel_stats": {
+            "pending": 6,
+            "dropped": 0,
+            "assigned": 0,
+            "completed": 0
+        },
+        "saved_cards": [
+            {
+                "id": 1,
+                "user_id": "f98874f7-8662-4376-a83c-238c9e5c7586",
+                "authorization_code": "AUTH_ww27xd6vgk",
+                "bin": "408408",
+                "last4": "4081",
+                "exp_month": "08",
+                "exp_year": "2023",
+                "bank": "TEST BANK",
+                "card_type": "visa ",
+                "country_code": "NG",
+                "account_name": null,
+                "date_added": "2022-01-26T16:58:30.868162Z"
+            }
+        ]
+    }
+}''';
+
+const cardResponse = CardResponse(
+    status: true,
+    message: 'Successful',
+    data: CardData(paymentHistory: [
+      PaymentHistory(
+          id: 37,
+          user_id: 'f98874f7-8662-4376-a83c-238c9e5c7586',
+          amount: 1000,
+          payment_for: 'self_storage',
+          reference: 'tzyccci21w',
+          currency: 'NGN',
+          transaction_date: '2021-12-29T13:30:15Z',
+          is_active: true,
+          created_at: '2022-01-21T16:32:12.926668Z')
+    ], savedCards: [
+      BankCard(
+          id: 1,
+          userId: 'f98874f7-8662-4376-a83c-238c9e5c7586',
+          authorizationCode: 'AUTH_ww27xd6vgk',
+          bin: '408408',
+          last4: '4081',
+          expMonth: '08',
+          expYear: '2023',
+          bank: 'TEST BANK',
+          cardType: 'visa ',
+          countryCode: 'NG',
+          dateAdded: '2022-01-26T16:58:30.868162Z')
+    ]));
+
+const chargeCardJson = '''{
+    "status": true,
+    "message": "Charge attempted",
+    "data": {
+        "amount": 300000,
+        "currency": "NGN",
+        "transaction_date": "2022-01-26T18:32:03.000Z",
+        "status": "success",
+        "reference": "eybs0nnnv3gqwt3",
+        "domain": "test",
+        "metadata": "",
+        "gateway_response": "Approved",
+        "message": null,
+        "channel": "card",
+        "ip_address": null,
+        "log": null,
+        "fees": 14500,
+        "authorization": {
+            "authorization_code": "AUTH_ww27xd6vgk",
+            "bin": "408408",
+            "last4": "4081",
+            "exp_month": "08",
+            "exp_year": "2023",
+            "channel": "card",
+            "card_type": "visa ",
+            "bank": "TEST BANK",
+            "country_code": "NG",
+            "brand": "visa",
+            "reusable": true,
+            "signature": "SIG_ZK2MNo07R4qBmTcK0EH9",
+            "account_name": null
+        },
+        "customer": {
+            "id": 62450498,
+            "first_name": null,
+            "last_name": null,
+            "email": "iemmanuel785@gmail.com",
+            "customer_code": "CUS_p2jd17ur3oixakd",
+            "phone": null,
+            "metadata": null,
+            "risk_action": "default",
+            "international_format_phone": null
+        },
+        "plan": null,
+        "id": 1586422530
+    }
+}''';
+
+const chargeResponse = ChargeResponse(
+    status: true,
+    message: 'Charge attempted',
+    data: ChargeData(
+        amount: 300000,
+        currency: 'NGN',
+        transactionDate: '2022-01-26T18:32:03.000Z',
+        status: 'success',
+        reference: 'eybs0nnnv3gqwt3',
+        domain: 'test',
+        metadata: '',
+        gatewayResponse: 'Approved',
+        channel: 'card',
+        fees: 14500));

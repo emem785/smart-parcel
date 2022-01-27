@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
@@ -65,8 +64,8 @@ class SelfStoragePayment extends HookWidget {
                       Text("Your Bill",
                           style: GlobalTheme.textTheme(context).headline6),
                       LayoutConstants.sizeBox(context, 8),
-                      const Text(
-                        "Self Storage is charged ₦1000 per day. Your item will be archived after 4 weeks",
+                      Text(
+                        "Your bill is ₦${Constants.selfStoragePrice}",
                         textAlign: TextAlign.center,
                       ),
                       LayoutConstants.sizeBox(context, 54)
@@ -77,29 +76,48 @@ class SelfStoragePayment extends HookWidget {
               BlocConsumer<PaymentBloc, PaymentState>(
                 listener: (context, state) {
                   state.maybeMap(
-                      orElse: () => 1,
-                      error: (v) => paymentBloc.paymentUseCases
-                          .showErrorUseCase(
-                              context: context, message: v.failure.message),
-                      paymentSuccessful: (v) {
-                        final deliveryViewModel =
-                            context.read<DeliveryViewModel>();
-                        deliveryBloc.add(DeliveryEvent.proceedToPayment(
-                          context: context,
-                          routeInfo: deliveryViewModel.routeInfoPayment,
-                          paystackResponse: v.paystackResponse,
-                          locationId: deliveryViewModel.parcelCenter.id,
-                          duration: deliveryViewModel.duration,
-                          customerForm: deliveryViewModel.customerForm,
-                        ));
-                      });
+                    orElse: () => 1,
+                    error: (v) => paymentBloc.paymentUseCases.showErrorUseCase(
+                        context: context, message: v.failure.message),
+                    // paymentSuccessful: (v) =>
+                    //     deliveryBloc.deliveryUseCases.finishTransactionUseCase(
+                    //   context: context,
+                    //   deliveryBloc: deliveryBloc,
+                    //   paymentSuccessful: v,
+                    // ),
+                  );
                 },
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () => LayoutConstants.padButton(ElevatedButton(
-                      onPressed: () {
-                        paymentBloc.add(PaymentEvent.makePayment(
-                            context: context, amount: 1000));
+                      onPressed: () async {
+                        final deliveryVm = context.read<DeliveryViewModel>();
+
+                        if (deliveryVm.bankCard == null) {
+                          paymentBloc.add(PaymentEvent.makePayment(
+                              context: context,
+                              amount: Constants.selfStoragePrice));
+                          return;
+                        }
+
+                        final makePayment =
+                            await paymentBloc.paymentUseCases.showOptionUseCase(
+                                  context: context,
+                                  title: "Confirm Payment",
+                                  content:
+                                      "Are you sure you want to pay with the card ending with ${deliveryVm.bankCard!.last4}?",
+                                  buttonText: "Yes",
+                                  alternativeButtonText: "No",
+                                ) ??
+                                false;
+
+                        if (makePayment) {
+                          paymentBloc.add(PaymentEvent.chargeAuthCode(
+                            authCode: deliveryVm.bankCard!.authorizationCode,
+                            amount: deliveryVm.routeAmount,
+                          ));
+                          return;
+                        }
                       },
                       child: const Text("Pay Now"),
                     )),

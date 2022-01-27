@@ -29,6 +29,14 @@ class CustomerForm {
         description = '',
         city = '';
 
+  const CustomerForm.placeholder()
+      : email = 'email@email.com',
+        name = 'John Doe',
+        phone = '080000000000',
+        address = 'Address',
+        description = 'String',
+        city = 'Lagos';
+
   CustomerForm copyWith({
     String? name,
     String? email,

@@ -17,6 +17,8 @@ class GetAppBarName {
         return "Customer - Customer";
       case "CustomerToCourierPaymentRoute":
         return "Send Parcel";
+      case "ChooseCardRoute":
+        return "Payment";
       case "ReceiptRoute":
         return "Home";
 // Settings

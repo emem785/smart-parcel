@@ -8,6 +8,8 @@ import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
 import 'package:smart_parcel/payment/domain/interface/payment_interface.dart';
+import 'package:smart_parcel/payment/domain/models/cards_response.dart';
+import 'package:smart_parcel/payment/domain/models/charge_response.dart';
 import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 import 'package:smart_parcel/payment/infrastructure/services/payment_http_service.dart';
 
@@ -40,6 +42,23 @@ class PaymentRepository {
       amount: amount,
       paystackResponse: paystackResponse,
     );
+  }
+
+  Future<Either<Failure, CardResponse>> getCards() {
+    return getDataAuth(_paymentHttpService.getCards);
+  }
+
+  Future<Either<Failure, ChargeResponse>> chargeAuthCode({
+    required String authCode,
+    required int amount,
+    required String email,
+  }) {
+    final body = {
+      "authorization_code": authCode,
+      "email": email,
+      "amount": amount,
+    };
+    return postDataPaystack(_paymentHttpService.chargeAuthCode, body);
   }
 
   SingleResponse<PaystackResponse> initializePayment({

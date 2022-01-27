@@ -5,12 +5,12 @@ import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 
-class ProceedToPaymentUseCase {
+class ProceedToBookingUseCase {
   final DeliveryRepository deliveryRepository;
 
-  ProceedToPaymentUseCase(this.deliveryRepository);
+  ProceedToBookingUseCase(this.deliveryRepository);
   FutureOr<void> call(
-    ProccedToPayment event,
+    ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
     emit(const DeliveryState.loading());
@@ -24,15 +24,16 @@ class ProceedToPaymentUseCase {
   }
 
   Future<void> _bookSelfStorage(
-    ProccedToPayment event,
+    ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
     final userId = _getUserId();
     final response = await deliveryRepository.bookSelfStorage(
-      duration: event.duration ?? "",
+      duration: event.duration ?? "0",
       userId: userId,
       location: event.locationId,
-      paystackResponse: event.paystackResponse,
+      reference: event.reference,
+      saveCard: event.saveCard,
     );
 
     return response.fold(
@@ -51,13 +52,13 @@ class ProceedToPaymentUseCase {
   }
 
   _bookCustomerToCustomer(
-    ProccedToPayment event,
+    ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
     final response = await deliveryRepository.bookCustomerToCustomer(
-      customerForm: event.customerForm!,
       location: event.locationId,
-      paystackResponse: event.paystackResponse,
+      refrence: event.reference,
+      saveCard: event.saveCard,
     );
 
     return response.fold(
@@ -67,14 +68,15 @@ class ProceedToPaymentUseCase {
   }
 
   _bookCustomerToCourier(
-    ProccedToPayment event,
+    ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
     final response = await deliveryRepository.bookCustomerToCourier(
       customerForm: event.customerForm!,
       city: event.customerForm!.city!,
       location: event.locationId,
-      paystackResponse: event.paystackResponse,
+      reference: event.reference,
+      saveCard: event.saveCard,
     );
 
     return response.fold(

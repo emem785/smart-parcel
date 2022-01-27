@@ -25,6 +25,18 @@ class _$PaymentEventTearOff {
     );
   }
 
+  GetCards getCards() {
+    return const GetCards();
+  }
+
+  ChargeAuthCode chargeAuthCode(
+      {required String authCode, required int amount}) {
+    return ChargeAuthCode(
+      authCode: authCode,
+      amount: amount,
+    );
+  }
+
   OpenMap openMap(String address) {
     return OpenMap(
       address,
@@ -40,18 +52,24 @@ mixin _$PaymentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
   }) =>
@@ -59,18 +77,24 @@ mixin _$PaymentEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
   }) =>
@@ -165,6 +189,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
     return makePayment(context, amount);
@@ -174,6 +200,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
     return makePayment?.call(context, amount);
@@ -183,6 +211,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
   }) {
@@ -196,6 +226,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
     return makePayment(this);
@@ -205,6 +237,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
     return makePayment?.call(this);
@@ -214,6 +248,8 @@ class _$MakePayment implements MakePayment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
   }) {
@@ -232,6 +268,276 @@ abstract class MakePayment implements PaymentEvent {
   int get amount;
   @JsonKey(ignore: true)
   $MakePaymentCopyWith<MakePayment> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCardsCopyWith<$Res> {
+  factory $GetCardsCopyWith(GetCards value, $Res Function(GetCards) then) =
+      _$GetCardsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetCardsCopyWithImpl<$Res> extends _$PaymentEventCopyWithImpl<$Res>
+    implements $GetCardsCopyWith<$Res> {
+  _$GetCardsCopyWithImpl(GetCards _value, $Res Function(GetCards) _then)
+      : super(_value, (v) => _then(v as GetCards));
+
+  @override
+  GetCards get _value => super._value as GetCards;
+}
+
+/// @nodoc
+
+class _$GetCards implements GetCards {
+  const _$GetCards();
+
+  @override
+  String toString() {
+    return 'PaymentEvent.getCards()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is GetCards);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
+    required TResult Function(String address) openMap,
+  }) {
+    return getCards();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+  }) {
+    return getCards?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+    required TResult orElse(),
+  }) {
+    if (getCards != null) {
+      return getCards();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
+    required TResult Function(OpenMap value) openMap,
+  }) {
+    return getCards(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+  }) {
+    return getCards?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+    required TResult orElse(),
+  }) {
+    if (getCards != null) {
+      return getCards(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCards implements PaymentEvent {
+  const factory GetCards() = _$GetCards;
+}
+
+/// @nodoc
+abstract class $ChargeAuthCodeCopyWith<$Res> {
+  factory $ChargeAuthCodeCopyWith(
+          ChargeAuthCode value, $Res Function(ChargeAuthCode) then) =
+      _$ChargeAuthCodeCopyWithImpl<$Res>;
+  $Res call({String authCode, int amount});
+}
+
+/// @nodoc
+class _$ChargeAuthCodeCopyWithImpl<$Res>
+    extends _$PaymentEventCopyWithImpl<$Res>
+    implements $ChargeAuthCodeCopyWith<$Res> {
+  _$ChargeAuthCodeCopyWithImpl(
+      ChargeAuthCode _value, $Res Function(ChargeAuthCode) _then)
+      : super(_value, (v) => _then(v as ChargeAuthCode));
+
+  @override
+  ChargeAuthCode get _value => super._value as ChargeAuthCode;
+
+  @override
+  $Res call({
+    Object? authCode = freezed,
+    Object? amount = freezed,
+  }) {
+    return _then(ChargeAuthCode(
+      authCode: authCode == freezed
+          ? _value.authCode
+          : authCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChargeAuthCode implements ChargeAuthCode {
+  const _$ChargeAuthCode({required this.authCode, required this.amount});
+
+  @override
+  final String authCode;
+  @override
+  final int amount;
+
+  @override
+  String toString() {
+    return 'PaymentEvent.chargeAuthCode(authCode: $authCode, amount: $amount)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChargeAuthCode &&
+            (identical(other.authCode, authCode) ||
+                other.authCode == authCode) &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, authCode, amount);
+
+  @JsonKey(ignore: true)
+  @override
+  $ChargeAuthCodeCopyWith<ChargeAuthCode> get copyWith =>
+      _$ChargeAuthCodeCopyWithImpl<ChargeAuthCode>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
+    required TResult Function(String address) openMap,
+  }) {
+    return chargeAuthCode(authCode, amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+  }) {
+    return chargeAuthCode?.call(authCode, amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+    required TResult orElse(),
+  }) {
+    if (chargeAuthCode != null) {
+      return chargeAuthCode(authCode, amount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
+    required TResult Function(OpenMap value) openMap,
+  }) {
+    return chargeAuthCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+  }) {
+    return chargeAuthCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+    required TResult orElse(),
+  }) {
+    if (chargeAuthCode != null) {
+      return chargeAuthCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChargeAuthCode implements PaymentEvent {
+  const factory ChargeAuthCode(
+      {required String authCode, required int amount}) = _$ChargeAuthCode;
+
+  String get authCode;
+  int get amount;
+  @JsonKey(ignore: true)
+  $ChargeAuthCodeCopyWith<ChargeAuthCode> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -297,6 +603,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
     return openMap(address);
@@ -306,6 +614,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
     return openMap?.call(address);
@@ -315,6 +625,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
   }) {
@@ -328,6 +640,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
     return openMap(this);
@@ -337,6 +651,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
     return openMap?.call(this);
@@ -346,6 +662,8 @@ class _$OpenMap implements OpenMap {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
   }) {
@@ -382,11 +700,23 @@ class _$PaymentStateTearOff {
     );
   }
 
-  PaymentSuccessful paymentSuccessful(
-      String message, PaystackResponse paystackResponse) {
+  CardCharged cardCharged(String message, String reference) {
+    return CardCharged(
+      message,
+      reference,
+    );
+  }
+
+  CardsRetreived cardsRetreived(List<BankCard> cards) {
+    return CardsRetreived(
+      cards,
+    );
+  }
+
+  PaymentSuccessful paymentSuccessful(String message, String reference) {
     return PaymentSuccessful(
       message,
-      paystackResponse,
+      reference,
     );
   }
 }
@@ -401,7 +731,9 @@ mixin _$PaymentState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message, PaystackResponse paystackResponse)
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
         paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -410,8 +742,9 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -419,8 +752,9 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -429,6 +763,8 @@ mixin _$PaymentState {
     required TResult Function(PaymentInitial value) initial,
     required TResult Function(PaymentLoading value) loading,
     required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -437,6 +773,8 @@ mixin _$PaymentState {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -445,6 +783,8 @@ mixin _$PaymentState {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) =>
@@ -511,7 +851,9 @@ class _$PaymentInitial implements PaymentInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message, PaystackResponse paystackResponse)
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
     return initial();
@@ -523,8 +865,9 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return initial?.call();
   }
@@ -535,8 +878,9 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -551,6 +895,8 @@ class _$PaymentInitial implements PaymentInitial {
     required TResult Function(PaymentInitial value) initial,
     required TResult Function(PaymentLoading value) loading,
     required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return initial(this);
@@ -562,6 +908,8 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return initial?.call(this);
@@ -573,6 +921,8 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -631,7 +981,9 @@ class _$PaymentLoading implements PaymentLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message, PaystackResponse paystackResponse)
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
     return loading();
@@ -643,8 +995,9 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return loading?.call();
   }
@@ -655,8 +1008,9 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -671,6 +1025,8 @@ class _$PaymentLoading implements PaymentLoading {
     required TResult Function(PaymentInitial value) initial,
     required TResult Function(PaymentLoading value) loading,
     required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return loading(this);
@@ -682,6 +1038,8 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return loading?.call(this);
@@ -693,6 +1051,8 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -773,7 +1133,9 @@ class _$PaymentError implements PaymentError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message, PaystackResponse paystackResponse)
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
     return error(failure);
@@ -785,8 +1147,9 @@ class _$PaymentError implements PaymentError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return error?.call(failure);
   }
@@ -797,8 +1160,9 @@ class _$PaymentError implements PaymentError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -813,6 +1177,8 @@ class _$PaymentError implements PaymentError {
     required TResult Function(PaymentInitial value) initial,
     required TResult Function(PaymentLoading value) loading,
     required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return error(this);
@@ -824,6 +1190,8 @@ class _$PaymentError implements PaymentError {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return error?.call(this);
@@ -835,6 +1203,8 @@ class _$PaymentError implements PaymentError {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -855,11 +1225,337 @@ abstract class PaymentError implements PaymentState {
 }
 
 /// @nodoc
+abstract class $CardChargedCopyWith<$Res> {
+  factory $CardChargedCopyWith(
+          CardCharged value, $Res Function(CardCharged) then) =
+      _$CardChargedCopyWithImpl<$Res>;
+  $Res call({String message, String reference});
+}
+
+/// @nodoc
+class _$CardChargedCopyWithImpl<$Res> extends _$PaymentStateCopyWithImpl<$Res>
+    implements $CardChargedCopyWith<$Res> {
+  _$CardChargedCopyWithImpl(
+      CardCharged _value, $Res Function(CardCharged) _then)
+      : super(_value, (v) => _then(v as CardCharged));
+
+  @override
+  CardCharged get _value => super._value as CardCharged;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? reference = freezed,
+  }) {
+    return _then(CardCharged(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      reference == freezed
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CardCharged implements CardCharged {
+  const _$CardCharged(this.message, this.reference);
+
+  @override
+  final String message;
+  @override
+  final String reference;
+
+  @override
+  String toString() {
+    return 'PaymentState.cardCharged(message: $message, reference: $reference)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CardCharged &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.reference, reference) ||
+                other.reference == reference));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, reference);
+
+  @JsonKey(ignore: true)
+  @override
+  $CardChargedCopyWith<CardCharged> get copyWith =>
+      _$CardChargedCopyWithImpl<CardCharged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) error,
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
+        paymentSuccessful,
+  }) {
+    return cardCharged(message, reference);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
+  }) {
+    return cardCharged?.call(message, reference);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardCharged != null) {
+      return cardCharged(message, reference);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentInitial value) initial,
+    required TResult Function(PaymentLoading value) loading,
+    required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(PaymentSuccessful value) paymentSuccessful,
+  }) {
+    return cardCharged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+  }) {
+    return cardCharged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardCharged != null) {
+      return cardCharged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CardCharged implements PaymentState {
+  const factory CardCharged(String message, String reference) = _$CardCharged;
+
+  String get message;
+  String get reference;
+  @JsonKey(ignore: true)
+  $CardChargedCopyWith<CardCharged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CardsRetreivedCopyWith<$Res> {
+  factory $CardsRetreivedCopyWith(
+          CardsRetreived value, $Res Function(CardsRetreived) then) =
+      _$CardsRetreivedCopyWithImpl<$Res>;
+  $Res call({List<BankCard> cards});
+}
+
+/// @nodoc
+class _$CardsRetreivedCopyWithImpl<$Res>
+    extends _$PaymentStateCopyWithImpl<$Res>
+    implements $CardsRetreivedCopyWith<$Res> {
+  _$CardsRetreivedCopyWithImpl(
+      CardsRetreived _value, $Res Function(CardsRetreived) _then)
+      : super(_value, (v) => _then(v as CardsRetreived));
+
+  @override
+  CardsRetreived get _value => super._value as CardsRetreived;
+
+  @override
+  $Res call({
+    Object? cards = freezed,
+  }) {
+    return _then(CardsRetreived(
+      cards == freezed
+          ? _value.cards
+          : cards // ignore: cast_nullable_to_non_nullable
+              as List<BankCard>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CardsRetreived implements CardsRetreived {
+  const _$CardsRetreived(this.cards);
+
+  @override
+  final List<BankCard> cards;
+
+  @override
+  String toString() {
+    return 'PaymentState.cardsRetreived(cards: $cards)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CardsRetreived &&
+            const DeepCollectionEquality().equals(other.cards, cards));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(cards));
+
+  @JsonKey(ignore: true)
+  @override
+  $CardsRetreivedCopyWith<CardsRetreived> get copyWith =>
+      _$CardsRetreivedCopyWithImpl<CardsRetreived>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) error,
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
+        paymentSuccessful,
+  }) {
+    return cardsRetreived(cards);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
+  }) {
+    return cardsRetreived?.call(cards);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardsRetreived != null) {
+      return cardsRetreived(cards);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentInitial value) initial,
+    required TResult Function(PaymentLoading value) loading,
+    required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(PaymentSuccessful value) paymentSuccessful,
+  }) {
+    return cardsRetreived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+  }) {
+    return cardsRetreived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardsRetreived != null) {
+      return cardsRetreived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CardsRetreived implements PaymentState {
+  const factory CardsRetreived(List<BankCard> cards) = _$CardsRetreived;
+
+  List<BankCard> get cards;
+  @JsonKey(ignore: true)
+  $CardsRetreivedCopyWith<CardsRetreived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class $PaymentSuccessfulCopyWith<$Res> {
   factory $PaymentSuccessfulCopyWith(
           PaymentSuccessful value, $Res Function(PaymentSuccessful) then) =
       _$PaymentSuccessfulCopyWithImpl<$Res>;
-  $Res call({String message, PaystackResponse paystackResponse});
+  $Res call({String message, String reference});
 }
 
 /// @nodoc
@@ -876,17 +1572,17 @@ class _$PaymentSuccessfulCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = freezed,
-    Object? paystackResponse = freezed,
+    Object? reference = freezed,
   }) {
     return _then(PaymentSuccessful(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      paystackResponse == freezed
-          ? _value.paystackResponse
-          : paystackResponse // ignore: cast_nullable_to_non_nullable
-              as PaystackResponse,
+      reference == freezed
+          ? _value.reference
+          : reference // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -894,16 +1590,16 @@ class _$PaymentSuccessfulCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PaymentSuccessful implements PaymentSuccessful {
-  const _$PaymentSuccessful(this.message, this.paystackResponse);
+  const _$PaymentSuccessful(this.message, this.reference);
 
   @override
   final String message;
   @override
-  final PaystackResponse paystackResponse;
+  final String reference;
 
   @override
   String toString() {
-    return 'PaymentState.paymentSuccessful(message: $message, paystackResponse: $paystackResponse)';
+    return 'PaymentState.paymentSuccessful(message: $message, reference: $reference)';
   }
 
   @override
@@ -912,12 +1608,12 @@ class _$PaymentSuccessful implements PaymentSuccessful {
         (other.runtimeType == runtimeType &&
             other is PaymentSuccessful &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.paystackResponse, paystackResponse) ||
-                other.paystackResponse == paystackResponse));
+            (identical(other.reference, reference) ||
+                other.reference == reference));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, paystackResponse);
+  int get hashCode => Object.hash(runtimeType, message, reference);
 
   @JsonKey(ignore: true)
   @override
@@ -930,10 +1626,12 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(Failure failure) error,
-    required TResult Function(String message, PaystackResponse paystackResponse)
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
-    return paymentSuccessful(message, paystackResponse);
+    return paymentSuccessful(message, reference);
   }
 
   @override
@@ -942,10 +1640,11 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
   }) {
-    return paymentSuccessful?.call(message, paystackResponse);
+    return paymentSuccessful?.call(message, reference);
   }
 
   @override
@@ -954,12 +1653,13 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(Failure failure)? error,
-    TResult Function(String message, PaystackResponse paystackResponse)?
-        paymentSuccessful,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
     if (paymentSuccessful != null) {
-      return paymentSuccessful(message, paystackResponse);
+      return paymentSuccessful(message, reference);
     }
     return orElse();
   }
@@ -970,6 +1670,8 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     required TResult Function(PaymentInitial value) initial,
     required TResult Function(PaymentLoading value) loading,
     required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return paymentSuccessful(this);
@@ -981,6 +1683,8 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return paymentSuccessful?.call(this);
@@ -992,6 +1696,8 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(PaymentInitial value)? initial,
     TResult Function(PaymentLoading value)? loading,
     TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1003,11 +1709,11 @@ class _$PaymentSuccessful implements PaymentSuccessful {
 }
 
 abstract class PaymentSuccessful implements PaymentState {
-  const factory PaymentSuccessful(
-      String message, PaystackResponse paystackResponse) = _$PaymentSuccessful;
+  const factory PaymentSuccessful(String message, String reference) =
+      _$PaymentSuccessful;
 
   String get message;
-  PaystackResponse get paystackResponse;
+  String get reference;
   @JsonKey(ignore: true)
   $PaymentSuccessfulCopyWith<PaymentSuccessful> get copyWith =>
       throw _privateConstructorUsedError;

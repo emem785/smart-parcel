@@ -12,7 +12,6 @@ import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/delivery/domain/usecases/delivery_usecases.dart';
 import 'package:smart_parcel/payment/domain/models/payment_data.dart';
-import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'delivery_bloc.freezed.dart';
@@ -23,7 +22,7 @@ class DeliveryBloc extends Bloc<DeliveryEvent, DeliveryState> {
   final DeliveryUseCases deliveryUseCases;
   DeliveryBloc(this.deliveryUseCases) : super(const DeliveryInitial()) {
     on<GetParcelCenters>(deliveryUseCases.getLocationDistrictUseCase);
-    on<ProccedToPayment>(deliveryUseCases.proceedToPaymentUseCase);
+    on<ProccedToBooking>(deliveryUseCases.proceedToBookingUseCase);
     on<Search>(deliveryUseCases.searchUsecase);
     on<OpenUrl>(_openUrl);
   }

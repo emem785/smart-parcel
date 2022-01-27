@@ -30,4 +30,32 @@ class _$PaymentHttpService extends PaymentHttpService {
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<PaystackResponse, PaystackResponse>($request);
   }
+
+  @override
+  Future<Response<ChargeResponse>> chargeAuthCode(
+      Map<String, dynamic> body, String refreshToken, String accessToken) {
+    final $url = '/charge_authorization/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $body = body;
+    final $request =
+        Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
+    return client.send<ChargeResponse, ChargeResponse>($request);
+  }
+
+  @override
+  Future<Response<CardResponse>> getCards(
+      String refreshToken, String accessToken) {
+    final $url = '/user/profile/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<CardResponse, CardResponse>($request);
+  }
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/validator_util.dart';
@@ -14,7 +15,7 @@ import 'package:smart_parcel/delivery/presentation/self_storage_pages/terms_and_
 const cities = ["lagos"];
 
 const demurrage =
-    "Note: Your item will be archived if left in the locker for over 12 weeks.";
+    "Note: Your item will be charged with a demurrage after 36 hours and archived after 1 week";
 
 class CustomerToCourierBody extends HookWidget {
   const CustomerToCourierBody({Key? key}) : super(key: key);
@@ -89,9 +90,7 @@ class CustomerToCourierBody extends HookWidget {
                           address: addressController.text,
                         );
                         context.read<DeliveryViewModel>().setCustomerForm(form);
-                        context.router.push(
-                          context.read<DeliveryViewModel>().routeInfoPayment,
-                        );
+                        context.router.push(const ChooseCardRoute());
                         return;
                       }
                       deliveryBloc.deliveryUseCases.showErrorUseCase(

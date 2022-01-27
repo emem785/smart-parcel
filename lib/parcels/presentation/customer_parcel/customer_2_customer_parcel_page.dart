@@ -50,14 +50,17 @@ class CustomerParcelPage extends HookWidget {
                 );
               },
               listener: (context, state) {
-                state.maybeMap(
+                state.maybeWhen(
                   orElse: () => 1,
-                  error: (v) => parcelBloc.parcelUseCases.showErrorUseCase(
-                      message: v.failure.message, context: context),
                   historyRetreived: (v) async {
                     await Future.delayed(const Duration(milliseconds: 50));
                     visibility.value = 1;
                   },
+                  error: (failure) =>
+                      parcelBloc.parcelUseCases.showErrorUseCase(
+                    context: context,
+                    message: failure.message,
+                  ),
                 );
               },
             ),

@@ -9,7 +9,6 @@ import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
 import 'package:smart_parcel/payment/domain/models/payment_response.dart';
-import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 
 typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
 typedef SingleResponse<T> = Future<Either<Failure, T>>;
@@ -26,45 +25,47 @@ class DeliveryRepository {
   SingleResponse<PaymentResponse> bookSelfStorage({
     required String duration,
     required String userId,
-    required PaystackResponse paystackResponse,
+    required String reference,
     required int location,
+    required bool saveCard,
   }) {
     final Map<String, dynamic> body = {
-      "reference": paystackResponse.data.reference,
+      "reference": reference,
       "duration": duration,
       "status": "pending",
       "user": userId,
       "location": location,
+      "allow_save": saveCard,
     };
     return postDataAuth(deliveryHttpService.bookSelfStorage, body);
   }
 
   SingleResponse<PaymentResponse> bookCustomerToCustomer({
-    required CustomerForm customerForm,
-    required PaystackResponse paystackResponse,
+    required String refrence,
     required int location,
+    required bool saveCard,
   }) {
     final Map<String, dynamic> body = {
-      "reference": paystackResponse.data.reference,
+      "reference": refrence,
       "location": location,
+      "allow_save": saveCard,
     };
-    body.addAll(customerForm.toMap());
-
-    print(body);
-
+    body.addAll(const CustomerForm.placeholder().toMap());
     return postDataAuth(deliveryHttpService.bookCustomerToCustomer, body);
   }
 
   SingleResponse<PaymentResponse> bookCustomerToCourier({
     required CustomerForm customerForm,
     required String city,
-    required PaystackResponse paystackResponse,
+    required String reference,
     required int location,
+    required bool saveCard,
   }) {
     final Map<String, dynamic> body = {
-      "reference": paystackResponse.data.reference,
+      "reference": reference,
       "location": location,
-      "city": city
+      "city": city,
+      "allow_save": saveCard,
     };
     body.addAll(customerForm.toMap());
 

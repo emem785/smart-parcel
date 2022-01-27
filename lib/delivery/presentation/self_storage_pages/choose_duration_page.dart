@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
@@ -12,7 +13,7 @@ import 'package:smart_parcel/inject_conf.dart';
 const hours = [6, 12, 24, 48, 72];
 
 const demurrage =
-    "Note: You will need to pay demurrage after 72hours if pickup does not occur and your item will be archived after 1 week.";
+    "Note: Your item will be charged with a demurrage after 36 hours and archived after 1 week";
 
 class ChooseDurationPage extends StatelessWidget {
   const ChooseDurationPage({Key? key}) : super(key: key);
@@ -84,9 +85,7 @@ class ChooseDuration extends HookWidget {
                 context
                     .read<DeliveryViewModel>()
                     .setDuration(hour.value.toString());
-                context.router.push(
-                  context.read<DeliveryViewModel>().routeInfoPayment,
-                );
+                context.router.push(const ChooseCardRoute());
                 return;
               }
               deliveryBloc.deliveryUseCases.showErrorUseCase(

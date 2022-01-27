@@ -16,6 +16,9 @@ class ErrorInterceptor implements ResponseInterceptor {
   FutureOr<Response> onResponse(Response response) {
     print(response.error);
     if (!response.isSuccessful) {
+      if (response.statusCode.toString().contains("5")) {
+        throw ApiException("Unexpected Server Error");
+      }
       throw ApiException(getError(response.error));
     }
     return response;
@@ -29,9 +32,9 @@ class ErrorInterceptor implements ResponseInterceptor {
       } else if (bodyDecoded is Map) {
         return handleMapError(body);
       }
-      return "Unexpected Internal Error";
+      return "Internal Application Error";
     } catch (e) {
-      return "Unexpected Server Error";
+      return "Internal Application Error";
     }
   }
 

@@ -48,8 +48,13 @@ class SelfStorageParcelPage extends HookWidget {
                 );
               },
               listener: (context, state) {
-                state.maybeMap(
+                state.maybeWhen(
                   orElse: () => 1,
+                  error: (failure) =>
+                      parcelBloc.parcelUseCases.showErrorUseCase(
+                    context: context,
+                    message: failure.message,
+                  ),
                   historyRetreived: (v) async {
                     await Future.delayed(const Duration(milliseconds: 50));
                     visibility.value = 1;

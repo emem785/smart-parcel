@@ -9,7 +9,6 @@ import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
-import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/inject_conf.dart';
 import 'package:smart_parcel/payment/application/payment_bloc/payment_bloc.dart';
 
@@ -49,10 +48,13 @@ class CustomerToCourierPayment extends HookWidget {
                 orElse: () => 1,
                 error: (v) => deliveryBloc.deliveryUseCases.showErrorUseCase(
                     context: context, message: v.failure.message),
-                bookingFinished: (v) => context.router.pushAndPopUntil(
-                  ReceiptRoute(paymentData: v.paymentData),
-                  predicate: (route) => false,
-                ),
+                bookingFinished: (v) {
+                  context.router.pop();
+                  context.router.pushAndPopUntil(
+                    ReceiptRoute(paymentData: v.paymentData),
+                    predicate: (route) => false,
+                  );
+                },
               );
             },
             child: Column(
@@ -61,8 +63,8 @@ class CustomerToCourierPayment extends HookWidget {
                 Text("Your Bill",
                     style: GlobalTheme.textTheme(context).headline6),
                 LayoutConstants.sizeBox(context, 8),
-                const Text(
-                  "Customer - Courier delivery is charged ₦1000 to your location.",
+                Text(
+                  "Your bill is ₦${Constants.customerCourierPrice}",
                   textAlign: TextAlign.center,
                 ),
                 LayoutConstants.sizeBox(context, 54)
@@ -73,27 +75,23 @@ class CustomerToCourierPayment extends HookWidget {
         BlocConsumer<PaymentBloc, PaymentState>(
           listener: (context, state) {
             state.maybeMap(
-                orElse: () => 1,
-                error: (v) => paymentBloc.paymentUseCases.showErrorUseCase(
-                    context: context, message: v.failure.message),
-                paymentSuccessful: (v) {
-                  final deliveryViewModel = context.read<DeliveryViewModel>();
-                  deliveryBloc.add(DeliveryEvent.proceedToPayment(
-                    context: context,
-                    routeInfo: deliveryViewModel.routeInfoPayment,
-                    paystackResponse: v.paystackResponse,
-                    locationId: deliveryViewModel.parcelCenter.id,
-                    duration: deliveryViewModel.duration,
-                    customerForm: deliveryViewModel.customerForm,
-                  ));
-                });
+              orElse: () => 1,
+              error: (v) => paymentBloc.paymentUseCases.showErrorUseCase(
+                  context: context, message: v.failure.message),
+              // paymentSuccessful: (v) => deliveryBloc.deliveryUseCases
+              //     .finishTransactionUseCase(
+              //         context: context,
+              //         deliveryBloc: deliveryBloc,
+              //         paymentSuccessful: v),
+            );
           },
           builder: (context, state) {
             return state.maybeMap(
               orElse: () => LayoutConstants.padButton(ElevatedButton(
                 onPressed: () {
-                  paymentBloc.add(
-                      PaymentEvent.makePayment(context: context, amount: 1000));
+                  paymentBloc.add(PaymentEvent.makePayment(
+                      context: context,
+                      amount: Constants.customerCourierPrice));
                 },
                 child: const Text("Pay Now"),
               )),

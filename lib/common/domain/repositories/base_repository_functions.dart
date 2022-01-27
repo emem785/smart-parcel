@@ -51,7 +51,7 @@ Future<Either<Failure, T>> postData<T>(
         await postData(body, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -67,7 +67,7 @@ Future<Either<Failure, T>> getData<T>(
         await getData(authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -83,7 +83,7 @@ Future<Either<Failure, T>> getDataAuth<T>(
         await getData(authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -99,7 +99,7 @@ Future<Either<Failure, List<T>>> getListDataAuth<T>(
         await getData(authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -116,7 +116,7 @@ Future<Either<Failure, T>> postDataAuth<T>(
         await postData(body, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -133,7 +133,7 @@ Future<Either<Failure, T>> postDataPaystack<T>(
         await postData(body, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Server error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));
@@ -167,7 +167,7 @@ Future<Either<Failure, T>> postBytes<T>(
         await postData(file, authToken.refresh, "Bearer ${authToken.access}");
     return right(response.body!);
   } on FormatException {
-    return left(const Failure("Unexpected Search Error"));
+    return left(const Failure("Internal Application Error"));
   } catch (e) {
     print("err: ${e.toString()}");
     return left(Failure(e.toString()));

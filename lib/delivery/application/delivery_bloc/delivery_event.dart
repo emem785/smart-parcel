@@ -7,14 +7,15 @@ class DeliveryEvent with _$DeliveryEvent {
     BuildContext context,
     PageRouteInfo routeInfo,
   ) = SelectLocation;
-  const factory DeliveryEvent.proceedToPayment({
+  const factory DeliveryEvent.proceedToBooking({
     required BuildContext context,
     required PageRouteInfo routeInfo,
-    required PaystackResponse paystackResponse,
+    required String reference,
     required int locationId,
+    required bool saveCard,
     required String? duration,
     required CustomerForm? customerForm,
-  }) = ProccedToPayment;
+  }) = ProccedToBooking;
   const factory DeliveryEvent.search(String query) = Search;
   const factory DeliveryEvent.getParcelCenters() = GetParcelCenters;
   const factory DeliveryEvent.openUrl(String url) = OpenUrl;

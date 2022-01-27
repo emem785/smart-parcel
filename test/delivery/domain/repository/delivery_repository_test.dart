@@ -30,6 +30,7 @@ Future<void> main() async {
           userId: "",
           location: 3,
           paystackResponse: paystackResponse,
+          saveCard: true,
         );
         // assert
         return response.fold(
@@ -46,9 +47,10 @@ Future<void> main() async {
         final repo = getIt<DeliveryRepository>();
         // act
         final response = await repo.bookCustomerToCustomer(
-            location: 4,
-            paystackResponse: paystackResponse,
-            customerForm: customerFormC);
+          location: 4,
+          paystackResponse: paystackResponse,
+          saveCard: true,
+        );
         // assert
         return response.fold(
           (l) => expect(l, null),
@@ -65,6 +67,7 @@ Future<void> main() async {
         // act
         final response = await repo.bookCustomerToCourier(
             location: 4,
+            saveCard: true,
             paystackResponse: paystackResponse,
             city: 'lagos',
             customerForm: customerFormCourier);
@@ -85,6 +88,7 @@ Future<void> main() async {
         // act
         final response = await repo.bookSelfStorage(
           duration: "2",
+          saveCard: true,
           userId: "",
           location: 3,
           paystackResponse: paystackResponse,

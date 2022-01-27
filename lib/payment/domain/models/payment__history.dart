@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class PaymentHistory {
+class Payment_history {
   final int id;
   final String user_id;
   final int amount;
@@ -10,7 +10,7 @@ class PaymentHistory {
   final String transaction_date;
   final bool is_active;
   final String created_at;
-  const PaymentHistory({
+  Payment_history({
     required this.id,
     required this.user_id,
     required this.amount,
@@ -22,7 +22,7 @@ class PaymentHistory {
     required this.created_at,
   });
 
-  PaymentHistory copyWith({
+  Payment_history copyWith({
     int? id,
     String? user_id,
     int? amount,
@@ -33,7 +33,7 @@ class PaymentHistory {
     bool? is_active,
     String? created_at,
   }) {
-    return PaymentHistory(
+    return Payment_history(
       id: id ?? this.id,
       user_id: user_id ?? this.user_id,
       amount: amount ?? this.amount,
@@ -60,8 +60,8 @@ class PaymentHistory {
     };
   }
 
-  factory PaymentHistory.fromMap(Map<String, dynamic> map) {
-    return PaymentHistory(
+  factory Payment_history.fromMap(Map<String, dynamic> map) {
+    return Payment_history(
       id: map['id']?.toInt() ?? 0,
       user_id: map['user_id'] ?? '',
       amount: map['amount']?.toInt() ?? 0,
@@ -76,40 +76,39 @@ class PaymentHistory {
 
   String toJson() => json.encode(toMap());
 
-  factory PaymentHistory.fromJson(String source) =>
-      PaymentHistory.fromMap(json.decode(source));
+  factory Payment_history.fromJson(String source) => Payment_history.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return "PaymentHistory(id: $id, user_id: '$user_id', amount: $amount, payment_for: '$payment_for', reference: '$reference', currency: '$currency', transaction_date: '$transaction_date', is_active: $is_active, created_at: '$created_at')";
+    return 'Payment_history(id: $id, user_id: $user_id, amount: $amount, payment_for: $payment_for, reference: $reference, currency: $currency, transaction_date: $transaction_date, is_active: $is_active, created_at: $created_at)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
-    return other is PaymentHistory &&
-        other.id == id &&
-        other.user_id == user_id &&
-        other.amount == amount &&
-        other.payment_for == payment_for &&
-        other.reference == reference &&
-        other.currency == currency &&
-        other.transaction_date == transaction_date &&
-        other.is_active == is_active &&
-        other.created_at == created_at;
+  
+    return other is Payment_history &&
+      other.id == id &&
+      other.user_id == user_id &&
+      other.amount == amount &&
+      other.payment_for == payment_for &&
+      other.reference == reference &&
+      other.currency == currency &&
+      other.transaction_date == transaction_date &&
+      other.is_active == is_active &&
+      other.created_at == created_at;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        user_id.hashCode ^
-        amount.hashCode ^
-        payment_for.hashCode ^
-        reference.hashCode ^
-        currency.hashCode ^
-        transaction_date.hashCode ^
-        is_active.hashCode ^
-        created_at.hashCode;
+      user_id.hashCode ^
+      amount.hashCode ^
+      payment_for.hashCode ^
+      reference.hashCode ^
+      currency.hashCode ^
+      transaction_date.hashCode ^
+      is_active.hashCode ^
+      created_at.hashCode;
   }
 }

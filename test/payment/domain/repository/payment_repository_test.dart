@@ -104,5 +104,21 @@ Future<void> main() async {
         );
       },
     );
+
+    test(
+      'returns get get cards response',
+      () async {
+        // arrange
+        PaymentSetupTest.setupPayment(getCardsJson, 200);
+        final repo = getIt<PaymentRepository>();
+        // act
+        final response = await repo.getCards();
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, ""),
+        );
+      },
+    );
   });
 }

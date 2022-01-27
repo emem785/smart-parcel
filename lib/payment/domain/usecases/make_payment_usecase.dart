@@ -7,7 +7,6 @@ import 'package:smart_parcel/payment/application/payment_bloc/payment_bloc.dart'
 import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 import 'package:smart_parcel/payment/domain/repositories/payment_repository.dart';
 
-
 const nairaConversionRate = 100;
 
 class MakePaymentUseCase {
@@ -55,7 +54,8 @@ class MakePaymentUseCase {
     );
 
     if (response.status) {
-      emit(PaymentState.paymentSuccessful("Payment Successful", r));
+      emit(PaymentState.paymentSuccessful(
+          "Payment Successful", r.data.reference));
       return;
     }
     emit(PaymentState.error(Failure(response.message)));
