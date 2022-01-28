@@ -82,7 +82,7 @@ jobs:
           name: run fastlane 
           command: |
             cd android
-            bundle exec fastlane internal
+            bundle exec fastlane staging
 
 workflows:
 
@@ -92,5 +92,5 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - staging
 
