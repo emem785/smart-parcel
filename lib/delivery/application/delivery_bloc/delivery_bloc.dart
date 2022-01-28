@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
+import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/models/center.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
 import 'package:smart_parcel/delivery/domain/models/customer_form.dart';

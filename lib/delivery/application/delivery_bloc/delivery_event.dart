@@ -9,7 +9,7 @@ class DeliveryEvent with _$DeliveryEvent {
   ) = SelectLocation;
   const factory DeliveryEvent.proceedToBooking({
     required BuildContext context,
-    required PageRouteInfo routeInfo,
+    required Booking booking,
     required String reference,
     required int locationId,
     required bool saveCard,

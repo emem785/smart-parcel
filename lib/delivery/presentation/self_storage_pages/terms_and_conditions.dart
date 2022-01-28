@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
-import 'package:smart_parcel/common/utils/constants.dart';
+import 'package:smart_parcel/common/presentation/widgets/terms_and_conditons_page.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 
 class TermsAndConditions extends StatelessWidget {
@@ -11,6 +11,7 @@ class TermsAndConditions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deliveryBloc = context.read<DeliveryBloc>();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,9 +23,12 @@ class TermsAndConditions extends StatelessWidget {
         ),
         Flexible(
           child: InkWell(
-            onTap: () => context
-                .read<DeliveryBloc>()
-                .add(OpenUrl(Constants.termsAndConditionsUrl)),
+            onTap: () {
+              deliveryBloc.deliveryUseCases.showFullScreenDialogue(
+                child: const TermsAndConditonsPage(),
+                context: context,
+              );
+            },
             child: CommonWidgets.termsAnConditions(),
           ),
         ),

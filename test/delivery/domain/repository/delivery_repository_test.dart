@@ -29,7 +29,7 @@ Future<void> main() async {
           duration: "2",
           userId: "",
           location: 3,
-          paystackResponse: paystackResponse,
+          reference: "",
           saveCard: true,
         );
         // assert
@@ -48,7 +48,7 @@ Future<void> main() async {
         // act
         final response = await repo.bookCustomerToCustomer(
           location: 4,
-          paystackResponse: paystackResponse,
+          refrence: "",
           saveCard: true,
         );
         // assert
@@ -68,7 +68,7 @@ Future<void> main() async {
         final response = await repo.bookCustomerToCourier(
             location: 4,
             saveCard: true,
-            paystackResponse: paystackResponse,
+            reference: "",
             city: 'lagos',
             customerForm: customerFormCourier);
         // assert
@@ -91,7 +91,7 @@ Future<void> main() async {
           saveCard: true,
           userId: "",
           location: 3,
-          paystackResponse: paystackResponse,
+          reference: "",
         );
         // assert
         return response.fold(

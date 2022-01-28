@@ -55,7 +55,7 @@ class PayWithMethodUseCase {
     if (makePayment) {
       paymentBloc.add(PaymentEvent.chargeAuthCode(
         authCode: bankCard.authorizationCode,
-        amount: amount,
+        amount: (amount * nairaConversionRate).toInt(),
       ));
     }
   }

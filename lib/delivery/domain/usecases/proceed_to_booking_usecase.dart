@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
+import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 
 class ProceedToBookingUseCase {
@@ -13,13 +14,16 @@ class ProceedToBookingUseCase {
     ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
-    emit(const DeliveryState.loading());
-    if (event.routeInfo is SelfStoragePaymentRoute) {
-      await _bookSelfStorage(event, emit);
-    } else if (event.routeInfo is CustomerToCustomerPaymentRoute) {
-      await _bookCustomerToCustomer(event, emit);
-    } else if (event.routeInfo is CustomerToCourierPaymentRoute) {
-      await _bookCustomerToCourier(event, emit);
+    switch (event.booking) {
+      case Booking.selfStorage:
+        await _bookSelfStorage(event, emit);
+        break;
+      case Booking.customer:
+        await _bookCustomerToCustomer(event, emit);
+        break;
+      default:
+        await _bookCustomerToCourier(event, emit);
+        break;
     }
   }
 

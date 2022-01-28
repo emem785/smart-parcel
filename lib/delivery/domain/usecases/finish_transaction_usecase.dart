@@ -30,7 +30,7 @@ class FinishTransactionUseCase {
     deliveryBloc.add(DeliveryEvent.proceedToBooking(
       saveCard: false,
       context: context,
-      routeInfo: deliveryViewModel.routeInfoPayment,
+      booking: deliveryViewModel.booking,
       reference: reference,
       locationId: deliveryViewModel.parcelCenter.id,
       duration: deliveryViewModel.duration,
@@ -55,7 +55,7 @@ class FinishTransactionUseCase {
     deliveryBloc.add(DeliveryEvent.proceedToBooking(
       saveCard: saveCard ?? false,
       context: context,
-      routeInfo: deliveryViewModel.routeInfoPayment,
+      booking: deliveryViewModel.booking,
       reference: reference,
       locationId: deliveryViewModel.parcelCenter.id,
       duration: deliveryViewModel.duration,

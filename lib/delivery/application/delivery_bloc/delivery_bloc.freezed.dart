@@ -27,7 +27,7 @@ class _$DeliveryEventTearOff {
 
   ProccedToBooking proceedToBooking(
       {required BuildContext context,
-      required PageRouteInfo<dynamic> routeInfo,
+      required Booking booking,
       required String reference,
       required int locationId,
       required bool saveCard,
@@ -35,7 +35,7 @@ class _$DeliveryEventTearOff {
       required CustomerForm? customerForm}) {
     return ProccedToBooking(
       context: context,
-      routeInfo: routeInfo,
+      booking: booking,
       reference: reference,
       locationId: locationId,
       saveCard: saveCard,
@@ -73,7 +73,7 @@ mixin _$DeliveryEvent {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -91,7 +91,7 @@ mixin _$DeliveryEvent {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -109,7 +109,7 @@ mixin _$DeliveryEvent {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -247,7 +247,7 @@ class _$SelectLocation implements SelectLocation {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -268,7 +268,7 @@ class _$SelectLocation implements SelectLocation {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -289,7 +289,7 @@ class _$SelectLocation implements SelectLocation {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -367,7 +367,7 @@ abstract class $ProccedToBookingCopyWith<$Res> {
       _$ProccedToBookingCopyWithImpl<$Res>;
   $Res call(
       {BuildContext context,
-      PageRouteInfo<dynamic> routeInfo,
+      Booking booking,
       String reference,
       int locationId,
       bool saveCard,
@@ -389,7 +389,7 @@ class _$ProccedToBookingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? context = freezed,
-    Object? routeInfo = freezed,
+    Object? booking = freezed,
     Object? reference = freezed,
     Object? locationId = freezed,
     Object? saveCard = freezed,
@@ -401,10 +401,10 @@ class _$ProccedToBookingCopyWithImpl<$Res>
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
-      routeInfo: routeInfo == freezed
-          ? _value.routeInfo
-          : routeInfo // ignore: cast_nullable_to_non_nullable
-              as PageRouteInfo<dynamic>,
+      booking: booking == freezed
+          ? _value.booking
+          : booking // ignore: cast_nullable_to_non_nullable
+              as Booking,
       reference: reference == freezed
           ? _value.reference
           : reference // ignore: cast_nullable_to_non_nullable
@@ -434,7 +434,7 @@ class _$ProccedToBookingCopyWithImpl<$Res>
 class _$ProccedToBooking implements ProccedToBooking {
   const _$ProccedToBooking(
       {required this.context,
-      required this.routeInfo,
+      required this.booking,
       required this.reference,
       required this.locationId,
       required this.saveCard,
@@ -444,7 +444,7 @@ class _$ProccedToBooking implements ProccedToBooking {
   @override
   final BuildContext context;
   @override
-  final PageRouteInfo<dynamic> routeInfo;
+  final Booking booking;
   @override
   final String reference;
   @override
@@ -458,7 +458,7 @@ class _$ProccedToBooking implements ProccedToBooking {
 
   @override
   String toString() {
-    return 'DeliveryEvent.proceedToBooking(context: $context, routeInfo: $routeInfo, reference: $reference, locationId: $locationId, saveCard: $saveCard, duration: $duration, customerForm: $customerForm)';
+    return 'DeliveryEvent.proceedToBooking(context: $context, booking: $booking, reference: $reference, locationId: $locationId, saveCard: $saveCard, duration: $duration, customerForm: $customerForm)';
   }
 
   @override
@@ -467,8 +467,7 @@ class _$ProccedToBooking implements ProccedToBooking {
         (other.runtimeType == runtimeType &&
             other is ProccedToBooking &&
             (identical(other.context, context) || other.context == context) &&
-            (identical(other.routeInfo, routeInfo) ||
-                other.routeInfo == routeInfo) &&
+            (identical(other.booking, booking) || other.booking == booking) &&
             (identical(other.reference, reference) ||
                 other.reference == reference) &&
             (identical(other.locationId, locationId) ||
@@ -482,7 +481,7 @@ class _$ProccedToBooking implements ProccedToBooking {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context, routeInfo, reference,
+  int get hashCode => Object.hash(runtimeType, context, booking, reference,
       locationId, saveCard, duration, customerForm);
 
   @JsonKey(ignore: true)
@@ -498,7 +497,7 @@ class _$ProccedToBooking implements ProccedToBooking {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -509,7 +508,7 @@ class _$ProccedToBooking implements ProccedToBooking {
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
   }) {
-    return proceedToBooking(context, routeInfo, reference, locationId, saveCard,
+    return proceedToBooking(context, booking, reference, locationId, saveCard,
         duration, customerForm);
   }
 
@@ -520,7 +519,7 @@ class _$ProccedToBooking implements ProccedToBooking {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -531,7 +530,7 @@ class _$ProccedToBooking implements ProccedToBooking {
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
   }) {
-    return proceedToBooking?.call(context, routeInfo, reference, locationId,
+    return proceedToBooking?.call(context, booking, reference, locationId,
         saveCard, duration, customerForm);
   }
 
@@ -542,7 +541,7 @@ class _$ProccedToBooking implements ProccedToBooking {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -555,8 +554,8 @@ class _$ProccedToBooking implements ProccedToBooking {
     required TResult orElse(),
   }) {
     if (proceedToBooking != null) {
-      return proceedToBooking(context, routeInfo, reference, locationId,
-          saveCard, duration, customerForm);
+      return proceedToBooking(context, booking, reference, locationId, saveCard,
+          duration, customerForm);
     }
     return orElse();
   }
@@ -605,7 +604,7 @@ class _$ProccedToBooking implements ProccedToBooking {
 abstract class ProccedToBooking implements DeliveryEvent {
   const factory ProccedToBooking(
       {required BuildContext context,
-      required PageRouteInfo<dynamic> routeInfo,
+      required Booking booking,
       required String reference,
       required int locationId,
       required bool saveCard,
@@ -613,7 +612,7 @@ abstract class ProccedToBooking implements DeliveryEvent {
       required CustomerForm? customerForm}) = _$ProccedToBooking;
 
   BuildContext get context;
-  PageRouteInfo<dynamic> get routeInfo;
+  Booking get booking;
   String get reference;
   int get locationId;
   bool get saveCard;
@@ -690,7 +689,7 @@ class _$Search implements Search {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -711,7 +710,7 @@ class _$Search implements Search {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -732,7 +731,7 @@ class _$Search implements Search {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -845,7 +844,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -866,7 +865,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -887,7 +886,7 @@ class _$GetParcelCenters implements GetParcelCenters {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -1016,7 +1015,7 @@ class _$OpenUrl implements OpenUrl {
         selectLocation,
     required TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -1037,7 +1036,7 @@ class _$OpenUrl implements OpenUrl {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,
@@ -1058,7 +1057,7 @@ class _$OpenUrl implements OpenUrl {
         selectLocation,
     TResult Function(
             BuildContext context,
-            PageRouteInfo<dynamic> routeInfo,
+            Booking booking,
             String reference,
             int locationId,
             bool saveCard,

@@ -57,7 +57,8 @@ void main() {
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const PaymentState.loading(),
-        const PaymentState.cardCharged("Transaction Completed Successfully"),
+        const PaymentState.cardCharged(
+            "Transaction Completed Successfully", ""),
       ],
     );
   });
