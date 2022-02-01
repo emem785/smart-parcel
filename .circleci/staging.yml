@@ -82,7 +82,6 @@ jobs:
           name: run fastlane 
           command: |
             cd android
-            bundle exec fastlane add_plugin firebase_app_distribution
             bundle exec fastlane staging
 
 workflows:
