@@ -44,62 +44,64 @@ class HomeBody extends HookWidget {
         ProfileRouter(),
         SettingsRouter(),
       ],
-      bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: SvgPicture.asset(
-                "assets/images/home.svg",
-                color: getColorForIndex(0, tabsRouter.activeIndex),
-                height: 18,
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: SvgPicture.asset(
+                  "assets/images/home.svg",
+                  color: getColorForIndex(0, tabsRouter.activeIndex),
+                  height: 18,
+                ),
               ),
+              label: 'Home',
             ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: SvgPicture.asset(
-                "assets/images/parcel.svg",
-                color: getColorForIndex(1, tabsRouter.activeIndex),
-                height: 18,
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: SvgPicture.asset(
+                  "assets/images/parcel.svg",
+                  color: getColorForIndex(1, tabsRouter.activeIndex),
+                  height: 18,
+                ),
               ),
+              label: 'Parcels',
             ),
-            label: 'Parcels',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: SvgPicture.asset(
-                "assets/images/profile.svg",
-                color: getColorForIndex(2, tabsRouter.activeIndex),
-                height: 18,
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: SvgPicture.asset(
+                  "assets/images/profile.svg",
+                  color: getColorForIndex(2, tabsRouter.activeIndex),
+                  height: 18,
+                ),
               ),
+              label: 'Profile',
             ),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: SvgPicture.asset(
-                "assets/images/settings.svg",
-                color: getColorForIndex(3, tabsRouter.activeIndex),
-                height: 18,
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: SvgPicture.asset(
+                  "assets/images/settings.svg",
+                  color: getColorForIndex(3, tabsRouter.activeIndex),
+                  height: 18,
+                ),
               ),
+              label: 'Settings',
             ),
-            label: 'Settings',
-          ),
-        ],
-        unselectedFontSize: 10,
-        selectedFontSize: 10,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: tabsRouter.activeIndex,
-        unselectedItemColor: GlobalTheme.lightGrey,
-        onTap: tabsRouter.setActiveIndexReset,
-        showUnselectedLabels: true,
-        elevation: 0.0,
-      ),
+          ],
+          unselectedFontSize: 10,
+          selectedFontSize: 10,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: tabsRouter.activeIndex,
+          unselectedItemColor: GlobalTheme.lightGrey,
+          onTap: tabsRouter.setActiveIndexReset,
+          showUnselectedLabels: true,
+          elevation: 0.0,
+        );
+      },
     );
   }
 
