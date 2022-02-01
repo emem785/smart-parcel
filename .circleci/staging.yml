@@ -2,6 +2,7 @@ version: '2.1'
 orbs:
   android: circleci/android@1.0.3
   flutter: circleci/flutter@1.0
+
 jobs:
   firebase_test:
     executor:
@@ -37,7 +38,7 @@ jobs:
             bundle exec fastlane staging
 
 workflows:
-  firebase:
+  build:
     jobs:
       - firebase_test:
           filters:

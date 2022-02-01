@@ -39,7 +39,7 @@ jobs:
 
 workflows:
 
-  deploy:
+  build:
     jobs:
       - distribute:
           filters:
