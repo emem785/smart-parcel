@@ -36,6 +36,7 @@ class SignInUsecase {
     BuildContext context,
   ) async {
     if (r.user != null && r.authToken != null) {
+      //TODO change when sign up
       await signInRepository.storeToken(r.authToken!);
       await signInRepository.storeUser(r.user!);
     }

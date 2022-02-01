@@ -50,7 +50,7 @@ class SelfStoragePayment extends HookWidget {
               Text("Success!", style: GlobalTheme.textTheme(context).headline6),
               LayoutConstants.sizeBox(context, 8),
               const Text(
-                "You may proceed to the SmartParcel Locker",
+                "You may proceed to the Smart Parcel Locker",
                 textAlign: TextAlign.center,
               ),
               Text.rich(

@@ -45,7 +45,7 @@ firebase_app_distribution(
     groups: "getmobile",
     release_notes: "Lots of amazing new features to test out!"
     service_credentials_file: "/home/circleci/project/android/google_play_json_key.json",
-    android_artifact_path: "/home/circleci/project/build/app/outputs/apk/release/app-release.aab",
+    android_artifact_path: "/home/circleci/project/build/app/outputs/apk/release/app-release.apk",
     android_artifact_type: "apk",
 )
 end

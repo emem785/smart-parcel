@@ -13,6 +13,7 @@ import 'package:smart_parcel/auth/presentation/sign_up_page/sign_up_page.dart';
 import 'package:smart_parcel/auth/presentation/welcome_page/welcome_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/home_page.dart';
 import 'package:smart_parcel/common/presentation/widgets/splash_page.dart';
+import 'package:smart_parcel/delivery/presentation/choose_size_page.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_courier_pages/customer_to_courier.dart';
 import 'package:smart_parcel/delivery/presentation/customer_to_customer_pages/customer_to_customer.dart';
 import 'package:smart_parcel/delivery/presentation/dashboard/dashboard.dart';
@@ -34,6 +35,7 @@ import 'package:smart_parcel/payment/presentation/customer_to_customer_page/cust
 import 'package:smart_parcel/payment/presentation/payment_page/payment_page.dart';
 import 'package:smart_parcel/payment/presentation/receipt_page/receipt_page.dart';
 import 'package:smart_parcel/payment/presentation/self_storage_page/self_storage_payment_page.dart';
+import 'package:smart_parcel/payment/presentation/stored_cards_page.dart';
 
 const homePageChildren = [
   AutoRoute(
@@ -53,6 +55,7 @@ const homePageChildren = [
       AutoRoute(path: 'selfStoragePayment', page: SelfStoragePaymentPage),
       AutoRoute(path: 'paymentPage', page: PaymentPage),
       AutoRoute(path: 'chooseCardPage', page: ChooseCardPage),
+      AutoRoute(path: 'chooseSizePage', page: ChooseSizePage),
       AutoRoute(path: 'customerToCourier', page: CustomerToCourierPage),
       AutoRoute(
         path: 'customerToCustomerPayment',
@@ -95,6 +98,7 @@ const homePageChildren = [
     children: [
       AutoRoute(path: '', page: SettingsPage),
       AutoRoute(path: 'resetPassword', page: ResetPasswordPage),
+      AutoRoute(path: 'storedCards', page: StoredCardsPage),
     ],
   ),
 ];

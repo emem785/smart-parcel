@@ -35,8 +35,9 @@ class SubmitOtpUseCase {
   }
 
   Future<void> storeToken(LoginResponse r, Emitter<SignUpState> emit) async {
-    if (r.authToken != null) {
+    if (r.authToken != null && r.user != null) {
       await signUpRepository.storeToken(r.authToken!);
+      await signUpRepository.storeUser(r.user!);
     }
     emit(SignUpState.otpSubmitted(r));
   }

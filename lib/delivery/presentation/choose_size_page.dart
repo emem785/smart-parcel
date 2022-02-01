@@ -1,29 +1,25 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
-import 'package:smart_parcel/common/theme.dart';
-import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/inject_conf.dart';
 import 'package:smart_parcel/payment/application/payment_bloc/payment_bloc.dart';
 import 'package:smart_parcel/payment/domain/models/bank_card.dart';
-import 'package:smart_parcel/payment/presentation/card_tile.dart';
+import 'package:smart_parcel/payment/presentation/size_tile.dart';
 
-class ChooseCardPage extends StatelessWidget {
-  const ChooseCardPage({Key? key}) : super(key: key);
+class ChooseSizePage extends StatelessWidget {
+  const ChooseSizePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<PaymentBloc>(),
-      child: const ChooseCardBody(),
+      child: const ChooseSizeBody(),
     );
   }
 }
 
-class ChooseCardBody extends HookWidget {
-  const ChooseCardBody({Key? key}) : super(key: key);
+class ChooseSizeBody extends HookWidget {
+  const ChooseSizeBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +51,9 @@ class ChooseCardBody extends HookWidget {
               );
             },
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              "Saved Cards",
-              style: GlobalTheme.textTheme(context).headline6,
-            ),
+          const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text("Select preferred SmartParcel Box size"),
           ),
           Expanded(
             child: BlocConsumer<PaymentBloc, PaymentState>(
@@ -68,7 +61,7 @@ class ChooseCardBody extends HookWidget {
                 return state.maybeWhen(
                   orElse: () => const SizedBox(),
                   cardsRetreived: (cards) =>
-                      _CardList(visibility: visibility, cards: cards),
+                      _SizesList(visibility: visibility, cards: cards),
                 );
               },
               listener: (context, state) {
@@ -87,23 +80,16 @@ class ChooseCardBody extends HookWidget {
               },
             ),
           ),
-          LayoutConstants.padButton(ElevatedButton(
-            onPressed: () {
-              context.router.push(PaymentRoute(bankCard: BankCard.empty()));
-            },
-            child: const Text("Pay with new card"),
-          )),
-          LayoutConstants.sizeBox(context, 32),
         ],
       ),
     );
   }
 }
 
-class _CardList extends StatelessWidget {
+class _SizesList extends StatelessWidget {
   final List<BankCard> cards;
   final ValueNotifier<double> visibility;
-  const _CardList({
+  const _SizesList({
     Key? key,
     required this.visibility,
     required this.cards,
@@ -119,17 +105,15 @@ class _CardList extends StatelessWidget {
               itemCount: cards.length,
               itemBuilder: (context, index) {
                 final cardItem = cards[index];
-                return CardItem(
+                return SizeItem(
                   card: cardItem,
-                  onPressed: () => context.router.push(
-                    PaymentRoute(bankCard: cardItem),
-                  ),
+                  onPressed: () {},
                 );
               },
             )
           : const Center(
               child: Text(
-                "You currently have no cards stored",
+                "There are currently no sizes configured",
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
               ),
             ),

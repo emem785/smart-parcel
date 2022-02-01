@@ -19,7 +19,7 @@ Widget buildQuickActions({required BuildContext context}) {
         icon: "self_package",
         title: "Self Storage",
         subtitle:
-            "Keep an item at SmartParcel locker for\nyou to pickup at a later time.",
+            "Keep an item at Smart Parcel locker for\nyou to pickup at a later time.",
         onTap: () {
           deliveryVm.setBooking(Booking.selfStorage);
           context.router.push(const SelectLocationDistrictRoute());
@@ -30,7 +30,7 @@ Widget buildQuickActions({required BuildContext context}) {
         context: context,
         icon: "send_package",
         title: "Send Parcel",
-        subtitle: "Post an item using a courier service\nvia SmartParcel",
+        subtitle: "Post an item using a courier service\nvia Smart Parcel",
         onTap: () {
           deliveryVm.setBooking(Booking.courier);
           context.router.push(const SelectLocationDistrictRoute());
@@ -42,7 +42,7 @@ Widget buildQuickActions({required BuildContext context}) {
         icon: "customer_package",
         title: "Customer to Customer",
         subtitle:
-            "Drop off an item in SmartParcel locker\nfor someone else to pickup",
+            "Drop off an item in Smart Parcel locker\nfor someone else to pickup",
         onTap: () {
           deliveryVm.setBooking(Booking.customer);
           context.router.push(const SelectLocationDistrictRoute());

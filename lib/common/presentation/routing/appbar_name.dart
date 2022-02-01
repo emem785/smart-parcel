@@ -6,9 +6,9 @@ class GetAppBarName {
       case "ChooseDurationRoute":
         return "Choose Duration";
       case "SelectLocationRoute":
-        return "SmartParcel Centers";
+        return "Smart Parcel Centers";
       case "SelectLocationDistrictRoute":
-        return "SmartParcel Centers";
+        return "Smart Parcel Centers";
       case "CustomerToCourierRoute":
         return "Send Parcel";
       case "SelfStoragePaymentRoute":
@@ -17,6 +17,8 @@ class GetAppBarName {
         return "Customer - Customer";
       case "CustomerToCourierPaymentRoute":
         return "Send Parcel";
+      case "ChooseSizeRoute":
+        return "Box Size Selection";
       case "ChooseCardRoute":
         return "Payment";
       case "ReceiptRoute":
@@ -26,6 +28,8 @@ class GetAppBarName {
         return "Settings";
       case "ResetPasswordRoute":
         return "Change Password";
+      case "StoredCardsRoute":
+        return "Payments";
 //Profile
       case "ProfileRoute":
         return "Profile";

@@ -40,7 +40,6 @@ class SignUpUsecase {
     RegisterResponse response,
     Emitter<SignUpState> emit,
   ) async {
-    await signUpRepository.storeUser(response.user);
     emit(SignUpState.registered(response.user));
   }
 

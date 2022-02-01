@@ -27,6 +27,7 @@ class SettingsBody extends StatelessWidget {
   static const logout = Key("logout_tile");
   static const delete = Key("delete_tile");
   static const faq = Key("faq_tile");
+  static const payment = Key("payment_tile");
   static const password = Key("password_tile");
   static const support = Key("support_tile");
   const SettingsBody({Key? key}) : super(key: key);
@@ -57,6 +58,13 @@ class SettingsBody extends StatelessWidget {
         },
         child: Column(
           children: [
+            buildSettingTile(
+              key: payment,
+              context: context,
+              icon: "payment",
+              title: "Payments",
+              onTap: () => context.router.push(const StoredCardsRoute()),
+            ),
             buildSettingTile(
               key: faq,
               context: context,
