@@ -41,7 +41,7 @@ lane :staging do
 Dir.chdir ".." do
   sh("flutter", "packages", "get")
   sh("flutter", "clean")
-  sh("flutter", "build", "appbundle")
+  sh("flutter", "build", "apk")
 end
 
 firebase_app_distribution(
