@@ -37,12 +37,52 @@ jobs:
             cd android
             bundle exec fastlane internal
 
+
+  firebase_test:
+    executor:
+      name: android/android-machine
+    steps:
+      - checkout
+
+      - flutter/install_sdk_and_pub:
+          flutter_version: 2.8.1
+      - flutter/install_android_gradle
+      - flutter/install_android_gem
+
+      - run:
+          name: Create .env file
+          command: |
+            touch .env
+            echo "PAYSTACK_PK=$PAYSTACK_PK" >> .env
+            echo "PAYSTACK_SK=$PAYSTACK_SK" >> .env
+            echo "GOOGLE_API=$GOOGLE_API" >> .env
+
+      - run:
+          name: Create keystore
+          command: |
+            cd android
+            echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/key.jks
+            echo "$PLAY_STORE_UPLOAD_KEY_INFO" | base64 --decode > key.properties
+            
+
+      - run:
+          name: run fastlane 
+          command: |
+            cd android
+            bundle exec fastlane staging
+
 workflows:
 
   build:
     jobs:
+      - firebase_test:
+          filters:
+            branches:
+              only:
+                - dev
+
       - distribute:
           filters:
             branches:
               only:
-                - main
+                - staging
