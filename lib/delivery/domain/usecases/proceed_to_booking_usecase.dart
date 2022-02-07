@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
@@ -14,7 +13,7 @@ class ProceedToBookingUseCase {
     ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
-    switch (event.booking) {
+    switch (event.bookingInformation.booking) {
       case Booking.selfStorage:
         await _bookSelfStorage(event, emit);
         break;
@@ -31,14 +30,8 @@ class ProceedToBookingUseCase {
     ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
-    final userId = _getUserId();
-    final response = await deliveryRepository.bookSelfStorage(
-      duration: event.duration ?? "0",
-      userId: userId,
-      location: event.locationId,
-      reference: event.reference,
-      saveCard: event.saveCard,
-    );
+    final response =
+        await deliveryRepository.bookSelfStorage(event.bookingInformation);
 
     return response.fold(
       (l) => emit(DeliveryState.error(l)),
@@ -46,24 +39,12 @@ class ProceedToBookingUseCase {
     );
   }
 
-  String _getUserId() {
-    final response = deliveryRepository.getUserFromStorage();
-
-    return response.fold(
-      (l) => "",
-      (r) => r.id!,
-    );
-  }
-
   _bookCustomerToCustomer(
     ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
-    final response = await deliveryRepository.bookCustomerToCustomer(
-      location: event.locationId,
-      refrence: event.reference,
-      saveCard: event.saveCard,
-    );
+    final response = await deliveryRepository
+        .bookCustomerToCustomer(event.bookingInformation);
 
     return response.fold(
       (l) => emit(DeliveryState.error(l)),
@@ -76,11 +57,7 @@ class ProceedToBookingUseCase {
     Emitter<DeliveryState> emit,
   ) async {
     final response = await deliveryRepository.bookCustomerToCourier(
-      customerForm: event.customerForm!,
-      city: event.customerForm!.city!,
-      location: event.locationId,
-      reference: event.reference,
-      saveCard: event.saveCard,
+      event.bookingInformation,
     );
 
     return response.fold(

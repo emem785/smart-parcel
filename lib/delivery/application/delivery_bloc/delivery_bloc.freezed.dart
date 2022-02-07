@@ -27,20 +27,10 @@ class _$DeliveryEventTearOff {
 
   ProccedToBooking proceedToBooking(
       {required BuildContext context,
-      required Booking booking,
-      required String reference,
-      required int locationId,
-      required bool saveCard,
-      required String? duration,
-      required CustomerForm? customerForm}) {
+      required BookingInformation bookingInformation}) {
     return ProccedToBooking(
       context: context,
-      booking: booking,
-      reference: reference,
-      locationId: locationId,
-      saveCard: saveCard,
-      duration: duration,
-      customerForm: customerForm,
+      bookingInformation: bookingInformation,
     );
   }
 
@@ -72,13 +62,7 @@ mixin _$DeliveryEvent {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
@@ -90,13 +74,7 @@ mixin _$DeliveryEvent {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -108,13 +86,7 @@ mixin _$DeliveryEvent {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -246,13 +218,7 @@ class _$SelectLocation implements SelectLocation {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
@@ -267,13 +233,7 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -288,13 +248,7 @@ class _$SelectLocation implements SelectLocation {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -365,14 +319,7 @@ abstract class $ProccedToBookingCopyWith<$Res> {
   factory $ProccedToBookingCopyWith(
           ProccedToBooking value, $Res Function(ProccedToBooking) then) =
       _$ProccedToBookingCopyWithImpl<$Res>;
-  $Res call(
-      {BuildContext context,
-      Booking booking,
-      String reference,
-      int locationId,
-      bool saveCard,
-      String? duration,
-      CustomerForm? customerForm});
+  $Res call({BuildContext context, BookingInformation bookingInformation});
 }
 
 /// @nodoc
@@ -389,42 +336,17 @@ class _$ProccedToBookingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? context = freezed,
-    Object? booking = freezed,
-    Object? reference = freezed,
-    Object? locationId = freezed,
-    Object? saveCard = freezed,
-    Object? duration = freezed,
-    Object? customerForm = freezed,
+    Object? bookingInformation = freezed,
   }) {
     return _then(ProccedToBooking(
       context: context == freezed
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
-      booking: booking == freezed
-          ? _value.booking
-          : booking // ignore: cast_nullable_to_non_nullable
-              as Booking,
-      reference: reference == freezed
-          ? _value.reference
-          : reference // ignore: cast_nullable_to_non_nullable
-              as String,
-      locationId: locationId == freezed
-          ? _value.locationId
-          : locationId // ignore: cast_nullable_to_non_nullable
-              as int,
-      saveCard: saveCard == freezed
-          ? _value.saveCard
-          : saveCard // ignore: cast_nullable_to_non_nullable
-              as bool,
-      duration: duration == freezed
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customerForm: customerForm == freezed
-          ? _value.customerForm
-          : customerForm // ignore: cast_nullable_to_non_nullable
-              as CustomerForm?,
+      bookingInformation: bookingInformation == freezed
+          ? _value.bookingInformation
+          : bookingInformation // ignore: cast_nullable_to_non_nullable
+              as BookingInformation,
     ));
   }
 }
@@ -433,32 +355,16 @@ class _$ProccedToBookingCopyWithImpl<$Res>
 
 class _$ProccedToBooking implements ProccedToBooking {
   const _$ProccedToBooking(
-      {required this.context,
-      required this.booking,
-      required this.reference,
-      required this.locationId,
-      required this.saveCard,
-      required this.duration,
-      required this.customerForm});
+      {required this.context, required this.bookingInformation});
 
   @override
   final BuildContext context;
   @override
-  final Booking booking;
-  @override
-  final String reference;
-  @override
-  final int locationId;
-  @override
-  final bool saveCard;
-  @override
-  final String? duration;
-  @override
-  final CustomerForm? customerForm;
+  final BookingInformation bookingInformation;
 
   @override
   String toString() {
-    return 'DeliveryEvent.proceedToBooking(context: $context, booking: $booking, reference: $reference, locationId: $locationId, saveCard: $saveCard, duration: $duration, customerForm: $customerForm)';
+    return 'DeliveryEvent.proceedToBooking(context: $context, bookingInformation: $bookingInformation)';
   }
 
   @override
@@ -467,22 +373,12 @@ class _$ProccedToBooking implements ProccedToBooking {
         (other.runtimeType == runtimeType &&
             other is ProccedToBooking &&
             (identical(other.context, context) || other.context == context) &&
-            (identical(other.booking, booking) || other.booking == booking) &&
-            (identical(other.reference, reference) ||
-                other.reference == reference) &&
-            (identical(other.locationId, locationId) ||
-                other.locationId == locationId) &&
-            (identical(other.saveCard, saveCard) ||
-                other.saveCard == saveCard) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration) &&
-            (identical(other.customerForm, customerForm) ||
-                other.customerForm == customerForm));
+            (identical(other.bookingInformation, bookingInformation) ||
+                other.bookingInformation == bookingInformation));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, context, booking, reference,
-      locationId, saveCard, duration, customerForm);
+  int get hashCode => Object.hash(runtimeType, context, bookingInformation);
 
   @JsonKey(ignore: true)
   @override
@@ -496,20 +392,13 @@ class _$ProccedToBooking implements ProccedToBooking {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
     required TResult Function(String url) openUrl,
   }) {
-    return proceedToBooking(context, booking, reference, locationId, saveCard,
-        duration, customerForm);
+    return proceedToBooking(context, bookingInformation);
   }
 
   @override
@@ -518,20 +407,13 @@ class _$ProccedToBooking implements ProccedToBooking {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
     TResult Function(String url)? openUrl,
   }) {
-    return proceedToBooking?.call(context, booking, reference, locationId,
-        saveCard, duration, customerForm);
+    return proceedToBooking?.call(context, bookingInformation);
   }
 
   @override
@@ -540,13 +422,7 @@ class _$ProccedToBooking implements ProccedToBooking {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -554,8 +430,7 @@ class _$ProccedToBooking implements ProccedToBooking {
     required TResult orElse(),
   }) {
     if (proceedToBooking != null) {
-      return proceedToBooking(context, booking, reference, locationId, saveCard,
-          duration, customerForm);
+      return proceedToBooking(context, bookingInformation);
     }
     return orElse();
   }
@@ -604,20 +479,10 @@ class _$ProccedToBooking implements ProccedToBooking {
 abstract class ProccedToBooking implements DeliveryEvent {
   const factory ProccedToBooking(
       {required BuildContext context,
-      required Booking booking,
-      required String reference,
-      required int locationId,
-      required bool saveCard,
-      required String? duration,
-      required CustomerForm? customerForm}) = _$ProccedToBooking;
+      required BookingInformation bookingInformation}) = _$ProccedToBooking;
 
   BuildContext get context;
-  Booking get booking;
-  String get reference;
-  int get locationId;
-  bool get saveCard;
-  String? get duration;
-  CustomerForm? get customerForm;
+  BookingInformation get bookingInformation;
   @JsonKey(ignore: true)
   $ProccedToBookingCopyWith<ProccedToBooking> get copyWith =>
       throw _privateConstructorUsedError;
@@ -688,13 +553,7 @@ class _$Search implements Search {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
@@ -709,13 +568,7 @@ class _$Search implements Search {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -730,13 +583,7 @@ class _$Search implements Search {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -843,13 +690,7 @@ class _$GetParcelCenters implements GetParcelCenters {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
@@ -864,13 +705,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -885,13 +720,7 @@ class _$GetParcelCenters implements GetParcelCenters {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -1014,13 +843,7 @@ class _$OpenUrl implements OpenUrl {
             BuildContext context, PageRouteInfo<dynamic> routeInfo)
         selectLocation,
     required TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)
+            BuildContext context, BookingInformation bookingInformation)
         proceedToBooking,
     required TResult Function(String query) search,
     required TResult Function() getParcelCenters,
@@ -1035,13 +858,7 @@ class _$OpenUrl implements OpenUrl {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -1056,13 +873,7 @@ class _$OpenUrl implements OpenUrl {
     TResult Function(BuildContext context, PageRouteInfo<dynamic> routeInfo)?
         selectLocation,
     TResult Function(
-            BuildContext context,
-            Booking booking,
-            String reference,
-            int locationId,
-            bool saveCard,
-            String? duration,
-            CustomerForm? customerForm)?
+            BuildContext context, BookingInformation bookingInformation)?
         proceedToBooking,
     TResult Function(String query)? search,
     TResult Function()? getParcelCenters,
@@ -1154,9 +965,9 @@ class _$DeliveryStateTearOff {
     );
   }
 
-  BookingFinished bookingFinished(PaymentData paymentData) {
+  BookingFinished bookingFinished(BookingData bookingData) {
     return BookingFinished(
-      paymentData,
+      bookingData,
     );
   }
 
@@ -1180,7 +991,7 @@ mixin _$DeliveryState {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) =>
       throw _privateConstructorUsedError;
@@ -1192,7 +1003,7 @@ mixin _$DeliveryState {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) =>
       throw _privateConstructorUsedError;
@@ -1204,7 +1015,7 @@ mixin _$DeliveryState {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) =>
@@ -1309,7 +1120,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return initial();
@@ -1324,7 +1135,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return initial?.call();
@@ -1339,7 +1150,7 @@ class _$DeliveryInitial implements DeliveryInitial {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1447,7 +1258,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return loading();
@@ -1462,7 +1273,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return loading?.call();
@@ -1477,7 +1288,7 @@ class _$DeliveryLoading implements DeliveryLoading {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1608,7 +1419,7 @@ class _$DeliveryError implements DeliveryError {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return error(failure);
@@ -1623,7 +1434,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return error?.call(failure);
@@ -1638,7 +1449,7 @@ class _$DeliveryError implements DeliveryError {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1775,7 +1586,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return locationRetrieved(parcelCenter);
@@ -1790,7 +1601,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return locationRetrieved?.call(parcelCenter);
@@ -1805,7 +1616,7 @@ class _$LocationRetrieved implements LocationRetrieved {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -1943,7 +1754,7 @@ class _$PlaceRetrieved implements PlaceRetrieved {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return placeRetrieved(locationResultResponse);
@@ -1958,7 +1769,7 @@ class _$PlaceRetrieved implements PlaceRetrieved {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return placeRetrieved?.call(locationResultResponse);
@@ -1973,7 +1784,7 @@ class _$PlaceRetrieved implements PlaceRetrieved {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
@@ -2045,7 +1856,7 @@ abstract class $BookingFinishedCopyWith<$Res> {
   factory $BookingFinishedCopyWith(
           BookingFinished value, $Res Function(BookingFinished) then) =
       _$BookingFinishedCopyWithImpl<$Res>;
-  $Res call({PaymentData paymentData});
+  $Res call({BookingData bookingData});
 }
 
 /// @nodoc
@@ -2061,13 +1872,13 @@ class _$BookingFinishedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? paymentData = freezed,
+    Object? bookingData = freezed,
   }) {
     return _then(BookingFinished(
-      paymentData == freezed
-          ? _value.paymentData
-          : paymentData // ignore: cast_nullable_to_non_nullable
-              as PaymentData,
+      bookingData == freezed
+          ? _value.bookingData
+          : bookingData // ignore: cast_nullable_to_non_nullable
+              as BookingData,
     ));
   }
 }
@@ -2075,14 +1886,14 @@ class _$BookingFinishedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BookingFinished implements BookingFinished {
-  const _$BookingFinished(this.paymentData);
+  const _$BookingFinished(this.bookingData);
 
   @override
-  final PaymentData paymentData;
+  final BookingData bookingData;
 
   @override
   String toString() {
-    return 'DeliveryState.bookingFinished(paymentData: $paymentData)';
+    return 'DeliveryState.bookingFinished(bookingData: $bookingData)';
   }
 
   @override
@@ -2090,12 +1901,12 @@ class _$BookingFinished implements BookingFinished {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BookingFinished &&
-            (identical(other.paymentData, paymentData) ||
-                other.paymentData == paymentData));
+            (identical(other.bookingData, bookingData) ||
+                other.bookingData == bookingData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, paymentData);
+  int get hashCode => Object.hash(runtimeType, bookingData);
 
   @JsonKey(ignore: true)
   @override
@@ -2111,10 +1922,10 @@ class _$BookingFinished implements BookingFinished {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
-    return bookingFinished(paymentData);
+    return bookingFinished(bookingData);
   }
 
   @override
@@ -2126,10 +1937,10 @@ class _$BookingFinished implements BookingFinished {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
-    return bookingFinished?.call(paymentData);
+    return bookingFinished?.call(bookingData);
   }
 
   @override
@@ -2141,12 +1952,12 @@ class _$BookingFinished implements BookingFinished {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {
     if (bookingFinished != null) {
-      return bookingFinished(paymentData);
+      return bookingFinished(bookingData);
     }
     return orElse();
   }
@@ -2199,9 +2010,9 @@ class _$BookingFinished implements BookingFinished {
 }
 
 abstract class BookingFinished implements DeliveryState {
-  const factory BookingFinished(PaymentData paymentData) = _$BookingFinished;
+  const factory BookingFinished(BookingData bookingData) = _$BookingFinished;
 
-  PaymentData get paymentData;
+  BookingData get bookingData;
   @JsonKey(ignore: true)
   $BookingFinishedCopyWith<BookingFinished> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2278,7 +2089,7 @@ class _$CentersRetreived implements CentersRetreived {
     required TResult Function(ParcelCenter parcelCenter) locationRetrieved,
     required TResult Function(LocationResultResponse locationResultResponse)
         placeRetrieved,
-    required TResult Function(PaymentData paymentData) bookingFinished,
+    required TResult Function(BookingData bookingData) bookingFinished,
     required TResult Function(List<CenterDistrict> districts) centersRetreived,
   }) {
     return centersRetreived(districts);
@@ -2293,7 +2104,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
   }) {
     return centersRetreived?.call(districts);
@@ -2308,7 +2119,7 @@ class _$CentersRetreived implements CentersRetreived {
     TResult Function(ParcelCenter parcelCenter)? locationRetrieved,
     TResult Function(LocationResultResponse locationResultResponse)?
         placeRetrieved,
-    TResult Function(PaymentData paymentData)? bookingFinished,
+    TResult Function(BookingData bookingData)? bookingFinished,
     TResult Function(List<CenterDistrict> districts)? centersRetreived,
     required TResult orElse(),
   }) {

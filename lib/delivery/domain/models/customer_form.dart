@@ -62,7 +62,7 @@ class CustomerForm {
       'phone': validatedPhoneNumber,
       'address': address,
       'description': description,
-      'city': city,
+      'city': city ?? "Lagos",
     };
   }
 

@@ -2,72 +2,99 @@ import 'dart:convert';
 
 class ParcelCenter {
   final int id;
-  final int noOfCompartments;
-  final int availableSpaces;
   final String location;
+  final String centerName;
   final String address;
-  final bool is_active;
-  final String created_at;
+  final int availableSmallSpace;
+  final int availableMediumSpace;
+  final int availableLargeSpace;
+  final int availableXlargeSpace;
+  final bool isActive;
+  final String createdAt;
   const ParcelCenter({
     required this.id,
-    required this.noOfCompartments,
-    required this.availableSpaces,
     required this.location,
+    required this.centerName,
     required this.address,
-    required this.is_active,
-    required this.created_at,
+    required this.availableSmallSpace,
+    required this.availableMediumSpace,
+    required this.availableLargeSpace,
+    required this.availableXlargeSpace,
+    required this.isActive,
+    required this.createdAt,
   });
+
+  int get availableSpaces =>
+      availableLargeSpace +
+      availableXlargeSpace +
+      availableMediumSpace +
+      availableSmallSpace;
 
   ParcelCenter.empty()
       : id = 0,
-        noOfCompartments = 0,
-        availableSpaces = 0,
         location = '',
+        centerName = '',
         address = '',
-        is_active = false,
-        created_at = '';
+        availableSmallSpace = 0,
+        availableMediumSpace = 0,
+        availableLargeSpace = 0,
+        availableXlargeSpace = 0,
+        isActive = false,
+        createdAt = '';
 
   ParcelCenter copyWith({
     int? id,
-    int? noOfCompartments,
-    int? availableSpaces,
     String? location,
+    String? centerName,
     String? address,
-    bool? is_active,
-    String? created_at,
+    int? availableSmallSpace,
+    int? availableMediumSpace,
+    int? availableLargeSpace,
+    int? availableXlargeSpace,
+    bool? isActive,
+    String? createdAt,
   }) {
     return ParcelCenter(
       id: id ?? this.id,
-      noOfCompartments: noOfCompartments ?? this.noOfCompartments,
-      availableSpaces: availableSpaces ?? this.availableSpaces,
       location: location ?? this.location,
+      centerName: centerName ?? this.centerName,
       address: address ?? this.address,
-      is_active: is_active ?? this.is_active,
-      created_at: created_at ?? this.created_at,
+      availableSmallSpace: availableSmallSpace ?? this.availableSmallSpace,
+      availableMediumSpace: availableMediumSpace ?? this.availableMediumSpace,
+      availableLargeSpace: availableLargeSpace ?? this.availableLargeSpace,
+      availableXlargeSpace: availableXlargeSpace ?? this.availableXlargeSpace,
+      isActive: isActive ?? this.isActive,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'noOfCompartments': noOfCompartments,
-      'availableSpaces': availableSpaces,
       'location': location,
+      'center_name': centerName,
       'address': address,
-      'is_active': is_active,
-      'created_at': created_at,
+      'available_small_space': availableSmallSpace,
+      'available_medium_space': availableMediumSpace,
+      'available_large_space': availableLargeSpace,
+      'available_xlarge_space': availableXlargeSpace,
+      'is_active': isActive,
+      'created_at': createdAt,
     };
   }
 
   factory ParcelCenter.fromMap(Map<String, dynamic> map) {
     return ParcelCenter(
-      id: map['id']?.toInt(),
-      noOfCompartments: map['no_of_compartment']?.toInt(),
-      availableSpaces: map['available_space']?.toInt(),
-      location: map['location'],
-      address: map['address'],
-      is_active: map['is_active'],
-      created_at: map['created_at'],
+      id: map['id']?.toInt() ?? 0,
+      location: map['location'] ?? '',
+      centerName: map['center_name'] ?? '',
+      address: map['address'] ?? '',
+      availableSmallSpace: map['available_small_space']?.toInt() ?? 0,
+      availableMediumSpace: map['available_medium_space']?.toInt() ?? 0,
+      availableLargeSpace: map['available_large_space']?.toInt() ?? 0,
+      availableXlargeSpace: map['available_xlarge_space']?.toInt() ?? 0,
+      isActive: map['is_active'] ?? false,
+      createdAt: map['created_at'] ?? '',
     );
   }
 
@@ -78,7 +105,7 @@ class ParcelCenter {
 
   @override
   String toString() {
-    return "ParcelCenter(id: $id, noOfCompartments: $noOfCompartments, availableSpaces: $availableSpaces, location: '$location', address: '$address', is_active: $is_active, created_at: '$created_at')";
+    return "ParcelCenter(id: $id,  location: '$location', centerName: '$centerName', address: '$address',  availableSmallSpace: $availableSmallSpace, availableMediumSpace: $availableMediumSpace, availableLargeSpace: $availableLargeSpace, availableXlargeSpace: $availableXlargeSpace, isActive: $isActive, createdAt: '$createdAt')";
   }
 
   @override
@@ -87,22 +114,28 @@ class ParcelCenter {
 
     return other is ParcelCenter &&
         other.id == id &&
-        other.noOfCompartments == noOfCompartments &&
-        other.availableSpaces == availableSpaces &&
         other.location == location &&
+        other.centerName == centerName &&
         other.address == address &&
-        other.is_active == is_active &&
-        other.created_at == created_at;
+        other.availableSmallSpace == availableSmallSpace &&
+        other.availableMediumSpace == availableMediumSpace &&
+        other.availableLargeSpace == availableLargeSpace &&
+        other.availableXlargeSpace == availableXlargeSpace &&
+        other.isActive == isActive &&
+        other.createdAt == createdAt;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        noOfCompartments.hashCode ^
-        availableSpaces.hashCode ^
         location.hashCode ^
+        centerName.hashCode ^
         address.hashCode ^
-        is_active.hashCode ^
-        created_at.hashCode;
+        availableSmallSpace.hashCode ^
+        availableMediumSpace.hashCode ^
+        availableLargeSpace.hashCode ^
+        availableXlargeSpace.hashCode ^
+        isActive.hashCode ^
+        createdAt.hashCode;
   }
 }

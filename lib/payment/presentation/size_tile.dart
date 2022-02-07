@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
-import 'package:smart_parcel/payment/domain/models/bank_card.dart';
+import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
 
 class SizeItem extends StatelessWidget {
-  final BankCard card;
-  final Function() onPressed;
+  final BoxSize boxSize;
   const SizeItem({
     Key? key,
-    required this.card,
-    required this.onPressed,
+    required this.boxSize,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class SizeItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: InkWell(
-        onTap: () => onPressed(),
+        onTap: () => context.read<DeliveryViewModel>().setBoxSize(boxSize),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -36,16 +36,28 @@ class SizeItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
               onTap: () => context.router.push(const ChooseCardRoute()),
-              title: const Text(
-                "Small (S)",
-                style: TextStyle(
+              title: Text(
+                boxSize.name,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              subtitle: const Text("14cm x 50cm x 50cm"),
+              contentPadding: EdgeInsets.all(16),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("14cm x 50cm x 50cm"),
+                  Text(
+                    "3 available",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: GlobalTheme.primaryColor),
+                  ),
+                ],
+              ),
               trailing: Text(
-                "₦200",
+                "₦${boxSize.price}",
                 style: GlobalTheme.getTextTheme()
                     .headline6
                     ?.copyWith(color: GlobalTheme.primaryColor, fontSize: 20),

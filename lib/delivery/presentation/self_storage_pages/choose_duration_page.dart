@@ -85,8 +85,8 @@ class ChooseDuration extends HookWidget {
                 context
                     .read<DeliveryViewModel>()
                     .setDuration(hour.value.toString());
-                // context.router.push(const ChooseCardRoute());
-                context.router.push(const ChooseSizeRoute());
+                context.router.push(const ChooseCardRoute());
+                // context.router.push(const SelectLocationDistrictRoute());
                 return;
               }
               deliveryBloc.deliveryUseCases.showErrorUseCase(

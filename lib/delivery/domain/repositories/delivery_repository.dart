@@ -4,11 +4,12 @@ import 'package:smart_parcel/common/domain/interface/common_storage_interface.da
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/common/domain/models/user.dart';
 import 'package:smart_parcel/common/domain/repositories/base_repository_functions.dart';
+import 'package:smart_parcel/delivery/domain/models/booking_info.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
-import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes_response.dart';
 import 'package:smart_parcel/delivery/infrastructure/services/delivery_http_service.dart';
-import 'package:smart_parcel/payment/domain/models/payment_response.dart';
+import 'package:smart_parcel/payment/domain/models/booking_response.dart';
 
 typedef ListResponse<T> = Future<Either<Failure, List<T>>>;
 typedef SingleResponse<T> = Future<Either<Failure, T>>;
@@ -22,59 +23,53 @@ class DeliveryRepository {
     deliveryHttpService = DeliveryHttpService.create(chopperClient);
   }
 
-  SingleResponse<PaymentResponse> bookSelfStorage({
-    required String duration,
-    required String userId,
-    required String reference,
-    required int location,
-    required bool saveCard,
-  }) {
+  SingleResponse<BookingResponse> bookSelfStorage(
+    BookingInformation bookingInformation,
+  ) {
     final Map<String, dynamic> body = {
-      "reference": reference,
-      "duration": duration,
+      "reference": bookingInformation.reference,
+      "duration": bookingInformation.duration,
       "status": "pending",
-      "user": userId,
-      "location": location,
-      "allow_save": saveCard,
+      "location": bookingInformation.locationId,
+      "allow_save": bookingInformation.saveCard,
+      "size": bookingInformation.boxSize.id,
     };
     return postDataAuth(deliveryHttpService.bookSelfStorage, body);
   }
 
-  SingleResponse<PaymentResponse> bookCustomerToCustomer({
-    required String refrence,
-    required int location,
-    required bool saveCard,
-  }) {
+  SingleResponse<BookingResponse> bookCustomerToCustomer(
+    BookingInformation bookingInformation,
+  ) {
     final Map<String, dynamic> body = {
-      "reference": refrence,
-      "location": location,
-      "allow_save": saveCard,
+      "reference": bookingInformation.reference,
+      "location": bookingInformation.locationId,
+      "allow_save": bookingInformation.saveCard,
+      "size": bookingInformation.boxSize.id,
     };
-    body.addAll(const CustomerForm.placeholder().toMap());
+    body.addAll(bookingInformation.customerForm.toMap());
     return postDataAuth(deliveryHttpService.bookCustomerToCustomer, body);
   }
 
-  SingleResponse<PaymentResponse> bookCustomerToCourier({
-    required CustomerForm customerForm,
-    required String city,
-    required String reference,
-    required int location,
-    required bool saveCard,
-  }) {
+  SingleResponse<BookingResponse> bookCustomerToCourier(
+    BookingInformation bookingInformation,
+  ) {
     final Map<String, dynamic> body = {
-      "reference": reference,
-      "location": location,
-      "city": city,
-      "allow_save": saveCard,
+      "reference": bookingInformation.reference,
+      "location": bookingInformation.locationId,
+      "allow_save": bookingInformation.saveCard,
+      "size": bookingInformation.boxSize.id,
     };
-    body.addAll(customerForm.toMap());
+    body.addAll(bookingInformation.customerForm.toMap());
 
-    print(body);
     return postDataAuth(deliveryHttpService.bookCustomerToCourier, body);
   }
 
   ListResponse<CenterDistrict> getParcelCenters() {
     return getListDataAuth(deliveryHttpService.getParcelCenters);
+  }
+
+  SingleResponse<SizesResponse> getSizes() {
+    return getDataAuth(deliveryHttpService.getSizes);
   }
 
   SingleResponse<LocationResultResponse> searchPlaces(String query) {

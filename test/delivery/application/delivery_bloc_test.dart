@@ -8,6 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
+import 'package:smart_parcel/delivery/domain/models/booking_info.dart';
+import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../common/infrastructure/common_mock_data.dart';
@@ -19,18 +22,23 @@ class MockContext extends Mock implements BuildContext {}
 
 void main() {
   late ProccedToBooking proceedToBookingEvent;
+  late BookingInformation bookingInfo;
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
+    bookingInfo = BookingInformation(
+      booking: Booking.customer,
+      reference: "",
+      locationId: 0,
+      saveCard: false,
+      duration: "10",
+      customerForm: const CustomerForm.placeholder(),
+      boxSize: NullBoxSize(),
+    );
     proceedToBookingEvent = ProccedToBooking(
-      saveCard: true,
-      customerForm: null,
-      duration: "3",
-      locationId: 4,
       context: MockContext(),
-      booking: Booking.selfStorage,
-      reference: paystackResponse.data.reference,
+      bookingInformation: bookingInfo,
     );
   });
 
@@ -98,10 +106,8 @@ void main() {
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(proceedToBookingEvent),
       wait: const Duration(milliseconds: 300),
-      expect: () => [
-        const DeliveryState.loading(),
-        DeliveryState.bookingFinished(paymentResponse.data)
-      ],
+      expect: () =>
+          [const DeliveryState.loading(), DeliveryState.bookingFinished()],
     );
     blocTest<DeliveryBloc, DeliveryState>(
       'emits booking finished state when proceeding to CustomerToCustomerPaymentRoute',

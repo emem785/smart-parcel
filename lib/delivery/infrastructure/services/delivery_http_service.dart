@@ -3,34 +3,41 @@ import 'dart:io';
 import 'package:chopper/chopper.dart';
 import 'package:smart_parcel/delivery/domain/models/center_district.dart';
 import 'package:smart_parcel/delivery/domain/models/location_result_response.dart';
-import 'package:smart_parcel/payment/domain/models/payment_response.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes_response.dart';
+import 'package:smart_parcel/payment/domain/models/booking_response.dart';
 
 part 'delivery_http_service.chopper.dart';
 
 @ChopperApi()
 abstract class DeliveryHttpService extends ChopperService {
   @Post(path: '/self_storage/')
-  Future<Response<PaymentResponse>> bookSelfStorage(
+  Future<Response<BookingResponse>> bookSelfStorage(
     @Body() Map<String, dynamic> body,
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/customer_to_customer/')
-  Future<Response<PaymentResponse>> bookCustomerToCustomer(
+  Future<Response<BookingResponse>> bookCustomerToCustomer(
     @Body() Map<String, dynamic> body,
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
   @Post(path: '/customer_to_courier/')
-  Future<Response<PaymentResponse>> bookCustomerToCourier(
+  Future<Response<BookingResponse>> bookCustomerToCourier(
     @Body() Map<String, dynamic> body,
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
   @Get(path: '/locations/')
   Future<Response<List<CenterDistrict>>> getParcelCenters(
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
+  );
+
+  @Get(path: '/sizes/')
+  Future<Response<SizesResponse>> getSizes(
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );

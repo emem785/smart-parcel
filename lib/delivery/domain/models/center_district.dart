@@ -32,10 +32,9 @@ class CenterDistrict {
 
   factory CenterDistrict.fromMap(Map<String, dynamic> map) {
     return CenterDistrict(
-      name: map['name'],
+      name: map['name'] ?? '',
       centers: List<ParcelCenter>.from(
-        map['centers']?.map((x) => ParcelCenter.fromMap(x)),
-      ),
+          map['centers']?.map((x) => ParcelCenter.fromMap(x))),
     );
   }
 
@@ -58,5 +57,6 @@ class CenterDistrict {
 
   @override
   int get hashCode => name.hashCode ^ centers.hashCode;
+
   static JsonFactory get jsonFactory => (json) => CenterDistrict.fromMap(json);
 }

@@ -56,7 +56,7 @@ class PaymentPageBody extends HookWidget {
                     state.maybeMap(
                       orElse: () => 1,
                       bookingFinished: (v) => context.router.pushAndPopUntil(
-                        ReceiptRoute(paymentData: v.paymentData),
+                        ReceiptRoute(bookingData: v.bookingData),
                         predicate: (route) => false,
                       ),
                       error: (v) => deliveryBloc.deliveryUseCases

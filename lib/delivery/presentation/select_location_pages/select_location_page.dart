@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
@@ -119,7 +120,6 @@ class SelectLocationBody extends HookWidget {
     }
     final deliveryVM = context.read<DeliveryViewModel>();
     deliveryVM.setParcelCenter(center);
-    final route = context.read<DeliveryViewModel>().routeInfo;
-    context.router.push(route);
+    context.router.push(ChooseSizeRoute(parcelCenter: center));
   }
 }

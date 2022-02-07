@@ -1,17 +1,30 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
+import 'package:smart_parcel/delivery/domain/models/booking_info.dart';
+import 'package:smart_parcel/delivery/domain/models/customer_form.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
 import 'package:smart_parcel/delivery/domain/repositories/delivery_repository.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
 import '../../../common/infrastructure/setup_auth_tests.dart';
-import '../../../payment/infrastructure/payment_mock_data.dart';
 import '../../infrastructure/delivery_mock_data.dart';
 
 Future<void> main() async {
+  late BookingInformation bookingInfo;
   setUp(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     await dotenv.load(fileName: ".env");
     await AuthTestSetup.init();
+    bookingInfo = BookingInformation(
+      booking: Booking.customer,
+      reference: "",
+      locationId: 0,
+      saveCard: false,
+      duration: "10",
+      customerForm: const CustomerForm.placeholder(),
+      boxSize: NullBoxSize(),
+    );
   });
 
   tearDown(() {
@@ -25,17 +38,11 @@ Future<void> main() async {
         AuthTestSetup.setup(selfStorageJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response = await repo.bookSelfStorage(
-          duration: "2",
-          userId: "",
-          location: 3,
-          reference: "",
-          saveCard: true,
-        );
+        final response = await repo.bookSelfStorage(bookingInfo);
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, paymentResponse),
+          (r) => expect(r, selfStorageBookingResponse),
         );
       },
     );
@@ -43,18 +50,14 @@ Future<void> main() async {
       'returns customer to customer response',
       () async {
         // arrange
-        AuthTestSetup.setup(bookCustomerToCustomerResponse, 200);
+        AuthTestSetup.setup(bookCustomerToCustomerJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response = await repo.bookCustomerToCustomer(
-          location: 4,
-          refrence: "",
-          saveCard: true,
-        );
+        final response = await repo.bookCustomerToCustomer(bookingInfo);
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, paymentResponeCustomer),
+          (r) => expect(r, customerToCustomerResponse),
         );
       },
     );
@@ -62,19 +65,14 @@ Future<void> main() async {
       'returns customer to courier response',
       () async {
         // arrange
-        AuthTestSetup.setup(bookCustomerToCourierResponse, 200);
+        AuthTestSetup.setup(bookCustomerToCourierJson, 200);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response = await repo.bookCustomerToCourier(
-            location: 4,
-            saveCard: true,
-            reference: "",
-            city: 'lagos',
-            customerForm: customerFormCourier);
+        final response = await repo.bookCustomerToCourier(bookingInfo);
         // assert
         return response.fold(
           (l) => expect(l, null),
-          (r) => expect(r, paymentResponeCourier),
+          (r) => expect(r, customerToCourierResponse),
         );
       },
     );
@@ -86,13 +84,7 @@ Future<void> main() async {
         AuthTestSetup.setup(selfStorageError, 400);
         final repo = getIt<DeliveryRepository>();
         // act
-        final response = await repo.bookSelfStorage(
-          duration: "2",
-          saveCard: true,
-          userId: "",
-          location: 3,
-          reference: "",
-        );
+        final response = await repo.bookSelfStorage(bookingInfo);
         // assert
         return response.fold(
           (l) => expect(l, selfStorageFailure),
@@ -112,6 +104,21 @@ Future<void> main() async {
         return response.fold(
           (l) => expect(l, null),
           (r) => expect(r, mockCenterDistricts),
+        );
+      },
+    );
+    test(
+      'returns get parcel sizes response',
+      () async {
+        // arrage
+        AuthTestSetup.setup(sizesJson, 200);
+        final repo = getIt<DeliveryRepository>();
+        // act
+        final response = await repo.getSizes();
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, sizesResponse),
         );
       },
     );
