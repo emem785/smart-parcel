@@ -13,5 +13,6 @@ class DeliveryEvent with _$DeliveryEvent {
   }) = ProccedToBooking;
   const factory DeliveryEvent.search(String query) = Search;
   const factory DeliveryEvent.getParcelCenters() = GetParcelCenters;
+  const factory DeliveryEvent.getSizes() = GetSizes;
   const factory DeliveryEvent.openUrl(String url) = OpenUrl;
 }

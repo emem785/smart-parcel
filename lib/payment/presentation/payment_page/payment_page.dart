@@ -71,7 +71,7 @@ class PaymentPageBody extends HookWidget {
                           style: GlobalTheme.textTheme(context).headline6),
                       LayoutConstants.sizeBox(context, 8),
                       Text(
-                        "Your bill is ₦${deliveryViewModel.routeAmount}",
+                        "Your bill is ₦${deliveryViewModel.boxSize?.price}",
                         textAlign: TextAlign.center,
                       ),
                       LayoutConstants.sizeBox(context, 54)

@@ -12,6 +12,8 @@ class DeliveryState with _$DeliveryState {
       LocationResultResponse locationResultResponse) = PlaceRetrieved;
   const factory DeliveryState.bookingFinished(BookingData bookingData) =
       BookingFinished;
+  const factory DeliveryState.sizesRetreived(SizesResponse sizesResponse) =
+      SizesRetreived;
   const factory DeliveryState.centersRetreived(List<CenterDistrict> districts) =
       CentersRetreived;
 }

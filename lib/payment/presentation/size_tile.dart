@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
 import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
@@ -15,6 +14,7 @@ class SizeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deliveryVm = context.read<DeliveryViewModel>();
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: InkWell(
@@ -35,22 +35,25 @@ class SizeItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: ListTile(
-              onTap: () => context.router.push(const ChooseCardRoute()),
+              onTap: () {
+                deliveryVm.setBoxSize(boxSize);
+                context.router.push(deliveryVm.getRoute());
+              },
               title: Text(
-                boxSize.name,
+                boxSize.sizeName,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              contentPadding: EdgeInsets.all(16),
+              contentPadding: const EdgeInsets.all(16),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("14cm x 50cm x 50cm"),
+                  Text("${boxSize.breadth}cm x ${boxSize.length}cm"),
                   Text(
-                    "3 available",
-                    style: TextStyle(
+                    "${boxSize.quantity} available",
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: GlobalTheme.primaryColor),
                   ),

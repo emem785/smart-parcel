@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/domain/models/center.dart';
 import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes_response.dart';
 import 'package:smart_parcel/inject_conf.dart';
 import 'package:smart_parcel/payment/presentation/size_tile.dart';
 
@@ -32,18 +33,20 @@ class ChooseSizeBody extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final visibility = useState(0.0);
+    final deliveryBloc = context.read<DeliveryBloc>();
+
+    useEffect(() {
+      deliveryBloc.add(const DeliveryEvent.getSizes());
+    });
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BlocBuilder<DeliveryBloc, DeliveryState>(
           builder: (context, state) {
-            final loading = state.maybeMap(
-              orElse: () => false,
-              loading: (v) => true,
-            );
-            return Visibility(
-              visible: loading,
-              child: const LinearProgressIndicator(
+            return state.maybeMap(
+              orElse: () => const SizedBox(height: 5),
+              loading: (_) => const LinearProgressIndicator(
                 backgroundColor: Color(0xFFFAFAFA),
               ),
             );
@@ -54,9 +57,31 @@ class ChooseSizeBody extends HookWidget {
           child: Text("Select preferred SmartParcel Box size"),
         ),
         Expanded(
-          child: _SizesList(
-            center: parcelCenter,
-            visibility: visibility,
+          child: BlocConsumer<DeliveryBloc, DeliveryState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const SizedBox(),
+                sizesRetreived: (sizesResponse) => _SizesList(
+                  visibility: visibility,
+                  center: parcelCenter,
+                  sizesResponse: sizesResponse,
+                ),
+              );
+            },
+            listener: (context, state) {
+              state.maybeMap(
+                orElse: () => 1,
+                error: (value) =>
+                    deliveryBloc.deliveryUseCases.showErrorUseCase(
+                  context: context,
+                  message: value.failure.message,
+                ),
+                sizesRetreived: (v) async {
+                  await Future.delayed(const Duration(milliseconds: 50));
+                  visibility.value = 1.0;
+                },
+              );
+            },
           ),
         ),
       ],
@@ -66,49 +91,53 @@ class ChooseSizeBody extends HookWidget {
 
 class _SizesList extends StatelessWidget {
   final ParcelCenter center;
+  final SizesResponse sizesResponse;
   final ValueNotifier<double> visibility;
   const _SizesList({
     Key? key,
     required this.visibility,
     required this.center,
+    required this.sizesResponse,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
-      opacity: 1.0,
-      child: ListView(
-        children: [
-          SizeItem(
-            boxSize: SmallSize(
-                id: 0,
-                name: "Small",
-                price: 200,
-                quantity: center.availableSmallSpace),
-          ),
-          SizeItem(
-              boxSize: MediumSize(
-                  id: 1,
-                  name: "Medium",
-                  price: 300,
-                  quantity: center.availableMediumSpace)),
-          SizeItem(
-              boxSize: LargeSize(
-            id: 2,
-            name: "Large",
-            price: 400,
-            quantity: 3,
-          )),
-          SizeItem(
-              boxSize: XLargeSize(
-            id: 2,
-            name: "Xlarge",
-            price: 400,
-            quantity: 3,
-          )),
-        ],
-      ),
+      curve: Curves.easeInQuint,
+      opacity: visibility.value,
+      child: sizesResponse.data.isNotEmpty
+          ? ListView(
+              children: [
+                SizeItem(
+                  boxSize: SmallSize.fromSizeData(
+                    sizesResponse.data[0],
+                    center.availableSmallSpace,
+                  ),
+                ),
+                SizeItem(
+                    boxSize: MediumSize.fromSizeData(
+                  sizesResponse.data[1],
+                  center.availableMediumSpace,
+                )),
+                SizeItem(
+                    boxSize: LargeSize.fromSizeData(
+                  sizesResponse.data[2],
+                  center.availableLargeSpace,
+                )),
+                // SizeItem(
+                //     boxSize: LargeSize.fromSizeData(
+                //   sizesResponse.data[2],
+                //   center.availableLargeSpace,
+                // )),
+              ],
+            )
+          : const Center(
+              child: Text(
+                "There are currently no available sizes for this parcel center",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+            ),
     );
   }
 }

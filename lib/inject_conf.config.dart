@@ -265,8 +265,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       logoutUseCase: get<_i59.LogoutUseCase>(),
       populateTextFormUseCase: get<_i11.PopulateTextFormUseCase>(),
       getStoredUserStreamUseCase: get<_i57.GetStoredUserStreamUseCase>()));
-  gh.factory<_i71.DeliveryBloc>(
-      () => _i71.DeliveryBloc(get<_i53.DeliveryUseCases>()));
+  gh.factory<_i71.DeliveryBloc>(() => _i71.DeliveryBloc(
+      get<_i53.DeliveryUseCases>(), get<_i34.DeliveryRepository>()));
   gh.factory<_i72.NotificationBloc>(
       () => _i72.NotificationBloc(get<_i70.CommonUseCases>()));
   gh.factory<_i73.ParcelBloc>(

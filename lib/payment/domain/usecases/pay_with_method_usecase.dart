@@ -19,7 +19,7 @@ class PayWithMethodUseCase {
     required BuildContext context,
     required BankCard bankCard,
   }) async {
-    final amount = context.read<DeliveryViewModel>().routeAmount;
+    final amount = context.read<DeliveryViewModel>().boxSize?.price ?? 0;
     if (bankCard.isEmpty()) {
       _makePaystackPayment(
         amount: amount,

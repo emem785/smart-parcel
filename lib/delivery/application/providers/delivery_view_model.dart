@@ -61,7 +61,7 @@ class DeliveryViewModel with ChangeNotifier {
       case Booking.selfStorage:
         return const ChooseDurationRoute();
       case Booking.customer:
-        return const ChooseDurationRoute();
+        return const CustomerToCustomerRoute();
       default:
         return const CustomerToCourierRoute();
     }

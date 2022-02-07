@@ -27,7 +27,7 @@ class CustomerToCustomerBody extends HookWidget {
     final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final phoneController = useTextEditingController();
-    final addressController = useTextEditingController();
+    final addressController = useTextEditingController(text: "yaba");
     final descController = useTextEditingController();
     final formKey = useState(GlobalKey<FormState>());
     final hasAgreed = useState(false);
@@ -87,8 +87,7 @@ class CustomerToCustomerBody extends HookWidget {
                           phone: phoneController.text,
                         );
                         context.read<DeliveryViewModel>().setCustomerForm(form);
-                        context.router
-                            .push(const SelectLocationDistrictRoute());
+                        context.router.push(const ChooseCardRoute());
                       }
                       return;
                     }

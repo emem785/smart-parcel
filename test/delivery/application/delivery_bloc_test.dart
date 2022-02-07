@@ -15,7 +15,6 @@ import 'package:smart_parcel/inject_conf.dart';
 
 import '../../common/infrastructure/common_mock_data.dart';
 import '../../common/infrastructure/setup_auth_tests.dart';
-import '../../payment/infrastructure/payment_mock_data.dart';
 import '../infrastructure/delivery_mock_data.dart';
 
 class MockContext extends Mock implements BuildContext {}
@@ -102,23 +101,37 @@ void main() {
     blocTest<DeliveryBloc, DeliveryState>(
       'emits booking finished state when proceeding to self storage payment page',
       setUp: () =>
-          AuthTestSetup.setup(selfStoragePaymentJson, 200, userStringResponse),
-      build: () => getIt<DeliveryBloc>(),
-      act: (bloc) => bloc.add(proceedToBookingEvent),
-      wait: const Duration(milliseconds: 300),
-      expect: () =>
-          [const DeliveryState.loading(), DeliveryState.bookingFinished()],
-    );
-    blocTest<DeliveryBloc, DeliveryState>(
-      'emits booking finished state when proceeding to CustomerToCustomerPaymentRoute',
-      setUp: () =>
           AuthTestSetup.setup(selfStorageJson, 200, userStringResponse),
       build: () => getIt<DeliveryBloc>(),
       act: (bloc) => bloc.add(proceedToBookingEvent),
       wait: const Duration(milliseconds: 300),
       expect: () => [
         const DeliveryState.loading(),
-        DeliveryState.bookingFinished(paymentResponse.data)
+        DeliveryState.bookingFinished(selfStorageBookingResponse.data),
+      ],
+    );
+    blocTest<DeliveryBloc, DeliveryState>(
+      'emits booking finished state when proceeding to CustomerToCustomerPaymentRoute',
+      setUp: () => AuthTestSetup.setup(
+          bookCustomerToCustomerJson, 200, userStringResponse),
+      build: () => getIt<DeliveryBloc>(),
+      act: (bloc) => bloc.add(proceedToBookingEvent),
+      wait: const Duration(milliseconds: 300),
+      expect: () => [
+        const DeliveryState.loading(),
+        DeliveryState.bookingFinished(customerToCustomerResponse.data)
+      ],
+    );
+    blocTest<DeliveryBloc, DeliveryState>(
+      'emits booking finished state when proceeding to CustomerToCourier PaymentRoute',
+      setUp: () => AuthTestSetup.setup(
+          bookCustomerToCourierJson, 200, userStringResponse),
+      build: () => getIt<DeliveryBloc>(),
+      act: (bloc) => bloc.add(proceedToBookingEvent),
+      wait: const Duration(milliseconds: 300),
+      expect: () => [
+        const DeliveryState.loading(),
+        DeliveryState.bookingFinished(customerToCourierResponse.data)
       ],
     );
   });
