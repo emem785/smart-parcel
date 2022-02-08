@@ -27,7 +27,7 @@ class CustomerToCustomerBody extends HookWidget {
     final nameController = useTextEditingController();
     final emailController = useTextEditingController();
     final phoneController = useTextEditingController();
-    final addressController = useTextEditingController(text: "yaba");
+    final addressController = useTextEditingController();
     final descController = useTextEditingController();
     final formKey = useState(GlobalKey<FormState>());
     final hasAgreed = useState(false);
