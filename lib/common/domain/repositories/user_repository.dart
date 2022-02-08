@@ -37,4 +37,8 @@ class UserRepository {
     final body = {"key": firebaseToken};
     return postData(commonHttpService.updateFirebaseKey, body, authToken);
   }
+
+  SingleResponse<String> deactivateAccount() {
+    return getDataAuth(commonHttpService.deactivateAccount);
+  }
 }

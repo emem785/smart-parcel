@@ -28,6 +28,12 @@ abstract class CommonHttpService extends ChopperService {
     @Header('refresh') String refreshToken,
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
+
+  @Delete(path: '/user/profile/')
+  Future<Response<String>> deactivateAccount(
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
+  );
   static CommonHttpService create([ChopperClient? client]) =>
       _$CommonHttpService(client);
 }

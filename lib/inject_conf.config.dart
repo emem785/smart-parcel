@@ -275,7 +275,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i64.PaymentUseCases>(), get<_i37.PaymentRepository>()));
   gh.factory<_i75.SignInBloc>(() => _i75.SignInBloc(get<_i69.AuthUseCases>()));
   gh.factory<_i76.SignUpBloc>(() => _i76.SignUpBloc(get<_i69.AuthUseCases>()));
-  gh.factory<_i77.UserBloc>(() => _i77.UserBloc(get<_i70.CommonUseCases>()));
+  gh.factory<_i77.UserBloc>(() =>
+      _i77.UserBloc(get<_i70.CommonUseCases>(), get<_i46.UserRepository>()));
   gh.factory<_i78.AccountBloc>(
       () => _i78.AccountBloc(get<_i68.AccountUseCases>()));
   gh.factory<_i79.AuthBloc>(() => _i79.AuthBloc(get<_i70.CommonUseCases>()));

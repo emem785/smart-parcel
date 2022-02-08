@@ -68,5 +68,20 @@ Future<void> main() async {
         );
       },
     );
+    test(
+      'returns get success response on deactivate account',
+      () async {
+        // arrange
+        AuthTestSetup.setup(null, 204);
+        final repo = getIt<UserRepository>();
+        // act
+        final response = await repo.deactivateAccount();
+        // assert
+        return response.fold(
+          (l) => expect(l, null),
+          (r) => expect(r, ""),
+        );
+      },
+    );
   });
 }
