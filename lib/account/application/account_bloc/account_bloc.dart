@@ -20,4 +20,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<UploadPhoto>(accountUseCases.uploadPhotoUsecase);
     on<SelectImage>(accountUseCases.selectImageUsecase);
   }
+
+  @override
+  void onChange(Change<AccountState> change) {
+    print(change);
+    super.onChange(change);
+  }
 }

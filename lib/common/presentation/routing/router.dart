@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:smart_parcel/account/presentation/profile_page/edit_photo_page.dart';
 import 'package:smart_parcel/account/presentation/profile_page/profiles_page.dart';
+import 'package:smart_parcel/account/presentation/profile_page/profiles_page_edit.dart';
 import 'package:smart_parcel/account/presentation/reset_password_page/reset_password_page.dart';
 import 'package:smart_parcel/account/presentation/settings_page/settings_page.dart';
 import 'package:smart_parcel/auth/presentation/confirm_email/confirm_email.dart';
@@ -88,6 +89,7 @@ const homePageChildren = [
     page: EmptyRouterPage,
     children: [
       AutoRoute(path: '', page: ProfilePage),
+      AutoRoute(path: 'editProfile', page: ProfileEditPage),
       AutoRoute(path: 'profilePhoto', page: EditPhotoPage),
     ],
   ),

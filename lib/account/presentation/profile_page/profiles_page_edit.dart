@@ -4,21 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart';
 import 'package:smart_parcel/common/application/user_bloc/user_bloc.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
-import 'package:smart_parcel/common/theme.dart';
+import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/common/utils/validator_util.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfileEditPage extends StatelessWidget {
+  final Function() onExit;
+  const ProfileEditPage({
+    Key? key,
+    required this.onExit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<UserBloc>(),
-      child: const ProfileBody(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<UserBloc>()),
+        BlocProvider(create: (_) => getIt<AccountBloc>()),
+      ],
+      child: ProfileBody(onExit: onExit),
     );
   }
 }
@@ -28,7 +36,11 @@ class ProfileBody extends HookWidget {
   static const lastname = Key("profile_lastname");
   static const email = Key("profile_email");
   static const phone = Key("profile_phone");
-  const ProfileBody({Key? key}) : super(key: key);
+  final Function() onExit;
+  const ProfileBody({
+    required this.onExit,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +50,7 @@ class ProfileBody extends HookWidget {
     final emailController = useTextEditingController();
     final formKey = useState(GlobalKey<FormState>());
     final userBloc = context.read<UserBloc>();
+    final accountBloc = context.read<AccountBloc>();
 
     useEffect(() {
       userBloc.add(const UserEvent.getUserFromStorage());
@@ -52,48 +65,6 @@ class ProfileBody extends HookWidget {
               children: [
                 Column(
                   children: [
-                    LayoutConstants.sizeBox(context, 24),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        child: const Text(
-                          "Edit",
-                          style: TextStyle(
-                            color: GlobalTheme.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        onTap: () => context.router.push(
-                          ProfileEditRoute(
-                              onExit: () => userBloc
-                                  .add(const UserEvent.getUserFromStorage())),
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                        onTap: () => context.router.push(EditPhotoRoute(
-                            onUploaded: () => userBloc
-                                .add(const UserEvent.getUserFromStorage()))),
-                        child: BlocBuilder<UserBloc, UserState>(
-                          builder: (context, state) {
-                            return state.maybeMap(
-                              orElse: () => const SizedBox(),
-                              userRetreived: (v) => v
-                                      .user.profilePicUrl!.isEmpty
-                                  ? const CircleAvatar(
-                                      child: Icon(
-                                        Icons.person_add_alt,
-                                        color: Colors.white,
-                                      ),
-                                      backgroundColor: GlobalTheme.lightGrey,
-                                      minRadius: 32,
-                                    )
-                                  : buildImageHolder(
-                                      context, v.user.profilePicUrl!),
-                            );
-                          },
-                        )),
                     LayoutConstants.sizeBox(context, 45),
                     BlocListener<UserBloc, UserState>(
                       listener: (context, state) {
@@ -126,6 +97,39 @@ class ProfileBody extends HookWidget {
                 ),
               ],
             ),
+          ),
+          BlocConsumer<AccountBloc, AccountState>(
+            listener: (context, state) {
+              state.maybeMap(
+                orElse: () => 0,
+                error: (v) => accountBloc.accountUseCases.showErrorUseCase(
+                    message: v.failure.message, context: context),
+                userModified: (v) {
+                  onExit();
+                  context.router.pop();
+                },
+              );
+            },
+            builder: (context, state) {
+              return state.maybeMap(
+                orElse: () => LayoutConstants.padButton(ElevatedButton(
+                  onPressed: () {
+                    if (formKey.value.currentState!.validate()) {
+                      accountBloc.add(AccountEvent.editUser(User(
+                        id: null,
+                        profilePicUrl: null,
+                        firstName: firstnameController.text,
+                        lastName: lastnameController.text,
+                        email: emailController.text,
+                        phone: phoneController.text,
+                      )));
+                    }
+                  },
+                  child: const Text("Save"),
+                )),
+                loading: (v) => CommonWidgets.loading(),
+              );
+            },
           ),
         ],
       ),
@@ -163,7 +167,6 @@ Widget buildProfileForm({
       children: [
         TextFormField(
           controller: firstnameController,
-          enabled: false,
           validator: ValidatorUtil.normalValidator,
           decoration: const InputDecoration(labelText: "FirsName"),
           key: ProfileBody.firstName,
@@ -171,7 +174,6 @@ Widget buildProfileForm({
         LayoutConstants.sizeBox(context, 24),
         TextFormField(
           controller: lastnameController,
-          enabled: false,
           validator: ValidatorUtil.normalValidator,
           decoration: const InputDecoration(labelText: "LastName"),
           key: ProfileBody.lastname,
@@ -188,7 +190,6 @@ Widget buildProfileForm({
         TextFormField(
           controller: phoneController,
           validator: ValidatorUtil.phoneValidator,
-          enabled: false,
           decoration: const InputDecoration(
             labelText: "Phone Number",
             prefixText: "+234 ",
