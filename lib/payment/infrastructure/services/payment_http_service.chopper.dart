@@ -58,4 +58,17 @@ class _$PaymentHttpService extends PaymentHttpService {
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
     return client.send<CardResponse, CardResponse>($request);
   }
+
+  @override
+  Future<Response<String>> deleteCard(
+      int id, String refreshToken, String accessToken) {
+    final $url = '/card/remove/${id}';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('DELETE', $url, client.baseUrl, headers: $headers);
+    return client.send<String, String>($request);
+  }
 }

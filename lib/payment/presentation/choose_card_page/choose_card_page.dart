@@ -79,6 +79,8 @@ class ChooseCardBody extends HookWidget {
                     context: context,
                     message: value.failure.message,
                   ),
+                  cardRemoved: (v) =>
+                      paymentBloc.add(const PaymentEvent.getCards()),
                   cardsRetreived: (v) async {
                     await Future.delayed(const Duration(milliseconds: 50));
                     visibility.value = 1;

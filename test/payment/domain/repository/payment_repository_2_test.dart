@@ -50,4 +50,19 @@ Future<void> main() async {
       );
     },
   );
+  test(
+    'returns get delete card response',
+    () async {
+      // arrange
+      AuthTestSetup.setup(null, 204);
+      final repo = getIt<PaymentRepository>();
+      // act
+      final response = await repo.deleteCard(1);
+      // assert
+      return response.fold(
+        (l) => expect(l, null),
+        (r) => expect(r, ''),
+      );
+    },
+  );
 }

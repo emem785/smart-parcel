@@ -87,10 +87,7 @@ class CustomerToCustomerBody extends HookWidget {
                           phone: phoneController.text,
                         );
                         context.read<DeliveryViewModel>().setCustomerForm(form);
-                        // context.read<DeliveryViewModel>().setRouteInfo(
-                        //     const CustomerToCustomerPaymentRoute());
-                        context.router
-                            .push(const SelectLocationDistrictRoute());
+                        context.router.push(const ChooseCardRoute());
                       }
                       return;
                     }

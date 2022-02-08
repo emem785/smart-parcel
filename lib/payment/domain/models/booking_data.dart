@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:smart_parcel/common/domain/models/user.dart';
+import 'package:smart_parcel/payment/domain/models/compartment.dart';
 import 'package:smart_parcel/payment/domain/models/location.dart';
 
-class PaymentData {
+class BookingData {
   final String name;
   final String phone;
   final String email;
@@ -14,8 +15,9 @@ class PaymentData {
   final String dropOff;
   final String parcelType;
   final User user;
+  final Compartment compartment;
   final Location location;
-  const PaymentData({
+  const BookingData({
     required this.name,
     required this.phone,
     required this.email,
@@ -26,10 +28,11 @@ class PaymentData {
     required this.dropOff,
     required this.parcelType,
     required this.user,
+    required this.compartment,
     required this.location,
   });
 
-  PaymentData copyWith({
+  BookingData copyWith({
     String? name,
     String? phone,
     String? email,
@@ -40,9 +43,10 @@ class PaymentData {
     String? dropOff,
     String? parcelType,
     User? user,
+    Compartment? compartment,
     Location? location,
   }) {
-    return PaymentData(
+    return BookingData(
       name: name ?? this.name,
       phone: phone ?? this.phone,
       email: email ?? this.email,
@@ -53,6 +57,7 @@ class PaymentData {
       dropOff: dropOff ?? this.dropOff,
       parcelType: parcelType ?? this.parcelType,
       user: user ?? this.user,
+      compartment: compartment ?? this.compartment,
       location: location ?? this.location,
     );
   }
@@ -69,12 +74,13 @@ class PaymentData {
       'drop_off': dropOff,
       'parcel_type': parcelType,
       'user': user.toMap(),
+      'compartment': user.toMap(),
       'location': location.toMap(),
     };
   }
 
-  factory PaymentData.fromMap(Map<String, dynamic> map) {
-    return PaymentData(
+  factory BookingData.fromMap(Map<String, dynamic> map) {
+    return BookingData(
       name: map['name'] ?? '',
       phone: map['phone'] ?? '',
       email: map['email'] ?? '',
@@ -85,24 +91,25 @@ class PaymentData {
       dropOff: map['drop_off'] ?? '',
       parcelType: map['parcel_type'] ?? '',
       user: User.fromMap(map['user']),
+      compartment: Compartment.fromMap(map['compartment']),
       location: Location.fromMap(map['location']),
     );
   }
   String toJson() => json.encode(toMap());
 
-  factory PaymentData.fromJson(String source) =>
-      PaymentData.fromMap(json.decode(source));
+  factory BookingData.fromJson(String source) =>
+      BookingData.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return "PaymentData(name: '$name', phone: '$phone', email: '$email', duration: '$duration', address: '$address', city: '$city', pickUp: '$pickUp', dropOff: '$dropOff', parcelType: '$parcelType', user: $user, location: $location)";
+    return "BookingData(name: '$name', phone: '$phone', email: '$email', duration: '$duration', address: '$address', city: '$city', pickUp: '$pickUp', dropOff: '$dropOff', parcelType: '$parcelType', user: $user, location: $location, compartment: $compartment)";
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is PaymentData &&
+    return other is BookingData &&
         other.name == name &&
         other.phone == phone &&
         other.email == email &&
@@ -113,6 +120,7 @@ class PaymentData {
         other.dropOff == dropOff &&
         other.parcelType == parcelType &&
         other.user == user &&
+        other.compartment == compartment &&
         other.location == location;
   }
 
@@ -128,6 +136,7 @@ class PaymentData {
         dropOff.hashCode ^
         parcelType.hashCode ^
         user.hashCode ^
+        compartment.hashCode ^
         location.hashCode;
   }
 }

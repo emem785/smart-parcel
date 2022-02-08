@@ -21,6 +21,10 @@ class _$UserEventTearOff {
     return const GetUserFromStorage();
   }
 
+  DeactivateAccount deactivateAccount() {
+    return const DeactivateAccount();
+  }
+
   GetUserStreamFromStorage getUserStreamFromStorage(BuildContext context) {
     return GetUserStreamFromStorage(
       context,
@@ -36,18 +40,21 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
+    required TResult Function() deactivateAccount,
     required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) =>
@@ -55,6 +62,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(DeactivateAccount value) deactivateAccount,
     required TResult Function(GetUserStreamFromStorage value)
         getUserStreamFromStorage,
   }) =>
@@ -62,12 +70,14 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
     required TResult orElse(),
   }) =>
@@ -131,6 +141,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
+    required TResult Function() deactivateAccount,
     required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) {
     return getUserFromStorage();
@@ -140,6 +151,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) {
     return getUserFromStorage?.call();
@@ -149,6 +161,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
@@ -162,6 +175,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(DeactivateAccount value) deactivateAccount,
     required TResult Function(GetUserStreamFromStorage value)
         getUserStreamFromStorage,
   }) {
@@ -172,6 +186,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
   }) {
     return getUserFromStorage?.call(this);
@@ -181,6 +196,7 @@ class _$GetUserFromStorage implements GetUserFromStorage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
@@ -193,6 +209,118 @@ class _$GetUserFromStorage implements GetUserFromStorage {
 
 abstract class GetUserFromStorage implements UserEvent {
   const factory GetUserFromStorage() = _$GetUserFromStorage;
+}
+
+/// @nodoc
+abstract class $DeactivateAccountCopyWith<$Res> {
+  factory $DeactivateAccountCopyWith(
+          DeactivateAccount value, $Res Function(DeactivateAccount) then) =
+      _$DeactivateAccountCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DeactivateAccountCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements $DeactivateAccountCopyWith<$Res> {
+  _$DeactivateAccountCopyWithImpl(
+      DeactivateAccount _value, $Res Function(DeactivateAccount) _then)
+      : super(_value, (v) => _then(v as DeactivateAccount));
+
+  @override
+  DeactivateAccount get _value => super._value as DeactivateAccount;
+}
+
+/// @nodoc
+
+class _$DeactivateAccount implements DeactivateAccount {
+  const _$DeactivateAccount();
+
+  @override
+  String toString() {
+    return 'UserEvent.deactivateAccount()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DeactivateAccount);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getUserFromStorage,
+    required TResult Function() deactivateAccount,
+    required TResult Function(BuildContext context) getUserStreamFromStorage,
+  }) {
+    return deactivateAccount();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
+  }) {
+    return deactivateAccount?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
+    TResult Function(BuildContext context)? getUserStreamFromStorage,
+    required TResult orElse(),
+  }) {
+    if (deactivateAccount != null) {
+      return deactivateAccount();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(DeactivateAccount value) deactivateAccount,
+    required TResult Function(GetUserStreamFromStorage value)
+        getUserStreamFromStorage,
+  }) {
+    return deactivateAccount(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
+  }) {
+    return deactivateAccount?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
+    TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
+    required TResult orElse(),
+  }) {
+    if (deactivateAccount != null) {
+      return deactivateAccount(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeactivateAccount implements UserEvent {
+  const factory DeactivateAccount() = _$DeactivateAccount;
 }
 
 /// @nodoc
@@ -262,6 +390,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getUserFromStorage,
+    required TResult Function() deactivateAccount,
     required TResult Function(BuildContext context) getUserStreamFromStorage,
   }) {
     return getUserStreamFromStorage(context);
@@ -271,6 +400,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
   }) {
     return getUserStreamFromStorage?.call(context);
@@ -280,6 +410,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getUserFromStorage,
+    TResult Function()? deactivateAccount,
     TResult Function(BuildContext context)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
@@ -293,6 +424,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetUserFromStorage value) getUserFromStorage,
+    required TResult Function(DeactivateAccount value) deactivateAccount,
     required TResult Function(GetUserStreamFromStorage value)
         getUserStreamFromStorage,
   }) {
@@ -303,6 +435,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
   }) {
     return getUserStreamFromStorage?.call(this);
@@ -312,6 +445,7 @@ class _$GetUserStreamFromStorage implements GetUserStreamFromStorage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetUserFromStorage value)? getUserFromStorage,
+    TResult Function(DeactivateAccount value)? deactivateAccount,
     TResult Function(GetUserStreamFromStorage value)? getUserStreamFromStorage,
     required TResult orElse(),
   }) {
@@ -350,6 +484,10 @@ class _$UserStateTearOff {
     );
   }
 
+  AccountDeactivated accountDeactivated() {
+    return const AccountDeactivated();
+  }
+
   UserStreamRetreived userStreamRetreived(Stream<User> userStream) {
     return UserStreamRetreived(
       userStream,
@@ -373,6 +511,7 @@ mixin _$UserState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) =>
@@ -382,6 +521,7 @@ mixin _$UserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) =>
@@ -391,6 +531,7 @@ mixin _$UserState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -401,6 +542,7 @@ mixin _$UserState {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) =>
@@ -410,6 +552,7 @@ mixin _$UserState {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) =>
@@ -419,6 +562,7 @@ mixin _$UserState {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
@@ -484,6 +628,7 @@ class _$UserInitial implements UserInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
@@ -496,6 +641,7 @@ class _$UserInitial implements UserInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
@@ -508,6 +654,7 @@ class _$UserInitial implements UserInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -524,6 +671,7 @@ class _$UserInitial implements UserInitial {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
@@ -536,6 +684,7 @@ class _$UserInitial implements UserInitial {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
@@ -548,6 +697,7 @@ class _$UserInitial implements UserInitial {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
@@ -606,6 +756,7 @@ class _$UserLoading implements UserLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
@@ -618,6 +769,7 @@ class _$UserLoading implements UserLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
@@ -630,6 +782,7 @@ class _$UserLoading implements UserLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -646,6 +799,7 @@ class _$UserLoading implements UserLoading {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
@@ -658,6 +812,7 @@ class _$UserLoading implements UserLoading {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
@@ -670,6 +825,7 @@ class _$UserLoading implements UserLoading {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
@@ -751,6 +907,7 @@ class _$UserRetreived implements UserRetreived {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
@@ -763,6 +920,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
@@ -775,6 +933,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -791,6 +950,7 @@ class _$UserRetreived implements UserRetreived {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
@@ -803,6 +963,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
@@ -815,6 +976,7 @@ class _$UserRetreived implements UserRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
@@ -833,6 +995,135 @@ abstract class UserRetreived implements UserState {
   @JsonKey(ignore: true)
   $UserRetreivedCopyWith<UserRetreived> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AccountDeactivatedCopyWith<$Res> {
+  factory $AccountDeactivatedCopyWith(
+          AccountDeactivated value, $Res Function(AccountDeactivated) then) =
+      _$AccountDeactivatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AccountDeactivatedCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res>
+    implements $AccountDeactivatedCopyWith<$Res> {
+  _$AccountDeactivatedCopyWithImpl(
+      AccountDeactivated _value, $Res Function(AccountDeactivated) _then)
+      : super(_value, (v) => _then(v as AccountDeactivated));
+
+  @override
+  AccountDeactivated get _value => super._value as AccountDeactivated;
+}
+
+/// @nodoc
+
+class _$AccountDeactivated implements AccountDeactivated {
+  const _$AccountDeactivated();
+
+  @override
+  String toString() {
+    return 'UserState.accountDeactivated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AccountDeactivated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
+    required TResult Function(Stream<User> userStream) userStreamRetreived,
+    required TResult Function(Failure failure) error,
+  }) {
+    return accountDeactivated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
+    TResult Function(Failure failure)? error,
+  }) {
+    return accountDeactivated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
+    TResult Function(Stream<User> userStream)? userStreamRetreived,
+    TResult Function(Failure failure)? error,
+    required TResult orElse(),
+  }) {
+    if (accountDeactivated != null) {
+      return accountDeactivated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
+    required TResult Function(UserStreamRetreived value) userStreamRetreived,
+    required TResult Function(UserError value) error,
+  }) {
+    return accountDeactivated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
+    TResult Function(UserError value)? error,
+  }) {
+    return accountDeactivated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
+    TResult Function(UserStreamRetreived value)? userStreamRetreived,
+    TResult Function(UserError value)? error,
+    required TResult orElse(),
+  }) {
+    if (accountDeactivated != null) {
+      return accountDeactivated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountDeactivated implements UserState {
+  const factory AccountDeactivated() = _$AccountDeactivated;
 }
 
 /// @nodoc
@@ -903,6 +1194,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
@@ -915,6 +1207,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
@@ -927,6 +1220,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -943,6 +1237,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
@@ -955,6 +1250,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
@@ -967,6 +1263,7 @@ class _$UserStreamRetreived implements UserStreamRetreived {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),
@@ -1052,6 +1349,7 @@ class _$UserError implements UserError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) userRetreived,
+    required TResult Function() accountDeactivated,
     required TResult Function(Stream<User> userStream) userStreamRetreived,
     required TResult Function(Failure failure) error,
   }) {
@@ -1064,6 +1362,7 @@ class _$UserError implements UserError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
   }) {
@@ -1076,6 +1375,7 @@ class _$UserError implements UserError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? userRetreived,
+    TResult Function()? accountDeactivated,
     TResult Function(Stream<User> userStream)? userStreamRetreived,
     TResult Function(Failure failure)? error,
     required TResult orElse(),
@@ -1092,6 +1392,7 @@ class _$UserError implements UserError {
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
     required TResult Function(UserRetreived value) userRetreived,
+    required TResult Function(AccountDeactivated value) accountDeactivated,
     required TResult Function(UserStreamRetreived value) userStreamRetreived,
     required TResult Function(UserError value) error,
   }) {
@@ -1104,6 +1405,7 @@ class _$UserError implements UserError {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
   }) {
@@ -1116,6 +1418,7 @@ class _$UserError implements UserError {
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
     TResult Function(UserRetreived value)? userRetreived,
+    TResult Function(AccountDeactivated value)? accountDeactivated,
     TResult Function(UserStreamRetreived value)? userStreamRetreived,
     TResult Function(UserError value)? error,
     required TResult orElse(),

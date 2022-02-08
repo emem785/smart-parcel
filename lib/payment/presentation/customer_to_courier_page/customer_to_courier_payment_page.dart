@@ -1,10 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/common/presentation/widgets/common_widgets.dart';
 import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
@@ -48,13 +46,13 @@ class CustomerToCourierPayment extends HookWidget {
                 orElse: () => 1,
                 error: (v) => deliveryBloc.deliveryUseCases.showErrorUseCase(
                     context: context, message: v.failure.message),
-                bookingFinished: (v) {
-                  context.router.pop();
-                  context.router.pushAndPopUntil(
-                    ReceiptRoute(paymentData: v.paymentData),
-                    predicate: (route) => false,
-                  );
-                },
+                // bookingFinished: (v) {
+                //   context.router.pop();
+                //   context.router.pushAndPopUntil(
+                //     ReceiptRoute(paymentData: v.bookingData),
+                //     predicate: (route) => false,
+                //   );
+                // },
               );
             },
             child: Column(

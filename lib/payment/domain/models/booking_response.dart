@@ -1,22 +1,21 @@
 import 'dart:convert';
 
 import 'package:smart_parcel/common/infrastructure/chopper/json_parser.dart';
+import 'package:smart_parcel/payment/domain/models/booking_data.dart';
 
-import 'payment_data.dart';
-
-class PaymentResponse {
+class BookingResponse {
   final String message;
-  final PaymentData data;
-  const PaymentResponse({
+  final BookingData data;
+  const BookingResponse({
     required this.message,
     required this.data,
   });
 
-  PaymentResponse copyWith({
+  BookingResponse copyWith({
     String? message,
-    PaymentData? data,
+    BookingData? data,
   }) {
-    return PaymentResponse(
+    return BookingResponse(
       message: message ?? this.message,
       data: data ?? this.data,
     );
@@ -29,31 +28,31 @@ class PaymentResponse {
     };
   }
 
-  factory PaymentResponse.fromMap(Map<String, dynamic> map) {
-    return PaymentResponse(
+  factory BookingResponse.fromMap(Map<String, dynamic> map) {
+    return BookingResponse(
       message: map['message'],
-      data: PaymentData.fromMap(map['data']),
+      data: BookingData.fromMap(map['data']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PaymentResponse.fromJson(String source) =>
-      PaymentResponse.fromMap(json.decode(source));
+  factory BookingResponse.fromJson(String source) =>
+      BookingResponse.fromMap(json.decode(source));
 
   @override
-  String toString() => "PaymentResponse(message: '$message', data: $data)";
+  String toString() => "BookingResponse(message: '$message', data: $data)";
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is PaymentResponse &&
+    return other is BookingResponse &&
         other.message == message &&
         other.data == data;
   }
 
   @override
   int get hashCode => message.hashCode ^ data.hashCode;
-  static JsonFactory get jsonFactory => (json) => PaymentResponse.fromMap(json);
+  static JsonFactory get jsonFactory => (json) => BookingResponse.fromMap(json);
 }

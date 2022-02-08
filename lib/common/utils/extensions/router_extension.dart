@@ -3,7 +3,9 @@ import 'package:smart_parcel/common/presentation/routing/appbar_name.dart';
 
 extension RoutingExtension on TabsRouter {
   void setActiveIndexReset(int index, {bool notify = true}) {
-    stackRouterOfIndex(index)?.popUntil((route) => route.isFirst);
+    for (var i = 0; i <= 3; i++) {
+      stackRouterOfIndex(i)?.popUntil((route) => route.isFirst);
+    }
     setActiveIndex(index);
   }
 

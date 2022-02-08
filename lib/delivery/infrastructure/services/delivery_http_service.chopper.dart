@@ -17,7 +17,7 @@ class _$DeliveryHttpService extends DeliveryHttpService {
   final definitionType = DeliveryHttpService;
 
   @override
-  Future<Response<PaymentResponse>> bookSelfStorage(
+  Future<Response<BookingResponse>> bookSelfStorage(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/self_storage/';
     final $headers = {
@@ -28,11 +28,11 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client.send<PaymentResponse, PaymentResponse>($request);
+    return client.send<BookingResponse, BookingResponse>($request);
   }
 
   @override
-  Future<Response<PaymentResponse>> bookCustomerToCustomer(
+  Future<Response<BookingResponse>> bookCustomerToCustomer(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/customer_to_customer/';
     final $headers = {
@@ -43,11 +43,11 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client.send<PaymentResponse, PaymentResponse>($request);
+    return client.send<BookingResponse, BookingResponse>($request);
   }
 
   @override
-  Future<Response<PaymentResponse>> bookCustomerToCourier(
+  Future<Response<BookingResponse>> bookCustomerToCourier(
       Map<String, dynamic> body, String refreshToken, String accessToken) {
     final $url = '/customer_to_courier/';
     final $headers = {
@@ -58,7 +58,7 @@ class _$DeliveryHttpService extends DeliveryHttpService {
     final $body = body;
     final $request =
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
-    return client.send<PaymentResponse, PaymentResponse>($request);
+    return client.send<BookingResponse, BookingResponse>($request);
   }
 
   @override
@@ -72,6 +72,19 @@ class _$DeliveryHttpService extends DeliveryHttpService {
 
     final $request = Request('GET', $url, client.baseUrl, headers: $headers);
     return client.send<List<CenterDistrict>, CenterDistrict>($request);
+  }
+
+  @override
+  Future<Response<SizesResponse>> getSizes(
+      String refreshToken, String accessToken) {
+    final $url = '/sizes/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<SizesResponse, SizesResponse>($request);
   }
 
   @override

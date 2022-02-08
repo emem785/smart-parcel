@@ -8,6 +8,7 @@ class PaymentEvent with _$PaymentEvent {
     required int amount,
   }) = MakePayment;
   const factory PaymentEvent.getCards() = GetCards;
+  const factory PaymentEvent.deleteCard(int id) = DeleteCard;
   const factory PaymentEvent.chargeAuthCode({
     required String authCode,
     required int amount,

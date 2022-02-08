@@ -29,6 +29,12 @@ abstract class PaymentHttpService extends ChopperService {
     @Header(HttpHeaders.authorizationHeader) String accessToken,
   );
 
+  @Delete(path: '/card/remove/{id}')
+  Future<Response<String>> deleteCard(
+    @Path("id") int id,
+    @Header('refresh') String refreshToken,
+    @Header(HttpHeaders.authorizationHeader) String accessToken,
+  );
   static PaymentHttpService create([ChopperClient? client]) =>
       _$PaymentHttpService(client);
 }

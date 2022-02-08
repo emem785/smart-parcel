@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_parcel/account/application/account_bloc/account_bloc.dart';
 import 'package:smart_parcel/common/application/auth_bloc/auth_bloc.dart';
 import 'package:smart_parcel/common/application/notification_bloc/notification_bloc.dart';
+import 'package:smart_parcel/common/application/user_bloc/user_bloc.dart';
 import 'package:smart_parcel/common/presentation/routing/router.gr.dart';
 import 'package:smart_parcel/inject_conf.dart';
 
@@ -17,6 +18,7 @@ class SettingsPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => getIt<AuthBloc>()),
         BlocProvider(create: (context) => getIt<AccountBloc>()),
+        BlocProvider(create: (context) => getIt<UserBloc>()),
       ],
       child: const SettingsBody(),
     );
@@ -36,6 +38,7 @@ class SettingsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
     final accountBloc = context.read<AccountBloc>();
+    final userBloc = context.read<UserBloc>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: BlocListener<AuthBloc, AuthState>(
@@ -86,21 +89,44 @@ class SettingsBody extends StatelessWidget {
               title: "Change Password",
               onTap: () => context.router.push(const ResetPasswordRoute()),
             ),
-            buildSettingTile(
-                key: delete,
-                context: context,
-                icon: "delete",
-                title: "Delete Account",
-                onTap: () {
-                  authBloc.commonUseCases.showAlertUseCase(
-                    buttonText: "Delete",
-                    content:
-                        "Are you sure you want to delete your account all your user data will be lost ?",
-                    title: "Delete Account",
-                    context: context,
-                    onConfirm: () => authBloc.add(const AuthEvent.logout()),
-                  );
-                }),
+            BlocListener<UserBloc, UserState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                  orElse: () => 1,
+                  error: (failure) => userBloc.commonUseCases.showErrorUseCase(
+                      context: context, message: failure.message),
+                  accountDeactivated: () {
+                    context.router.pop();
+
+                    context.router.pushAndPopUntil(
+                      const WelcomeRoute(),
+                      predicate: (route) => false,
+                    );
+                  },
+                );
+              },
+              child: buildSettingTile(
+                  key: delete,
+                  context: context,
+                  icon: "delete",
+                  title: "Delete Account",
+                  onTap: () async {
+                    final shouldDeactivate =
+                        await userBloc.commonUseCases.showOptionUseCase(
+                              context: context,
+                              title: "Delete Account",
+                              content:
+                                  "This action will cause your account to be deactivated",
+                              buttonText: "Yes",
+                              alternativeButtonText: "No",
+                            ) ??
+                            false;
+
+                    if (shouldDeactivate) {
+                      userBloc.add(const UserEvent.deactivateAccount());
+                    }
+                  }),
+            ),
             buildSettingTile(
                 key: logout,
                 context: context,
@@ -115,6 +141,21 @@ class SettingsBody extends StatelessWidget {
                     onConfirm: () => authBloc.add(const AuthEvent.logout()),
                   );
                 }),
+            const Spacer(),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                final loading = state.maybeMap(
+                  orElse: () => false,
+                  loading: (v) => true,
+                );
+                return Visibility(
+                  visible: loading,
+                  child: const LinearProgressIndicator(
+                    backgroundColor: Color(0xFFFAFAFA),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

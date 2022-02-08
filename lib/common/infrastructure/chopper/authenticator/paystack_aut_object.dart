@@ -12,6 +12,7 @@ class PaystackAuthObject implements AuthObject {
   @override
   FutureOr<Request?> authenticate() {
     if (!response.isSuccessful) {
+      print(response.body);
       throw ApiException("Payment Gateway error encountered");
     }
   }

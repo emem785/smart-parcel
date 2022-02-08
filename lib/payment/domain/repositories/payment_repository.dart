@@ -72,6 +72,10 @@ class PaymentRepository {
     return postDataPaystack(_paymentHttpService.initializePayment, body);
   }
 
+  SingleResponse<String> deleteCard(int cardId) {
+    return getDataAuthWithParam(_paymentHttpService.deleteCard, cardId);
+  }
+
   Either<Failure, User> getUserFromStorage() {
     final userOption = commonStorageInterface.getUser();
 

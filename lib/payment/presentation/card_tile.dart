@@ -59,7 +59,7 @@ class CardItem extends StatelessWidget {
                 );
 
                 if (shouldDelete!) {
-                  print("delete");
+                  paymentBloc.add(PaymentEvent.deleteCard(card.id));
                 }
               },
               icon: const Icon(Icons.delete_outline),

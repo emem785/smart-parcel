@@ -58,4 +58,17 @@ class _$CommonHttpService extends CommonHttpService {
         Request('POST', $url, client.baseUrl, body: $body, headers: $headers);
     return client.send<SimpleAuthResponse, SimpleAuthResponse>($request);
   }
+
+  @override
+  Future<Response<String>> deactivateAccount(
+      String refreshToken, String accessToken) {
+    final $url = '/user/profile/';
+    final $headers = {
+      'refresh': refreshToken,
+      'authorization': accessToken,
+    };
+
+    final $request = Request('DELETE', $url, client.baseUrl, headers: $headers);
+    return client.send<String, String>($request);
+  }
 }

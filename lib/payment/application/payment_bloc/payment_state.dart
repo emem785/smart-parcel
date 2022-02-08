@@ -12,6 +12,7 @@ class PaymentState with _$PaymentState {
   ) = CardCharged;
   const factory PaymentState.cardsRetreived(List<BankCard> cards) =
       CardsRetreived;
+  const factory PaymentState.cardRemoved() = CardRemoved;
   const factory PaymentState.paymentSuccessful(
     String message,
     String reference,

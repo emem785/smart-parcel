@@ -9,14 +9,10 @@ class DeliveryEvent with _$DeliveryEvent {
   ) = SelectLocation;
   const factory DeliveryEvent.proceedToBooking({
     required BuildContext context,
-    required Booking booking,
-    required String reference,
-    required int locationId,
-    required bool saveCard,
-    required String? duration,
-    required CustomerForm? customerForm,
+    required BookingInformation bookingInformation,
   }) = ProccedToBooking;
   const factory DeliveryEvent.search(String query) = Search;
   const factory DeliveryEvent.getParcelCenters() = GetParcelCenters;
+  const factory DeliveryEvent.getSizes() = GetSizes;
   const factory DeliveryEvent.openUrl(String url) = OpenUrl;
 }

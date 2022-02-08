@@ -10,29 +10,29 @@ import 'package:smart_parcel/common/theme.dart';
 import 'package:smart_parcel/common/utils/constants.dart';
 import 'package:smart_parcel/inject_conf.dart';
 import 'package:smart_parcel/payment/application/payment_bloc/payment_bloc.dart';
-import 'package:smart_parcel/payment/domain/models/payment_data.dart';
+import 'package:smart_parcel/payment/domain/models/booking_data.dart';
 
 class ReceiptPage extends StatelessWidget {
-  final PaymentData paymentData;
+  final BookingData bookingData;
   const ReceiptPage({
     Key? key,
-    required this.paymentData,
+    required this.bookingData,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<PaymentBloc>(),
-      child: SelfStoragePayment(paymentData: paymentData),
+      child: SelfStoragePayment(bookingData: bookingData),
     );
   }
 }
 
 class SelfStoragePayment extends HookWidget {
-  final PaymentData paymentData;
+  final BookingData bookingData;
   const SelfStoragePayment({
     Key? key,
-    required this.paymentData,
+    required this.bookingData,
   }) : super(key: key);
 
   @override
@@ -58,7 +58,7 @@ class SelfStoragePayment extends HookWidget {
                   text: "Your drop-off code is ",
                   children: [
                     TextSpan(
-                      text: paymentData.dropOff,
+                      text: bookingData.dropOff,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: GlobalTheme.primaryColor,
@@ -70,7 +70,7 @@ class SelfStoragePayment extends HookWidget {
               Text.rich(
                 TextSpan(text: "Your pick-up code is ", children: [
                   TextSpan(
-                    text: paymentData.pickUp,
+                    text: bookingData.pickUp,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color(0xFFF29E25),
@@ -95,7 +95,7 @@ class SelfStoragePayment extends HookWidget {
               orElse: () => LayoutConstants.padButton(ElevatedButton(
                 onPressed: () {
                   paymentBloc
-                      .add(PaymentEvent.openMap(paymentData.location.address));
+                      .add(PaymentEvent.openMap(bookingData.location.address));
                 },
                 child: const Text("Open In Map"),
               )),

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_parcel/delivery/application/delivery_bloc/delivery_bloc.dart';
 import 'package:smart_parcel/delivery/application/providers/delivery_view_model.dart';
+import 'package:smart_parcel/delivery/domain/models/booking_info.dart';
+import 'package:smart_parcel/delivery/domain/models/sizes/box_size.dart';
 import 'package:smart_parcel/payment/domain/models/bank_card.dart';
 
 class FinishTransactionUseCase {
@@ -27,14 +29,19 @@ class FinishTransactionUseCase {
   ) {
     final deliveryViewModel = context.read<DeliveryViewModel>();
 
-    deliveryBloc.add(DeliveryEvent.proceedToBooking(
-      saveCard: false,
-      context: context,
+    final bookingInfo = BookingInformation(
       booking: deliveryViewModel.booking,
       reference: reference,
       locationId: deliveryViewModel.parcelCenter.id,
       duration: deliveryViewModel.duration,
       customerForm: deliveryViewModel.customerForm,
+      boxSize: deliveryViewModel.boxSize ?? NullBoxSize(),
+      saveCard: false,
+    );
+
+    deliveryBloc.add(DeliveryEvent.proceedToBooking(
+      context: context,
+      bookingInformation: bookingInfo,
     ));
   }
 
@@ -44,6 +51,7 @@ class FinishTransactionUseCase {
     DeliveryBloc deliveryBloc,
   ) async {
     final deliveryViewModel = context.read<DeliveryViewModel>();
+
     final saveCard = await deliveryBloc.deliveryUseCases.showOptionUseCase(
       context: context,
       buttonText: "Yes",
@@ -52,14 +60,19 @@ class FinishTransactionUseCase {
       title: "Save Card",
     );
 
-    deliveryBloc.add(DeliveryEvent.proceedToBooking(
-      saveCard: saveCard ?? false,
-      context: context,
+    final bookingInfo = BookingInformation(
       booking: deliveryViewModel.booking,
       reference: reference,
       locationId: deliveryViewModel.parcelCenter.id,
       duration: deliveryViewModel.duration,
       customerForm: deliveryViewModel.customerForm,
+      boxSize: deliveryViewModel.boxSize ?? NullBoxSize(),
+      saveCard: saveCard ?? false,
+    );
+
+    deliveryBloc.add(DeliveryEvent.proceedToBooking(
+      bookingInformation: bookingInfo,
+      context: context,
     ));
   }
 }

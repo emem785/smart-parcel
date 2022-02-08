@@ -10,8 +10,10 @@ class DeliveryState with _$DeliveryState {
       LocationRetrieved;
   const factory DeliveryState.placeRetrieved(
       LocationResultResponse locationResultResponse) = PlaceRetrieved;
-  const factory DeliveryState.bookingFinished(PaymentData paymentData) =
+  const factory DeliveryState.bookingFinished(BookingData bookingData) =
       BookingFinished;
+  const factory DeliveryState.sizesRetreived(SizesResponse sizesResponse) =
+      SizesRetreived;
   const factory DeliveryState.centersRetreived(List<CenterDistrict> districts) =
       CentersRetreived;
 }

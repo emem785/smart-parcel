@@ -6,7 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:smart_parcel/common/domain/models/failure.dart';
 import 'package:smart_parcel/payment/domain/models/bank_card.dart';
-import 'package:smart_parcel/payment/domain/models/paystack_response.dart';
 import 'package:smart_parcel/payment/domain/repositories/payment_repository.dart';
 import 'package:smart_parcel/payment/domain/usecases/payment_usecases.dart';
 
@@ -23,6 +22,7 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     on<MakePayment>(paymentUseCases.makePaymentUseCase);
     on<OpenMap>(paymentUseCases.openMapUseCase);
     on<GetCards>(_getCards);
+    on<DeleteCard>(_deleteCard);
     on<ChargeAuthCode>(paymentUseCases.chargeAuthUseCase);
   }
 
@@ -32,6 +32,18 @@ class PaymentBloc extends Bloc<PaymentEvent, PaymentState> {
     return response.fold(
       (l) => emit(PaymentState.error(l)),
       (r) => emit(PaymentState.cardsRetreived(r.data.savedCards)),
+    );
+  }
+
+  FutureOr<void> _deleteCard(
+    DeleteCard event,
+    Emitter<PaymentState> emit,
+  ) async {
+    emit(const PaymentLoading());
+    final response = await paymentRepository.deleteCard(event.id);
+    return response.fold(
+      (l) => emit(PaymentState.error(l)),
+      (r) => emit(const PaymentState.cardRemoved()),
     );
   }
 }

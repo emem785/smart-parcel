@@ -29,7 +29,7 @@ class GetAppBarName {
       case "ResetPasswordRoute":
         return "Change Password";
       case "StoredCardsRoute":
-        return "Payments";
+        return "Payment";
 //Profile
       case "ProfileRoute":
         return "Profile";

@@ -99,6 +99,13 @@ class AuthTestSetup {
               Stream.value(utf8.encode(response)), statusCode);
         },
       );
+      return;
     }
+
+    when(() => client.send(any())).thenAnswer(
+      (invocation) async {
+        return http.StreamedResponse(Stream.value([]), statusCode!);
+      },
+    );
   }
 }
