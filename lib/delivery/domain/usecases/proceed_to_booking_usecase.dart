@@ -13,6 +13,7 @@ class ProceedToBookingUseCase {
     ProccedToBooking event,
     Emitter<DeliveryState> emit,
   ) async {
+    emit(const DeliveryState.loading());
     switch (event.bookingInformation.booking) {
       case Booking.selfStorage:
         await _bookSelfStorage(event, emit);

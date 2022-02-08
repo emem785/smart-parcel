@@ -90,6 +90,23 @@ Future<Either<Failure, T>> getDataAuth<T>(
   }
 }
 
+Future<Either<Failure, T>> getDataAuthWithParam<T>(
+  Future<Response<T>> Function(int, String, String) getData,
+  int param,
+) async {
+  try {
+    const authToken = AuthToken.placeHolder();
+    final response =
+        await getData(param, authToken.refresh, "Bearer ${authToken.access}");
+    return right(response.body!);
+  } on FormatException {
+    return left(const Failure("Internal Application Error"));
+  } catch (e) {
+    print("err: ${e.toString()}");
+    return left(Failure(e.toString()));
+  }
+}
+
 Future<Either<Failure, List<T>>> getListDataAuth<T>(
   Future<Response<List<T>>> Function(String, String) getData,
 ) async {

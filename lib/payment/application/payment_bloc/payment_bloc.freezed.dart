@@ -29,6 +29,12 @@ class _$PaymentEventTearOff {
     return const GetCards();
   }
 
+  DeleteCard deleteCard(int id) {
+    return DeleteCard(
+      id,
+    );
+  }
+
   ChargeAuthCode chargeAuthCode(
       {required String authCode, required int amount}) {
     return ChargeAuthCode(
@@ -53,6 +59,7 @@ mixin _$PaymentEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
     required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
     required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) =>
@@ -61,6 +68,7 @@ mixin _$PaymentEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) =>
@@ -69,6 +77,7 @@ mixin _$PaymentEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
@@ -78,6 +87,7 @@ mixin _$PaymentEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
     required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
     required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) =>
@@ -86,6 +96,7 @@ mixin _$PaymentEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) =>
@@ -94,6 +105,7 @@ mixin _$PaymentEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
@@ -190,6 +202,7 @@ class _$MakePayment implements MakePayment {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
     required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
     required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
@@ -201,6 +214,7 @@ class _$MakePayment implements MakePayment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
@@ -212,6 +226,7 @@ class _$MakePayment implements MakePayment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
@@ -227,6 +242,7 @@ class _$MakePayment implements MakePayment {
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
     required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
     required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
@@ -238,6 +254,7 @@ class _$MakePayment implements MakePayment {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
@@ -249,6 +266,7 @@ class _$MakePayment implements MakePayment {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
@@ -311,6 +329,7 @@ class _$GetCards implements GetCards {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
     required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
     required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
@@ -322,6 +341,7 @@ class _$GetCards implements GetCards {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
@@ -333,6 +353,7 @@ class _$GetCards implements GetCards {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
@@ -348,6 +369,7 @@ class _$GetCards implements GetCards {
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
     required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
     required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
@@ -359,6 +381,7 @@ class _$GetCards implements GetCards {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
@@ -370,6 +393,7 @@ class _$GetCards implements GetCards {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
@@ -383,6 +407,155 @@ class _$GetCards implements GetCards {
 
 abstract class GetCards implements PaymentEvent {
   const factory GetCards() = _$GetCards;
+}
+
+/// @nodoc
+abstract class $DeleteCardCopyWith<$Res> {
+  factory $DeleteCardCopyWith(
+          DeleteCard value, $Res Function(DeleteCard) then) =
+      _$DeleteCardCopyWithImpl<$Res>;
+  $Res call({int id});
+}
+
+/// @nodoc
+class _$DeleteCardCopyWithImpl<$Res> extends _$PaymentEventCopyWithImpl<$Res>
+    implements $DeleteCardCopyWith<$Res> {
+  _$DeleteCardCopyWithImpl(DeleteCard _value, $Res Function(DeleteCard) _then)
+      : super(_value, (v) => _then(v as DeleteCard));
+
+  @override
+  DeleteCard get _value => super._value as DeleteCard;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(DeleteCard(
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCard implements DeleteCard {
+  const _$DeleteCard(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'PaymentEvent.deleteCard(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DeleteCard &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteCardCopyWith<DeleteCard> get copyWith =>
+      _$DeleteCardCopyWithImpl<DeleteCard>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(BuildContext context, int amount) makePayment,
+    required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
+    required TResult Function(String authCode, int amount) chargeAuthCode,
+    required TResult Function(String address) openMap,
+  }) {
+    return deleteCard(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+  }) {
+    return deleteCard?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(BuildContext context, int amount)? makePayment,
+    TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
+    TResult Function(String authCode, int amount)? chargeAuthCode,
+    TResult Function(String address)? openMap,
+    required TResult orElse(),
+  }) {
+    if (deleteCard != null) {
+      return deleteCard(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MakePayment value) makePayment,
+    required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
+    required TResult Function(ChargeAuthCode value) chargeAuthCode,
+    required TResult Function(OpenMap value) openMap,
+  }) {
+    return deleteCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+  }) {
+    return deleteCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MakePayment value)? makePayment,
+    TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
+    TResult Function(ChargeAuthCode value)? chargeAuthCode,
+    TResult Function(OpenMap value)? openMap,
+    required TResult orElse(),
+  }) {
+    if (deleteCard != null) {
+      return deleteCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteCard implements PaymentEvent {
+  const factory DeleteCard(int id) = _$DeleteCard;
+
+  int get id;
+  @JsonKey(ignore: true)
+  $DeleteCardCopyWith<DeleteCard> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -460,6 +633,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
     required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
     required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
@@ -471,6 +645,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
@@ -482,6 +657,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
@@ -497,6 +673,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
     required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
     required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
@@ -508,6 +685,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
@@ -519,6 +697,7 @@ class _$ChargeAuthCode implements ChargeAuthCode {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
@@ -604,6 +783,7 @@ class _$OpenMap implements OpenMap {
   TResult when<TResult extends Object?>({
     required TResult Function(BuildContext context, int amount) makePayment,
     required TResult Function() getCards,
+    required TResult Function(int id) deleteCard,
     required TResult Function(String authCode, int amount) chargeAuthCode,
     required TResult Function(String address) openMap,
   }) {
@@ -615,6 +795,7 @@ class _$OpenMap implements OpenMap {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
   }) {
@@ -626,6 +807,7 @@ class _$OpenMap implements OpenMap {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(BuildContext context, int amount)? makePayment,
     TResult Function()? getCards,
+    TResult Function(int id)? deleteCard,
     TResult Function(String authCode, int amount)? chargeAuthCode,
     TResult Function(String address)? openMap,
     required TResult orElse(),
@@ -641,6 +823,7 @@ class _$OpenMap implements OpenMap {
   TResult map<TResult extends Object?>({
     required TResult Function(MakePayment value) makePayment,
     required TResult Function(GetCards value) getCards,
+    required TResult Function(DeleteCard value) deleteCard,
     required TResult Function(ChargeAuthCode value) chargeAuthCode,
     required TResult Function(OpenMap value) openMap,
   }) {
@@ -652,6 +835,7 @@ class _$OpenMap implements OpenMap {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
   }) {
@@ -663,6 +847,7 @@ class _$OpenMap implements OpenMap {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MakePayment value)? makePayment,
     TResult Function(GetCards value)? getCards,
+    TResult Function(DeleteCard value)? deleteCard,
     TResult Function(ChargeAuthCode value)? chargeAuthCode,
     TResult Function(OpenMap value)? openMap,
     required TResult orElse(),
@@ -713,6 +898,10 @@ class _$PaymentStateTearOff {
     );
   }
 
+  CardRemoved cardRemoved() {
+    return const CardRemoved();
+  }
+
   PaymentSuccessful paymentSuccessful(String message, String reference) {
     return PaymentSuccessful(
       message,
@@ -733,6 +922,7 @@ mixin _$PaymentState {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) =>
@@ -744,6 +934,7 @@ mixin _$PaymentState {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -754,6 +945,7 @@ mixin _$PaymentState {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) =>
@@ -765,6 +957,7 @@ mixin _$PaymentState {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -775,6 +968,7 @@ mixin _$PaymentState {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) =>
       throw _privateConstructorUsedError;
@@ -785,6 +979,7 @@ mixin _$PaymentState {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) =>
@@ -853,6 +1048,7 @@ class _$PaymentInitial implements PaymentInitial {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -867,6 +1063,7 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return initial?.call();
@@ -880,6 +1077,7 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -897,6 +1095,7 @@ class _$PaymentInitial implements PaymentInitial {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return initial(this);
@@ -910,6 +1109,7 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return initial?.call(this);
@@ -923,6 +1123,7 @@ class _$PaymentInitial implements PaymentInitial {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -983,6 +1184,7 @@ class _$PaymentLoading implements PaymentLoading {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -997,6 +1199,7 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return loading?.call();
@@ -1010,6 +1213,7 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1027,6 +1231,7 @@ class _$PaymentLoading implements PaymentLoading {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return loading(this);
@@ -1040,6 +1245,7 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return loading?.call(this);
@@ -1053,6 +1259,7 @@ class _$PaymentLoading implements PaymentLoading {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1135,6 +1342,7 @@ class _$PaymentError implements PaymentError {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -1149,6 +1357,7 @@ class _$PaymentError implements PaymentError {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return error?.call(failure);
@@ -1162,6 +1371,7 @@ class _$PaymentError implements PaymentError {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1179,6 +1389,7 @@ class _$PaymentError implements PaymentError {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return error(this);
@@ -1192,6 +1403,7 @@ class _$PaymentError implements PaymentError {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return error?.call(this);
@@ -1205,6 +1417,7 @@ class _$PaymentError implements PaymentError {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1301,6 +1514,7 @@ class _$CardCharged implements CardCharged {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -1315,6 +1529,7 @@ class _$CardCharged implements CardCharged {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return cardCharged?.call(message, reference);
@@ -1328,6 +1543,7 @@ class _$CardCharged implements CardCharged {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1345,6 +1561,7 @@ class _$CardCharged implements CardCharged {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return cardCharged(this);
@@ -1358,6 +1575,7 @@ class _$CardCharged implements CardCharged {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return cardCharged?.call(this);
@@ -1371,6 +1589,7 @@ class _$CardCharged implements CardCharged {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1461,6 +1680,7 @@ class _$CardsRetreived implements CardsRetreived {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -1475,6 +1695,7 @@ class _$CardsRetreived implements CardsRetreived {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return cardsRetreived?.call(cards);
@@ -1488,6 +1709,7 @@ class _$CardsRetreived implements CardsRetreived {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1505,6 +1727,7 @@ class _$CardsRetreived implements CardsRetreived {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return cardsRetreived(this);
@@ -1518,6 +1741,7 @@ class _$CardsRetreived implements CardsRetreived {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return cardsRetreived?.call(this);
@@ -1531,6 +1755,7 @@ class _$CardsRetreived implements CardsRetreived {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1548,6 +1773,141 @@ abstract class CardsRetreived implements PaymentState {
   @JsonKey(ignore: true)
   $CardsRetreivedCopyWith<CardsRetreived> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CardRemovedCopyWith<$Res> {
+  factory $CardRemovedCopyWith(
+          CardRemoved value, $Res Function(CardRemoved) then) =
+      _$CardRemovedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$CardRemovedCopyWithImpl<$Res> extends _$PaymentStateCopyWithImpl<$Res>
+    implements $CardRemovedCopyWith<$Res> {
+  _$CardRemovedCopyWithImpl(
+      CardRemoved _value, $Res Function(CardRemoved) _then)
+      : super(_value, (v) => _then(v as CardRemoved));
+
+  @override
+  CardRemoved get _value => super._value as CardRemoved;
+}
+
+/// @nodoc
+
+class _$CardRemoved implements CardRemoved {
+  const _$CardRemoved();
+
+  @override
+  String toString() {
+    return 'PaymentState.cardRemoved()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CardRemoved);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Failure failure) error,
+    required TResult Function(String message, String reference) cardCharged,
+    required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
+    required TResult Function(String message, String reference)
+        paymentSuccessful,
+  }) {
+    return cardRemoved();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
+    TResult Function(String message, String reference)? paymentSuccessful,
+  }) {
+    return cardRemoved?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Failure failure)? error,
+    TResult Function(String message, String reference)? cardCharged,
+    TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
+    TResult Function(String message, String reference)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardRemoved != null) {
+      return cardRemoved();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentInitial value) initial,
+    required TResult Function(PaymentLoading value) loading,
+    required TResult Function(PaymentError value) error,
+    required TResult Function(CardCharged value) cardCharged,
+    required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
+    required TResult Function(PaymentSuccessful value) paymentSuccessful,
+  }) {
+    return cardRemoved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+  }) {
+    return cardRemoved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentInitial value)? initial,
+    TResult Function(PaymentLoading value)? loading,
+    TResult Function(PaymentError value)? error,
+    TResult Function(CardCharged value)? cardCharged,
+    TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
+    TResult Function(PaymentSuccessful value)? paymentSuccessful,
+    required TResult orElse(),
+  }) {
+    if (cardRemoved != null) {
+      return cardRemoved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CardRemoved implements PaymentState {
+  const factory CardRemoved() = _$CardRemoved;
 }
 
 /// @nodoc
@@ -1628,6 +1988,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     required TResult Function(Failure failure) error,
     required TResult Function(String message, String reference) cardCharged,
     required TResult Function(List<BankCard> cards) cardsRetreived,
+    required TResult Function() cardRemoved,
     required TResult Function(String message, String reference)
         paymentSuccessful,
   }) {
@@ -1642,6 +2003,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
   }) {
     return paymentSuccessful?.call(message, reference);
@@ -1655,6 +2017,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(Failure failure)? error,
     TResult Function(String message, String reference)? cardCharged,
     TResult Function(List<BankCard> cards)? cardsRetreived,
+    TResult Function()? cardRemoved,
     TResult Function(String message, String reference)? paymentSuccessful,
     required TResult orElse(),
   }) {
@@ -1672,6 +2035,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     required TResult Function(PaymentError value) error,
     required TResult Function(CardCharged value) cardCharged,
     required TResult Function(CardsRetreived value) cardsRetreived,
+    required TResult Function(CardRemoved value) cardRemoved,
     required TResult Function(PaymentSuccessful value) paymentSuccessful,
   }) {
     return paymentSuccessful(this);
@@ -1685,6 +2049,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
   }) {
     return paymentSuccessful?.call(this);
@@ -1698,6 +2063,7 @@ class _$PaymentSuccessful implements PaymentSuccessful {
     TResult Function(PaymentError value)? error,
     TResult Function(CardCharged value)? cardCharged,
     TResult Function(CardsRetreived value)? cardsRetreived,
+    TResult Function(CardRemoved value)? cardRemoved,
     TResult Function(PaymentSuccessful value)? paymentSuccessful,
     required TResult orElse(),
   }) {
