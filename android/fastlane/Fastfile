@@ -46,7 +46,7 @@ end
 
 firebase_app_distribution(
     app: "1:760140056434:android:6ef2f6d8684c35d6ebbfeb",
-    groups: "getmobile",
+    groups: "smartparcel",
     release_notes_file: "/home/circleci/project/release_notes.txt",
     android_artifact_path: "/home/circleci/project/build/app/outputs/apk/release/app-release.apk",
     android_artifact_type: "APK",
